@@ -7,14 +7,17 @@ using UnityEditor;
 using System.Linq;
 using System;
 
-public class SeatDecorator : Decorator
+
+namespace Spark
 {
-	private const string SEAT = "Seat";
+	public class SeatDecorator : Decorator
+	{
+		private const string SEAT = "Seat";
 
-	[System.NonSerialized]
-	private List<GameObject> seats = new List<GameObject> ();
+		[System.NonSerialized]
+		private List<GameObject> seats = new List<GameObject>();
 
-	#if UNITY_EDITOR
+#if UNITY_EDITOR
 	public override void Load (ParkitectObj parkitectObj)
 	{
 		seats.Clear ();
@@ -91,9 +94,10 @@ public class SeatDecorator : Decorator
 	
 		base.RenderSceneGUI (parkitectObj);
 	}
-	#endif
+#endif
 
 
+	}
 }
 
 

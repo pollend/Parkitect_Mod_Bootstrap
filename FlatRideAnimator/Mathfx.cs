@@ -1,12 +1,14 @@
 ﻿using System;
 using UnityEngine;
-
-public class Mathfx
+namespace Spark
 {
-    public static float Hermite(float start, float end, float value)
-    {
-        return Mathf.Lerp(start, end, value * value * (3f - 2f * value));
-    }
+	public class Mathfx
+	{
+		public static float Hermite(float start, float end, float value)
+		{
+			return Mathf.Lerp(start, end, value * value * (3f - 2f * value));
+		}
 
-   
+
+	}
 }

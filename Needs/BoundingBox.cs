@@ -2,9 +2,12 @@
 using System.Collections;
 using System;
 
-[Serializable]
-public class BoundingBox
+namespace Spark
 {
-    public Bounds bounds;
-    private Bounds liveBounds;
+	[Serializable]
+	public class BoundingBox
+	{
+		public Bounds bounds;
+		private Bounds liveBounds;
+	}
 }

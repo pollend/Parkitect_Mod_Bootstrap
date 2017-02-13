@@ -4,23 +4,25 @@ using UnityEngine;
 using UnityEditor;
 #endif
 using System.Collections.Generic;
-
-public class WaypointDecorator : Decorator
+namespace Spark
 {
-	[System.NonSerialized]
-	private bool enableEditing = false;
-	[System.NonSerialized]
-	private float helperPlaneY = 0;
-	[SerializeField]
-	public Waypoint selectedWaypoint;
-
-	public List<Waypoint> waypoints = new List<Waypoint>();
-
-
-	public WaypointDecorator ()
+	public class WaypointDecorator : Decorator
 	{
-	}
-	#if UNITY_EDITOR
+		
+		[System.NonSerialized]
+		private bool enableEditing = false;
+		[System.NonSerialized]
+		private float helperPlaneY = 0;
+		[SerializeField]
+		public Waypoint selectedWaypoint;
+
+		public List<Waypoint> waypoints = new List<Waypoint>();
+
+
+		public WaypointDecorator()
+		{
+		}
+#if UNITY_EDITOR
 	public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 	{
 		//FlatrideDecorator flatRideDecorator = parkitectObj.GetDecorator (typeof(FlatrideDecorator));
@@ -126,7 +128,8 @@ public class WaypointDecorator : Decorator
 		}
 
 	}
-	#endif
+#endif
+	}
 }
 
 

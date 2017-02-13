@@ -4,24 +4,25 @@ using UnityEngine;
 using UnityEditor;
 #endif
 using System.Collections.Generic;
-
-public class BoundingBoxDecorator : Decorator
+namespace Spark
 {
-    public BoundingBoxDecorator ()
-    {
-        if (boundingBoxes == null)
-            boundingBoxes = new List<BoundingBox> ();
-    }
+	public class BoundingBoxDecorator : Decorator
+	{
+		public BoundingBoxDecorator()
+		{
+			if (boundingBoxes == null)
+				boundingBoxes = new List<BoundingBox>();
+		}
 
-	[System.NonSerialized]
-	private bool enableEditing = false;
-    private bool snap = false;
-    private Vector2 scrollPos2;
-    public BoundingBox selected;
+		[System.NonSerialized]
+		private bool enableEditing = false;
+		private bool snap = false;
+		private Vector2 scrollPos2;
+		public BoundingBox selected;
 
-    public List<BoundingBox> boundingBoxes;
+		public List<BoundingBox> boundingBoxes;
 
-	#if UNITY_EDITOR
+#if UNITY_EDITOR
     public override void RenderInspectorGUI (ParkitectObj parkitectObj)
     {
         Event e = Event.current;
@@ -181,7 +182,8 @@ public class BoundingBoxDecorator : Decorator
 	{
 		Handles.DrawSolidRectangleWithOutline(new Vector3[] { PO.Prefab.transform.TransformPoint(p1), PO.Prefab.transform.TransformPoint(p2), PO.Prefab.transform.TransformPoint(p3), PO.Prefab.transform.TransformPoint(p4) }, fill, outer);
 	}
-	#endif
+#endif
+
+	}
 
 }
-

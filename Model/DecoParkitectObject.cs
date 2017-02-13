@@ -1,19 +1,21 @@
 ﻿using System;
-
-[ParkitectObjectTag("Deco")]
-[Serializable]
-public class DecoParkitectObject : ParkitectObj
+namespace Spark
 {
-
-	public override Type[] SupportedDecorators ()
+	[ParkitectObjectTag("Deco")]
+	[Serializable]
+	public class DecoParkitectObject : ParkitectObj
 	{
-        return new Type[]{
-            typeof(BaseDecorator),
-            typeof(GridDecorator),
-            typeof(CategoryDecorator),
-            typeof(ColorDecorator),
-            typeof(BoundingBoxDecorator)
-        };
+
+		public override Type[] SupportedDecorators()
+		{
+			return new Type[]{
+			typeof(BaseDecorator),
+			typeof(GridDecorator),
+			typeof(CategoryDecorator),
+			typeof(ColorDecorator),
+			typeof(BoundingBoxDecorator)
+		};
+		}
 	}
 }
 

@@ -3,22 +3,23 @@
 using UnityEditor;
 #endif
 using UnityEngine;
-
-[Serializable]
-public class BaseDecorator : Decorator
+namespace Spark
 {
-	public BaseDecorator ()
+	[Serializable]
+	public class BaseDecorator : Decorator
 	{
-	}
+		public BaseDecorator()
+		{
+		}
 
 
-	[SerializeField]
-	public string InGameName;
+		[SerializeField]
+		public string InGameName;
 
-	[SerializeField]
-	public float price;
+		[SerializeField]
+		public float price;
 
-	#if UNITY_EDITOR
+#if UNITY_EDITOR
 
     public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 	{
@@ -26,8 +27,8 @@ public class BaseDecorator : Decorator
 		this.price = EditorGUILayout.FloatField("Price: ", this.price);
         base.RenderInspectorGUI (parkitectObj);
 	}
-	#endif
+#endif
+
+	}
 
 }
-
-

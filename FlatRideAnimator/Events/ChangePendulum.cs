@@ -4,26 +4,36 @@ using UnityEditor;
 using System;
 using UnityEngine;
 using System.Linq;
-
-[ExecuteInEditMode]
-[Serializable]
-public class ChangePendulum : RideAnimationEvent 
+namespace Spark
 {
-    [SerializeField]
-    public PendulumRotator rotator;
-    float lastTime;
-    public float Friction = 20f;
-    public bool Pendulum;
-    private float startPendulumPosition;
-    private float windUpAngleTarget = 100f;
-    public override string EventName
-    {
-        get
-        {
-            return "ChangePendulum";
-        }
-    }
-	#if UNITY_EDITOR
+	[ExecuteInEditMode]
+	[Serializable]
+	public class ChangePendulum : RideAnimationEvent
+	{
+		[SerializeField]
+		public PendulumRotator rotator;
+		public float Friction = 20f;
+		public bool Pendulum;
+
+		#if UNITY_EDITOR
+		float lastTime;
+		private float startPendulumPosition;
+		private float windUpAngleTarget = 100f;
+		#endif
+
+		public override string EventName
+		{
+			get
+			{
+				return "ChangePendulum";
+			}
+		}
+		public override void Bootstrap()
+		{
+			base.Bootstrap();
+		}
+
+#if UNITY_EDITOR
 	public override void RenderInspectorGUI(Motor[] motors)
     {
 
@@ -46,20 +56,21 @@ public class ChangePendulum : RideAnimationEvent
         }
 		base.RenderInspectorGUI(motors);
     }
-	#endif
+#endif
 
-    public override void Enter()
-    {
-        rotator.setActAsPendulum(Pendulum);
-        rotator.angularFriction = Friction;
-        done = true;
-    }
-	public override void Run(Transform root)
-    {
-        if (rotator)
-        {
-            
-        }
+		public override void Enter()
+		{
+			rotator.setActAsPendulum(Pendulum);
+			rotator.angularFriction = Friction;
+			done = true;
+		}
+		public override void Run(Transform root)
+		{
+			if (rotator)
+			{
 
-    }
+			}
+
+		}
+	}
 }

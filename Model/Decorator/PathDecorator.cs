@@ -3,16 +3,18 @@ using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-public class  PathDecorator : Decorator
+namespace Spark
 {
-	public enum PathType { Normal, Queue, Employee }
-	public PathType pathType;
-	public Texture2D PathTexture;
-
-	public PathDecorator ()
+	public class PathDecorator : Decorator
 	{
-	}
-	#if UNITY_EDITOR
+		public enum PathType { Normal, Queue, Employee }
+		public PathType pathType;
+		public Texture2D PathTexture;
+
+		public PathDecorator()
+		{
+		}
+#if UNITY_EDITOR
 	public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 	{
 		this.PathTexture = (Texture2D)EditorGUILayout.ObjectField("Texture",this.PathTexture, typeof(Texture2D), true);
@@ -46,7 +48,7 @@ public class  PathDecorator : Decorator
 
 		base.RenderInspectorGUI (parkitectObj);
 	}
-	#endif
+#endif
+	}
 }
-
 

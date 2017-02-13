@@ -3,19 +3,21 @@ using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-public class FlatrideDecorator : Decorator
+namespace Spark
 {
-	public float Excitement;
-	public float Intensity;
-	public float Nausea;
-	public float XSize = 1;
-	public float ZSize = 1;
-	public Vector3 closedAngleRetraints;
-
-	public FlatrideDecorator ()
+	public class FlatrideDecorator : Decorator
 	{
-	}
-	#if UNITY_EDITOR
+		public float Excitement;
+		public float Intensity;
+		public float Nausea;
+		public float XSize = 1;
+		public float ZSize = 1;
+		public Vector3 closedAngleRetraints;
+
+		public FlatrideDecorator()
+		{
+		}
+#if UNITY_EDITOR
 	public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 	{
 
@@ -34,24 +36,25 @@ public class FlatrideDecorator : Decorator
 
 		base.RenderInspectorGUI (parkitectObj);
 	}
-	#endif
+#endif
 
-	private string getRatingCategory(float ratingValue)
-	{
-		ratingValue /= 100f;
-		if (ratingValue > 0.9f)
+		private string getRatingCategory(float ratingValue)
 		{
-			return "Very High";
+			ratingValue /= 100f;
+			if (ratingValue > 0.9f)
+			{
+				return "Very High";
+			}
+			if (ratingValue > 0.6f)
+			{
+				return "High";
+			}
+			if (ratingValue > 0.3f)
+			{
+				return "Medium";
+			}
+			return "Low";
 		}
-		if (ratingValue > 0.6f)
-		{
-			return "High";
-		}
-		if (ratingValue > 0.3f)
-		{
-			return "Medium";
-		}
-		return "Low";
 	}
 }
 

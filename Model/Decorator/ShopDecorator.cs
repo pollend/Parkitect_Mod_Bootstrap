@@ -4,21 +4,25 @@ using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-public class ShopDecorator : Decorator
+namespace Spark
 {
-	public List<Product> products = new List<Product>();
-
-	[System.NonSerialized]
-	private Vector2 scrollPos2;
-	[System.NonSerialized]
-	private Product selected;
-
-	public ShopDecorator ()
+	public class ShopDecorator : Decorator
 	{
-	}
+		public List<Product> products = new List<Product>();
+
+		#if UNITY_EDITOR
+		[System.NonSerialized]
+		private Vector2 scrollPos2;
+		[System.NonSerialized]
+		private Product selected;
+		#endif
+
+		public ShopDecorator()
+		{
+		}
 
 
-	#if UNITY_EDITOR
+#if UNITY_EDITOR
 	public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 	{
 
@@ -109,7 +113,8 @@ public class ShopDecorator : Decorator
 
 		base.CleanUp (parkitectObj);
 	}
-	#endif
+#endif
+	}
 }
 
 

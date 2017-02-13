@@ -1,9 +1,11 @@
 ﻿using System;
-
-public abstract class Model
+namespace Spark
 {
-	public Model ()
+	public abstract class Model
 	{
+		public Model()
+		{
+		}
 	}
-}
 
+}

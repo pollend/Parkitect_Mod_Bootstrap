@@ -30,4 +30,8 @@ public class RideAnimationEvent : ScriptableObject
 		done = false;
 	}
 
+	public virtual void Bootstrap()
+	{
+	}
+
 }

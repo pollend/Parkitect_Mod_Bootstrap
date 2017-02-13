@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4C156FA3-43F0-46C6-B387-B94BA3A13B23}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ParkitectModBootstrap</RootNamespace>
+    <AssemblyName>ParkitectModBootstrap</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Refrence.cs" />
+    <Compile Include="RefrencedTransform.cs" />
+    <Compile Include="Model\DecoParkitectObject.cs" />
+    <Compile Include="Model\FlatRideParkitectObject.cs" />
+    <Compile Include="Model\ModPayload.cs" />
+    <Compile Include="Model\ParkitectObj.cs" />
+    <Compile Include="Model\ParkitectObjectTag.cs" />
+    <Compile Include="Model\PathStyleParkitectObject.cs" />
+    <Compile Include="Model\SeatingParkitectObject.cs" />
+    <Compile Include="Model\ShopParkitectObject.cs" />
+    <Compile Include="Model\WallParkitectObject.cs" />
+    <Compile Include="Model\Decorator\AnimatorDecorator.cs" />
+    <Compile Include="Model\Decorator\BaseDecorator.cs" />
+    <Compile Include="Model\Decorator\BoundingBoxDecorator.cs" />
+    <Compile Include="Model\Decorator\CategoryDecorator.cs" />
+    <Compile Include="Model\Decorator\ColorDecorator.cs" />
+    <Compile Include="Model\Decorator\Decorator.cs" />
+    <Compile Include="Model\Decorator\DecoratorTag.cs" />
+    <Compile Include="Model\Decorator\FlatrideDecorator.cs" />
+    <Compile Include="Model\Decorator\FootprintDecorator.cs" />
+    <Compile Include="Model\Decorator\GridDecorator.cs" />
+    <Compile Include="Model\Decorator\Model.cs" />
+    <Compile Include="Model\Decorator\PathDecorator.cs" />
+    <Compile Include="Model\Decorator\PathTypeDecorator.cs" />
+    <Compile Include="Model\Decorator\ProductDecorator.cs" />
+    <Compile Include="Model\Decorator\SeatDecorator.cs" />
+    <Compile Include="Model\Decorator\ShopDecorator.cs" />
+    <Compile Include="Model\Decorator\WaypointDecorator.cs" />
+    <Compile Include="Model\Decorator\Products\ConsumableProduct.cs" />
+    <Compile Include="Model\Decorator\Products\Ingredients.cs" />
+    <Compile Include="Model\Decorator\Products\OngoingProduct.cs" />
+    <Compile Include="Model\Decorator\Products\Product.cs" />
+    <Compile Include="Model\Decorator\Products\WearableProduct.cs" />
+    <Compile Include="Needs\BoundingBox.cs" />
+    <Compile Include="Needs\Waypoint.cs" />
+    <Compile Include="FlatRideAnimator\Mathfx.cs" />
+    <Compile Include="FlatRideAnimator\Phase.cs" />
+    <Compile Include="FlatRideAnimator\RideAnimation.cs" />
+    <Compile Include="FlatRideAnimator\RideAnimationEvent.cs" />
+    <Compile Include="FlatRideAnimator\Events\ApplyRotation.cs" />
+    <Compile Include="FlatRideAnimator\Events\ChangePendulum.cs" />
+    <Compile Include="FlatRideAnimator\Events\FromToMove.cs" />
+    <Compile Include="FlatRideAnimator\Events\FromToRot.cs" />
+    <Compile Include="FlatRideAnimator\Events\SpinRotater.cs" />
+    <Compile Include="FlatRideAnimator\Events\StartRotator.cs" />
+    <Compile Include="FlatRideAnimator\Events\StopRotator.cs" />
+    <Compile Include="FlatRideAnimator\Events\ToFromMove.cs" />
+    <Compile Include="FlatRideAnimator\Events\ToFromRot.cs" />
+    <Compile Include="FlatRideAnimator\Events\Wait.cs" />
+    <Compile Include="FlatRideAnimator\Motor\Motor.cs" />
+    <Compile Include="FlatRideAnimator\Motor\Mover.cs" />
+    <Compile Include="FlatRideAnimator\Motor\MultipleRotations.cs" />
+    <Compile Include="FlatRideAnimator\Motor\PendulumRotator.cs" />
+    <Compile Include="FlatRideAnimator\Motor\RotateBetween.cs" />
+    <Compile Include="FlatRideAnimator\Motor\Rotator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\Parkitect_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\Parkitect_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

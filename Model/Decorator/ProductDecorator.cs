@@ -1,10 +1,11 @@
 ﻿using System;
-
-public class ProductDecorator : Decorator
+namespace Spark
 {
-	public ProductDecorator ()
+	public class ProductDecorator : Decorator
 	{
+		public ProductDecorator()
+		{
+		}
 	}
 }
-
 

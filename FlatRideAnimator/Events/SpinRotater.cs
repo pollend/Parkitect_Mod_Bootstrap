@@ -4,28 +4,29 @@ using UnityEditor;
 using System;
 using UnityEngine;
 using System.Linq;
-
-[ExecuteInEditMode]
-[Serializable]
-public class SpinRotater : RideAnimationEvent 
+namespace Spark
 {
-    [SerializeField]
-    public Rotator rotator;
-    [SerializeField]
-    public bool spin = false;
-    [SerializeField]
-    public float spins = 1;
-    float lastTime;
+	[ExecuteInEditMode]
+	[Serializable]
+	public class SpinRotater : RideAnimationEvent
+	{
+		[SerializeField]
+		public Rotator rotator;
+		[SerializeField]
+		public bool spin = false;
+		[SerializeField]
+		public float spins = 1;
+		float lastTime;
 
 
-    public override string EventName
-    {
-        get
-        {
-            return "SpinRotator";
-        }
-    }
-	#if UNITY_EDITOR
+		public override string EventName
+		{
+			get
+			{
+				return "SpinRotator";
+			}
+		}
+#if UNITY_EDITOR
 	public override void RenderInspectorGUI(Motor[] motors)
     {
 
@@ -51,34 +52,35 @@ public class SpinRotater : RideAnimationEvent
         }
 		base.RenderInspectorGUI(motors);
     }
-	#endif
+#endif
 
-    public override void Enter()
-    {
-        lastTime = Time.realtimeSinceStartup;
-        rotator.resetRotations();
-        base.Enter();
-    }
-	public override void Run(Transform root)
-    {
-        if (rotator)
-        {
+		public override void Enter()
+		{
+			lastTime = Time.realtimeSinceStartup;
+			rotator.resetRotations();
+			base.Enter();
+		}
+		public override void Run(Transform root)
+		{
+			if (rotator)
+			{
 
 
-			rotator.tick(Time.realtimeSinceStartup - lastTime,root);
-            lastTime = Time.realtimeSinceStartup;
-            if (spin)
-            {
-                if (rotator.getRotationsCount() >= spins)
-                {
-                    done = true;
-                }
-            }
-            else
-            { done = true;}
-            
-			base.Run(root);
-        }
+				rotator.tick(Time.realtimeSinceStartup - lastTime, root);
+				lastTime = Time.realtimeSinceStartup;
+				if (spin)
+				{
+					if (rotator.getRotationsCount() >= spins)
+					{
+						done = true;
+					}
+				}
+				else
+				{ done = true; }
 
-    }
+				base.Run(root);
+			}
+
+		}
+	}
 }

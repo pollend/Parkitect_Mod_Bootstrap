@@ -2,21 +2,22 @@
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-
-[Serializable]
-public class GridDecorator : Decorator
+namespace Spark
 {
-	public bool snapCenter = true;
-	public bool snap;
-	public bool grid;
-	public float heightDelta;
-	public float gridSubdivision = 1;
-
-	public GridDecorator ()
+	[Serializable]
+	public class GridDecorator : Decorator
 	{
-	}
+		public bool snapCenter = true;
+		public bool snap;
+		public bool grid;
+		public float heightDelta;
+		public float gridSubdivision = 1;
 
-	#if UNITY_EDITOR
+		public GridDecorator()
+		{
+		}
+
+#if UNITY_EDITOR
     public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 	{
 		this.grid = EditorGUILayout.Toggle("GridSnap: ", this.grid);
@@ -26,7 +27,7 @@ public class GridDecorator : Decorator
 
         base.RenderInspectorGUI (parkitectObj);
 	}
-	#endif
+#endif
+	}
 }
-
 

@@ -4,22 +4,23 @@ using UnityEditor;
 
 using UnityEngine;
 using System;
-
-[Serializable]
-[ExecuteInEditMode]
-public class Wait : RideAnimationEvent
+namespace Spark
 {
-    [SerializeField]
-    public float seconds;
-    float timeLimit;
-    public override string EventName
-    {
-        get
-        {
-            return "Wait";
-        }
-    }
-	#if UNITY_EDITOR
+	[Serializable]
+	[ExecuteInEditMode]
+	public class Wait : RideAnimationEvent
+	{
+		[SerializeField]
+		public float seconds;
+		float timeLimit;
+		public override string EventName
+		{
+			get
+			{
+				return "Wait";
+			}
+		}
+#if UNITY_EDITOR
 	public override void RenderInspectorGUI(Motor[] motors)
     {
        
@@ -30,26 +31,26 @@ public class Wait : RideAnimationEvent
         }
 		base.RenderInspectorGUI(motors);
     }
-	#endif
+#endif
 
-    public override void Enter()
-    {
-        
-        timeLimit = Time.realtimeSinceStartup + seconds;
-        base.Enter();
-    }
-	public override void Run(Transform root)
-    {
-        if (Time.realtimeSinceStartup > timeLimit)
-        {
+		public override void Enter()
+		{
 
-            done = true;
-        }
-        else
-        {
+			timeLimit = Time.realtimeSinceStartup + seconds;
+			base.Enter();
+		}
+		public override void Run(Transform root)
+		{
+			if (Time.realtimeSinceStartup > timeLimit)
+			{
 
-        }
-		base.Run(root);
-    }
+				done = true;
+			}
+			else
+			{
 
+			}
+			base.Run(root);
+		}
+	}
 }

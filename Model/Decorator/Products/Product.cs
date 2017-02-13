@@ -4,29 +4,31 @@ using UnityEngine;
 using UnityEditor;
 #endif
 using System.Collections.Generic;
-
-public class Product : ScriptableObject
+namespace Spark
 {
-	public enum Tempreature
+	public class Product : ScriptableObject
 	{
-		NONE,
-		COLD,
-		HOT
-	}
+		public enum Tempreature
+		{
+			NONE,
+			COLD,
+			HOT
+		}
 
-	public List<Ingredient> ingredients = new List<Ingredient>();
+		public List<Ingredient> ingredients = new List<Ingredient>();
 
 
-	public string Name;
-	public float Price;
-	private Vector2 scrollPos = Vector2.zero;
-	private Ingredient selected = null;
+		public string Name;
+		public float Price;
 
-	public Product ()
-	{
-	}
+		private Vector2 scrollPos = Vector2.zero;
+		private Ingredient selected = null;
 
-	#if UNITY_EDITOR
+		public Product()
+		{
+		}
+
+#if UNITY_EDITOR
 	public virtual void RenderInspectorGUI(){
 		Name = EditorGUILayout.TextField ("Name",Name);
 		Price = EditorGUILayout.FloatField("Price ", Price);
@@ -114,8 +116,7 @@ public class Product : ScriptableObject
 		EditorGUILayout.EndVertical();
 		EditorGUILayout.EndVertical();
 	}
-	#endif
+#endif
 
+	}
 }
-
-

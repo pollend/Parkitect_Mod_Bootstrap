@@ -5,20 +5,21 @@ using UnityEditor;
 #endif
 
 using System.Collections.Generic;
-
-[Serializable]
-public class ColorDecorator : Decorator
+namespace Spark
 {
-    public bool isRecolorable ;
-
-	public List<Color> colors = new List<Color>(); 
-
-	public ColorDecorator ()
+	[Serializable]
+	public class ColorDecorator : Decorator
 	{
+		public bool isRecolorable;
 
-	}
+		public List<Color> colors = new List<Color>();
 
-	#if UNITY_EDITOR
+		public ColorDecorator()
+		{
+
+		}
+
+#if UNITY_EDITOR
     public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 	{
 		//ModManager.asset.Shader = (ParkitectObject.Shaders)EditorGUILayout.EnumPopup("Shader", ModManager.asset.Shader);
@@ -81,8 +82,9 @@ public class ColorDecorator : Decorator
 
         base.RenderInspectorGUI (parkitectObj);
 	}
-	#endif
+#endif
 
+
+	}
 
 }
-

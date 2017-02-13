@@ -6,14 +6,17 @@ using UnityEditor;
 using System.Collections.Generic;
 using System;
 
-[ExecuteInEditMode]
-[Serializable]
-public class MultipleRotations : Motor {
-    [SerializeField]
-	public RefrencedTransform mainAxis = new RefrencedTransform();
-    [SerializeField]
-	public List<RefrencedTransform> Axiss = new List<RefrencedTransform>();
-	#if UNITY_EDITOR
+namespace Spark
+{
+	[ExecuteInEditMode]
+	[Serializable]
+	public class MultipleRotations : Motor
+	{
+		[SerializeField]
+		public RefrencedTransform mainAxis = new RefrencedTransform();
+		[SerializeField]
+		public List<RefrencedTransform> Axiss = new List<RefrencedTransform>();
+#if UNITY_EDITOR
 	public override void InspectorGUI(Transform root)
     {
 
@@ -57,35 +60,37 @@ public class MultipleRotations : Motor {
         }
 		base.InspectorGUI(root);
     }
-	#endif
-	public override void Reset(Transform root)
-    {
-		Transform transform = mainAxis.FindSceneRefrence (root);
-		if (transform)
-        {
-			foreach (RefrencedTransform T in Axiss)
-            {
-				T.FindSceneRefrence(root).localRotation = transform.localRotation;
-            }
-        }
-    }
-	public void tick(float dt,Transform root)
-    {
-		Transform transform = mainAxis.FindSceneRefrence (root);
-		if (transform)
-        {
-			foreach (RefrencedTransform T in Axiss)
-            {
-				T.FindSceneRefrence(root).localRotation = transform.localRotation;
-            }
-        }
-    }
-
-	public override void PrepareExport (ParkitectObj parkitectObj)
-	{
-		for (int x = 0; x < Axiss.Count; x++) {
-			Axiss [x].UpdatePrefabRefrence (parkitectObj.Prefab.transform);
+#endif
+		public override void Reset(Transform root)
+		{
+			Transform transform = mainAxis.FindSceneRefrence(root);
+			if (transform)
+			{
+				foreach (RefrencedTransform T in Axiss)
+				{
+					T.FindSceneRefrence(root).localRotation = transform.localRotation;
+				}
+			}
 		}
-		base.PrepareExport (parkitectObj);
+		public void tick(float dt, Transform root)
+		{
+			Transform transform = mainAxis.FindSceneRefrence(root);
+			if (transform)
+			{
+				foreach (RefrencedTransform T in Axiss)
+				{
+					T.FindSceneRefrence(root).localRotation = transform.localRotation;
+				}
+			}
+		}
+
+		public override void PrepareExport(ParkitectObj parkitectObj)
+		{
+			for (int x = 0; x < Axiss.Count; x++)
+			{
+				Axiss[x].UpdatePrefabRefrence(parkitectObj.Prefab.transform);
+			}
+			base.PrepareExport(parkitectObj);
+		}
 	}
 }

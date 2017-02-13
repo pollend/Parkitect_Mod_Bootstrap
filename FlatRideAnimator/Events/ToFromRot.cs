@@ -4,22 +4,23 @@ using UnityEditor;
 using System;
 using UnityEngine;
 using System.Linq;
-
-[ExecuteInEditMode]
-[Serializable]
-public class ToFromRot : RideAnimationEvent
+namespace Spark
 {
-    public RotateBetween rotator;
+	[ExecuteInEditMode]
+	[Serializable]
+	public class ToFromRot : RideAnimationEvent
+	{
+		public RotateBetween rotator;
 
-    float lastTime;
-    public override string EventName
-    {
-        get
-        {
-            return "To-From Rot";
-        }
-    }
-	#if UNITY_EDITOR
+		float lastTime;
+		public override string EventName
+		{
+			get
+			{
+				return "To-From Rot";
+			}
+		}
+#if UNITY_EDITOR
 	public override void RenderInspectorGUI(Motor[] motors)
     {
         if (rotator)
@@ -38,27 +39,28 @@ public class ToFromRot : RideAnimationEvent
         }
 		base.RenderInspectorGUI(motors);
     }
-	#endif
+#endif
 
-    public override void Enter()
-    {
-        lastTime = Time.realtimeSinceStartup;
+		public override void Enter()
+		{
+			lastTime = Time.realtimeSinceStartup;
 
-        rotator.startToFrom();
-        base.Enter();
-    }
-	public override void Run(Transform root)
-    {
-        if (rotator)
-        {
-			rotator.tick(Time.realtimeSinceStartup - lastTime,root);
-            lastTime = Time.realtimeSinceStartup;
-            if (rotator.isStopped())
-            {
-                done = true;
-            }
-			base.Run(root);
-        }
-        
-    }
+			rotator.startToFrom();
+			base.Enter();
+		}
+		public override void Run(Transform root)
+		{
+			if (rotator)
+			{
+				rotator.tick(Time.realtimeSinceStartup - lastTime, root);
+				lastTime = Time.realtimeSinceStartup;
+				if (rotator.isStopped())
+				{
+					done = true;
+				}
+				base.Run(root);
+			}
+
+		}
+	}
 }

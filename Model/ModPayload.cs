@@ -4,28 +4,29 @@ using UnityEditor;
 #endif
 using System.Collections.Generic;
 using UnityEngine;
-
-[Serializable]
-public class ModPayload : ScriptableSingleton<ModPayload>
+namespace Spark
 {
-	[SerializeField]
-	public List<ParkitectObj> ParkitectObjs;
-
-	[SerializeField]
-	public ParkitectObj selectedParkitectObject { get; set; }
-
-	[SerializeField]
-	public string name;
-	[SerializeField]
-	public string description ;
-
-	public ModPayload ()
+	[Serializable]
+	public class ModPayload : ScriptableSingleton<ModPayload>
 	{
-		if (ParkitectObjs == null)
-			ParkitectObjs = new List<ParkitectObj> ();
-	}
+		[SerializeField]
+		public List<ParkitectObj> ParkitectObjs;
 
-	#if UNITY_EDITOR
+		[SerializeField]
+		public ParkitectObj selectedParkitectObject { get; set; }
+
+		[SerializeField]
+		public string modName;
+		[SerializeField]
+		public string description;
+
+		public ModPayload()
+		{
+			if (ParkitectObjs == null)
+				ParkitectObjs = new List<ParkitectObj>();
+		}
+
+#if UNITY_EDITOR
 	public void GetAssetbundlePaths(List<string> path)
 	{
 		path.Add (AssetDatabase.GetAssetPath (this));
@@ -33,6 +34,7 @@ public class ModPayload : ScriptableSingleton<ModPayload>
 			ParkitectObjs [x].GetAssetbundlePaths (path);
 		}
 	}
-	#endif
+#endif
+	}
 }
 

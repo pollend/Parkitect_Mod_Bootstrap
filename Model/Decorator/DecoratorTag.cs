@@ -1,18 +1,21 @@
 ﻿using System;
-
-[Serializable]
-public class DecoratorTag : System.Attribute
+namespace Spark
 {
-	public readonly string name;
-	public string Name{
-		get{ return name; }
-	}
-	public DecoratorTag ()
+	[Serializable]
+	public class DecoratorTag : System.Attribute
 	{
-	}
-	public DecoratorTag (string name)
-	{
-		this.name = name;
+		public readonly string name;
+		public string Name
+		{
+			get { return name; }
+		}
+		public DecoratorTag()
+		{
+		}
+		public DecoratorTag(string name)
+		{
+			this.name = name;
+		}
 	}
 }
 

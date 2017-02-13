@@ -4,21 +4,22 @@ using UnityEditor;
 using System;
 using UnityEngine;
 using System.Linq;
-
-[ExecuteInEditMode]
-[Serializable]
-public class StartRotator : RideAnimationEvent
+namespace Spark
 {
-    public Rotator rotator;
-    float lastTime;
-    public override string EventName
-    {
-        get
-        {
-            return "StartRotator";
-        }
-    }
-	#if UNITY_EDITOR
+	[ExecuteInEditMode]
+	[Serializable]
+	public class StartRotator : RideAnimationEvent
+	{
+		public Rotator rotator;
+		float lastTime;
+		public override string EventName
+		{
+			get
+			{
+				return "StartRotator";
+			}
+		}
+#if UNITY_EDITOR
 	public override void RenderInspectorGUI(Motor[] motors)
     {
         if (rotator)
@@ -37,28 +38,29 @@ public class StartRotator : RideAnimationEvent
         }
 		base.RenderInspectorGUI(motors);
     }
-	#endif
+#endif
 
-    public override void Enter()
-    {
-        lastTime = Time.realtimeSinceStartup;
+		public override void Enter()
+		{
+			lastTime = Time.realtimeSinceStartup;
 
-        rotator.start();
-        base.Enter();
-    }
-	public override void Run(Transform root)
-    {
-        if (rotator)
-        {
-            
-			rotator.tick(Time.realtimeSinceStartup - lastTime,root);
-            lastTime = Time.realtimeSinceStartup;
-            if (rotator.reachedFullSpeed())
-            {
-                done = true;
-            }
-			base.Run(root);
-        }
-        
-    }
+			rotator.start();
+			base.Enter();
+		}
+		public override void Run(Transform root)
+		{
+			if (rotator)
+			{
+
+				rotator.tick(Time.realtimeSinceStartup - lastTime, root);
+				lastTime = Time.realtimeSinceStartup;
+				if (rotator.reachedFullSpeed())
+				{
+					done = true;
+				}
+				base.Run(root);
+			}
+
+		}
+	}
 }

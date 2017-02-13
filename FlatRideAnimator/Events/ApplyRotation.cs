@@ -4,24 +4,25 @@ using UnityEditor;
 using System;
 using UnityEngine;
 using System.Linq;
-
-[ExecuteInEditMode]
-[Serializable]
-public class ApplyRotation : RideAnimationEvent 
+namespace Spark
 {
-    [SerializeField]
-    public MultipleRotations rotator;
-    float lastTime;
+	[ExecuteInEditMode]
+	[Serializable]
+	public class ApplyRotation : RideAnimationEvent
+	{
+		[SerializeField]
+		public MultipleRotations rotator;
+		float lastTime;
 
 
-    public override string EventName
-    {
-        get
-        {
-            return "ApplyRotations";
-        }
-    }
-	#if UNITY_EDITOR
+		public override string EventName
+		{
+			get
+			{
+				return "ApplyRotations";
+			}
+		}
+#if UNITY_EDITOR
 	public override void RenderInspectorGUI(Motor[] motors)
     {
 
@@ -42,23 +43,22 @@ public class ApplyRotation : RideAnimationEvent
         }
 		base.RenderInspectorGUI(motors);
     }
-	#endif
+#endif
 
-    public override void Enter()
-    {
-        
-    }
-	public override void Run(Transform root)
-    {
-        if (rotator)
-        {
+		public override void Enter()
+		{
 
+		}
+		public override void Run(Transform root)
+		{
+			if (rotator)
+			{
+				rotator.tick(Time.realtimeSinceStartup - lastTime, root);
+				lastTime = Time.realtimeSinceStartup;
+				done = true;
+				base.Run(root);
+			}
 
-			rotator.tick(Time.realtimeSinceStartup - lastTime,root);
-            lastTime = Time.realtimeSinceStartup;
-            done = true;
-			base.Run(root);
-        }
-
-    }
+		}
+	}
 }

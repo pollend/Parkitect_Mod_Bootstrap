@@ -1,11 +1,12 @@
 ﻿using System;
-
-[Serializable]
-public class FootprintDecorator : Decorator
+namespace Spark
 {
-	public FootprintDecorator ()
+	[Serializable]
+	public class FootprintDecorator : Decorator
 	{
+		public FootprintDecorator()
+		{
+		}
 	}
+
 }
-
-

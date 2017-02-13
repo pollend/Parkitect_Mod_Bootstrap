@@ -8,31 +8,32 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 #endif
 
-
-[Serializable]
-public class ParkitectObj : ScriptableObject
+namespace Spark
 {
-	//Basic
-	[SerializeField]
-	private List<Decorator> decorators  = new List<Decorator> ();
-	[SerializeField]
-	private GameObject prefab;
+	[Serializable]
+	public class ParkitectObj : ScriptableObject
+	{
+		//Basic
+		[SerializeField]
+		private List<Decorator> decorators = new List<Decorator>();
+		[SerializeField]
+		private GameObject prefab;
 
-	[SerializeField]
-	public string key;
+		[SerializeField]
+		public string key;
 
-	[SerializeField]
-	public string name;
-	public float XSize;
+		[SerializeField]
+		public string objectName;
+		public float XSize;
 
-	[System.NonSerialized]
-	public GameObject sceneRef; 
+		[System.NonSerialized]
+		public GameObject sceneRef;
 
-	public string getKey{get{return key;}}
+		public string getKey { get { return key; } }
 
-	public GameObject Prefab{ get {return prefab;} }
+		public GameObject Prefab { get { return prefab; } }
 
-	#if UNITY_EDITOR
+#if UNITY_EDITOR
 	public void UpdatePrefab()
 	{
 		var refrence = getGameObjectRef (false);
@@ -95,34 +96,35 @@ public class ParkitectObj : ScriptableObject
 		PrefabUtility.ConnectGameObjectToPrefab (g, prefab);
 
 
-		name = prefab.name;
+		this.objectName = prefab.name;
 		this.prefab = prefab;
 		EditorUtility.SetDirty (this);
 		return prefab;
 	}
-	#endif
+#endif
 
-	public void Load(ParkitectObj parkitectObj)
-	{
-		this.decorators = parkitectObj.decorators;
-		this.name = parkitectObj.name;
-		this.prefab = parkitectObj.prefab;
-		this.XSize = parkitectObj.XSize;
-		this.key = parkitectObj.getKey;
+		public void Load(ParkitectObj parkitectObj)
+		{
+			this.decorators = parkitectObj.decorators;
+			this.objectName = parkitectObj.name;
+			this.prefab = parkitectObj.prefab;
+			this.XSize = parkitectObj.XSize;
+			this.key = parkitectObj.getKey;
 
-		for (int x = 0; x < decorators.Count; x++) {
-			decorators [x].Load (this);
+			for (int x = 0; x < decorators.Count; x++)
+			{
+				decorators[x].Load(this);
+			}
+
 		}
 
-	}
+		public virtual Type[] SupportedDecorators()
+		{
+			return new Type[] { };
+		}
 
-	public virtual Type[] SupportedDecorators()
-	{
-		return new Type[]{ };
-	}
-		
 
-	#if UNITY_EDITOR
+#if UNITY_EDITOR
 	public virtual void PrepareForExport()
 	{
 		this.UpdatePrefab ();
@@ -175,8 +177,7 @@ public class ParkitectObj : ScriptableObject
         }
 		decorators.Clear ();
     }
-	#endif
-   
-
+#endif
+	}
 }
 
