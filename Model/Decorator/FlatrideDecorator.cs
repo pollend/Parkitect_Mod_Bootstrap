@@ -36,6 +36,24 @@ namespace Spark
 
 		base.RenderInspectorGUI (parkitectObj);
 	}
+
+		public override void RenderSceneGUI (ParkitectObj parkitectObj)
+		{
+			GameObject refrence =  parkitectObj.getGameObjectRef (false);
+			if (refrence == null)
+				return;
+			
+			Vector3 topLeft = new Vector3(-this.XSize / 2.0f, 0, this.ZSize / 2.0f) + refrence.transform.position;
+			Vector3 topRight = new Vector3(this.XSize / 2.0f, 0, this.ZSize / 2.0f) + refrence.transform.position;
+			Vector3 bottomLeft = new Vector3(-this.XSize / 2.0f, 0, -this.ZSize / 2.0f) + refrence.transform.position;
+			Vector3 bottomRight = new Vector3(this.XSize / 2.0f, 0, -this.ZSize / 2.0f) + refrence.transform.position;
+
+			Color fill = Color.white;
+			fill.a = 0.1f;
+			Handles.DrawSolidRectangleWithOutline(new Vector3[] { topLeft, topRight, bottomRight, bottomLeft }, fill, Color.black);
+
+			base.RenderSceneGUI (parkitectObj);
+		}
 #endif
 
 		private string getRatingCategory(float ratingValue)

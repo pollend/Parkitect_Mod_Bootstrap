@@ -14,6 +14,7 @@ namespace Spark
 		{
 			return new Type[] {
 			typeof(BaseDecorator),
+				typeof(WaypointDecorator),
 			typeof(FlatrideDecorator),
 			typeof(BoundingBoxDecorator),
 			typeof(AnimatorDecorator)

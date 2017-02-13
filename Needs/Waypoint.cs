@@ -18,5 +18,6 @@ namespace Spark
 		{
 			return pivot.position + pivot.rotation * this.localPosition;
 		}
+
 	}
 }

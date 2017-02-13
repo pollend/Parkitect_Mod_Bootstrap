@@ -8,13 +8,18 @@ namespace Spark
 {
 	public class WaypointDecorator : Decorator
 	{
-		
+		private enum NodeState{Connecting, Dragging}
+
+
 		[System.NonSerialized]
 		private bool enableEditing = false;
 		[System.NonSerialized]
 		private float helperPlaneY = 0;
-		[SerializeField]
+		[System.NonSerialized]
 		public Waypoint selectedWaypoint;
+
+
+
 
 		public List<Waypoint> waypoints = new List<Waypoint>();
 
@@ -25,6 +30,10 @@ namespace Spark
 #if UNITY_EDITOR
 	public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 	{
+		GameObject sceneTransform = parkitectObj.getGameObjectRef (false);
+		if (sceneTransform == null)
+			return;
+		
 		//FlatrideDecorator flatRideDecorator = parkitectObj.GetDecorator (typeof(FlatrideDecorator));
 
 		string caption = "Enable Editing Waypoints";
@@ -71,7 +80,7 @@ namespace Spark
 			}
 			if (GUILayout.Button("(A)dd Waypoint"))
 			{
-				//addWaypoint();
+				addWaypoint (sceneTransform.transform);
 			}
 			if (GUILayout.Button("Rotate 90°"))
 			{
@@ -86,17 +95,74 @@ namespace Spark
 		base.RenderInspectorGUI (parkitectObj);
 	}
 
+	private void addWaypoint(Transform transform)
+	{
+		selectedWaypoint = new Waypoint();
+
+		if (Camera.current != null)
+		{
+			Ray ray = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
+			Plane plane = new Plane(Vector3.up, new Vector3(0, helperPlaneY, 0));
+			float enter = 0;
+			plane.Raycast(ray, out enter);
+				selectedWaypoint.localPosition = ray.GetPoint(enter) - transform.position;
+		}
+		else
+		{
+			selectedWaypoint.localPosition = new Vector3(0, helperPlaneY, 0);
+		}
+
+		this.waypoints.Add(selectedWaypoint);
+	}
+
+
+
+
 	public override void RenderSceneGUI (ParkitectObj parkitectObj)
 	{
-		/*FlatrideDecorator flatRideDecorator = parkitectObj.GetDecorator (typeof(FlatrideDecorator));
+		GameObject sceneTransform = parkitectObj.getGameObjectRef (false);
+		if (sceneTransform == null)
+			return;
 
 
-		if (enableEditing) {
-			Vector3 topLeft = new Vector3(-flatRideDecorator.XSize / 2, helperPlaneY, flatRideDecorator.ZSize / 2) + parkitectObj.gameObject.transform.position;
-			Vector3 topRight = new Vector3(flatRideDecorator.XSize / 2, helperPlaneY, flatRideDecorator.ZSize / 2) + parkitectObj.gameObject.transform.position;
-			Vector3 bottomLeft = new Vector3(-flatRideDecorator.XSize / 2, helperPlaneY, -flatRideDecorator.ZSize / 2) + parkitectObj.gameObject.transform.position;
-			Vector3 bottomRight = new Vector3(flatRideDecorator.XSize / 2, helperPlaneY, -flatRideDecorator.ZSize / 2) + parkitectObj.gameObject.transform.position;
-		}*/
+		int i = 0;
+		foreach (Waypoint waypoint in this.waypoints)
+		{
+			if (waypoint == selectedWaypoint)
+			{
+				Handles.color = Color.red;
+			}
+			else if (waypoint.isOuter)
+			{
+				Handles.color = Color.green;
+			}
+			else if (waypoint.isRabbitHoleGoal)
+			{
+				Handles.color = Color.blue;
+			}
+			else
+			{
+				Handles.color = Color.yellow;
+			}
+			Vector3 worldPos = waypoint.localPosition + sceneTransform.transform.position;
+			
+			if (Handles.Button (worldPos, Quaternion.identity, HandleUtility.GetHandleSize (worldPos) * 0.2f, HandleUtility.GetHandleSize (worldPos) * 0.2f, Handles.SphereCap)) {
+					selectedWaypoint = waypoint;
+			}
+			
+
+			Handles.color = Color.blue;
+			foreach (int connectedIndex in waypoint.connectedTo)
+			{
+				Handles.DrawLine(worldPos, waypoints[connectedIndex].localPosition + sceneTransform.transform.position);
+			}
+
+		//	Handles.Label(worldPos, "#" + i, labelStyle);
+			i++;
+		}
+		if (selectedWaypoint != null) {
+				selectedWaypoint.localPosition = Handles.PositionHandle (selectedWaypoint.getWorldPosition (sceneTransform.transform), Quaternion.identity);
+		}
 
 		base.RenderSceneGUI (parkitectObj);
 	}
