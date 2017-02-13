@@ -7,12 +7,19 @@ using System.Collections.Generic;
 
 public class WaypointDecorator : Decorator
 {
-	private enum NodeState{Connecting, Dragging}
+    private enum State
+    {
+        NONE, CONNECT
+    }
+    private State state = State.NONE;
 
+    public Tool currentTool = Tool.None;
 
-	[System.NonSerialized]
+    [System.NonSerialized]
 	private bool enableEditing = false;
-	[System.NonSerialized]
+    [System.NonSerialized]
+    private bool snap = false;
+    [System.NonSerialized]
 	private float helperPlaneY = 0;
 	[System.NonSerialized]
 	public SPWaypoint selectedWaypoint;
@@ -52,61 +59,43 @@ public class WaypointDecorator : Decorator
 		{
 			if (enableEditing)
 			{
-			//	currentTool = Tools.current;
+				currentTool = Tools.current;
 				Tools.current = Tool.None;
-
-
 			}
 			else
 			{
-				//Tools.current = currentTool;
+				Tools.current = currentTool;
 			}
 		}
 		if (enableEditing)
 		{
-			GUILayout.Label("S - Snap to axis of connected waypoints");
+            
+            GUILayout.Label("S - Snap to axis of connected waypoints");
 			helperPlaneY = EditorGUILayout.FloatField("Helper Plane Y", helperPlaneY);
 
-			if (GUILayout.Button("Generate outer grid"))
+            FlatrideDecorator flatRideDecorator = (FlatrideDecorator)parkitectObj.GetDecorator(typeof(FlatrideDecorator), false);
+
+            if (GUILayout.Button("Generate outer grid"))
 			{
-				//generateOuterGrid();
-			}
-			if (GUILayout.Button("(A)dd Waypoint"))
+                generateOuterGrid(flatRideDecorator);
+            }
+            if (GUILayout.Button("(A)dd Waypoint"))
 			{
 				addWaypoint (sceneTransform.transform);
 			}
 			if (GUILayout.Button("Rotate 90°"))
 			{
-				//rotateWaypoints();
+			    rotateWaypoints(sceneTransform.transform);
 			}
 			if (GUILayout.Button("Clear all"))
 			{
-				//ModManager.asset.waypoints.Clear();
+				waypoints.Clear();
 			}
 		}
 
 		base.RenderInspectorGUI (parkitectObj);
 	}
-
-	private void addWaypoint(Transform transform)
-	{
-		selectedWaypoint = new SPWaypoint();
-
-		if (Camera.current != null)
-		{
-			Ray ray = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
-			Plane plane = new Plane(Vector3.up, new Vector3(0, helperPlaneY, 0));
-			float enter = 0;
-			plane.Raycast(ray, out enter);
-				selectedWaypoint.localPosition = ray.GetPoint(enter) - transform.position;
-		}
-		else
-		{
-			selectedWaypoint.localPosition = new Vector3(0, helperPlaneY, 0);
-		}
-
-		this.waypoints.Add(selectedWaypoint);
-	}
+    
 
 
 
@@ -117,8 +106,59 @@ public class WaypointDecorator : Decorator
 		if (sceneTransform == null)
 			return;
 
+        GUIStyle labelStyle = new GUIStyle();
+        labelStyle.normal.textColor = Color.black;
+        
+        switch (Event.current.type)
+        {
+            case EventType.layout:
+                break;
+            case EventType.keyDown:
+                if (Event.current.keyCode == KeyCode.S)
+                {
+                    snap = true;
+                }
+                break;
+            case EventType.keyUp:
+                if (Event.current.keyCode == KeyCode.C)
+                {
+                    if (state != State.CONNECT)
+                    {
+                        state = State.CONNECT;
+                    }
+                    else
+                    {
+                        state = State.NONE;
+                    }
+                }
+                else if (Event.current.keyCode == KeyCode.R)
+                {
+                    removeSelectedWaypoint();
+                }
+                else if (Event.current.keyCode == KeyCode.A)
+                {
+                    addWaypoint(sceneTransform.transform);
+                }
+                else if (Event.current.keyCode == KeyCode.O && selectedWaypoint != null)
+                {
+                    selectedWaypoint.isOuter = !selectedWaypoint.isOuter;
+                }
+                else if (Event.current.keyCode == KeyCode.I && selectedWaypoint != null)
+                {
+                    selectedWaypoint.isRabbitHoleGoal = !selectedWaypoint.isRabbitHoleGoal;
+                }
+                else if (Event.current.keyCode == KeyCode.S)
+                {
+                    snap = false;
+                }
 
-		int i = 0;
+                SceneView.RepaintAll();
+                HandleUtility.Repaint();
+                break;
+        }
+
+
+        int i = 0;
 		foreach (SPWaypoint waypoint in this.waypoints)
 		{
 			if (waypoint == selectedWaypoint)
@@ -138,31 +178,99 @@ public class WaypointDecorator : Decorator
 				Handles.color = Color.yellow;
 			}
 			Vector3 worldPos = waypoint.localPosition + sceneTransform.transform.position;
-			
-			if (Handles.Button (worldPos, Quaternion.identity, HandleUtility.GetHandleSize (worldPos) * 0.2f, HandleUtility.GetHandleSize (worldPos) * 0.2f, Handles.SphereCap)) {
-					selectedWaypoint = waypoint;
-			}
-			
-
-			Handles.color = Color.blue;
+            if (Handles.Button(worldPos, Quaternion.identity, HandleUtility.GetHandleSize(worldPos) * 0.2f, HandleUtility.GetHandleSize(worldPos) * 0.2f, Handles.SphereCap))
+            {
+                handleClick(waypoint);
+            }
+            Handles.color = Color.blue;
 			foreach (int connectedIndex in waypoint.connectedTo)
 			{
 				Handles.DrawLine(worldPos, waypoints[connectedIndex].localPosition + sceneTransform.transform.position);
 			}
 
-		//	Handles.Label(worldPos, "#" + i, labelStyle);
+			Handles.Label(worldPos, "#" + i, labelStyle);
 			i++;
 		}
-		if (selectedWaypoint != null) {
-				selectedWaypoint.localPosition = Handles.PositionHandle (selectedWaypoint.getWorldPosition (sceneTransform.transform), Quaternion.identity);
-		}
+
+		if (selectedWaypoint != null)
+        {
+            Vector3 worldPos = selectedWaypoint.localPosition + sceneTransform.transform.position;
+            Vector3 newPos = Handles.PositionHandle (selectedWaypoint.getWorldPosition (sceneTransform.transform), Quaternion.identity);
+            selectedWaypoint.localPosition = handleSnap(newPos, selectedWaypoint);
+
+            selectedWaypoint.localPosition = handleSnap(newPos, selectedWaypoint);
+
+            if (state == State.CONNECT)
+            {
+                Handles.Label(worldPos, "\nConnecting...", labelStyle);
+            }
+            else
+            {
+                Handles.Label(worldPos, "\n(C)onnect\n(R)emove\n(O)uter\nRabb(i)t Hole", labelStyle);
+            }
+        }
 
 		base.RenderSceneGUI (parkitectObj);
-	}
+    }
 
-	private void generateOuterGrid(FlatrideDecorator flatRideDecorator)
-	{
-		float minX = -flatRideDecorator.XSize / 2;
+
+    public void handleClick(SPWaypoint waypoint)
+    {
+
+        if (state == State.NONE && waypoint != null)
+        {
+            selectedWaypoint = waypoint;
+        }
+        else if (state == State.CONNECT && selectedWaypoint != null)
+        {
+            int closestWaypointIndex =waypoints.FindIndex(delegate (SPWaypoint wp)
+            {
+                return wp == waypoint;
+            });
+            int selectedWaypointIndex = waypoints.FindIndex(delegate (SPWaypoint wp)
+            {
+                return wp == selectedWaypoint;
+            });
+            if (closestWaypointIndex >= 0 && selectedWaypointIndex >= 0)
+            {
+                if (!selectedWaypoint.connectedTo.Contains(closestWaypointIndex))
+                {
+                    selectedWaypoint.connectedTo.Add(closestWaypointIndex);
+                    waypoint.connectedTo.Add(selectedWaypointIndex);
+                }
+                else
+                {
+                    selectedWaypoint.connectedTo.Remove(closestWaypointIndex);
+                    waypoint.connectedTo.Remove(selectedWaypointIndex);
+                }
+            }
+        }
+
+    }
+    public void addWaypoint(Transform transform)
+    {
+        Vector3 pos = transform.position;
+        selectedWaypoint = new SPWaypoint();
+
+        if (Camera.current != null)
+        {
+            Ray ray = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
+            Plane plane = new Plane(Vector3.up, new Vector3(0, helperPlaneY, 0));
+            float enter = 0;
+            plane.Raycast(ray, out enter);
+            selectedWaypoint.localPosition = ray.GetPoint(enter) - pos;
+        }
+        else
+        {
+            selectedWaypoint.localPosition = new Vector3(0, helperPlaneY, 0);
+        }
+
+        waypoints.Add(selectedWaypoint);
+    }
+
+    private void generateOuterGrid(FlatrideDecorator flatRideDecorator)
+    {
+        float minX = -flatRideDecorator.XSize / 2;
 		float maxX = flatRideDecorator.XSize / 2;
 		float minZ = -flatRideDecorator.ZSize / 2;
 		float maxZ = flatRideDecorator.ZSize / 2;
@@ -179,15 +287,95 @@ public class WaypointDecorator : Decorator
 				SPWaypoint newWaypoint = new SPWaypoint();
 				newWaypoint.localPosition = new Vector3(x + 0.5f, helperPlaneY, z + 0.5f);
 				newWaypoint.isOuter = true;
-				//if (waypoints.waypoints.Count > 0) {
-				//newWaypoint.connectedTo.Add(waypoints.waypoints.Count - 1);
+				//if (waypoints.Count > 0) {
+				//    newWaypoint.connectedTo.Add(waypoints.Count - 1);
 				//}
-				//ModManager.asset.waypoints.Add(newWaypoint);
+				waypoints.Add(newWaypoint);
 			}
 		}
 
-	}
-	#endif
+    }
+    public void removeSelectedWaypoint()
+    {
+
+        int selectedWaypointIndex = waypoints.FindIndex(delegate (SPWaypoint wp)
+        {
+            return wp == selectedWaypoint;
+        });
+        foreach (SPWaypoint waypoint in waypoints)
+        {
+            waypoint.connectedTo.Remove(selectedWaypointIndex);
+        }
+        waypoints.Remove(selectedWaypoint);
+
+        foreach (SPWaypoint waypoint in waypoints)
+        {
+            for (int i = 0; i < waypoint.connectedTo.Count; i++)
+            {
+                if (waypoint.connectedTo[i] > selectedWaypointIndex)
+                {
+                    waypoint.connectedTo[i]--;
+                }
+            }
+        }
+
+        selectedWaypoint = null;
+
+    }
+
+    public void rotateWaypoints(Transform transform)
+    {
+        Vector3 pos = transform.position;
+
+        foreach (SPWaypoint waypoint in this.waypoints)
+        {
+            Vector3 dir = waypoint.localPosition - pos;
+            dir.y = 0;
+            float phi = Mathf.Atan2(dir.z, dir.x);
+            phi += Mathf.PI / 2;
+            float x = pos.x + dir.magnitude * Mathf.Cos(phi);
+            float z = pos.z + dir.magnitude * Mathf.Sin(phi);
+            waypoint.localPosition = new Vector3(x, waypoint.localPosition.y, z);
+        }
+
+    }
+    public Vector3 handleSnap(Vector3 newPos, SPWaypoint waypoint)
+    {
+        Vector3 oldPos = waypoint.localPosition;
+
+        if (snap && (newPos - oldPos).magnitude > Mathf.Epsilon)
+        {
+            if (Mathf.Abs(newPos.x - oldPos.x) > Mathf.Epsilon)
+            {
+                newPos = handleAxisSnap(newPos, waypoint, 0);
+            }
+            if (Mathf.Abs(newPos.y - oldPos.y) > Mathf.Epsilon)
+            {
+                newPos = handleAxisSnap(newPos, waypoint, 1);
+            }
+            if (Mathf.Abs(newPos.z - oldPos.z) > Mathf.Epsilon)
+            {
+                newPos = handleAxisSnap(newPos, waypoint, 2);
+            }
+        }
+
+        return newPos;
+    }
+    public Vector3 handleAxisSnap(Vector3 newPos, SPWaypoint waypoint, int axisIndex)
+    {
+
+        foreach (int connectedIndex in waypoint.connectedTo)
+        {
+            SPWaypoint connectedWaypoint = waypoints[connectedIndex];
+            if (Mathf.Abs(newPos[axisIndex] - connectedWaypoint.localPosition[axisIndex]) < 0.1f)
+            {
+                newPos[axisIndex] = connectedWaypoint.localPosition[axisIndex];
+            }
+        }
+
+        return newPos;
+    }
+#endif
 }
 
 
