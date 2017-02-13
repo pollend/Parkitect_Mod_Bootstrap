@@ -33,7 +33,7 @@ public class SPChangePendulum : SPRideAnimationEvent
 	}
 
 #if UNITY_EDITOR
-public override void RenderInspectorGUI(Motor[] motors)
+public override void RenderInspectorGUI(SPMotor[] motors)
 {
 
     if (rotator)
@@ -42,7 +42,7 @@ public override void RenderInspectorGUI(Motor[] motors)
         Friction = EditorGUILayout.FloatField("Friction", Friction);
         Pendulum = EditorGUILayout.Toggle("Pendulum", Pendulum);
     }
-	foreach (PendulumRotator R in motors.OfType<PendulumRotator>().ToList())
+	foreach (SPPendulumRotator R in motors.OfType<SPPendulumRotator>().ToList())
     {
         if (R == rotator)
             GUI.color = Color.red / 1.3f;

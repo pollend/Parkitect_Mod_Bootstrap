@@ -138,7 +138,7 @@ public override void InspectorGUI(Transform root)
 		}
 		Transform transform = this.axis.FindSceneRefrence(root);
 		if (transform != null)
-			transform.localPosition = Vector3.Lerp(a, b, Mathfx.Hermite(0f, 1f, this.currentPosition));
+			transform.localPosition = Vector3.Lerp(a, b, MathHelper.Hermite(0f, 1f, this.currentPosition));
 	}
 
 	public override void PrepareExport(ParkitectObj parkitectObj)

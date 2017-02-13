@@ -108,7 +108,7 @@ public override void InspectorGUI(Transform root)
 		this.currentPosition = Mathf.Clamp01(this.currentPosition);
 		var transform = this.axis.FindSceneRefrence(root);
 		if (transform)
-			transform.localRotation = Quaternion.Lerp(this.fromRotation, this.toRotation, Mathfx.Hermite(0f, 1f, this.currentPosition));
+			transform.localRotation = Quaternion.Lerp(this.fromRotation, this.toRotation, MathHelper.Hermite(0f, 1f, this.currentPosition));
 	}
 
 	public override void PrepareExport(ParkitectObj parkitectObj)

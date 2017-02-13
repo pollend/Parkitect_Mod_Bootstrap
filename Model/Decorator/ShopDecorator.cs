@@ -13,7 +13,7 @@ public class ShopDecorator : Decorator
 	[System.NonSerialized]
 	private Vector2 scrollPos2;
 	[System.NonSerialized]
-	private Product selected;
+	private SPProduct selected;
 	#endif
 
 	public ShopDecorator()
@@ -25,7 +25,7 @@ public class ShopDecorator : Decorator
 	public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 	{
 
-		foreach (Product p in products)
+		foreach (SPProduct p in products)
 		{
 			try
 			{
@@ -70,15 +70,15 @@ public class ShopDecorator : Decorator
 		EditorGUILayout.BeginHorizontal();
 		if (GUILayout.Button("Add Wearable Product"))
 		{
-			AddProduct<WearableProduct> ();
+			AddProduct<SPWearableProduct> ();
 		}
 		if (GUILayout.Button("Add Consumable Product"))
 		{
-			AddProduct<ConsumableProduct> ();
+			AddProduct<SPConsumableProduct> ();
 		}
 		if (GUILayout.Button("Add OnGoing Product"))
 		{
-			AddProduct<OngoingProduct> ();
+			AddProduct<SPOngoingProduct> ();
 		}
 		EditorGUILayout.EndHorizontal();
 		if(selected != null)
@@ -95,9 +95,9 @@ public class ShopDecorator : Decorator
 		base.RenderInspectorGUI (parkitectObj);
 	}
 
-	public void AddProduct<T>() where T : Product
+	public void AddProduct<T>() where T : SPProduct
 	{
-		Product product = ScriptableObject.CreateInstance<T> ();
+		SPProduct product = ScriptableObject.CreateInstance<T> ();
 		AssetDatabase.AddObjectToAsset (product,this);
 		EditorUtility.SetDirty(this);
 		AssetDatabase.SaveAssets();

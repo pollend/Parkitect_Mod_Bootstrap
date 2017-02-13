@@ -26,7 +26,7 @@ public class SPSpinRotater : SPRideAnimationEvent
 		}
 	}
 #if UNITY_EDITOR
-public override void RenderInspectorGUI(Motor[] motors)
+	public override void RenderInspectorGUI(SPMotor[] motors)
 {
 
     if (rotator)
@@ -39,7 +39,7 @@ public override void RenderInspectorGUI(Motor[] motors)
         EditorGUILayout.LabelField("Amount " + rotator.getRotationsCount());
     }
     
-	foreach (Rotator R in motors.OfType<Rotator>().ToList())
+	foreach (SPRotator R in motors.OfType<SPRotator>().ToList())
     {
         if (R == rotator)
             GUI.color = Color.red / 1.3f;

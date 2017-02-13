@@ -20,13 +20,13 @@ public class SPToFromRot : SPRideAnimationEvent
 		}
 	}
 #if UNITY_EDITOR
-public override void RenderInspectorGUI(Motor[] motors)
+	public override void RenderInspectorGUI(SPMotor[] motors)
 {
     if (rotator)
     {
         ColorIdentifier = rotator.ColorIdentifier;
     }
-	foreach (RotateBetween R in motors.OfType<RotateBetween>().ToList())
+	foreach (SPRotateBetween R in motors.OfType<SPRotateBetween>().ToList())
     {
         if (R == rotator)
             GUI.color = Color.red;

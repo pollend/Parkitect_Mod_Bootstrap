@@ -27,7 +27,7 @@ using System.Collections.ObjectModel;
 
 		public ReadOnlyCollection<SPPhase> Phases { get { return phases.AsReadOnly(); } }
 #if UNITY_EDITOR
-	public void AddMotor(Motor motor)
+	public void AddMotor(SPMotor motor)
 	{
 		AssetDatabase.AddObjectToAsset (motor,this);
 		EditorUtility.SetDirty(this);
@@ -36,13 +36,13 @@ using System.Collections.ObjectModel;
 		this.motors.Add (motor);
 	}
 
-	public void RemoveMotor(Motor motor)
+	public void RemoveMotor(SPMotor motor)
 	{
 		this.motors.Remove (motor);
 		DestroyImmediate (motor, true);
 	}
 
-	public void AddPhase(Phase phase)
+	public void AddPhase(SPPhase phase)
 	{
 		AssetDatabase.AddObjectToAsset (phase,this);
 		EditorUtility.SetDirty(this);
@@ -51,7 +51,7 @@ using System.Collections.ObjectModel;
 		this.phases.Add (phase);
 	}
 
-	public void RemovePhase(Phase phase)
+	public void RemovePhase(SPPhase phase)
 	{
 		this.phases.Remove (phase);
 		DestroyImmediate (phase, true);

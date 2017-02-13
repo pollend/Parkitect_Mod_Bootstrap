@@ -17,7 +17,7 @@ public class SPPhase : ScriptableObject
 
 	public  ReadOnlyCollection<SPRideAnimationEvent> Events{get{return events.AsReadOnly ();}}
 	#if UNITY_EDITOR
-	public void AddEvent(RideAnimationEvent animationEvent)
+	public void AddEvent(SPRideAnimationEvent animationEvent)
 	{
 		AssetDatabase.AddObjectToAsset (animationEvent,this);
 		EditorUtility.SetDirty(this);
@@ -25,7 +25,7 @@ public class SPPhase : ScriptableObject
 		events.Add (animationEvent);
 	}
 
-	public void DeleteEvent(RideAnimationEvent animationEvent)
+	public void DeleteEvent(SPRideAnimationEvent animationEvent)
 	{
 		events.Remove (animationEvent);
 		DestroyImmediate (animationEvent, true);

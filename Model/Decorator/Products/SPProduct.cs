@@ -71,7 +71,7 @@ private void DrawIngredients()
 
 	if (GUILayout.Button("Add Ingredients"))
 	{
-		ingredients.Add(new Ingredient());
+		ingredients.Add(new SPIngredient());
 	}
 	EditorGUILayout.EndVertical();
 	EditorGUILayout.BeginVertical();

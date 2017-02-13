@@ -54,7 +54,7 @@ using System.Collections.Generic;
 
         if (GUILayout.Button("Add BoudingBox"))
         {
-            this.boundingBoxes.Add(new BoundingBox());
+			this.boundingBoxes.Add(new SPBoundingBox());
         }
         string caption = "Enable Editing";
         if (enableEditing)
@@ -111,7 +111,7 @@ using System.Collections.Generic;
     private void drawBox(ParkitectObj parkitectObj)
     {
  
-        foreach (BoundingBox box in this.boundingBoxes)
+		foreach (SPBoundingBox box in this.boundingBoxes)
         {
 
 

@@ -90,7 +90,7 @@ public class WaypointDecorator : Decorator
 
 	private void addWaypoint(Transform transform)
 	{
-		selectedWaypoint = new Waypoint();
+		selectedWaypoint = new SPWaypoint();
 
 		if (Camera.current != null)
 		{
@@ -119,7 +119,7 @@ public class WaypointDecorator : Decorator
 
 
 		int i = 0;
-		foreach (Waypoint waypoint in this.waypoints)
+		foreach (SPWaypoint waypoint in this.waypoints)
 		{
 			if (waypoint == selectedWaypoint)
 			{
@@ -176,7 +176,7 @@ public class WaypointDecorator : Decorator
 				{
 					continue;
 				}
-				Waypoint newWaypoint = new Waypoint();
+				SPWaypoint newWaypoint = new SPWaypoint();
 				newWaypoint.localPosition = new Vector3(x + 0.5f, helperPlaneY, z + 0.5f);
 				newWaypoint.isOuter = true;
 				//if (waypoints.waypoints.Count > 0) {

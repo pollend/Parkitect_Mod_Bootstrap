@@ -22,14 +22,14 @@ public class SPApplyRotation : SPRideAnimationEvent
 		}
 	}
 #if UNITY_EDITOR
-public override void RenderInspectorGUI(Motor[] motors)
+public override void RenderInspectorGUI(SPMotor[] motors)
 {
 
     if (rotator)
     {
         ColorIdentifier = rotator.ColorIdentifier;
     }
-	foreach (MultipleRotations R in motors.OfType<MultipleRotations>().ToList())
+	foreach (SPMultipleRotations R in motors.OfType<SPMultipleRotations>().ToList())
     {
         if (R == rotator)
             GUI.color = Color.red / 1.3f;
