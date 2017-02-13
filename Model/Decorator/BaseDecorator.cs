@@ -4,9 +4,9 @@ using UnityEditor;
 #endif
 using UnityEngine;
 
-	[Serializable]
-	public class BaseDecorator : Decorator
-	{
+[Serializable]
+public class BaseDecorator : Decorator
+{
 		public BaseDecorator()
 		{
 		}
@@ -22,11 +22,12 @@ using UnityEngine;
 
     public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 	{
+
 		this.InGameName = EditorGUILayout.TextField("In Game name: ", this.InGameName);
 		this.price = EditorGUILayout.FloatField("Price: ", this.price);
         base.RenderInspectorGUI (parkitectObj);
 	}
 #endif
 
-	}
+}
 

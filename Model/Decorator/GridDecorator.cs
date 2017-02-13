@@ -16,17 +16,17 @@ public class GridDecorator : Decorator
 	{
 	}
 
-#if UNITY_EDITOR
-public override void RenderInspectorGUI (ParkitectObj parkitectObj)
-{
-	this.grid = EditorGUILayout.Toggle("GridSnap: ", this.grid);
-	this.heightDelta = EditorGUILayout.FloatField("HeightDelta: ", this.heightDelta);
-	this.snapCenter = EditorGUILayout.Toggle("SnapCenter: ", this.snapCenter);
-	this.gridSubdivision = EditorGUILayout.FloatField("Grid Subdivision", this.gridSubdivision);
+	#if UNITY_EDITOR
+	public override void RenderInspectorGUI (ParkitectObj parkitectObj)
+	{
+		this.grid = EditorGUILayout.Toggle("GridSnap: ", this.grid);
+		this.heightDelta = EditorGUILayout.FloatField("HeightDelta: ", this.heightDelta);
+		this.snapCenter = EditorGUILayout.Toggle("SnapCenter: ", this.snapCenter);
+		this.gridSubdivision = EditorGUILayout.FloatField("Grid Subdivision", this.gridSubdivision);
 
-    base.RenderInspectorGUI (parkitectObj);
-}
-#endif
+	    base.RenderInspectorGUI (parkitectObj);
+	}
+	#endif
 }
 
 
