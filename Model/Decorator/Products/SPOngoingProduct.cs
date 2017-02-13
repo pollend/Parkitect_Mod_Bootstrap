@@ -3,17 +3,16 @@ using System;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-namespace Spark
+
+[Serializable]
+public class SPOngoingProduct : SPProduct
 {
-	[Serializable]
-	public class OngoingProduct : Product
-	{
-		[SerializeField]
-		public int Duration;
-		[SerializeField]
-		public bool RemoveWhenDepleted;
-		[SerializeField]
-		public bool DestroyWhenDepleted;
+	[SerializeField]
+	public int Duration;
+	[SerializeField]
+	public bool RemoveWhenDepleted;
+	[SerializeField]
+	public bool DestroyWhenDepleted;
 
 #if UNITY_EDITOR
 	public override void RenderInspectorGUI ()
@@ -26,5 +25,4 @@ namespace Spark
 		base.RenderInspectorGUI ();
 	}
 #endif
-	}
 }

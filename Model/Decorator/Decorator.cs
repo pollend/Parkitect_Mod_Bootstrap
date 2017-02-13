@@ -1,19 +1,17 @@
 ﻿using System;
 using UnityEngine;
-namespace Spark
-{
-	[Serializable]
-	public class Decorator : ScriptableObject
-	{
-		public Decorator()
-		{
-		}
 
-		public virtual void RenderSceneGUI(ParkitectObj parkitectObj) { }
-		public virtual void RenderInspectorGUI(ParkitectObj parkitectObj) { }
-		public virtual void CleanUp(ParkitectObj parkitectObj) { }
-		public virtual void Load(ParkitectObj parkitectObj) { }
-		public virtual void PrepareExport(ParkitectObj parkitectObj) { }
+[Serializable]
+public class Decorator : ScriptableObject
+{
+	public Decorator()
+	{
 	}
 
+	public virtual void RenderSceneGUI(ParkitectObj parkitectObj) { }
+	public virtual void RenderInspectorGUI(ParkitectObj parkitectObj) { }
+	public virtual void CleanUp(ParkitectObj parkitectObj) { }
+	public virtual void Load(ParkitectObj parkitectObj) { }
+	public virtual void PrepareExport(ParkitectObj parkitectObj) { }
 }
+

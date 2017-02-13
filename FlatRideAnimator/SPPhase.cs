@@ -8,14 +8,14 @@ using System.Collections.ObjectModel;
 
 [ExecuteInEditMode]
 [Serializable]
-public class Phase : ScriptableObject
+public class SPPhase : ScriptableObject
 {
 	[SerializeField]
-	private List<RideAnimationEvent> events = new List<RideAnimationEvent>();
+	private List<SPRideAnimationEvent> events = new List<SPRideAnimationEvent>();
 	public bool running = false;
 	bool done = false;
 
-	public  ReadOnlyCollection<RideAnimationEvent> Events{get{return events.AsReadOnly ();}}
+	public  ReadOnlyCollection<SPRideAnimationEvent> Events{get{return events.AsReadOnly ();}}
 	#if UNITY_EDITOR
 	public void AddEvent(RideAnimationEvent animationEvent)
 	{
@@ -43,23 +43,23 @@ public class Phase : ScriptableObject
 
 	public void Enter()
 	{
-		foreach (RideAnimationEvent RAE in events)
+		foreach (SPRideAnimationEvent RAE in events)
 		{
 			RAE.Enter();
 		}
 	}
-	public Phase ShallowCopy()
+	public SPPhase ShallowCopy()
 	{
-		return (Phase)this.MemberwiseClone();
+		return (SPPhase)this.MemberwiseClone();
 	}
 	public void Run(Transform root)
 	{
-		foreach (RideAnimationEvent RAE in events)
+		foreach (SPRideAnimationEvent RAE in events)
 		{
 			RAE.Run(root);
 		}
 		done = true;
-		foreach (RideAnimationEvent RAE in events)
+		foreach (SPRideAnimationEvent RAE in events)
 		{
 			if (!RAE.done)
 			{
@@ -76,7 +76,7 @@ public class Phase : ScriptableObject
 	}
 	public void Exit()
 	{
-		foreach (RideAnimationEvent RAE in events)
+		foreach (SPRideAnimationEvent RAE in events)
 		{
 			RAE.Exit();
 		}

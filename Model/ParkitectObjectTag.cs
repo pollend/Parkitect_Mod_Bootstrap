@@ -1,20 +1,18 @@
 ﻿using System;
-namespace Spark
+
+public class ParkitectObjectTag : System.Attribute
 {
-	public class ParkitectObjectTag : System.Attribute
+	public readonly string name;
+	public string Name
 	{
-		public readonly string name;
-		public string Name
-		{
-			get { return name; }
-		}
-		public ParkitectObjectTag()
-		{
-		}
-		public ParkitectObjectTag(string name)
-		{
-			this.name = name;
-		}
+		get { return name; }
+	}
+	public ParkitectObjectTag()
+	{
+	}
+	public ParkitectObjectTag(string name)
+	{
+		this.name = name;
 	}
 }
 

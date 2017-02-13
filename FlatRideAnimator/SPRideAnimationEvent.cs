@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using System;
-using Spark;
 
 [ExecuteInEditMode]
 [Serializable]
-public class RideAnimationEvent : ScriptableObject
+public class SPRideAnimationEvent : ScriptableObject
 {
 	public bool done = false;
 	public bool showSettings;
@@ -12,7 +11,7 @@ public class RideAnimationEvent : ScriptableObject
 	public Color ColorIdentifier;
 	public virtual string EventName { set; get; }
 
-	public virtual void RenderInspectorGUI(Motor[] motors)
+	public virtual void RenderInspectorGUI(SPMotor[] motors)
 	{
 
 	}

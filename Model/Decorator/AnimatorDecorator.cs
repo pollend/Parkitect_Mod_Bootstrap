@@ -7,26 +7,25 @@ using UnityEditor;
 #endif
 using System.Collections.ObjectModel;
 
-namespace Spark
-{
+
 	public class AnimatorDecorator : Decorator
 	{
 		[SerializeField]
-		private List<Motor> motors = new List<Motor>();
+		private List<SPMotor> motors = new List<SPMotor>();
 
 		[SerializeField]
-		private List<Phase> phases = new List<Phase>();
+		private List<SPPhase> phases = new List<SPPhase>();
 
 		[SerializeField]
-		public Phase currentPhase;
+		public SPPhase currentPhase;
 		int phaseNum;
 
 		[SerializeField]
 		public bool animating;
 
-		public ReadOnlyCollection<Motor> Motors { get { return motors.AsReadOnly(); } }
+		public ReadOnlyCollection<SPMotor> Motors { get { return motors.AsReadOnly(); } }
 
-		public ReadOnlyCollection<Phase> Phases { get { return phases.AsReadOnly(); } }
+		public ReadOnlyCollection<SPPhase> Phases { get { return phases.AsReadOnly(); } }
 #if UNITY_EDITOR
 	public void AddMotor(Motor motor)
 	{
@@ -97,24 +96,24 @@ namespace Spark
 			motors.RemoveAll(x => x == null);
 			phases.RemoveAll(x => x == null);
 
-			foreach (Motor m in motors)
+			foreach (SPMotor m in motors)
 			{
 				m.Enter(root);
 			}
 			if (phases.Count <= 0)
 			{
 				animating = false;
-				foreach (Motor m in motors)
+				foreach (SPMotor m in motors)
 				{
 					m.Reset(root);
 				}
-				foreach (MultipleRotations R in motors.OfType<MultipleRotations>())
+				foreach (SPMultipleRotations R in motors.OfType<SPMultipleRotations>())
 				{
 					R.Reset(root);
 				}
 				return;
 			}
-			foreach (Motor m in motors)
+			foreach (SPMotor m in motors)
 			{
 				m.Enter(root);
 			}
@@ -144,26 +143,26 @@ namespace Spark
 				return;
 			}
 			animating = false;
-			foreach (Motor m in motors.OfType<Rotator>())
+			foreach (SPMotor m in motors.OfType<SPRotator>())
 			{
 				m.Enter(root);
 
 			}
-			foreach (Rotator m in motors.OfType<Rotator>())
+			foreach (SPRotator m in motors.OfType<SPRotator>())
 			{
 				Transform transform = m.axis.FindSceneRefrence(root);
 				if (transform != null)
 					transform.localRotation = m.originalRotationValue;
 
 			}
-			foreach (RotateBetween m in motors.OfType<RotateBetween>())
+			foreach (SPRotateBetween m in motors.OfType<SPRotateBetween>())
 			{
 				Transform transform = m.axis.FindSceneRefrence(root);
 				if (transform != null)
 					transform.localRotation = m.originalRotationValue;
 
 			}
-			foreach (Mover m in motors.OfType<Mover>())
+			foreach (SPMover m in motors.OfType<SPMover>())
 			{
 				Transform transform = m.axis.FindSceneRefrence(root);
 				if (transform != null)
@@ -186,4 +185,3 @@ namespace Spark
 	}
 }
 
-}

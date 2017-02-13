@@ -4,23 +4,22 @@ using UnityEngine;
 using UnityEditor;
 #endif
 using System.Collections.Generic;
-namespace Spark
-{
+
 	public class BoundingBoxDecorator : Decorator
 	{
 		public BoundingBoxDecorator()
 		{
 			if (boundingBoxes == null)
-				boundingBoxes = new List<BoundingBox>();
+				boundingBoxes = new List<SPBoundingBox>();
 		}
 
 		[System.NonSerialized]
 		private bool enableEditing = false;
 		private bool snap = false;
 		private Vector2 scrollPos2;
-		public BoundingBox selected;
+		public SPBoundingBox selected;
 
-		public List<BoundingBox> boundingBoxes;
+		public List<SPBoundingBox> boundingBoxes;
 
 #if UNITY_EDITOR
     public override void RenderInspectorGUI (ParkitectObj parkitectObj)
@@ -186,4 +185,3 @@ namespace Spark
 
 	}
 
-}

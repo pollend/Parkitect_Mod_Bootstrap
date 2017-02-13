@@ -4,30 +4,23 @@ using UnityEngine;
 using UnityEditor;
 #endif
 using System.Collections.Generic;
-namespace Spark
+
+public class WaypointDecorator : Decorator
 {
-	public class WaypointDecorator : Decorator
-	{
-		private enum NodeState{Connecting, Dragging}
+	private enum NodeState{Connecting, Dragging}
 
 
-		[System.NonSerialized]
-		private bool enableEditing = false;
-		[System.NonSerialized]
-		private float helperPlaneY = 0;
-		[System.NonSerialized]
-		public Waypoint selectedWaypoint;
+	[System.NonSerialized]
+	private bool enableEditing = false;
+	[System.NonSerialized]
+	private float helperPlaneY = 0;
+	[System.NonSerialized]
+	public SPWaypoint selectedWaypoint;
+
+	public List<SPWaypoint> waypoints = new List<SPWaypoint>();
 
 
-
-
-		public List<Waypoint> waypoints = new List<Waypoint>();
-
-
-		public WaypointDecorator()
-		{
-		}
-#if UNITY_EDITOR
+	#if UNITY_EDITOR
 	public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 	{
 		GameObject sceneTransform = parkitectObj.getGameObjectRef (false);
@@ -194,8 +187,8 @@ namespace Spark
 		}
 
 	}
-#endif
-	}
+	#endif
 }
+
 
 

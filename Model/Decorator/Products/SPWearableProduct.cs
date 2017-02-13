@@ -3,24 +3,23 @@ using System;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-namespace Spark
+
+[Serializable]
+public class SPWearableProduct : SPProduct
 {
-	[Serializable]
-	public class WearableProduct : Product
-	{
-		public enum Seasonal { WINTER, SPRING, SUMMER, AUTUMN, NONE }
-		public enum Body { HEAD, FACE, BACK }
+	public enum Seasonal { WINTER, SPRING, SUMMER, AUTUMN, NONE }
+	public enum Body { HEAD, FACE, BACK }
 
-		[SerializeField]
-		public Body BodyLocation = Body.HEAD;
-		[SerializeField]
-		public Seasonal SeasonalPrefrence = Seasonal.NONE;
-		public Tempreature TempreaturePrefrence = Tempreature.NONE;
-		public bool HideOnRide = false;
-		public bool HideHair = false;
+	[SerializeField]
+	public Body BodyLocation = Body.HEAD;
+	[SerializeField]
+	public Seasonal SeasonalPrefrence = Seasonal.NONE;
+	public Tempreature TempreaturePrefrence = Tempreature.NONE;
+	public bool HideOnRide = false;
+	public bool HideHair = false;
 
 
-#if UNITY_EDITOR
+	#if UNITY_EDITOR
 	public override void RenderInspectorGUI()
 	{
 		BodyLocation = (Body)EditorGUILayout.EnumPopup("Body Location ", BodyLocation);
@@ -30,8 +29,6 @@ namespace Spark
 		HideOnRide = EditorGUILayout.Toggle ("Hide On Ride", HideOnRide);
 		base.RenderInspectorGUI();
 	}
-#endif
+	#endif
 
-
-	}
 }

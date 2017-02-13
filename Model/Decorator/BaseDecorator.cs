@@ -3,8 +3,7 @@
 using UnityEditor;
 #endif
 using UnityEngine;
-namespace Spark
-{
+
 	[Serializable]
 	public class BaseDecorator : Decorator
 	{
@@ -31,4 +30,3 @@ namespace Spark
 
 	}
 
-}

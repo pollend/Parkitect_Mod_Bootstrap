@@ -1,56 +1,54 @@
 ﻿using System;
 using UnityEngine;
-namespace Spark
-{
-	public class Refrence : MonoBehaviour
-	{
-		[SerializeField]
-		private string refrence;
 
-		public string getRefrence()
+public class Refrence : MonoBehaviour
+{
+	[SerializeField]
+	private string refrence;
+
+	public string getRefrence()
+	{
+		return refrence;
+	}
+
+	public String Key
+	{
+		get
 		{
+			if (refrence == null || refrence == "")
+				this.refrence = System.Guid.NewGuid().ToString();
 			return refrence;
 		}
+	}
 
-		public String Key
+	public static Transform findTransformByKey(Transform root, String key)
+	{
+
+		for (int i = 0; i < root.childCount; i++)
 		{
-			get
+			var temp = root.GetChild(i);
+			var refrence = temp.gameObject.GetComponent<Refrence>();
+
+			if (refrence != null)
 			{
-				if (refrence == null || refrence == "")
-					this.refrence = System.Guid.NewGuid().ToString();
-				return refrence;
+				if (refrence.Key == key)
+					return temp;
 			}
+			Transform result = findTransformByKey(temp, key);
+			if (result != null)
+				return result;
 		}
 
-		public static Transform findTransformByKey(Transform root, String key)
+		var refr = root.gameObject.GetComponent<Refrence>();
+		if (refr != null)
 		{
-
-			for (int i = 0; i < root.childCount; i++)
+			if (refr.Key == key)
 			{
-				var temp = root.GetChild(i);
-				var refrence = temp.gameObject.GetComponent<Refrence>();
-
-				if (refrence != null)
-				{
-					if (refrence.Key == key)
-						return temp;
-				}
-				Transform result = findTransformByKey(temp, key);
-				if (result != null)
-					return result;
+				return root;
 			}
-
-			var refr = root.gameObject.GetComponent<Refrence>();
-			if (refr != null)
-			{
-				if (refr.Key == key)
-				{
-					return root;
-				}
-			}
-			return null;
 		}
-
+		return null;
 	}
 
 }
+
