@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Xml.Linq;
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -9,7 +12,7 @@ using UnityEngine;
 public class ModPayload : ScriptableSingleton<ModPayload>
 {
 	[SerializeField]
-	public List<ParkitectObj> ParkitectObjs;
+	public List<ParkitectObj> ParkitectObjs = new List<ParkitectObj>();
 
 	[SerializeField]
 	public ParkitectObj selectedParkitectObject { get; set; }
@@ -19,11 +22,15 @@ public class ModPayload : ScriptableSingleton<ModPayload>
 	[SerializeField]
 	public string description;
 
-	public ModPayload()
+	public List<XElement> Serialize()
 	{
-		if (ParkitectObjs == null)
-			ParkitectObjs = new List<ParkitectObj>();
+		List<XElement> xmlParkitectObjs = new List<XElement> ();
+		for (int i = 0; i < ParkitectObjs.Count; i++) {
+			xmlParkitectObjs.Add (new XElement (ParkitectObjs [i].GetType ().ToString (), ParkitectObjs [i].Serialize ()));
+		}
+		return xmlParkitectObjs;
 	}
+
 
 #if UNITY_EDITOR
 	public void GetAssetbundlePaths(List<string> path)

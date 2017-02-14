@@ -1,5 +1,8 @@
 ﻿using System;
 using UnityEngine;
+using System.Xml.Linq;
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -13,21 +16,20 @@ public class WaypointDecorator : Decorator
     }
     private State state = State.NONE;
 
-    public Tool currentTool = Tool.None;
+	public List<SPWaypoint> waypoints = new List<SPWaypoint>();
 
-    [System.NonSerialized]
+	#if UNITY_EDITOR
+	public Tool currentTool = Tool.None;
+
+	[System.NonSerialized]
 	private bool enableEditing = false;
-    [System.NonSerialized]
-    private bool snap = false;
-    [System.NonSerialized]
+	[System.NonSerialized]
+	private bool snap = false;
+	[System.NonSerialized]
 	private float helperPlaneY = 0;
 	[System.NonSerialized]
 	public SPWaypoint selectedWaypoint;
 
-	public List<SPWaypoint> waypoints = new List<SPWaypoint>();
-
-
-	#if UNITY_EDITOR
 	public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 	{
 		GameObject sceneTransform = parkitectObj.getGameObjectRef (false);
@@ -376,6 +378,18 @@ public class WaypointDecorator : Decorator
         return newPos;
     }
 #endif
+
+	public override List<XElement> Serialize ()
+	{
+		List<XElement> xmlWaypoints = new List<XElement> ();
+		for (int i = 0; i < waypoints.Count; i++) {
+			xmlWaypoints.Add (new XElement ("Waypoint", waypoints [i].Serialize ()));
+		}
+
+		return new List<XElement>(new XElement[]{
+			new XElement("Waypoints",xmlWaypoints)
+		});
+	}
 }
 
 

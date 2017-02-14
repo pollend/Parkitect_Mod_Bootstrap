@@ -118,14 +118,14 @@ public class ShopDecorator : Decorator
 
 	public override List<XElement> Serialize ()
 	{
-		return new List<XElement> (
-			new XElement[]{
-			}
-		);
-		
-		return base.Serialize ();
+		List<XElement> elements = new List<XElement> ();
+		for (int x = 0; x < products.Count; x++) {
+			elements.Add(new XElement(products[x].GetType().ToString(),products[x].Serialize()));
+		}
+		return elements;
 	}
 }
+
 
 
 

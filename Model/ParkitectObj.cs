@@ -189,7 +189,7 @@ public class ParkitectObj : ScriptableObject
 			elements.Add (new XElement (decorators[i].GetType().ToString(),decorators[i].Serialize()));
 		}
 		return new List<XElement>(new XElement[]{ 
-			new XElement("Decorator",elements),
+			new XElement("Decorators",elements),
 			new XElement("Name",this.name)
 
 		});

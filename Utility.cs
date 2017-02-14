@@ -43,7 +43,7 @@ public static class Utility
 		return new List<XElement> (new XElement[] {
 			new XElement("X",v.x),
 			new XElement("Y",v.y),
-			new XElement("Y",v.z)
+			new XElement("Z",v.z)
 		});
 	}
 
