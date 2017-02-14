@@ -1,5 +1,9 @@
 ﻿using System;
 using UnityEngine;
+using System.Collections.Generic;
+using System.Xml.Linq;
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -71,6 +75,17 @@ public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 			return "Medium";
 		}
 		return "Low";
+	}
+
+	public override List<XElement> Serialize ()
+	{
+		return new List<XElement>(new XElement[]{
+			new XElement("Excitement",Excitement),
+			new XElement("Intensity",Intensity),
+			new XElement("Nausea",Nausea),
+			new XElement("XSize",XSize),
+			new XElement("ZSize",ZSize)
+		});
 	}
 }
 

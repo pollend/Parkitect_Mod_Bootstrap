@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections.Generic;
+using System.Xml.Linq;
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -14,8 +18,11 @@ public class SPWearableProduct : SPProduct
 	public Body BodyLocation = Body.HEAD;
 	[SerializeField]
 	public Seasonal SeasonalPrefrence = Seasonal.NONE;
+	[SerializeField]
 	public Tempreature TempreaturePrefrence = Tempreature.NONE;
+	[SerializeField]
 	public bool HideOnRide = false;
+	[SerializeField]
 	public bool HideHair = false;
 
 
@@ -31,4 +38,16 @@ public class SPWearableProduct : SPProduct
 	}
 	#endif
 
+	public override List<XElement> Serialize()
+	{
+		List<XElement> elements = base.Serialize ();
+		elements.Add (new XElement ("BodyLocation", BodyLocation));
+		elements.Add (new XElement ("SeasonalPrefrence", SeasonalPrefrence));
+		elements.Add (new XElement ("BodyLocation", BodyLocation));
+		elements.Add (new XElement ("SeasonalPrefrence", SeasonalPrefrence));
+		elements.Add (new XElement ("TempreaturePrefrence", TempreaturePrefrence));
+		elements.Add (new XElement ("HideOnRide", HideOnRide));
+		elements.Add (new XElement ("HideHair", HideHair));
+		return elements;
+	}
 }

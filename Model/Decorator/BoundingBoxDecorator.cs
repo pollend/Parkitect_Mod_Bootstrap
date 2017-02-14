@@ -1,25 +1,23 @@
 ﻿using System;
 using UnityEngine;
+using System.Xml.Linq;
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 using System.Collections.Generic;
 
-	public class BoundingBoxDecorator : Decorator
-	{
-		public BoundingBoxDecorator()
-		{
-			if (boundingBoxes == null)
-				boundingBoxes = new List<SPBoundingBox>();
-		}
+public class BoundingBoxDecorator : Decorator
+{
 
-		[System.NonSerialized]
-		private bool enableEditing = false;
-		private bool snap = false;
-		private Vector2 scrollPos2;
-		public SPBoundingBox selected;
+	[System.NonSerialized]
+	private bool enableEditing = false;
+	private bool snap = false;
+	private Vector2 scrollPos2;
+	public SPBoundingBox selected;
 
-		public List<SPBoundingBox> boundingBoxes;
+	public List<SPBoundingBox> boundingBoxes = new List<SPBoundingBox> ();
 
 #if UNITY_EDITOR
     public override void RenderInspectorGUI (ParkitectObj parkitectObj)
@@ -183,5 +181,20 @@ using System.Collections.Generic;
 	}
 #endif
 
+
+	public override List<XElement> Serialize ()
+	{
+		List<XElement> elements = new List<XElement> ();
+
+		List<XElement> boxes = new List<XElement> ();
+		for (int x = 0; x < boundingBoxes.Count; x++) {
+			boxes.Add (new XElement ("BoundBox",boundingBoxes[x].Serialize() ));
+
+		}
+		elements.Add(new XElement("BoundingBoxes",boxes));
+
+		return elements;
 	}
+
+}
 

@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Xml.Linq;
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -27,6 +31,18 @@ public class GridDecorator : Decorator
 	    base.RenderInspectorGUI (parkitectObj);
 	}
 	#endif
+
+	public override List<XElement> Serialize ()
+	{
+		return new List<XElement>(new XElement[]{
+			new XElement("SnapCenter",snapCenter),
+			new XElement("Snap",snap),
+			new XElement("Grid",grid),
+			new XElement("HeightDelta",heightDelta),
+			new XElement("GridSubdivisons",gridSubdivision)
+		
+		});
+	}
 }
 
 

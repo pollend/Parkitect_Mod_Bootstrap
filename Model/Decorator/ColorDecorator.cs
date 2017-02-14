@@ -1,5 +1,8 @@
 ﻿using System;
 using UnityEngine;
+using System.Xml.Linq;
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -83,6 +86,14 @@ public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 }
 #endif
 
+	public override List<XElement> Serialize ()
+	{
+		List<XElement> xmlcolors = new List<XElement> ();
+		for (int x = 0; x < colors.Count; x++) {	
+			xmlcolors.Add (new XElement("Color", Utility.SerializeColor (colors[x])));
+		}
+		return xmlcolors;
+	}
 
 }
 

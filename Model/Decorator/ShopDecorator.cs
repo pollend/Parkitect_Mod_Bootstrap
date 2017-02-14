@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Xml.Linq;
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -9,17 +12,16 @@ public class ShopDecorator : Decorator
 {
 	public List<SPProduct> products = new List<SPProduct>();
 
-	#if UNITY_EDITOR
+#if UNITY_EDITOR
 	[System.NonSerialized]
 	private Vector2 scrollPos2;
 	[System.NonSerialized]
 	private SPProduct selected;
-	#endif
+#endif
 
 	public ShopDecorator()
 	{
 	}
-
 
 	#if UNITY_EDITOR
 	public override void RenderInspectorGUI (ParkitectObj parkitectObj)
@@ -113,6 +115,16 @@ public class ShopDecorator : Decorator
 		base.CleanUp (parkitectObj);
 	}
 	#endif
+
+	public override List<XElement> Serialize ()
+	{
+		return new List<XElement> (
+			new XElement[]{
+			}
+		);
+		
+		return base.Serialize ();
+	}
 }
 
 

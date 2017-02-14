@@ -17,9 +17,9 @@ public class SeatDecorator : Decorator
 	#if UNITY_EDITOR
 	public override void Load (ParkitectObj parkitectObj)
 	{
-	seats.Clear ();
-	Utility.findAllChildrenWithName (parkitectObj.getGameObjectRef (true).transform, SEAT, seats);
-	base.Load (parkitectObj);
+		seats.Clear ();
+		Utility.findAllChildrenWithName (parkitectObj.getGameObjectRef (true).transform, SEAT, seats);
+		base.Load (parkitectObj);
 	}
 
 
@@ -86,10 +86,8 @@ public class SeatDecorator : Decorator
 				Vector3 center3 = vector2 + transform.forward * 0.015f - transform.up * 0.07f;
 				Handles.SphereCap (205, center3, transform.rotation, 0.02f);
 			}
-	}
-
-
-	base.RenderSceneGUI (parkitectObj);
+		}
+		base.RenderSceneGUI (parkitectObj);
 	}
 	#endif
 

@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Xml.Linq;
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -28,6 +32,14 @@ public class BaseDecorator : Decorator
         base.RenderInspectorGUI (parkitectObj);
 	}
 #endif
+
+	public override List<XElement> Serialize ()
+	{
+		List<XElement> element = new List<XElement> ();
+		element.Add (new XElement ("InGameName", InGameName));
+		element.Add (new XElement ("Price", price));
+		return element;
+	}
 
 }
 

@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections.Generic;
+using System.Xml.Linq;
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -25,4 +29,12 @@ public class SPOngoingProduct : SPProduct
 		base.RenderInspectorGUI ();
 	}
 #endif
+	public override List<XElement> Serialize()
+	{
+		List<XElement> elements = base.Serialize ();
+		elements.Add (new XElement ("Duration", Duration));
+		elements.Add (new XElement ("RemoveWhenDepleted", RemoveWhenDepleted));
+		elements.Add (new XElement ("DestroyWhenDepleted", DestroyWhenDepleted));
+		return elements;
+	}
 }
