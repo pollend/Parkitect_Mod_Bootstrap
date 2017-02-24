@@ -92,7 +92,22 @@ public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 		for (int x = 0; x < colors.Count; x++) {	
 			xmlcolors.Add (new XElement("Color", Utility.SerializeColor (colors[x])));
 		}
-		return xmlcolors;
+		return new List<XElement>{
+			new XElement("Colors",xmlcolors),
+			new XElement("IsRecolorable",isRecolorable),
+		};
+	}
+
+	public override void Deserialize (XElement elements)
+	{
+		if (elements.Element ("Colors") != null) {
+			foreach (XElement colorXml in elements.Element("Colors").Elements("Color")) {
+				colors.Add(Utility.DeSerializeColor (colorXml));
+			}
+		}
+		if(elements.Element ("IsRecolorable") != null)
+			isRecolorable = bool.Parse (elements.Element ("IsRecolorable").Value);
+		base.Deserialize (elements);
 	}
 
 }

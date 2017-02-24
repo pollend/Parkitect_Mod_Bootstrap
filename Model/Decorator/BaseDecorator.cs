@@ -41,5 +41,15 @@ public class BaseDecorator : Decorator
 		return element;
 	}
 
+	public override void Deserialize (XElement elements)
+	{
+		if (elements.Element ("InGameName") != null)
+			InGameName = elements.Element ("InGameName").Value;
+		if (elements.Element ("Price") != null)
+			price = float.Parse(elements.Element ("Price").Value);
+		
+		base.Deserialize (elements);
+	}
+
 }
 

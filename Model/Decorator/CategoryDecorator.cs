@@ -30,5 +30,11 @@ public class CategoryDecorator : Decorator
 			new XElement("Category",category)
 		});
 	}
+
+	public override void Deserialize (XElement elements)
+	{
+		this.category = elements.Element ("Category").Value;
+		base.Deserialize (elements);
+	}
 }
 

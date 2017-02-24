@@ -29,9 +29,9 @@ using System.Collections.ObjectModel;
 #if UNITY_EDITOR
 	public void AddMotor(SPMotor motor)
 	{
-		AssetDatabase.AddObjectToAsset (motor,this);
-		EditorUtility.SetDirty(this);
-		AssetDatabase.SaveAssets();
+		AssetDatabase.AddObjectToAsset (motor, this);
+		EditorUtility.SetDirty (this);
+		AssetDatabase.SaveAssets ();
 
 		this.motors.Add (motor);
 	}
@@ -171,15 +171,14 @@ using System.Collections.ObjectModel;
 			}
 
 			currentPhase = null;
-		}
-		public void Run(Transform transform)
-		{
-			if (currentPhase != null)
-			{
-				currentPhase.Run(transform);
-			if (!currentPhase.running)
-			{
-				NextPhase(transform);
+	}
+
+	public void Run(Transform transform)
+	{
+		if (currentPhase != null) {
+			currentPhase.Run (transform);
+			if (!currentPhase.running) {
+				NextPhase (transform);
 			}
 		}
 	}

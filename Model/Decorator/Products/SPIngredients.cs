@@ -35,6 +35,26 @@ public class SPIngredient
 			new XElement("Effects",xmlEffect)
 		});	
 	}
+	public void DeSerialize(XElement element)
+	{
+		if (element.Element ("Name") != null)
+			this.Name = element.Element ("Name").Value;
+		if (element.Element ("Price") != null)
+			this.Price = float.Parse(element.Element ("Price").Value);
+		if (element.Element ("Amount") != null)
+			this.Amount = int.Parse(element.Element ("Amount").Value);
+		if (element.Element ("Tweakable") != null)
+			this.Tweakable = bool.Parse(element.Element ("Tweakable").Value);
+		if (element.Element ("Effects") != null) {
+
+			foreach(XElement xmlEffect in element.Elements("Effects"))
+			{
+				Effect effect = new Effect ();
+				effect.DeSerialize(xmlEffect);
+				this.effects.Add(effect);
+			}
+		}
+	}
 }
 
 
@@ -52,5 +72,13 @@ public class Effect
 			new XElement("Type",Type),
 			new XElement("Amount",amount)
 		});
+	}
+
+	public void DeSerialize(XElement element)
+	{
+		if(element.Element ("Type") != null)
+			this.Type = (EffectTypes)Enum.Parse(typeof(EffectTypes), element.Element ("Type").Value);
+		if(element.Element ("Amount") != null)
+			this.amount = float.Parse (element.Element ("Amount").Value);
 	}
 }

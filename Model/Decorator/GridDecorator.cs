@@ -43,6 +43,21 @@ public class GridDecorator : Decorator
 		
 		});
 	}
+
+	public override void Deserialize (XElement elements)
+	{
+		if(elements.Element ("SnapCenter") != null)
+			this.snapCenter = bool.Parse(elements.Element ("SnapCenter").Value);
+		if(elements.Element ("Snap") != null)
+			this.snap = bool.Parse(elements.Element ("Snap").Value);
+		if(elements.Element ("Grid") != null)
+			this.grid = bool.Parse(elements.Element ("Grid").Value);
+		if(elements.Element ("HeightDelta") != null)
+			this.heightDelta = float.Parse(elements.Element ("HeightDelta").Value);
+		if(elements.Element ("GridSubdivisons") != null)
+			this.gridSubdivision = float.Parse(elements.Element ("GridSubdivisons").Value);
+		base.Deserialize (elements);
+	}
 }
 
 

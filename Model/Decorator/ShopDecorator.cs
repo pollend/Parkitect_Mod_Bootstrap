@@ -122,7 +122,14 @@ public class ShopDecorator : Decorator
 		for (int x = 0; x < products.Count; x++) {
 			elements.Add(new XElement(products[x].GetType().ToString(),products[x].Serialize()));
 		}
-		return elements;
+		return new List<XElement>{
+			new XElement("Products",elements)
+		};
+	}
+
+	public override void Deserialize (XElement elements)
+	{
+		base.Deserialize (elements);
 	}
 }
 

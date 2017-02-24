@@ -38,6 +38,17 @@ public static class Utility
 		});
 		
 	}
+
+
+	public static Vector2 DeseralizeVector2(XElement element)
+	{
+
+		Vector2 v = new Vector2 ();
+		v.x = float.Parse(element.Element ("X").Value);
+		v.y = float.Parse(element.Element ("Y").Value);
+		return v;
+	}
+
 	public static List<XElement> SerializeVector(Vector3 v)
 	{
 		return new List<XElement> (new XElement[] {
@@ -45,6 +56,16 @@ public static class Utility
 			new XElement("Y",v.y),
 			new XElement("Z",v.z)
 		});
+	}
+
+	public static Vector3 DeseralizeVector3(XElement element)
+	{
+		Vector3 v = new Vector3 ();
+		v.x = float.Parse(element.Element ("X").Value);
+		v.y = float.Parse(element.Element ("Y").Value);
+		v.z = float.Parse(element.Element ("Z").Value);
+		return v;
+
 	}
 
 	public static List<XElement> SerializeColor(Color c)
@@ -57,7 +78,16 @@ public static class Utility
 		});
 	}
 
+	public static Color DeSerializeColor(XElement element)
+	{
+		Color c = new Color ();
+		c.r = float.Parse(element.Element ("R").Value);
+		c.g = float.Parse(element.Element ("G").Value);
+		c.b = float.Parse(element.Element ("B").Value);
+		c.a = float.Parse(element.Element ("A").Value);
+		return c;
 
+	}
 
 }
 

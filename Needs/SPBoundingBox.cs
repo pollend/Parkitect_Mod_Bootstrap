@@ -22,4 +22,32 @@ public class SPBoundingBox
 		});
 		
 	}
+
+	public static SPBoundingBox Deserialize(XElement element)
+	{
+		Bounds b = new Bounds ();
+		Vector3 min = new Vector3 ();
+		if (element.Element ("XMin") != null)
+			min.x = float.Parse(element.Element ("XMin").Value);
+		if (element.Element ("YMin") != null)
+			min.y = float.Parse(element.Element ("YMin").Value);
+		if (element.Element ("ZMin") != null)
+			min.z = float.Parse(element.Element ("ZMin").Value);
+
+		Vector3 max = new Vector3 ();
+		if (element.Element ("XMax") != null)
+			max.x = float.Parse(element.Element ("XMax").Value);
+		if (element.Element ("YMax") != null)
+			max.y = float.Parse(element.Element ("YMax").Value);
+		if (element.Element ("ZMax")  != null)
+			max.z = float.Parse(element.Element ("ZMax").Value);
+
+		b.min = min;
+		b.max = max;
+
+		SPBoundingBox box = new SPBoundingBox ();
+		box.bounds = b;
+		return box;
+	
+	}
 }

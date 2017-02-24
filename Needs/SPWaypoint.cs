@@ -35,4 +35,27 @@ public class SPWaypoint
 		});
 	}
 
+
+	public static SPWaypoint Deserialize(XElement element)
+	{
+		SPWaypoint waypoint = new SPWaypoint (); 
+
+		if(element.Element ("Outer") != null)
+			waypoint.isOuter = bool.Parse (element.Element ("Outer").Value);
+		if(element.Element ("IsRabbitHoleGoal") != null)
+			waypoint.isOuter = bool.Parse (element.Element ("Outer").Value);
+		if(element.Element ("LocalPosition") != null)
+			waypoint.isOuter = bool.Parse (element.Element ("Outer").Value);
+		
+		if (element.Element ("ConnectedTo") != null) {
+			
+			foreach(XElement c in element.Element("ConnectedTo").Elements("I"))
+			{
+				waypoint.connectedTo.Add (int.Parse (c.Value));	
+			}
+		}
+		return waypoint;
+
+
+	}
 }

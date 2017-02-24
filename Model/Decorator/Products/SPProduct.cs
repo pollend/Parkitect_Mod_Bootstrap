@@ -10,14 +10,14 @@ using System.Collections.Generic;
 
 public class SPProduct : ScriptableObject
 {
-	public enum Tempreature
+	public enum Temperature
 	{
 		NONE,
 		COLD,
 		HOT
 	}
 
-	public List<SPIngredient> ingredients = new List<SPIngredient>();
+	public List<SPIngredient> Ingredients = new List<SPIngredient>();
 
 
 	public string Name;
@@ -47,28 +47,28 @@ public class SPProduct : ScriptableObject
 		EditorGUILayout.BeginVertical("ShurikenEffectBg", GUILayout.Width(150));
 		scrollPos = EditorGUILayout.BeginScrollView(scrollPos, GUILayout.Height(300));
 
-		for (int i = 0; i < ingredients.Count; i++)
+		for (int i = 0; i < Ingredients.Count; i++)
 		{
 			Color gui = GUI.color;
-			if (ingredients[i] == selected)
+			if (Ingredients[i] == selected)
 			{ GUI.color = Color.red; }
 
-			if (GUILayout.Button(ingredients[i].Name + "    $" + ingredients[i].Price + ".00", "ShurikenModuleTitle"))
+			if (GUILayout.Button(Ingredients[i].Name + "    $" + Ingredients[i].Price + ".00", "ShurikenModuleTitle"))
 			{
 
 				GUI.FocusControl("");
 				if (e.button == 1)
 				{
-					ingredients.RemoveAt(i);
+					Ingredients.RemoveAt(i);
 					return;
 				}
 
-				if (selected == ingredients[i])
+				if (selected == Ingredients[i])
 				{
 					selected = null;
 					return;
 				}
-				selected = ingredients[i];
+				selected = Ingredients[i];
 			}
 			GUI.color = gui;
 		}
@@ -76,13 +76,13 @@ public class SPProduct : ScriptableObject
 
 		if (GUILayout.Button("Add Ingredients"))
 		{
-			ingredients.Add(new SPIngredient());
+			Ingredients.Add(new SPIngredient());
 		}
 		EditorGUILayout.EndVertical();
 		EditorGUILayout.BeginVertical();
 		if(selected != null)
 		{
-			if (!ingredients.Contains(selected))
+			if (!Ingredients.Contains(selected))
 			{
 				selected = null;
 				return;
@@ -125,16 +125,33 @@ public class SPProduct : ScriptableObject
 	public virtual List<XElement> Serialize()
 	{
 		List<XElement> xmlIngredient = new List<XElement> ();
-		for (int x = 0; x < ingredients.Count; x++) {
-			xmlIngredient.Add (new XElement("Ingredient",ingredients [x].Serialize ()));
+		for (int x = 0; x < Ingredients.Count; x++) {
+			xmlIngredient.Add (new XElement("Ingredient",Ingredients [x].Serialize ()));
 		}
 
 		return new List<XElement> (new XElement[]{
 			new XElement("Name",this.name),
 			new XElement("Price",this.Price),
-			new XElement("Ingredient",xmlIngredient)
-		
+			new XElement("Ingredients",xmlIngredient)
 		});
+	}
+
+	public virtual void DeSerialize(XElement element)
+	{
+		if (element.Element ("Name") != null)
+			this.name = element.Element ("Name").Value;
+
+		if (element.Element ("Price") != null)
+			this.Price = float.Parse(element.Element ("Price").Value);
+
+		if (element.Element ("Ingredients") != null) {
+			foreach(XElement xmlingredient in element.Element("Ingredients").Elements("Ingredient"))
+			{
+				SPIngredient ingredient = new SPIngredient ();
+				ingredient.DeSerialize (xmlingredient);
+				Ingredients.Add (ingredient);
+			}
+		}
 	}
 
 }

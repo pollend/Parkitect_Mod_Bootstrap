@@ -87,6 +87,21 @@ public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 			new XElement("ZSize",ZSize)
 		});
 	}
+
+	public override void Deserialize (XElement elements)
+	{
+		if (elements.Element ("Excitement") != null)
+			Excitement = float.Parse(elements.Element ("Excitement").Value);
+		if (elements.Element ("Intensity") != null)
+			Intensity = float.Parse(elements.Element ("Intensity").Value);
+		if (elements.Element ("Nausea") != null)
+			Nausea = float.Parse(elements.Element ("Nausea").Value);
+		if (elements.Element ("XSize") != null)
+			XSize = float.Parse(elements.Element ("XSize").Value);
+		if (elements.Element ("ZSize") != null)
+			ZSize = float.Parse(elements.Element ("ZSize").Value);
+		base.Deserialize (elements);
+	}
 }
 
 

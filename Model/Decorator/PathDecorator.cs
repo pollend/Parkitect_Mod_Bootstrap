@@ -7,11 +7,11 @@ using System.Xml.Linq;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
+public enum PathType { Normal, Queue, Employee }
 
 public class PathDecorator : Decorator
 {
-	public enum PathType { Normal, Queue, Employee }
-	public PathType pathType;
+	public PathType PathType;
 	public Texture2D PathTexture;
 
 	public PathDecorator()
@@ -56,9 +56,16 @@ public class PathDecorator : Decorator
 	public override List<XElement> Serialize ()
 	{
 		return new List<XElement>(new XElement[]{
-			new XElement("PathType",pathType)
+			new XElement("PathType",PathType)
 
 		});
+	}
+
+	public override void Deserialize (XElement elements)
+	{
+		if (elements.Element ("PathType") != null)
+			PathType = (PathType)Enum.Parse (typeof(PathType), elements.Element ("PathType").Value);
+		base.Deserialize (elements);
 	}
 
 }

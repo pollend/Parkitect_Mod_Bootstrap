@@ -19,7 +19,7 @@ public class SPWearableProduct : SPProduct
 	[SerializeField]
 	public Seasonal SeasonalPrefrence = Seasonal.NONE;
 	[SerializeField]
-	public Tempreature TempreaturePrefrence = Tempreature.NONE;
+	public Temperature TempreaturePrefrence = Temperature.NONE;
 	[SerializeField]
 	public bool HideOnRide = false;
 	[SerializeField]
@@ -31,7 +31,7 @@ public class SPWearableProduct : SPProduct
 	{
 		BodyLocation = (Body)EditorGUILayout.EnumPopup("Body Location ", BodyLocation);
 		SeasonalPrefrence = (Seasonal)EditorGUILayout.EnumPopup ("Seasonal Prefrence ", SeasonalPrefrence);
-		TempreaturePrefrence = (Tempreature)EditorGUILayout.EnumPopup ("Tempreature Prefrence", TempreaturePrefrence);
+		TempreaturePrefrence = (Temperature)EditorGUILayout.EnumPopup ("Tempreature Prefrence", TempreaturePrefrence);
 		HideHair = EditorGUILayout.Toggle("Hide Hair", HideHair);
 		HideOnRide = EditorGUILayout.Toggle ("Hide On Ride", HideOnRide);
 		base.RenderInspectorGUI();
@@ -43,11 +43,23 @@ public class SPWearableProduct : SPProduct
 		List<XElement> elements = base.Serialize ();
 		elements.Add (new XElement ("BodyLocation", BodyLocation));
 		elements.Add (new XElement ("SeasonalPrefrence", SeasonalPrefrence));
-		elements.Add (new XElement ("BodyLocation", BodyLocation));
-		elements.Add (new XElement ("SeasonalPrefrence", SeasonalPrefrence));
 		elements.Add (new XElement ("TempreaturePrefrence", TempreaturePrefrence));
 		elements.Add (new XElement ("HideOnRide", HideOnRide));
 		elements.Add (new XElement ("HideHair", HideHair));
 		return elements;
+	}
+
+	public override void DeSerialize (XElement element)
+	{
+		if(element.Element ("BodyLocation") != null)
+			this.BodyLocation = (Body)Enum.Parse (typeof(Body), element.Element ("BodyLocation").Value);
+		if(element.Element ("SeasonalPrefrence") != null)
+			this.SeasonalPrefrence = (Seasonal)Enum.Parse (typeof(Seasonal), element.Element ("SeasonalPrefrence").Value);
+		if(element.Element ("TempreaturePrefrence") != null)
+			this.TempreaturePrefrence = (Temperature)Enum.Parse (typeof(Temperature), element.Element ("TempreaturePrefrence").Value);
+		if(element.Element ("HideOnRide") != null)
+			this.HideOnRide = bool.Parse(element.Element ("HideOnRide").Value);
+		if(element.Element ("HideHair") != null)
+			this.HideHair = bool.Parse (element.Element ("HideHair").Value);
 	}
 }

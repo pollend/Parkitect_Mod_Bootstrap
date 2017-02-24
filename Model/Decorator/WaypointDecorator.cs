@@ -390,6 +390,18 @@ public class WaypointDecorator : Decorator
 			new XElement("Waypoints",xmlWaypoints)
 		});
 	}
+
+	public override void Deserialize (XElement elements)
+	{
+		
+		if (elements.Element ("Waypoints") != null) {
+			foreach (XElement waypointXML in elements.Element("Waypoints").Elements("Waypoint")) {
+				this.waypoints.Add (SPWaypoint.Deserialize (waypointXML));
+			}
+		}
+		base.Deserialize (elements);
+	}
+
 }
 
 

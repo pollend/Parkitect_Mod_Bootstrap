@@ -184,16 +184,25 @@ public class BoundingBoxDecorator : Decorator
 
 	public override List<XElement> Serialize ()
 	{
-		List<XElement> elements = new List<XElement> ();
-
 		List<XElement> boxes = new List<XElement> ();
 		for (int x = 0; x < boundingBoxes.Count; x++) {
 			boxes.Add (new XElement ("BoundBox",boundingBoxes[x].Serialize() ));
 
 		}
-		elements.Add(new XElement("BoundingBoxes",boxes));
 
-		return elements;
+		return new List<XElement>{
+			new XElement("BoundingBoxes",boxes)
+		};
+	}
+
+	public override void Deserialize (XElement elements)
+	{
+		if (elements.Element ("BoundingBoxes") != null) {
+			foreach (XElement xmlBoundingBox in elements.Element ("BoundingBoxes").Elements("BoundBox")) {
+				this.boundingBoxes.Add (SPBoundingBox.Deserialize (xmlBoundingBox));
+			}
+		}
+		base.Deserialize (elements);
 	}
 
 }
