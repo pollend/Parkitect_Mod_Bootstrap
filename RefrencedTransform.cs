@@ -58,6 +58,7 @@ public class RefrencedTransform
 			this.prefabTransform = Refrence.findTransformByKey(root, key);
 		}
 	}
+
 }
 
 

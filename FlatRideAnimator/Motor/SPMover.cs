@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Xml.Linq;
+using System.Collections.Generic;
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -28,10 +32,8 @@ public class SPMover : SPMotor
 
 	[SerializeField]
 	private SPMover.State currentState = SPMover.State.STOPPED;
-
 	[SerializeField]
 	private float currentPosition = 1f;
-
 	[SerializeField]
 	private int direction = -1;
 
@@ -52,15 +54,15 @@ public class SPMover : SPMotor
 		}
 	}
 #if UNITY_EDITOR
-public override void InspectorGUI(Transform root)
-{
-	Identifier = EditorGUILayout.TextField("Name ", Identifier);
-	axis.SetSceneTransform((Transform)EditorGUILayout.ObjectField("axis", axis.FindSceneRefrence (root), typeof(Transform), true));
-    toPosition = EditorGUILayout.Vector3Field("Move To", toPosition);
-    duration = EditorGUILayout.FloatField("Time", duration);
-	base.InspectorGUI(root);
+	public override void InspectorGUI(Transform root)
+	{
+		Identifier = EditorGUILayout.TextField("Name ", Identifier);
+		axis.SetSceneTransform((Transform)EditorGUILayout.ObjectField("axis", axis.FindSceneRefrence (root), typeof(Transform), true));
+	    toPosition = EditorGUILayout.Vector3Field("Move To", toPosition);
+	    duration = EditorGUILayout.FloatField("Time", duration);
+		base.InspectorGUI(root);
 
-}
+	}
 #endif
 	public override void Enter(Transform root)
 	{
@@ -145,6 +147,19 @@ public override void InspectorGUI(Transform root)
 	{
 		axis.UpdatePrefabRefrence(parkitectObj.Prefab.transform);
 		base.PrepareExport(parkitectObj);
+	}
+
+	public override List<XElement> Serialize ()
+	{
+		
+		return new System.Collections.Generic.List<XElement>(){
+			new XElement("Identifier",Identifier),
+			new XElement("Axis",null),
+			new XElement("FromPosition",Utility.SerializeVector(this.fromPosition)),
+			new XElement("ToPosition",Utility.SerializeVector(this.toPosition)),
+			new XElement("Duration",this.duration)
+
+		};
 	}
 
 

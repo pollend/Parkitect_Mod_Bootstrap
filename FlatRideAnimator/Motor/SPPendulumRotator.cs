@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Xml.Linq;
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -65,5 +69,17 @@ public override void InspectorGUI(Transform root)
 			transformAxis.localRotation = this.initialRotation;
 			this.currentSpeed = 0f;
 		}
+	}
+
+
+	public override List<XElement> Serialize ()
+	{
+		return new List<XElement> (){ 
+			new XElement("Identifier",this.Identifier),
+			new XElement("ArmLength",this.armLength),
+			new XElement("Gravity",this.gravity),
+			new XElement("AngularFriction",this.angularFriction),
+			new XElement("Pendulum",this.pendulum)
+		};
 	}
 }

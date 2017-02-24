@@ -26,7 +26,6 @@ public class ParkitectObj : ScriptableObject
 
 	[SerializeField]
 	public string objectName;
-	public float XSize;
 
 	[System.NonSerialized]
 	public GameObject sceneRef;
@@ -108,9 +107,8 @@ public class ParkitectObj : ScriptableObject
 	public void Load(ParkitectObj parkitectObj)
 	{
 		this.decorators = parkitectObj.decorators;
-		this.objectName = parkitectObj.name;
+		this.objectName = parkitectObj.objectName;
 		this.prefab = parkitectObj.prefab;
-		this.XSize = parkitectObj.XSize;
 		this.key = parkitectObj.getKey;
 
 		for (int x = 0; x < decorators.Count; x++)
@@ -190,9 +188,26 @@ public class ParkitectObj : ScriptableObject
 		}
 		return new List<XElement>(new XElement[]{ 
 			new XElement("Decorators",elements),
-			new XElement("Name",this.name)
+			new XElement("Name",this.objectName)
 
 		});
+	}
+
+	public void DeSerialize(XElement element)
+	{
+		if (element.Element ("Name") != null)
+			this.objectName = element.Element ("Name").Value;
+
+		if (element.Element ("Decorators") != null)
+			foreach (var decorator in element.Element("Decorators").Elements()) {
+				Decorator dec =  Utility.GetByTypeName<Decorator> (decorator.Name);
+				dec.Deserialize (decorator);
+				this.decorators.Add (dec);
+			}
+	}
+
+	public void BindToParkitect()
+	{
 	}
 
 }

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System.Xml.Linq;
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -181,6 +184,16 @@ using System.Collections.ObjectModel;
 				NextPhase (transform);
 			}
 		}
+	}
+
+	public override void Deserialize (XElement elements)
+	{
+		base.Deserialize (elements);
+	}
+
+	public override List<XElement> Serialize ()
+	{
+		return base.Serialize ();
 	}
 }
 

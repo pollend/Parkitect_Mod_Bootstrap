@@ -1,6 +1,9 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Xml.Linq;
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -80,6 +83,15 @@ public class SPPhase : ScriptableObject
 		{
 			RAE.Exit();
 		}
+	}
+
+	public virtual List<XElement> Serialize()
+	{
+		List<XElement> elements = new List<XElement> ();
+		foreach (SPRideAnimationEvent rideEvent in events) {
+			elements.Add (rideEvent.GetType ().Name, rideEvent.Serialize ());
+		}
+		return elements;
 	}
 
 }

@@ -1,5 +1,9 @@
 ﻿#if UNITY_EDITOR
 using UnityEditor;
+using System.Collections.Generic;
+using System.Xml.Linq;
+
+
 #endif
 using System;
 using UnityEngine;
@@ -60,6 +64,15 @@ public override void RenderInspectorGUI(SPMotor[] motors)
 			base.Run(root);
 		}
 
+	}
+
+
+	public override List<XElement> Serialize ()
+	{
+
+		return new List<XElement> () {
+			new XElement("Rotator",rotator.Serialize())
+		};
 	}
 }
 

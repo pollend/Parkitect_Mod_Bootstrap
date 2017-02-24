@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using System.Collections.Generic;
+using System.Xml.Linq;
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -46,7 +50,6 @@ public class SPRotator : SPMotor
 
 	[SerializeField]
 	public RefrencedTransform axis = new RefrencedTransform();
-
 
 
 	public override void Reset(Transform root)
@@ -285,4 +288,20 @@ public override void InspectorGUI(Transform root)
 		axis.UpdatePrefabRefrence(parkitectObj.Prefab.transform);
 		base.PrepareExport(parkitectObj);
 	}
+
+
+	public override List<XElement> Serialize ()
+	{
+
+		return new List<XElement> (){ 
+			new XElement("OriginalRotationValue",Utility.SerializeQuaternion(originalRotationValue)),
+			new XElement("AccelerationSpeed",accelerationSpeed),
+			new XElement("MaxSpeed",maxSpeed),
+			new XElement("RotationAxis",Utility.SerializeVector(rotationAxis)),
+			new XElement("RotationAxisIndex",rotationAxisIndex),
+			new XElement("MinRotationSpeedPercent",minRotationSpeedPercent),
+			new XElement("InitialRotation",Utility.SerializeQuaternion(initialRotation)),
+		};
+	}
+
 }

@@ -1,5 +1,9 @@
 ﻿#if UNITY_EDITOR
 using UnityEditor;
+using System.Xml.Linq;
+using System.Collections.Generic;
+
+
 #endif
 using System;
 using UnityEngine;
@@ -80,5 +84,14 @@ public class SPSpinRotater : SPRideAnimationEvent
 			base.Run(root);
 		}
 
+	}
+
+
+	public override List<XElement> Serialize ()
+	{
+		return new List<XElement> () {
+			new XElement("Rotator",rotator.Serialize()),
+			new XElement("Spins",this.spins)
+		};
 	}
 }

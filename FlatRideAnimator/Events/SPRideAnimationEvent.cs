@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections.Generic;
+using System.Xml.Linq;
 
 [ExecuteInEditMode]
 [Serializable]
@@ -32,6 +34,19 @@ public class SPRideAnimationEvent : ScriptableObject
 
 	public virtual void Bootstrap()
 	{
+	}
+
+	public virtual List<XElement> Serialize()
+	{
+	}
+
+	public virtual void DeSerialize(XElement element)
+	{
+	}
+
+	public override List<XElement> Serialize ()
+	{
+		
 	}
 
 }

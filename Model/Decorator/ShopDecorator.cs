@@ -127,9 +127,15 @@ public class ShopDecorator : Decorator
 		};
 	}
 
-	public override void Deserialize (XElement elements)
+	public override void Deserialize (XElement element)
 	{
-		base.Deserialize (elements);
+		foreach(var ele in element.Element("Products").Elements())
+		{
+			SPProduct product = Utility.GetByTypeName<SPProduct> (ele.Name);
+			product.DeSerialize (ele);
+			this.products.Add (product);
+		}
+		base.Deserialize (element);
 	}
 }
 

@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Xml.Linq;
+using System.Collections.Generic;
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -115,5 +119,18 @@ public override void InspectorGUI(Transform root)
 	{
 		axis.UpdatePrefabRefrence(parkitectObj.Prefab.transform);
 		base.PrepareExport(parkitectObj);
+	}
+
+	public override List<XElement> Serialize ()
+	{
+		return new List<XElement> (){ 
+			new XElement("Identifier",Identifier),
+			new XElement("FromRotation",Utility.SerializeQuaternion(this.fromRotation)),
+			new XElement("RotationAxis",Utility.SerializeVector(this.rotationAxis)),
+			new XElement("ToRotation",Utility.SerializeQuaternion(this.toRotation)),
+			new XElement("OriginalRotationValue",Utility.SerializeQuaternion(this.originalRotationValue)),
+			new XElement("Duration",this.duration)
+
+		};
 	}
 }
