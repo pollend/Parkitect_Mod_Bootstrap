@@ -33,7 +33,7 @@ public class BaseDecorator : Decorator
 	}
 #endif
 
-	public override List<XElement> Serialize ()
+	public override List<XElement> Serialize (ParkitectObj parkitectObj)
 	{
 		List<XElement> element = new List<XElement> ();
 		element.Add (new XElement ("InGameName", InGameName));

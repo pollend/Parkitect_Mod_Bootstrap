@@ -85,13 +85,20 @@ public class SPPhase : ScriptableObject
 		}
 	}
 
-	public virtual List<XElement> Serialize()
-	{
-		List<XElement> elements = new List<XElement> ();
-		foreach (SPRideAnimationEvent rideEvent in events) {
-			elements.Add (rideEvent.GetType ().Name, rideEvent.Serialize ());
+
+	public List<XElement> Serialize(Transform root){
+
+		List<XElement> e = new List<XElement> ();
+	
+		for (int i = 0; i < events.Count; i++) {
+			e.Add (new XElement("event",events [i].Serialize(root)));
 		}
-		return elements;
+
+		return new List<XElement> (new XElement[] {
+			 new XElement("events",e)
+		});
 	}
+	public void Deserialize(XElement elements){}
+
 
 }

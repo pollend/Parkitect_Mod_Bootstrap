@@ -1,11 +1,11 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Xml.Linq;
 
-
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using UnityEditor;
 #endif
+
+using UnityEngine;
+using System.Collections;
+using System.Xml.Linq;
 using System.Collections.Generic;
 using System;
 
@@ -81,8 +81,16 @@ public class SPMultipleRotations : SPMotor
 	}
 
 
-	public override List<XElement> Serialize ()
+	public override List<XElement>Serialize (Transform root)
 	{
-		return new List<XElement> (){ };
+		List<XElement> axiss = new List<XElement> ();
+		for (int i = 0; i < Axiss.Count; i++) {
+			axiss.Add (new XElement ("axis",Axiss [i].Serialize (root)));
+		}
+
+		return new List<XElement> (new XElement[] {
+			new XElement("mainTransform",mainAxis.Serialize(root)),
+			new XElement("axisses",axiss)
+		});
 	}
 }

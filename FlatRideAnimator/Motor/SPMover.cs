@@ -1,11 +1,11 @@
-﻿using System;
-using System.Xml.Linq;
-using System.Collections.Generic;
 
-
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using UnityEditor;
 #endif
+
+using System;
+using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -149,17 +149,15 @@ public class SPMover : SPMotor
 		base.PrepareExport(parkitectObj);
 	}
 
-	public override List<XElement> Serialize ()
-	{
-		
-		return new System.Collections.Generic.List<XElement>(){
-			new XElement("Identifier",Identifier),
-			new XElement("Axis",null),
-			new XElement("FromPosition",Utility.SerializeVector(this.fromPosition)),
-			new XElement("ToPosition",Utility.SerializeVector(this.toPosition)),
-			new XElement("Duration",this.duration)
 
-		};
+	public override List<XElement> Serialize (Transform root)
+	{
+		return new List<XElement> (new XElement[] {
+			new XElement("transform",axis.Serialize(root)),
+			new XElement("from", Utility.SerializeVector(fromPosition)),
+			new XElement("to", Utility.SerializeVector(toPosition)),
+			new XElement("duration",duration)
+		});
 	}
 
 

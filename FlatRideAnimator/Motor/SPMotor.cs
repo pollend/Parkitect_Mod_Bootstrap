@@ -1,12 +1,12 @@
-﻿using UnityEngine;
+
+﻿#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
-
-
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 [Serializable]
 public class SPMotor : ScriptableObject
@@ -38,18 +38,8 @@ public class SPMotor : ScriptableObject
 	public virtual void PrepareExport(ParkitectObj parkitectObj)
 	{
 	}
-
-	public virtual List<XElement> Serialize()
-	{
-		return new List<XElement> () {
-			new XElement("Identifier",Identifier)
-		};
-	}
-
-	public virtual void DeSerialize(XElement element)
-	{
-		if (element.Element ("Identifier") != null)
-			this.Identifier = element.Element ("Identifier").Value;
-	}
+		
+	public virtual List<XElement> Serialize(Transform root){return null;}
+	public virtual void Deserialize(XElement elements){}
 
 }

@@ -379,7 +379,7 @@ public class WaypointDecorator : Decorator
     }
 #endif
 
-	public override List<XElement> Serialize ()
+	public override List<XElement> Serialize (ParkitectObj parkitectObj)
 	{
 		List<XElement> xmlWaypoints = new List<XElement> ();
 		for (int i = 0; i < waypoints.Count; i++) {

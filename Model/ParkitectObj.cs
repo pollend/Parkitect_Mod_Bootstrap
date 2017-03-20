@@ -24,8 +24,7 @@ public class ParkitectObj : ScriptableObject
 	[SerializeField]
 	public string key;
 
-	[SerializeField]
-	public string objectName;
+	public float XSize;
 
 	[System.NonSerialized]
 	public GameObject sceneRef;
@@ -97,7 +96,6 @@ public class ParkitectObj : ScriptableObject
 		PrefabUtility.ConnectGameObjectToPrefab (g, prefab);
 
 
-		this.objectName = prefab.name;
 		this.prefab = prefab;
 		EditorUtility.SetDirty (this);
 		return prefab;
@@ -107,7 +105,6 @@ public class ParkitectObj : ScriptableObject
 	public void Load(ParkitectObj parkitectObj)
 	{
 		this.decorators = parkitectObj.decorators;
-		this.objectName = parkitectObj.objectName;
 		this.prefab = parkitectObj.prefab;
 		this.key = parkitectObj.getKey;
 
@@ -184,23 +181,24 @@ public class ParkitectObj : ScriptableObject
 	{
 		List<XElement> elements = new List<XElement> ();
 		for (int i = 0; i < decorators.Count; i++) {
-			elements.Add (new XElement (decorators[i].GetType().ToString(),decorators[i].Serialize()));
+			elements.Add (new XElement (decorators[i].GetType().ToString(),decorators[i].Serialize(this)));
 		}
+
 		return new List<XElement>(new XElement[]{ 
 			new XElement("Decorators",elements),
-			new XElement("Name",this.objectName)
-
+			new XElement("Prefab",Prefab.name)
 		});
 	}
 
 	public void DeSerialize(XElement element)
 	{
+		/*
 		if (element.Element ("Name") != null)
-			this.objectName = element.Element ("Name").Value;
-
+			this.Prefab = element.Element ("Name").Value;
+*/
 		if (element.Element ("Decorators") != null)
 			foreach (var decorator in element.Element("Decorators").Elements()) {
-				Decorator dec =  Utility.GetByTypeName<Decorator> (decorator.Name);
+				Decorator dec =  Utility.GetByTypeName<Decorator> (decorator.Name.LocalName);
 				dec.Deserialize (decorator);
 				this.decorators.Add (dec);
 			}

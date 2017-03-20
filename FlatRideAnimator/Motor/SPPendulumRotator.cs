@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Xml.Linq;
 
-
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using UnityEditor;
 #endif
+
+using System;
+using System.Xml.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SPPendulumRotator : SPRotator
@@ -18,16 +18,18 @@ public class SPPendulumRotator : SPRotator
 	public float angularFriction;
 	[SerializeField]
 	public bool pendulum;
-#if UNITY_EDITOR
-public override void InspectorGUI(Transform root)
-{
-    armLength = EditorGUILayout.FloatField("armLength ", armLength);
-    gravity = EditorGUILayout.FloatField("gravity", gravity);
-    angularFriction = EditorGUILayout.FloatField("angularFriction", angularFriction);
-    pendulum = EditorGUILayout.Toggle("pendulum", pendulum);
-	base.InspectorGUI(root);
-}
-#endif
+
+	#if UNITY_EDITOR
+	public override void InspectorGUI(Transform root)
+	{
+	    armLength = EditorGUILayout.FloatField("armLength ", armLength);
+	    gravity = EditorGUILayout.FloatField("gravity", gravity);
+	    angularFriction = EditorGUILayout.FloatField("angularFriction", angularFriction);
+	    pendulum = EditorGUILayout.Toggle("pendulum", pendulum);
+		base.InspectorGUI(root);
+	}
+	#endif
+
 	public override string EventName
 	{
 		get
@@ -72,14 +74,20 @@ public override void InspectorGUI(Transform root)
 	}
 
 
-	public override List<XElement> Serialize ()
+	public override List<XElement> Serialize (Transform root)
 	{
-		return new List<XElement> (){ 
-			new XElement("Identifier",this.Identifier),
-			new XElement("ArmLength",this.armLength),
-			new XElement("Gravity",this.gravity),
-			new XElement("AngularFriction",this.angularFriction),
-			new XElement("Pendulum",this.pendulum)
-		};
+		return new List<XElement> (new XElement[] {
+			new XElement("armLength",armLength),
+			new XElement("gravity",gravity),
+			new XElement("angularFriction",angularFriction),
+			new XElement("pendulum",pendulum),
+			new XElement("axis",axis.Serialize(root)),
+			new XElement("minRotationSpeedPercent",minRotationSpeedPercent),
+			new XElement("rotationAxisIndex",rotationAxisIndex),
+			new XElement("rotationAxis",Utility.SerializeVector(rotationAxis)),
+			new XElement("maxSpeed",maxSpeed),
+			new XElement("accelerationSpeed",accelerationSpeed),
+		});
 	}
+
 }

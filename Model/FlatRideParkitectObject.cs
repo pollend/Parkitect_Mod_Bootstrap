@@ -13,7 +13,7 @@ public class FlatRideParkitectObject : ParkitectObj
 	{
 		return new Type[] {
 		typeof(BaseDecorator),
-			typeof(WaypointDecorator),
+		typeof(WaypointDecorator),
 		typeof(FlatrideDecorator),
 		typeof(BoundingBoxDecorator),
 		typeof(AnimatorDecorator)

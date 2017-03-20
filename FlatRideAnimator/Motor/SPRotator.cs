@@ -1,12 +1,12 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using System.Collections.Generic;
-using System.Xml.Linq;
 
-
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using UnityEditor;
 #endif
+
+using System;
+using System.Runtime.CompilerServices;
+using System.Xml.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -290,18 +290,16 @@ public override void InspectorGUI(Transform root)
 	}
 
 
-	public override List<XElement> Serialize ()
+	public virtual List<XElement> Serialize (Transform root)
 	{
+		return new List<XElement> {
+			new XElement("axis",axis.Serialize(root)),
+			new XElement("minRotationSpeedPercent",minRotationSpeedPercent),
+			new XElement("rotationAxisIndex",rotationAxisIndex),
+			new XElement("rotationAxis",Utility.SerializeVector(rotationAxis)),
+			new XElement("maxSpeed",maxSpeed),
+			new XElement("accelerationSpeed",accelerationSpeed),
 
-		return new List<XElement> (){ 
-			new XElement("OriginalRotationValue",Utility.SerializeQuaternion(originalRotationValue)),
-			new XElement("AccelerationSpeed",accelerationSpeed),
-			new XElement("MaxSpeed",maxSpeed),
-			new XElement("RotationAxis",Utility.SerializeVector(rotationAxis)),
-			new XElement("RotationAxisIndex",rotationAxisIndex),
-			new XElement("MinRotationSpeedPercent",minRotationSpeedPercent),
-			new XElement("InitialRotation",Utility.SerializeQuaternion(initialRotation)),
 		};
 	}
-
 }

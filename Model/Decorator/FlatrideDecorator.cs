@@ -77,7 +77,7 @@ public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 		return "Low";
 	}
 
-	public override List<XElement> Serialize ()
+	public override List<XElement> Serialize (ParkitectObj parkitectObj)
 	{
 		return new List<XElement>(new XElement[]{
 			new XElement("Excitement",Excitement),

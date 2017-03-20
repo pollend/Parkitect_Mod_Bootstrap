@@ -36,17 +36,9 @@ public class SPRideAnimationEvent : ScriptableObject
 	{
 	}
 
-	public virtual List<XElement> Serialize()
-	{
-	}
 
-	public virtual void DeSerialize(XElement element)
-	{
-	}
+	public virtual List<XElement> Serialize(Transform root){return null;}
+	public virtual void Deserialize(XElement elements){}
 
-	public override List<XElement> Serialize ()
-	{
-		
-	}
 
 }

@@ -5,9 +5,12 @@ using System.Xml.Linq;
 
 
 #endif
+
 using System;
 using UnityEngine;
 using System.Linq;
+using System.Xml.Linq;
+using System.Collections.Generic;
 
 [ExecuteInEditMode]
 [Serializable]
@@ -23,25 +26,23 @@ public class SPFromToMove : SPRideAnimationEvent
 			return "From-To Move";
 		}
 	}
+
 #if UNITY_EDITOR
-public override void RenderInspectorGUI(SPMotor[] motors)
-{
-    if (rotator)
-    {
-        ColorIdentifier = rotator.ColorIdentifier;
-    }
-		foreach (SPMover R in motors.OfType<SPMover>().ToList())
-    {
-        if (R == rotator)
-            GUI.color = Color.red / 1.3f;
-        if(GUILayout.Button(R.Identifier))
-        {
-            rotator = R;
-        }
-        GUI.color = Color.white;
-    }
-	base.RenderInspectorGUI(motors);
-}
+	public override void RenderInspectorGUI(SPMotor[] motors)
+	{
+		if (rotator) {
+			ColorIdentifier = rotator.ColorIdentifier;
+		}
+		foreach (SPMover R in motors.OfType<SPMover>().ToList()) {
+			if (R == rotator)
+				GUI.color = Color.red / 1.3f;
+			if (GUILayout.Button (R.Identifier)) {
+				rotator = R;
+			}
+			GUI.color = Color.white;
+		}
+		base.RenderInspectorGUI (motors);
+	}
 #endif
 
 	public override void Enter()
@@ -67,12 +68,12 @@ public override void RenderInspectorGUI(SPMotor[] motors)
 	}
 
 
-	public override List<XElement> Serialize ()
+	public override List<XElement> Serialize (Transform root)
 	{
+		return new List<XElement> (new XElement[] {
+			new XElement("rotator",rotator.Serialize(root)),
+		});
 
-		return new List<XElement> () {
-			new XElement("Rotator",rotator.Serialize())
-		};
 	}
 }
 

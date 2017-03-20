@@ -182,14 +182,12 @@ public class BoundingBoxDecorator : Decorator
 #endif
 
 
-	public override List<XElement> Serialize ()
+	public override List<XElement> Serialize (ParkitectObj parkitectObj)
 	{
 		List<XElement> boxes = new List<XElement> ();
 		for (int x = 0; x < boundingBoxes.Count; x++) {
-			boxes.Add (new XElement ("BoundBox",boundingBoxes[x].Serialize() ));
-
+			boxes.Add (new XElement ("BoundBox",boundingBoxes[x].Serialize()));
 		}
-
 		return new List<XElement>{
 			new XElement("BoundingBoxes",boxes)
 		};

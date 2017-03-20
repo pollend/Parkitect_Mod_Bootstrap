@@ -5,9 +5,12 @@ using System.Xml.Linq;
 
 
 #endif
+
 using System;
 using UnityEngine;
 using System.Linq;
+using System.Collections.Generic;
+using System.Xml.Linq;
 
 [ExecuteInEditMode]
 [Serializable]
@@ -15,8 +18,8 @@ public class SPChangePendulum : SPRideAnimationEvent
 {
 	[SerializeField]
 	public SPPendulumRotator rotator;
-	public float Friction = 20f;
-	public bool Pendulum;
+	public float friction = 20f;
+	public bool pendulum;
 
 	#if UNITY_EDITOR
 	float lastTime;
@@ -43,8 +46,8 @@ public override void RenderInspectorGUI(SPMotor[] motors)
     if (rotator)
     {
         ColorIdentifier = rotator.ColorIdentifier;
-        Friction = EditorGUILayout.FloatField("Friction", Friction);
-        Pendulum = EditorGUILayout.Toggle("Pendulum", Pendulum);
+        friction = EditorGUILayout.FloatField("Friction", friction);
+        pendulum = EditorGUILayout.Toggle("Pendulum", pendulum);
     }
 	foreach (SPPendulumRotator R in motors.OfType<SPPendulumRotator>().ToList())
     {
@@ -63,8 +66,8 @@ public override void RenderInspectorGUI(SPMotor[] motors)
 
 	public override void Enter()
 	{
-		rotator.setActAsPendulum(Pendulum);
-		rotator.angularFriction = Friction;
+		rotator.setActAsPendulum(pendulum);
+		rotator.angularFriction = friction;
 		done = true;
 	}
 	public override void Run(Transform root)
@@ -77,13 +80,13 @@ public override void RenderInspectorGUI(SPMotor[] motors)
 	}
 
 
-	public override List<XElement> Serialize ()
+	public override List<XElement> Serialize (Transform root)
 	{
+		return new List<XElement> (new XElement[] {
+			new XElement("rotator",rotator.Serialize(root)),
+			new XElement("pendulum",pendulum),
+			new XElement("friction",friction)
+		});
 
-		return new List<XElement> () {
-			new XElement("Rotator",rotator.Serialize()),
-			new XElement("Friction",this.Friction),
-			new XElement("Pendulum",this.Pendulum),
-		};
 	}
 }

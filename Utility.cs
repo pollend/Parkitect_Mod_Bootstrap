@@ -100,6 +100,17 @@ public static class Utility
 
 	}
 
+
+	public static Quaternion DeSerializeQuaternion(XElement element)
+	{
+		Quaternion quaternion = new Quaternion ();
+		quaternion.x = float.Parse (element.Element ("X").Value);
+		quaternion.y = float.Parse (element.Element ("Y").Value);
+		quaternion.z = float.Parse (element.Element ("Z").Value);
+		quaternion.w = float.Parse (element.Element ("W").Value);
+		return quaternion;
+	}
+
 	public static T GetByTypeName<T>(string name)
 	{
 		IEnumerable<Assembly> scriptAssemblies = AppDomain.CurrentDomain.GetAssemblies ().Where ((Assembly assembly) => assembly.FullName.Contains ("Assembly"));

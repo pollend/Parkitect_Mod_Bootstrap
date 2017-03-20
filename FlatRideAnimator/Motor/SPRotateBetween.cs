@@ -1,11 +1,10 @@
-﻿using System;
-using System.Xml.Linq;
-using System.Collections.Generic;
 
-
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using UnityEditor;
 #endif
+using System;
+using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEngine;
 
 
@@ -121,16 +120,15 @@ public override void InspectorGUI(Transform root)
 		base.PrepareExport(parkitectObj);
 	}
 
-	public override List<XElement> Serialize ()
-	{
-		return new List<XElement> (){ 
-			new XElement("Identifier",Identifier),
-			new XElement("FromRotation",Utility.SerializeQuaternion(this.fromRotation)),
-			new XElement("RotationAxis",Utility.SerializeVector(this.rotationAxis)),
-			new XElement("ToRotation",Utility.SerializeQuaternion(this.toRotation)),
-			new XElement("OriginalRotationValue",Utility.SerializeQuaternion(this.originalRotationValue)),
-			new XElement("Duration",this.duration)
 
-		};
+	public override List<XElement> Serialize (Transform root)
+	{	
+		return new List<XElement> (new XElement[] {
+			new XElement("axis",axis.Serialize(root)),
+			new XElement("fromRotation", Utility.SerializeQuaternion(fromRotation)),
+			new XElement("rotationAxis", Utility.SerializeVector(rotationAxis)),
+			new XElement("toRotation",Utility.SerializeQuaternion(toRotation)),
+			new XElement("duration",duration)
+		});
 	}
 }

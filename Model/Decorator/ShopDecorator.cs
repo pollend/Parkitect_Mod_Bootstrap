@@ -116,7 +116,7 @@ public class ShopDecorator : Decorator
 	}
 	#endif
 
-	public override List<XElement> Serialize ()
+	public override List<XElement> Serialize (ParkitectObj parkitectObj)
 	{
 		List<XElement> elements = new List<XElement> ();
 		for (int x = 0; x < products.Count; x++) {
@@ -131,7 +131,7 @@ public class ShopDecorator : Decorator
 	{
 		foreach(var ele in element.Element("Products").Elements())
 		{
-			SPProduct product = Utility.GetByTypeName<SPProduct> (ele.Name);
+			SPProduct product = Utility.GetByTypeName<SPProduct> (ele.Name.LocalName);
 			product.DeSerialize (ele);
 			this.products.Add (product);
 		}
