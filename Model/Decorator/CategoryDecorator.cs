@@ -24,7 +24,7 @@ public class CategoryDecorator : Decorator
 	}
 	#endif
 
-	public override List<XElement> Serialize ()
+	public override List<XElement> Serialize (ParkitectObj parkitectObj)
 	{
 		return new List<XElement>(new XElement[]{
 			new XElement("Category",category)

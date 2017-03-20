@@ -116,7 +116,7 @@ public class ShopDecorator : Decorator
 	}
 	#endif
 
-	public override List<XElement> Serialize ()
+	public override List<XElement> Serialize (ParkitectObj parkitectObj)
 	{
 		List<XElement> elements = new List<XElement> ();
 		for (int x = 0; x < products.Count; x++) {

@@ -1,7 +1,10 @@
-﻿using System;
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using UnityEditor;
 #endif
+
+using System;
+using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -145,6 +148,16 @@ public override void InspectorGUI(Transform root)
 	{
 		axis.UpdatePrefabRefrence(parkitectObj.Prefab.transform);
 		base.PrepareExport(parkitectObj);
+	}
+
+	public override List<XElement> Serialize (Transform root)
+	{
+		return new List<XElement> (new XElement[] {
+			new XElement("transform",axis.Serialize(root)),
+			new XElement("from", Utility.SerializeVector(fromPosition)),
+			new XElement("to", Utility.SerializeVector(toPosition)),
+			new XElement("duration",duration)
+		});
 	}
 
 

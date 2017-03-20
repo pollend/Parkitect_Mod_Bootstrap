@@ -1,8 +1,11 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using UnityEditor;
 #endif
+
+using System;
+using System.Runtime.CompilerServices;
+using System.Xml.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -284,5 +287,19 @@ public override void InspectorGUI(Transform root)
 	{
 		axis.UpdatePrefabRefrence(parkitectObj.Prefab.transform);
 		base.PrepareExport(parkitectObj);
+	}
+
+
+	public virtual List<XElement> Serialize (Transform root)
+	{
+		return new List<XElement> {
+			new XElement("axis",axis.Serialize(root)),
+			new XElement("minRotationSpeedPercent",minRotationSpeedPercent),
+			new XElement("rotationAxisIndex",rotationAxisIndex),
+			new XElement("rotationAxis",Utility.SerializeVector(rotationAxis)),
+			new XElement("maxSpeed",maxSpeed),
+			new XElement("accelerationSpeed",accelerationSpeed),
+
+		};
 	}
 }

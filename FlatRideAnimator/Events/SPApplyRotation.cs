@@ -4,6 +4,8 @@ using UnityEditor;
 using System;
 using UnityEngine;
 using System.Linq;
+using System.Xml.Linq;
+using System.Collections.Generic;
 
 [ExecuteInEditMode]
 [Serializable]
@@ -59,4 +61,12 @@ public override void RenderInspectorGUI(SPMotor[] motors)
 		}
 
 	}
+
+	public override List<XElement> Serialize (Transform root)
+	{
+		return new List<XElement> (new XElement[] {
+			new XElement("rotator",rotator.Serialize(root))
+		});
+	}
+
 }

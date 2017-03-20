@@ -1,8 +1,11 @@
-﻿using UnityEngine;
-using System;
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using UnityEditor;
 #endif
+
+using UnityEngine;
+using System;
+using System.Collections.Generic;
+using System.Xml.Linq;
 
 [Serializable]
 public class SPMotor : ScriptableObject
@@ -33,4 +36,7 @@ public virtual void InspectorGUI(Transform root)
 	public virtual void PrepareExport(ParkitectObj parkitectObj)
 	{
 	}
+
+	public virtual List<XElement> Serialize(Transform root){return null;}
+	public virtual void Deserialize(XElement elements){}
 }

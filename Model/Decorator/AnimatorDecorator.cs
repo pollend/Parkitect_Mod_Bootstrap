@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System.Xml.Linq;
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 using System.Collections.ObjectModel;
 
 
-	public class AnimatorDecorator : Decorator
-	{
+public class AnimatorDecorator : Decorator
+{
 		[SerializeField]
 		private List<SPMotor> motors = new List<SPMotor>();
 
@@ -181,6 +184,24 @@ using System.Collections.ObjectModel;
 				NextPhase (transform);
 			}
 		}
+	}
+
+	public override void Deserialize (System.Xml.Linq.XElement elements)
+	{
+		base.Deserialize (elements);
+	}
+
+	public override List<XElement> Serialize (ParkitectObj parkitectObj)
+	{
+
+		List<XElement> ph = new List<XElement> ();
+		for (int x = 0; x < phases.Count; x++) {
+			ph.Add(new XElement("phase",phases [x].Serialize (parkitectObj.Prefab.transform)));
+		}
+
+		return new List<XElement> (new XElement[] {
+			new XElement("phases",ph)
+		});
 	}
 }
 

@@ -1,8 +1,10 @@
-﻿using UnityEngine;
-using System.Collections;
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using UnityEditor;
 #endif
+
+using UnityEngine;
+using System.Collections;
+using System.Xml.Linq;
 using System.Collections.Generic;
 using System;
 
@@ -89,5 +91,18 @@ public override void InspectorGUI(Transform root)
 			Axiss[x].UpdatePrefabRefrence(parkitectObj.Prefab.transform);
 		}
 		base.PrepareExport(parkitectObj);
+	}
+
+	public override List<XElement>Serialize (Transform root)
+	{
+		List<XElement> axiss = new List<XElement> ();
+		for (int i = 0; i < Axiss.Count; i++) {
+			axiss.Add (new XElement ("axis",Axiss [i].Serialize (root)));
+		}
+
+		return new List<XElement> (new XElement[] {
+			new XElement("mainTransform",mainAxis.Serialize(root)),
+			new XElement("axisses",axiss)
+		});
 	}
 }

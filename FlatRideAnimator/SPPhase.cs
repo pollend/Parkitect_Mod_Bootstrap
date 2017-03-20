@@ -1,6 +1,9 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Xml.Linq;
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -81,5 +84,19 @@ public class SPPhase : ScriptableObject
 			RAE.Exit();
 		}
 	}
+
+	public List<XElement> Serialize(Transform root){
+
+		List<XElement> e = new List<XElement> ();
+	
+		for (int i = 0; i < events.Count; i++) {
+			e.Add (new XElement("event",events [i].Serialize(root)));
+		}
+
+		return new List<XElement> (new XElement[] {
+			 new XElement("events",e)
+		});
+	}
+	public void Deserialize(XElement elements){}
 
 }

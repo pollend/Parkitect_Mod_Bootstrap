@@ -89,6 +89,27 @@ public static class Utility
 
 	}
 
+	public static List<XElement> SerializeQuaternion(Quaternion quat)
+	{
+		return new List<XElement>(new XElement[]{
+			new XElement("X",quat.x),
+			new XElement("Y",quat.y),
+			new XElement("Z",quat.z),
+			new XElement("W",quat.w),
+
+		});
+	}
+
+	public static Quaternion DeSerializeQuaternion(XElement element)
+	{
+		Quaternion quaternion = new Quaternion ();
+		quaternion.x = float.Parse (element.Element ("X").Value);
+		quaternion.y = float.Parse (element.Element ("Y").Value);
+		quaternion.z = float.Parse (element.Element ("Z").Value);
+		quaternion.w = float.Parse (element.Element ("W").Value);
+		return quaternion;
+	}
+
 }
 
 

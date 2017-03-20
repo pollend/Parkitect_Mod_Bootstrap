@@ -86,7 +86,7 @@ public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 }
 #endif
 
-	public override List<XElement> Serialize ()
+	public override List<XElement> Serialize (ParkitectObj parkitectObj)
 	{
 		List<XElement> xmlcolors = new List<XElement> ();
 		for (int x = 0; x < colors.Count; x++) {	

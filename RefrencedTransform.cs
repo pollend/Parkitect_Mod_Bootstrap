@@ -1,5 +1,9 @@
 ﻿using System;
 using UnityEngine;
+using System.Collections.Generic;
+using System.Xml.Linq;
+
+
 [Serializable]
 public class RefrencedTransform
 {
@@ -39,8 +43,6 @@ public class RefrencedTransform
 
 	}
 
-
-
 	public Transform FindSceneRefrence(Transform root)
 	{
 		if (this.root != root || cachedSceneRefrence == null)
@@ -58,6 +60,23 @@ public class RefrencedTransform
 			this.prefabTransform = Refrence.findTransformByKey(root, key);
 		}
 	}
+
+	public List<XElement> Serialize (Transform root)
+	{
+		List<XElement> element = new List<XElement> ();
+		if(root != null)
+		{
+			Transform current = Refrence.findTransformByKey(root, key);
+			do
+			{
+				element.Add(new XElement(current.name,current.GetSiblingIndex()));
+				current = current.parent;
+			}
+			while(current != null && current != root);
+		}
+		return element;
+	}
+
 }
 
 
