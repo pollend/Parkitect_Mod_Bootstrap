@@ -1,9 +1,5 @@
 ﻿#if UNITY_EDITOR
 using UnityEditor;
-using System.Collections.Generic;
-using System.Xml.Linq;
-
-
 #endif
 
 using System;
@@ -79,9 +75,27 @@ public override void RenderInspectorGUI(SPMotor[] motors)
 
 	}
 
+	public override void Deserialize (XElement elements)
+	{
+		if (elements.Element ("rotator") != null) {
+			this.rotator = new SPPendulumRotator ();
+			rotator.Deserialize (elements.Element ("rotator"));
+		}
+	
+		if(elements.Element ("pendulum") != null)
+			this.pendulum = bool.Parse(elements.Element ("pendulum").Value);
+		if(elements.Element ("friction") != null)
+			this.friction = float.Parse (elements.Element ("friction").Value);
+
+		base.Deserialize (elements);
+	}
+
 
 	public override List<XElement> Serialize (Transform root)
 	{
+		if (rotator == null)
+			return null;
+		
 		return new List<XElement> (new XElement[] {
 			new XElement("rotator",rotator.Serialize(root)),
 			new XElement("pendulum",pendulum),

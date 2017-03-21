@@ -1,12 +1,11 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Xml.Linq;
-
-
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 public class ShopDecorator : Decorator
 {
@@ -131,7 +130,7 @@ public class ShopDecorator : Decorator
 	{
 		foreach(var ele in element.Element("Products").Elements())
 		{
-			SPProduct product = Utility.GetByTypeName<SPProduct> (ele.Name.LocalName);
+			SPProduct product = Utility.GetByTypeName<SPProduct> (ele.Name.NamespaceName);
 			product.DeSerialize (ele);
 			this.products.Add (product);
 		}

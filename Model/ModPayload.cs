@@ -37,6 +37,8 @@ public class ModPayload : ScriptableSingleton<ModPayload>
 	{
 		path.Add (AssetDatabase.GetAssetPath (this));
 		for (int x = 0; x < ParkitectObjs.Count; x++) {
+			ParkitectObjs [x].UpdatePrefab ();
+
 			ParkitectObjs [x].GetAssetbundlePaths (path);
 		}
 	}

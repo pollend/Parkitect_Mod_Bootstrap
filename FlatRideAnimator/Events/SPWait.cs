@@ -48,6 +48,15 @@ public class SPWait : SPRideAnimationEvent
 		}
 		base.Run (root);
 	}
+
+	public override void Deserialize (XElement elements)
+	{
+
+		if (elements.Element ("timeLimit") != null) {
+			this.timeLimit = int.Parse(elements.Element ("timeLimit").Value);
+		}
+		base.Deserialize (elements);
+	}
 	public override List<XElement> Serialize (Transform root)
 	{
 		return new List<XElement> (new XElement[] {

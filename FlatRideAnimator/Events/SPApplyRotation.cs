@@ -1,9 +1,5 @@
 ﻿#if UNITY_EDITOR
 using UnityEditor;
-using System.Collections.Generic;
-using System.Xml.Linq;
-
-
 #endif
 using System;
 using UnityEngine;
@@ -20,34 +16,29 @@ public class SPApplyRotation : SPRideAnimationEvent
 	float lastTime;
 
 
-	public override string EventName
-	{
-		get
-		{
+	public override string EventName {
+		get {
 			return "ApplyRotations";
 		}
 	}
 #if UNITY_EDITOR
-public override void RenderInspectorGUI(SPMotor[] motors)
-{
+	public override void RenderInspectorGUI(SPMotor[] motors)
+	{
 
-    if (rotator)
-    {
-        ColorIdentifier = rotator.ColorIdentifier;
-    }
-	foreach (SPMultipleRotations R in motors.OfType<SPMultipleRotations>().ToList())
-    {
-        if (R == rotator)
-            GUI.color = Color.red / 1.3f;
-        if (GUILayout.Button(R.Identifier))
-        {
-            rotator = R;
+		if (rotator) {
+			ColorIdentifier = rotator.ColorIdentifier;
+		}
+		foreach (SPMultipleRotations R in motors.OfType<SPMultipleRotations>().ToList()) {
+			if (R == rotator)
+				GUI.color = Color.red / 1.3f;
+			if (GUILayout.Button (R.Identifier)) {
+				rotator = R;
 
-        }
-        GUI.color = Color.white;
-    }
-	base.RenderInspectorGUI(motors);
-}
+			}
+			GUI.color = Color.white;
+		}
+		base.RenderInspectorGUI (motors);
+	}
 #endif
 
 	public override void Enter()
@@ -66,9 +57,21 @@ public override void RenderInspectorGUI(SPMotor[] motors)
 
 	}
 
+	public override void Deserialize (XElement elements)
+	{
+		
+		XElement element = elements.Element ("rotator");
+		if (element != null) {
+			this.rotator = new SPMultipleRotations ();
+			rotator.Deserialize (element);
+		}
+		base.Deserialize (elements);
+	}
 
 	public override List<XElement> Serialize (Transform root)
 	{
+		if (rotator == null)
+			return null;
 		return new List<XElement> (new XElement[] {
 			new XElement("rotator",rotator.Serialize(root))
 		});

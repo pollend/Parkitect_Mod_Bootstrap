@@ -1,9 +1,5 @@
 ﻿#if UNITY_EDITOR
 using UnityEditor;
-using System.Collections.Generic;
-using System.Xml.Linq;
-
-
 #endif
 using System.Xml.Linq;
 using System.Collections.Generic;
@@ -15,7 +11,7 @@ using System.Linq;
 [Serializable]
 public class SPToFromMove : SPRideAnimationEvent
 {
-	public SPMover rotator;
+	public SPMover mover;
 
 	float lastTime;
 	public override string EventName {
@@ -27,14 +23,14 @@ public class SPToFromMove : SPRideAnimationEvent
 #if UNITY_EDITOR
 	public override void RenderInspectorGUI(SPMotor[] motors)
 	{
-		if (rotator) {
-			ColorIdentifier = rotator.ColorIdentifier;
+		if (mover) {
+			ColorIdentifier = mover.ColorIdentifier;
 		}
 		foreach (SPMover R in motors.OfType<SPMover>().ToList()) {
-			if (R == rotator)
+			if (R == mover)
 				GUI.color = Color.red / 1.3f;
 			if (GUILayout.Button (R.Identifier)) {
-				rotator = R;
+				mover = R;
 			}
 			GUI.color = Color.white;
 		}
@@ -46,25 +42,35 @@ public class SPToFromMove : SPRideAnimationEvent
 	{
 		lastTime = Time.realtimeSinceStartup;
 
-		rotator.startToFrom ();
+		mover.startToFrom ();
 		base.Enter ();
 	}
 	public override void Run(Transform root)
 	{
-		if (rotator) {
-			rotator.tick (Time.realtimeSinceStartup - lastTime, root);
+		if (mover) {
+			mover.tick (Time.realtimeSinceStartup - lastTime, root);
 			lastTime = Time.realtimeSinceStartup;
-			if (rotator.reachedTarget ()) {
+			if (mover.reachedTarget ()) {
 				done = true;
 			}
 			base.Run (root);
 		}
 	}
-
+	public override void Deserialize (XElement elements)
+	{
+		if (elements.Element ("rotator") != null) {
+			this.mover = new SPMover ();
+			mover.Deserialize (elements.Element ("rotator"));
+		}
+		
+		base.Deserialize (elements);
+	}
 	public override List<XElement> Serialize (Transform root)
 	{
+		if (mover == null)
+			return null;
 		return new List<XElement> (new XElement[] {
-			new XElement ("rotator", rotator.Serialize (root))
+			new XElement ("rotator", mover.Serialize (root))
 		});
 	}
 

@@ -1,10 +1,7 @@
 ﻿#if UNITY_EDITOR
 using UnityEditor;
-using System.Collections.Generic;
-using System.Xml.Linq;
-
-
 #endif
+
 using System;
 using UnityEngine;
 using System.Linq;
@@ -60,9 +57,19 @@ public class SPToFromRot : SPRideAnimationEvent
 			base.Run (root);
 		}
 	}
+	public override void Deserialize (XElement elements)
+	{
+		if (elements.Element ("rotator") != null) {
+			rotator = new SPRotateBetween ();
+			rotator.Deserialize (elements.Element ("rotator"));
+		}
 
+		base.Deserialize (elements);
+	}
 	public override List<XElement> Serialize (Transform root)
 	{
+		if (rotator == null)
+			return null;
 		return new List<XElement> (new XElement[] {
 			new XElement ("rotator", rotator.Serialize (root))
 		});

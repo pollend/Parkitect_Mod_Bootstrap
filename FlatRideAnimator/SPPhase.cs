@@ -91,7 +91,9 @@ public class SPPhase : ScriptableObject
 		List<XElement> e = new List<XElement> ();
 	
 		for (int i = 0; i < events.Count; i++) {
-			e.Add (new XElement("event",events [i].Serialize(root)));
+			List<XElement> element = events [i].Serialize (root);
+			if(element != null)
+				e.Add (new XElement(events [i].GetType().Name,element));
 		}
 
 		return new List<XElement> (new XElement[] {

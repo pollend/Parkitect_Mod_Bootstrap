@@ -61,119 +61,104 @@ public class AnimatorDecorator : Decorator
 	}
 #endif
 
-		public override void PrepareExport(ParkitectObj parkitectObj)
-		{
+	public override void PrepareExport(ParkitectObj parkitectObj)
+	{
 
-			for (int x = 0; x < motors.Count; x++)
-			{
-				motors[x].PrepareExport(parkitectObj);
-			}
-			base.PrepareExport(parkitectObj);
+		for (int x = 0; x < motors.Count; x++) {
+			motors [x].PrepareExport (parkitectObj);
 		}
+		base.PrepareExport (parkitectObj);
+	}
 
-		public override void CleanUp(ParkitectObj parkitectObj)
-		{
-			for (int x = 0; x < phases.Count; x++)
-			{
-				if (phases[x] != null)
-				{
-					phases[x].CleanUp();
-					DestroyImmediate(phases[x], true);
-				}
+	public override void CleanUp(ParkitectObj parkitectObj)
+	{
+		for (int x = 0; x < phases.Count; x++) {
+			if (phases [x] != null) {
+				phases [x].CleanUp ();
+				DestroyImmediate (phases [x], true);
 			}
-			for (int x = 0; x < motors.Count; x++)
-			{
-				if (motors[x] != null)
-				{
-					DestroyImmediate(motors[x], true);
-				}
-			}
-			motors.Clear();
-			phases.Clear();
-
-			base.CleanUp(parkitectObj);
 		}
-
-		public void Animate(Transform root)
-		{
-			motors.RemoveAll(x => x == null);
-			phases.RemoveAll(x => x == null);
-
-			foreach (SPMotor m in motors)
-			{
-				m.Enter(root);
+		for (int x = 0; x < motors.Count; x++) {
+			if (motors [x] != null) {
+				DestroyImmediate (motors [x], true);
 			}
-			if (phases.Count <= 0)
-			{
-				animating = false;
-				foreach (SPMotor m in motors)
-				{
-					m.Reset(root);
-				}
-				foreach (SPMultipleRotations R in motors.OfType<SPMultipleRotations>())
-				{
-					R.Reset(root);
-				}
-				return;
-			}
-			foreach (SPMotor m in motors)
-			{
-				m.Enter(root);
-			}
-
-			animating = true;
-			phaseNum = 0;
-			currentPhase = phases[phaseNum];
-			currentPhase.running = true;
-			currentPhase.Enter();
-			currentPhase.Run(root);
 		}
+		motors.Clear ();
+		phases.Clear ();
 
+		base.CleanUp (parkitectObj);
+	}
 
+	public void Animate(Transform root)
+	{
+		motors.RemoveAll (x => x == null);
+		phases.RemoveAll (x => x == null);
 
-		void NextPhase(Transform root)
-		{
-
-			currentPhase.Exit();
-			currentPhase.running = false;
-			phaseNum++;
-			if (phases.Count > phaseNum)
-			{
-				currentPhase = phases[phaseNum];
-				currentPhase.running = true;
-				currentPhase.Enter();
-				currentPhase.Run(root);
-				return;
-			}
+		foreach (SPMotor m in motors) {
+			m.Enter (root);
+		}
+		if (phases.Count <= 0) {
 			animating = false;
-			foreach (SPMotor m in motors.OfType<SPRotator>())
-			{
-				m.Enter(root);
-
+			foreach (SPMotor m in motors) {
+				m.Reset (root);
 			}
-			foreach (SPRotator m in motors.OfType<SPRotator>())
-			{
-				Transform transform = m.axis.FindSceneRefrence(root);
-				if (transform != null)
-					transform.localRotation = m.originalRotationValue;
-
+			foreach (SPMultipleRotations R in motors.OfType<SPMultipleRotations>()) {
+				R.Reset (root);
 			}
-			foreach (SPRotateBetween m in motors.OfType<SPRotateBetween>())
-			{
-				Transform transform = m.axis.FindSceneRefrence(root);
-				if (transform != null)
-					transform.localRotation = m.originalRotationValue;
+			return;
+		}
+		foreach (SPMotor m in motors) {
+			m.Enter (root);
+		}
 
-			}
-			foreach (SPMover m in motors.OfType<SPMover>())
-			{
-				Transform transform = m.axis.FindSceneRefrence(root);
-				if (transform != null)
-					transform.localPosition = m.originalRotationValue;
+		animating = true;
+		phaseNum = 0;
+		currentPhase = phases [phaseNum];
+		currentPhase.running = true;
+		currentPhase.Enter ();
+		currentPhase.Run (root);
+	}
 
-			}
 
-			currentPhase = null;
+
+	void NextPhase(Transform root)
+	{
+
+		currentPhase.Exit ();
+		currentPhase.running = false;
+		phaseNum++;
+		if (phases.Count > phaseNum) {
+			currentPhase = phases [phaseNum];
+			currentPhase.running = true;
+			currentPhase.Enter ();
+			currentPhase.Run (root);
+			return;
+		}
+		animating = false;
+		foreach (SPMotor m in motors.OfType<SPRotator>()) {
+			m.Enter (root);
+
+		}
+		foreach (SPRotator m in motors.OfType<SPRotator>()) {
+			Transform transform = m.axis.FindSceneRefrence (root);
+			if (transform != null)
+				transform.localRotation = m.originalRotationValue;
+
+		}
+		foreach (SPRotateBetween m in motors.OfType<SPRotateBetween>()) {
+			Transform transform = m.axis.FindSceneRefrence (root);
+			if (transform != null)
+				transform.localRotation = m.originalRotationValue;
+
+		}
+		foreach (SPMover m in motors.OfType<SPMover>()) {
+			Transform transform = m.axis.FindSceneRefrence (root);
+			if (transform != null)
+				transform.localPosition = m.originalRotationValue;
+
+		}
+
+		currentPhase = null;
 	}
 
 	public void Run(Transform transform)
@@ -187,17 +172,21 @@ public class AnimatorDecorator : Decorator
 	}
 
 	public override void Deserialize (XElement elements)
-
 	{
-		base.Deserialize (elements);
+		foreach (var ele in elements.Element("phases").Elements()) {
+			SPPhase phase = Utility.GetByTypeName<SPPhase> (ele.Name.NamespaceName);
+			phase.Deserialize (ele);
+			this.phases.Add (phase);
+		}
 	}
 
 
 	public override List<XElement> Serialize (ParkitectObj parkitectObj)
 	{
+		
 		List<XElement> ph = new List<XElement> ();
 		for (int x = 0; x < phases.Count; x++) {
-			ph.Add(new XElement("phase",phases [x].Serialize (parkitectObj.Prefab.transform)));
+			ph.Add(new XElement(phases [x].GetType().ToString(),phases [x].Serialize (parkitectObj.Prefab.transform)));
 		}
 
 		return new List<XElement> (new XElement[] {

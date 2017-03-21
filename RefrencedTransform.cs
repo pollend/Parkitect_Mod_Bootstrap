@@ -60,7 +60,28 @@ public class RefrencedTransform
 			this.prefabTransform = Refrence.findTransformByKey(root, key);
 		}
 	}
-		
+
+	struct pairs{
+		String element;
+		int index;
+	}
+
+	public Transform Deserialize(Transform root,XElement element)
+	{
+		Transform current = null;
+		foreach(XElement e in element.Elements())
+		{
+			if (current == null) {
+				current = root;
+			} else {
+				current = current.GetChild (int.Parse (e.Value));
+			}
+		}
+
+		return current;
+
+	}
+
 	public List<XElement> Serialize (Transform root)
 	{
 		List<XElement> element = new List<XElement> ();
@@ -70,10 +91,13 @@ public class RefrencedTransform
 			do
 			{
 				element.Add(new XElement(current.name,current.GetSiblingIndex()));
+				if(current == root)
+					break;
 				current = current.parent;
 			}
-			while(current != null && current != root);
+			while(current != null);
 		}
+		element.Reverse ();
 		return element;
 	}
 

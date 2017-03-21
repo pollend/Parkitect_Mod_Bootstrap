@@ -1,9 +1,5 @@
 ﻿#if UNITY_EDITOR
 using UnityEditor;
-using System.Collections.Generic;
-using System.Xml.Linq;
-
-
 #endif
 using System.Collections.Generic;
 using System.Xml.Linq;
@@ -62,8 +58,21 @@ public class SPStartRotator : SPRideAnimationEvent
 		}
 	}
 
+	public override void Deserialize (XElement elements)
+	{
+		if (elements.Element ("rotator") != null) {
+			this.rotator = new SPRotator ();
+			rotator.Deserialize (elements.Element ("rotator"));
+		}
+
+		base.Deserialize (elements);
+	}
+
 	public override List<XElement> Serialize (Transform root)
 	{
+		if (rotator == null)
+			return null;
+		
 		return new List<XElement> (new XElement[] {
 			new XElement ("rotator", rotator.Serialize (root))
 		});
