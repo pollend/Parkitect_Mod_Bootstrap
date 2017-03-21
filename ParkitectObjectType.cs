@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
 using UnityEngine;
+using System;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
 public class ParkitectObjectType
 {
-	[NonSerialized]
+	[System.NonSerialized]
 	private List<string> options = new List<string>();
-	[NonSerialized]
+	[System.NonSerialized]
 	private List<Type> parkitectObjs = new List<Type>();
-	[NonSerialized]
+	[System.NonSerialized]
 	private Dictionary<String,Type> parkitectObjectTypeMapping = new Dictionary<string, Type> ();
 
 	public ParkitectObjectType ()

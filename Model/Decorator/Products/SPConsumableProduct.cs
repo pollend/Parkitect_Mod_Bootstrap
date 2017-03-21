@@ -35,6 +35,11 @@ public class SPConsumableProduct : SPProduct
 	}
 	#endif
 
+    public void BindtoShop(CustomShop shop)
+    {
+
+    }
+
 	public override List<XElement> Serialize()
 	{
 		List<XElement> elements = base.Serialize ();

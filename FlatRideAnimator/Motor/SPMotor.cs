@@ -11,7 +11,7 @@ using System.Xml.Linq;
 [Serializable]
 public class SPMotor : ScriptableObject
 {
-	[NonSerialized]
+	[System.NonSerialized]
 	public bool showSettings;
 	public string Identifier = "";
 	public Color ColorIdentifier;

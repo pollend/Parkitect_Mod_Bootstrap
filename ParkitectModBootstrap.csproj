@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -27,6 +27,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="FlatRideAnimator\Events\SPRideAnimationEvent.cs" />
+    <Compile Include="Model\Proxy\Shop\CustomShop.cs" />
+    <Compile Include="ParkitectModBootstrap.cs" />
+    <Compile Include="ParkitectObjectType.cs" />
     <Compile Include="Refrence.cs" />
     <Compile Include="RefrencedTransform.cs" />
     <Compile Include="Model\DecoParkitectObject.cs" />
@@ -44,14 +48,9 @@
     <Compile Include="Model\Decorator\CategoryDecorator.cs" />
     <Compile Include="Model\Decorator\ColorDecorator.cs" />
     <Compile Include="Model\Decorator\Decorator.cs" />
-    <Compile Include="Model\Decorator\DecoratorTag.cs" />
     <Compile Include="Model\Decorator\FlatrideDecorator.cs" />
-    <Compile Include="Model\Decorator\FootprintDecorator.cs" />
     <Compile Include="Model\Decorator\GridDecorator.cs" />
-    <Compile Include="Model\Decorator\Model.cs" />
     <Compile Include="Model\Decorator\PathDecorator.cs" />
-    <Compile Include="Model\Decorator\PathTypeDecorator.cs" />
-    <Compile Include="Model\Decorator\ProductDecorator.cs" />
     <Compile Include="Model\Decorator\SeatDecorator.cs" />
     <Compile Include="Model\Decorator\ShopDecorator.cs" />
     <Compile Include="Model\Decorator\WaypointDecorator.cs" />
@@ -65,7 +64,6 @@
     <Compile Include="FlatRideAnimator\MathHelper.cs" />
     <Compile Include="FlatRideAnimator\SPPhase.cs" />
     <Compile Include="FlatRideAnimator\SPRideAnimation.cs" />
-    <Compile Include="FlatRideAnimator\SPRideAnimationEvent.cs" />
     <Compile Include="FlatRideAnimator\Events\SPApplyRotation.cs" />
     <Compile Include="FlatRideAnimator\Events\SPChangePendulum.cs" />
     <Compile Include="FlatRideAnimator\Events\SPFromToMove.cs" />
@@ -82,11 +80,14 @@
     <Compile Include="FlatRideAnimator\Motor\SPPendulumRotator.cs" />
     <Compile Include="FlatRideAnimator\Motor\SPRotateBetween.cs" />
     <Compile Include="FlatRideAnimator\Motor\SPRotator.cs" />
+    <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\Parkitect_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
       <HintPath>..\..\Parkitect_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>

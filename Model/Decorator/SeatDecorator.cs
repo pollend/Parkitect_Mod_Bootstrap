@@ -14,7 +14,14 @@ public class SeatDecorator : Decorator
 	[System.NonSerialized]
 	private List<GameObject> seats = new List<GameObject>();
 
-	#if UNITY_EDITOR
+    public List<GameObject> Seats(Transform root)
+    {
+        List<GameObject> transform = new List<GameObject>();
+        Utility.findAllChildrenWithName(root, SEAT, transform);
+        return transform;
+    }
+
+#if UNITY_EDITOR
 	public override void Load (ParkitectObj parkitectObj)
 	{
 		seats.Clear ();

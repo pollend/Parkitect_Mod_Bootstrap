@@ -12,13 +12,26 @@ public class FlatRideParkitectObject : ParkitectObj
 	public override Type[] SupportedDecorators()
 	{
 		return new Type[] {
-		typeof(BaseDecorator),
-		typeof(WaypointDecorator),
-		typeof(FlatrideDecorator),
-		typeof(BoundingBoxDecorator),
-		typeof(AnimatorDecorator)
-	};
+            typeof(BaseDecorator),
+            typeof(WaypointDecorator),
+            typeof(FlatrideDecorator),
+            typeof(BoundingBoxDecorator),
+            typeof(AnimatorDecorator)
+	    };
 	}
+
+#if (!UNITY_EDITOR)
+    public override void BindToParkitect()
+    {
+        BaseDecorator baseDecorator = this.DecoratorByInstance<BaseDecorator>();
+        WaypointDecorator waypointDecorator = this.DecoratorByInstance<WaypointDecorator>();
+        FlatrideDecorator flatrideDecorator = this.DecoratorByInstance<FlatrideDecorator>();
+        BoundingBoxDecorator boundingBoxDecorator = this.DecoratorByInstance<BoundingBoxDecorator>();
+        AnimatorDecorator animatorDecorator = this.DecoratorByInstance<AnimatorDecorator>();
+
+        base.BindToParkitect();
+    }
+#endif
 
 }
 

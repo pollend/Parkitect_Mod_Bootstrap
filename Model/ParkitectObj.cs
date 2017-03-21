@@ -21,6 +21,8 @@ public class ParkitectObj : ScriptableObject
 	[SerializeField]
 	private GameObject prefab;
 
+
+
 	[SerializeField]
 	public string key;
 
@@ -30,8 +32,9 @@ public class ParkitectObj : ScriptableObject
 	public GameObject sceneRef;
 
 	public string getKey { get { return key; } }
-
 	public GameObject Prefab { get { return prefab; } }
+
+    public  AssetBundle Bundle { get; set; }
 
 	#if UNITY_EDITOR
 	public void UpdatePrefab()
@@ -186,28 +189,62 @@ public class ParkitectObj : ScriptableObject
 
 		return new List<XElement>(new XElement[]{ 
 			new XElement("Decorators",elements),
-			new XElement("Prefab",Prefab.name)
+			new XElement("Prefab",Prefab.name),
+		    new XElement("Key", this.key),
 		});
 	}
 
+
+    public T  LoadAsset<T>(string prefabName) where T : UnityEngine.Object
+    {
+        try
+        {
+            T asset;
+            asset = Bundle.LoadAsset<T>(prefabName);
+            Bundle.Unload(false);
+            return asset;
+
+        }
+        catch (Exception e)
+        {
+            UnityEngine.Debug.LogException(e);
+            return null;
+        }
+    }
+
 	public void DeSerialize(XElement element)
 	{
-		/*
-		if (element.Element ("Name") != null)
-			this.Prefab = element.Element ("Name").Value;
-*/
-		if (element.Element ("Decorators") != null)
-			foreach (var decorator in element.Element("Decorators").Elements()) {
-				Decorator dec =  Utility.GetByTypeName<Decorator> (decorator.Name.LocalName);
-				dec.Deserialize (decorator);
-				this.decorators.Add (dec);
-			}
+        var prefabElement = element.Element ("Prefab");
+        if (prefabElement != null) prefab = LoadAsset<GameObject>( prefabElement.Value);
+
+	    var keyElement = element.Element("key");
+	    if (keyElement != null) key = keyElement.Value;
+
+        var decoratorElement = element.Element("Decorators");
+	    if (decoratorElement != null)
+	    {
+	        foreach (var decorator in decoratorElement.Elements())
+	        {
+	            Decorator dec = Utility.GetByTypeName<Decorator>(decorator.Name.LocalName);
+	            dec.Deserialize(decorator);
+	            this.decorators.Add(dec);
+	        }
+	    }
+
 	}
 
-	public void BindToParkitect()
-	{
-	}
+    public T DecoratorByInstance<T>() where T : Decorator
+    {
+        return (T)decorators.SingleOrDefault(x => x.GetType() == typeof(T));
+    }
 
+#if (!UNITY_EDITOR)
+
+    public virtual void BindToParkitect()
+    {
+        AssetManager.Instance.registerObject(this.prefab);
+    }
+#endif
 }
 
 

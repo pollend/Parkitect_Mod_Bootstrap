@@ -136,6 +136,7 @@ public class ShopDecorator : Decorator
 		}
 		base.Deserialize (element);
 	}
+
 }
 
 

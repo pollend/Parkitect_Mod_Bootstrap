@@ -23,9 +23,9 @@ public class SPProduct : ScriptableObject
 	public string Name;
 	public float Price;
 
-	[NonSerialized]
+	[System.NonSerialized]
 	private Vector2 scrollPos = Vector2.zero;
-	[NonSerialized]
+	[System.NonSerialized]
 	private SPIngredient selected = null;
 
 	public SPProduct()

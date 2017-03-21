@@ -22,6 +22,8 @@ public class ModPayload : ScriptableSingleton<ModPayload>
 	[SerializeField]
 	public string description;
 
+    public AssetBundle Bundle { get; set; }
+
 	public List<XElement> Serialize()
 	{
 		List<XElement> xmlParkitectObjs = new List<XElement> ();
@@ -30,6 +32,31 @@ public class ModPayload : ScriptableSingleton<ModPayload>
 		}
 		return xmlParkitectObjs;
 	}
+
+    public void Deserialize(XElement element)
+    {
+        ParkitectObjectType type = new ParkitectObjectType();
+
+        foreach (XElement e in element.Elements())
+        {
+            ParkitectObj o = (ParkitectObj)Activator.CreateInstance(type.GetType(e.Name.NamespaceName));
+            o.Bundle = Bundle;
+            o.DeSerialize(e);
+            ParkitectObjs.Add(o);
+        }
+
+    }
+
+    public void bind()
+    {
+        foreach (var o in ParkitectObjs)
+        {
+            BaseDecorator dec = o.DecoratorByInstance<BaseDecorator>();
+            if (dec != null)
+                Debug.Log("---------------------------" + dec.InGameName + "---------------------------");
+            o.BindToParkitect();
+        }
+    }
 
 
 #if UNITY_EDITOR
