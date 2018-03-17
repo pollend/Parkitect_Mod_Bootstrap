@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Xml.Linq;
-
+using UnityEngine;
+using Object = UnityEngine.Object;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -28,13 +27,12 @@ public class ParkitectObj : ScriptableObject
 
 	public float XSize;
 
-	[System.NonSerialized]
+	[NonSerialized]
 	public GameObject sceneRef;
 
 	public string getKey { get { return key; } }
 	public GameObject Prefab { get { return prefab; } }
 
-    public  AssetBundle Bundle { get; set; }
 
 	#if UNITY_EDITOR
 	public void UpdatePrefab()
@@ -107,9 +105,9 @@ public class ParkitectObj : ScriptableObject
 
 	public void Load(ParkitectObj parkitectObj)
 	{
-		this.decorators = parkitectObj.decorators;
-		this.prefab = parkitectObj.prefab;
-		this.key = parkitectObj.getKey;
+		decorators = parkitectObj.decorators;
+		prefab = parkitectObj.prefab;
+		key = parkitectObj.getKey;
 
 		for (int x = 0; x < decorators.Count; x++)
 		{
@@ -182,38 +180,21 @@ public class ParkitectObj : ScriptableObject
 			elements.Add (new XElement (decorators[i].GetType().ToString(),decorators[i].Serialize(this)));
 		}
 
-		return new List<XElement>(new XElement[]{ 
+		return new List<XElement>(new[]{ 
 			new XElement("Decorators",elements),
-			new XElement("Prefab",Prefab.name),
-		    new XElement("Key", key),
+		    new XElement("Key", key)
 		});
 	}
 
 
-    public T  LoadAsset<T>(string prefabName) where T : UnityEngine.Object
-    {
-        try
-        {
-            T asset;
-            asset = Bundle.LoadAsset<T>(prefabName);
-            Bundle.Unload(false);
-            return asset;
 
-        }
-        catch (Exception e)
-        {
-            UnityEngine.Debug.LogException(e);
-            return null;
-        }
-    }
 
-	public void DeSerialize(XElement element)
+	public void DeSerialize(XElement element,AssetBundle bundle)
 	{
-        var prefabElement = element.Element ("Prefab");
-        if (prefabElement != null) prefab = LoadAsset<GameObject>( prefabElement.Value);
-
 	    var keyElement = element.Element("key");
 	    if (keyElement != null) key = keyElement.Value;
+		
+		prefab = bundle.LoadAsset<GameObject>(key);
 
         var decoratorElement = element.Element("Decorators");
 	    if (decoratorElement != null)
@@ -222,7 +203,7 @@ public class ParkitectObj : ScriptableObject
 	        {
 	            Decorator dec = Utility.GetByTypeName<Decorator>(decorator.Name.LocalName);
 	            dec.Deserialize(decorator);
-	            this.decorators.Add(dec);
+	            decorators.Add(dec);
 	        }
 	    }
 	}
@@ -232,6 +213,9 @@ public class ParkitectObj : ScriptableObject
         return (T)decorators.SingleOrDefault(x => x.GetType() == typeof(T));
     }
 
+#if (PARKITECT)
+	public virtual void BindToParkitect() { }
+#endif
 
 }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 [ParkitectObjectTag("Seating")]
 [Serializable]
@@ -17,6 +18,31 @@ public class SeatingParkitectObject : ParkitectObj
             typeof(BoundingBoxDecorator)
         };
     }
-  
+#if (PARKITECT)
+    public override void BindToParkitect()
+    {
+        BaseDecorator baseDecorator = this.DecoratorByInstance<BaseDecorator>();
+        SeatDecorator seatDecorator= this.DecoratorByInstance<SeatDecorator>();
+        ColorDecorator colorDecorator = this.DecoratorByInstance<ColorDecorator>();
+        BoundingBoxDecorator boxDecorator = this.DecoratorByInstance<BoundingBoxDecorator>();
+
+        Seating seat = Prefab.AddComponent<Seating>();
+        seat.name = getKey;
+        seat.setDisplayName(baseDecorator.InGameName);
+        seat.price = baseDecorator.price;
+        if (colorDecorator.isRecolorable)
+        {
+            CustomColors colors = Prefab.AddComponent<CustomColors>();
+            colors.setColors(colorDecorator.colors.ToArray());
+        }
+
+        foreach (var box in boxDecorator.boundingBoxes)
+        {
+            var b = Prefab.AddComponent<BoundingBox>();
+            b.setBounds(box.bounds);
+        }
+        base.BindToParkitect();
+    }
+#endif
 }
 

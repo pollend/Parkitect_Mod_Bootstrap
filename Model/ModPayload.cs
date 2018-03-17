@@ -39,15 +39,14 @@ public class ModPayload : ScriptableSingleton<ModPayload>
 		return mod;
 	}
 
-	public void Deserialize(XElement element)
+	public void Deserialize(XElement element,AssetBundle assetBundle)
 	{
 		ParkitectObjectType type = new ParkitectObjectType();
 
 		foreach (XElement e in element.Elements("ParkitectObjects"))
 		{
 			ParkitectObj o = (ParkitectObj) Activator.CreateInstance(type.GetType(e.Name.NamespaceName));
-			o.Bundle = Bundle;
-			o.DeSerialize(e);
+			o.DeSerialize(e,assetBundle);
 			ParkitectObjs.Add(o);
 		}
 
@@ -55,14 +54,5 @@ public class ModPayload : ScriptableSingleton<ModPayload>
 		description = element.Element("Description").Value;
 	}
 
-	public void bind()
-    {
-        foreach (var o in ParkitectObjs)
-        {
-            BaseDecorator dec = o.DecoratorByInstance<BaseDecorator>();
-            if (dec != null)
-                Debug.Log("---------------------------" + dec.InGameName + "---------------------------");
-        }
-    }
 	
 }

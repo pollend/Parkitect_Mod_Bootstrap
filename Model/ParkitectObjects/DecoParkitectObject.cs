@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 [ParkitectObjectTag("Deco")]
 [Serializable]
@@ -7,7 +8,8 @@ public class DecoParkitectObject : ParkitectObj
 
     public override Type[] SupportedDecorators()
     {
-        return new Type[]{
+        return new[]
+        {
             typeof(BaseDecorator),
             typeof(GridDecorator),
             typeof(CategoryDecorator),
@@ -15,23 +17,23 @@ public class DecoParkitectObject : ParkitectObj
             typeof(BoundingBoxDecorator)
         };
     }
-    
-    #if (PARKITECT)
+
+#if (PARKITECT)
     public override void BindToParkitect()
     {
-        BaseDecorator baseDecorator = this.DecoratorByInstance<BaseDecorator>();
-        GridDecorator gridDecorator= this.DecoratorByInstance<GridDecorator>();
-        CategoryDecorator categoryDecorator = this.DecoratorByInstance<CategoryDecorator>();
-        ColorDecorator colorDecorator = this.DecoratorByInstance<ColorDecorator>();
-        BoundingBoxDecorator boxDecorator = this.DecoratorByInstance<BoundingBoxDecorator>();
+        BaseDecorator baseDecorator = DecoratorByInstance<BaseDecorator>();
+        GridDecorator gridDecorator = DecoratorByInstance<GridDecorator>();
+        CategoryDecorator categoryDecorator = DecoratorByInstance<CategoryDecorator>();
+        ColorDecorator colorDecorator = DecoratorByInstance<ColorDecorator>();
+        BoundingBoxDecorator boxDecorator = DecoratorByInstance<BoundingBoxDecorator>();
 
 
         Deco deco = Prefab.AddComponent<Deco>();
-       deco.name = this.getKey;
+        deco.name = getKey;
         deco.heightChangeDelta = gridDecorator.heightDelta;
         deco.defaultGridSubdivision = gridDecorator.gridSubdivision;
         deco.buildOnGrid = gridDecorator.grid;
-        deco.defaultSnapToGridCenter =  gridDecorator.snap;
+        deco.defaultSnapToGridCenter = gridDecorator.snap;
         deco.categoryTag = categoryDecorator.category;
         deco.price = baseDecorator.price;
         deco.setDisplayName(baseDecorator.InGameName);

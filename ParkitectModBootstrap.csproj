@@ -11,12 +11,45 @@
     <AssemblyName>ParkitectModBootstrap</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Parkitect, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>../../Parkitect_Data/Managed/Parkitect.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Parkitect, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\Parkitect_Data\Managed\Parkitect.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>../../Parkitect_Data/Managed/UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>../../Parkitect_Data/Managed/UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>../../Parkitect_Data/Managed/UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>../../Parkitect_Data/Managed/UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>../../Parkitect_Data/Managed/UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DefineConstants>DEBUG;PARKITECT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -25,23 +58,25 @@
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DefineConstants>PARKITECT</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="FlatRideAnimator\Events\SPRideAnimationEvent.cs" />
+    <Compile Include="Model\ParkitectObjects\DecoParkitectObject.cs" />
+    <Compile Include="Model\ParkitectObjects\EmptyParkitectObject.cs" />
+    <Compile Include="Model\ParkitectObjects\FlatRideParkitectObject.cs" />
+    <Compile Include="Model\ParkitectObjects\PathStyleParkitectObject.cs" />
+    <Compile Include="Model\ParkitectObjects\SeatingParkitectObject.cs" />
+    <Compile Include="Model\ParkitectObjects\ShopParkitectObject.cs" />
+    <Compile Include="Model\ParkitectObjects\WallParkitectObject.cs" />
     <Compile Include="Model\Proxy\Shop\CustomShop.cs" />
     <Compile Include="ParkitectModBootstrap.cs" />
     <Compile Include="ParkitectObjectType.cs" />
     <Compile Include="Refrence.cs" />
     <Compile Include="RefrencedTransform.cs" />
-    <Compile Include="Model\DecoParkitectObject.cs" />
-    <Compile Include="Model\FlatRideParkitectObject.cs" />
     <Compile Include="Model\ModPayload.cs" />
     <Compile Include="Model\ParkitectObj.cs" />
     <Compile Include="Model\ParkitectObjectTag.cs" />
-    <Compile Include="Model\PathStyleParkitectObject.cs" />
-    <Compile Include="Model\SeatingParkitectObject.cs" />
-    <Compile Include="Model\ShopParkitectObject.cs" />
-    <Compile Include="Model\WallParkitectObject.cs" />
     <Compile Include="Model\Decorator\AnimatorDecorator.cs" />
     <Compile Include="Model\Decorator\BaseDecorator.cs" />
     <Compile Include="Model\Decorator\BoundingBoxDecorator.cs" />
@@ -83,9 +118,6 @@
     <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\Parkitect_Data\Managed\Assembly-CSharp.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">

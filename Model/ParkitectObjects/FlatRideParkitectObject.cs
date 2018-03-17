@@ -21,6 +21,18 @@ public class FlatRideParkitectObject : ParkitectObj
 			typeof(SeatDecorator)
 		};
 	}
+#if (PARKITECT)
+	public override void BindToParkitect()
+	{
+		BaseDecorator baseDecorator = this.DecoratorByInstance<BaseDecorator>();
+		WaypointDecorator waypointDecorator = this.DecoratorByInstance<WaypointDecorator>();
+		FlatrideDecorator flatrideDecorator = this.DecoratorByInstance<FlatrideDecorator>();
+		BoundingBoxDecorator boundingBoxDecorator = this.DecoratorByInstance<BoundingBoxDecorator>();
+		AnimatorDecorator animatorDecorator = this.DecoratorByInstance<AnimatorDecorator>();
+
+		base.BindToParkitect();
+	}
+#endif
 
 }
 
