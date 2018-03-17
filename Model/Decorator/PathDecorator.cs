@@ -51,8 +51,8 @@ public class PathDecorator : Decorator
 
 		base.RenderInspectorGUI (parkitectObj);
 	}
-
 	#endif
+	
 	public override List<XElement> Serialize (ParkitectObj parkitectObj)
 	{
 		return new List<XElement>(new XElement[]{

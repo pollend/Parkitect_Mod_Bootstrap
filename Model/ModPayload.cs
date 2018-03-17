@@ -14,8 +14,8 @@ public class ModPayload : ScriptableSingleton<ModPayload>
 	[SerializeField]
 	public List<ParkitectObj> ParkitectObjs = new List<ParkitectObj>();
 
-	[SerializeField]
-	public ParkitectObj selectedParkitectObject { get; set; }
+	[SerializeField] 
+	public ParkitectObj selectedParkitectObject;
 
 	[SerializeField]
 	public string modName;
@@ -54,7 +54,6 @@ public class ModPayload : ScriptableSingleton<ModPayload>
             BaseDecorator dec = o.DecoratorByInstance<BaseDecorator>();
             if (dec != null)
                 Debug.Log("---------------------------" + dec.InGameName + "---------------------------");
-            o.BindToParkitect();
         }
     }
 

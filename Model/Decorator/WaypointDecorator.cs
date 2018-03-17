@@ -1,12 +1,11 @@
 ﻿using System;
-using UnityEngine;
+using System.Collections.Generic;
 using System.Xml.Linq;
-
-
+using UnityEngine;
+using UnityEngine.Rendering;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-using System.Collections.Generic;
 
 public class WaypointDecorator : Decorator
 {
@@ -21,13 +20,13 @@ public class WaypointDecorator : Decorator
 	#if UNITY_EDITOR
 	public Tool currentTool = Tool.None;
 
-	[System.NonSerialized]
-	private bool enableEditing = false;
-	[System.NonSerialized]
-	private bool snap = false;
-	[System.NonSerialized]
-	private float helperPlaneY = 0;
-	[System.NonSerialized]
+	[NonSerialized]
+	private bool enableEditing;
+	[NonSerialized]
+	private bool snap;
+	[NonSerialized]
+	private float helperPlaneY;
+	[NonSerialized]
 	public SPWaypoint selectedWaypoint;
 
 	public override void RenderInspectorGUI (ParkitectObj parkitectObj)
@@ -81,7 +80,7 @@ public class WaypointDecorator : Decorator
 			{
                 generateOuterGrid(flatRideDecorator);
             }
-            if (GUILayout.Button("(A)dd Waypoint"))
+            if (GUILayout.Button("Add Waypoint"))
 			{
 				addWaypoint (sceneTransform.transform);
 			}
@@ -110,58 +109,62 @@ public class WaypointDecorator : Decorator
 
         GUIStyle labelStyle = new GUIStyle();
         labelStyle.normal.textColor = Color.black;
-        
-        switch (Event.current.type)
-        {
-            case EventType.layout:
-                break;
-            case EventType.keyDown:
-                if (Event.current.keyCode == KeyCode.S)
-                {
-                    snap = true;
-                }
-                break;
-            case EventType.keyUp:
-                if (Event.current.keyCode == KeyCode.C)
-                {
-                    if (state != State.CONNECT)
-                    {
-                        state = State.CONNECT;
-                    }
-                    else
-                    {
-                        state = State.NONE;
-                    }
-                }
-                else if (Event.current.keyCode == KeyCode.R)
-                {
-                    removeSelectedWaypoint();
-                }
-                else if (Event.current.keyCode == KeyCode.A)
-                {
-                    addWaypoint(sceneTransform.transform);
-                }
-                else if (Event.current.keyCode == KeyCode.O && selectedWaypoint != null)
-                {
-                    selectedWaypoint.isOuter = !selectedWaypoint.isOuter;
-                }
-                else if (Event.current.keyCode == KeyCode.I && selectedWaypoint != null)
-                {
-                    selectedWaypoint.isRabbitHoleGoal = !selectedWaypoint.isRabbitHoleGoal;
-                }
-                else if (Event.current.keyCode == KeyCode.S)
-                {
-                    snap = false;
-                }
 
-                SceneView.RepaintAll();
-                HandleUtility.Repaint();
-                break;
-        }
+		if (enableEditing)
+		{
+			switch (Event.current.type)
+			{
+				case EventType.Layout:
+					break;
+				case EventType.KeyDown:
+					if (Event.current.keyCode == KeyCode.S)
+					{
+						snap = true;
+					}
+
+					break;
+				case EventType.KeyUp:
+					if (Event.current.keyCode == KeyCode.C)
+					{
+						if (state != State.CONNECT)
+						{
+							state = State.CONNECT;
+						}
+						else
+						{
+							state = State.NONE;
+						}
+					}
+					else if (Event.current.keyCode == KeyCode.R)
+					{
+						removeSelectedWaypoint();
+					}
+					/*else if (Event.current.keyCode == KeyCode.A)
+					{
+						addWaypoint(sceneTransform.transform);
+					}*/
+					else if (Event.current.keyCode == KeyCode.O && selectedWaypoint != null)
+					{
+						selectedWaypoint.isOuter = !selectedWaypoint.isOuter;
+					}
+					else if (Event.current.keyCode == KeyCode.I && selectedWaypoint != null)
+					{
+						selectedWaypoint.isRabbitHoleGoal = !selectedWaypoint.isRabbitHoleGoal;
+					}
+					else if (Event.current.keyCode == KeyCode.S)
+					{
+						snap = false;
+					}
+
+					SceneView.RepaintAll();
+					HandleUtility.Repaint();
+					break;
+			}
+		}
 
 
-        int i = 0;
-		foreach (SPWaypoint waypoint in this.waypoints)
+		int i = 0;
+		foreach (SPWaypoint waypoint in waypoints)
 		{
 			if (waypoint == selectedWaypoint)
 			{
@@ -180,13 +183,21 @@ public class WaypointDecorator : Decorator
 				Handles.color = Color.yellow;
 			}
 			Vector3 worldPos = waypoint.localPosition + sceneTransform.transform.position;
+			
+			Handles.zTest = CompareFunction.LessEqual;
             if (Handles.Button(worldPos, Quaternion.identity, HandleUtility.GetHandleSize(worldPos) * 0.2f, HandleUtility.GetHandleSize(worldPos) * 0.2f, Handles.SphereCap))
             {
-                handleClick(waypoint);
+	            if (enableEditing)
+	            {
+		            handleClick(waypoint);
+	            }
             }
+		
+			
             Handles.color = Color.blue;
 			foreach (int connectedIndex in waypoint.connectedTo)
 			{
+				Handles.zTest = CompareFunction.Always;
 				Handles.DrawLine(worldPos, waypoints[connectedIndex].localPosition + sceneTransform.transform.position);
 			}
 
@@ -329,7 +340,7 @@ public class WaypointDecorator : Decorator
     {
         Vector3 pos = transform.position;
 
-        foreach (SPWaypoint waypoint in this.waypoints)
+        foreach (SPWaypoint waypoint in waypoints)
         {
             Vector3 dir = waypoint.localPosition - pos;
             dir.y = 0;
@@ -386,7 +397,7 @@ public class WaypointDecorator : Decorator
 			xmlWaypoints.Add (new XElement ("Waypoint", waypoints [i].Serialize ()));
 		}
 
-		return new List<XElement>(new XElement[]{
+		return new List<XElement>(new[]{
 			new XElement("Waypoints",xmlWaypoints)
 		});
 	}
@@ -396,7 +407,7 @@ public class WaypointDecorator : Decorator
 		
 		if (elements.Element ("Waypoints") != null) {
 			foreach (XElement waypointXML in elements.Element("Waypoints").Elements("Waypoint")) {
-				this.waypoints.Add (SPWaypoint.Deserialize (waypointXML));
+				waypoints.Add (SPWaypoint.Deserialize (waypointXML));
 			}
 		}
 		base.Deserialize (elements);

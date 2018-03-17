@@ -11,30 +11,36 @@ using UnityEditor;
 public class CategoryDecorator : Decorator
 {
 	public string category;
+	public String subCategory;
 
 	public CategoryDecorator()
 	{
 	}
-	#if UNITY_EDITOR
-	public override void RenderInspectorGUI (ParkitectObj parkitectObj)
+#if UNITY_EDITOR
+	public override void RenderInspectorGUI(ParkitectObj parkitectObj)
 	{
-		this.category = EditorGUILayout.TextField("Category: ", this.category);
+		category = EditorGUILayout.TextField("Category: ", category);
+		subCategory = EditorGUILayout.TextField("Sub-Category: ", this.subCategory);
 
-	    base.RenderInspectorGUI (parkitectObj);
+		base.RenderInspectorGUI(parkitectObj);
 	}
-	#endif
+#endif
 
-	public override List<XElement> Serialize (ParkitectObj parkitectObj)
+	public override List<XElement> Serialize(ParkitectObj parkitectObj)
 	{
-		return new List<XElement>(new XElement[]{
-			new XElement("Category",category)
+		return new List<XElement>(new XElement[]
+		{
+			new XElement("Category", category),
+			new XElement("SubCategory", subCategory)
 		});
 	}
 
-	public override void Deserialize (XElement elements)
+	public override void Deserialize(XElement elements)
 	{
-		this.category = elements.Element ("Category").Value;
-		base.Deserialize (elements);
+		category = elements.Element("Category").Value;
+		subCategory = elements.Element("SubCategory").Value;
+
+		base.Deserialize(elements);
 	}
 }
 

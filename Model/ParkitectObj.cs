@@ -230,7 +230,6 @@ public class ParkitectObj : ScriptableObject
 	            this.decorators.Add(dec);
 	        }
 	    }
-
 	}
 
     public T DecoratorByInstance<T>() where T : Decorator

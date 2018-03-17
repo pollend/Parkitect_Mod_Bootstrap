@@ -4,20 +4,20 @@
 [Serializable]
 public class SeatingParkitectObject : ParkitectObj
 {
-	public SeatingParkitectObject()
-	{
-	}
+    public SeatingParkitectObject()
+    {
+    }
 
-	public override Type[] SupportedDecorators()
-	{
-		return new Type[]{
+    public override Type[] SupportedDecorators()
+    {
+        return new Type[]{
             typeof(BaseDecorator),
             typeof(SeatDecorator),
             typeof(ColorDecorator),
             typeof(BoundingBoxDecorator)
-		};
-	}
-
+        };
+    }
+    
 #if (!UNITY_EDITOR)
     public override void BindToParkitect()
     {
@@ -45,6 +45,4 @@ public class SeatingParkitectObject : ParkitectObj
     }
 #endif
 }
-
-
 

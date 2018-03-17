@@ -5,21 +5,22 @@ using UnityEngine;
 [Serializable]
 public class PathStyleParkitectObject : ParkitectObj
 {
-	public PathStyleParkitectObject()
-	{
-	}
+    public PathStyleParkitectObject()
+    {
+    }
 
-	public override Type[] SupportedDecorators()
-	{
-		return new Type[]{
+    public override Type[] SupportedDecorators()
+    {
+        return new Type[]{
             typeof(BaseDecorator),
-            //typeof(CategoryDecorator),
+            typeof(CategoryDecorator),
             typeof(PathDecorator),
             typeof(BoundingBoxDecorator)
-		};
-	}
-
-    #if (!UNITY_EDITOR)
+        };
+    }
+    
+    
+#if (!UNITY_EDITOR)
         public override void BindToParkitect()
         {
 
@@ -62,7 +63,5 @@ public class PathStyleParkitectObject : ParkitectObj
             //base.BindToParkitect();
         }
     #endif
-
 }
-
 

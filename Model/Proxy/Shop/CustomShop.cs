@@ -1,4 +1,5 @@
 ﻿
+#if (!UNITY_EDITOR)
 public class CustomShop: ProductShop
 {
     public override void Initialize()
@@ -16,3 +17,4 @@ public class CustomShop: ProductShop
         return base.getSettings();
     }
 }
+#endif
