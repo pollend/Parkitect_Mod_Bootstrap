@@ -16,23 +16,6 @@ public class ShopParkitectObject : ParkitectObj
 		};
 	}
 
-#if (!UNITY_EDITOR)
-    public override void BindToParkitect()
-    {
-        var baseDecorator = this.DecoratorByInstance<BaseDecorator>();
-        var shopDecorator = this.DecoratorByInstance<ShopDecorator>();
-
-        var shop = Prefab.AddComponent<CustomShop>();
-
-        foreach (var product in shopDecorator.products)
-        {
-
-
-        }
-
-        base.BindToParkitect();
-    }
-#endif
 }
 
 

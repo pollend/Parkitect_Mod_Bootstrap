@@ -30,24 +30,32 @@ public class ModPayload : ScriptableSingleton<ModPayload>
 		for (int i = 0; i < ParkitectObjs.Count; i++) {
 			xmlParkitectObjs.Add (new XElement (ParkitectObjs [i].GetType ().ToString (), ParkitectObjs [i].Serialize ()));
 		}
-		return xmlParkitectObjs;
+		
+		List<XElement> mod = new List<XElement>();
+		mod.Add(new XElement("ParkitectObjects",xmlParkitectObjs));
+		
+		mod.Add(new XElement("ModName",modName));
+		mod.Add(new XElement("Description",description));
+		return mod;
 	}
 
-    public void Deserialize(XElement element)
-    {
-        ParkitectObjectType type = new ParkitectObjectType();
+	public void Deserialize(XElement element)
+	{
+		ParkitectObjectType type = new ParkitectObjectType();
 
-        foreach (XElement e in element.Elements())
-        {
-            ParkitectObj o = (ParkitectObj)Activator.CreateInstance(type.GetType(e.Name.NamespaceName));
-            o.Bundle = Bundle;
-            o.DeSerialize(e);
-            ParkitectObjs.Add(o);
-        }
+		foreach (XElement e in element.Elements("ParkitectObjects"))
+		{
+			ParkitectObj o = (ParkitectObj) Activator.CreateInstance(type.GetType(e.Name.NamespaceName));
+			o.Bundle = Bundle;
+			o.DeSerialize(e);
+			ParkitectObjs.Add(o);
+		}
 
-    }
+		modName = element.Element("ModName").Value;
+		description = element.Element("Description").Value;
+	}
 
-    public void bind()
+	public void bind()
     {
         foreach (var o in ParkitectObjs)
         {
@@ -56,17 +64,5 @@ public class ModPayload : ScriptableSingleton<ModPayload>
                 Debug.Log("---------------------------" + dec.InGameName + "---------------------------");
         }
     }
-
-
-#if UNITY_EDITOR
-	public void GetAssetbundlePaths(List<string> path)
-	{
-		path.Add (AssetDatabase.GetAssetPath (this));
-		for (int x = 0; x < ParkitectObjs.Count; x++) {
-			ParkitectObjs [x].UpdatePrefab ();
-
-			ParkitectObjs [x].GetAssetbundlePaths (path);
-		}
-	}
-#endif
+	
 }

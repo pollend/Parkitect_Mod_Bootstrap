@@ -16,7 +16,7 @@ public class DecoParkitectObject : ParkitectObj
         };
     }
     
-#if (!UNITY_EDITOR)
+    #if (PARKITECT)
     public override void BindToParkitect()
     {
         BaseDecorator baseDecorator = this.DecoratorByInstance<BaseDecorator>();
@@ -27,7 +27,7 @@ public class DecoParkitectObject : ParkitectObj
 
 
         Deco deco = Prefab.AddComponent<Deco>();
-        deco.name = this.getKey;
+       deco.name = this.getKey;
         deco.heightChangeDelta = gridDecorator.heightDelta;
         deco.defaultGridSubdivision = gridDecorator.gridSubdivision;
         deco.buildOnGrid = gridDecorator.grid;

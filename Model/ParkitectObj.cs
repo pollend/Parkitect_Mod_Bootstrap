@@ -161,11 +161,6 @@ public class ParkitectObj : ScriptableObject
 		return null;
 	}
 
-	public void GetAssetbundlePaths(List<string> path)
-	{
-		path.Add (AssetDatabase.GetAssetPath (this.prefab));
-	}
-
 	public void CleanUp()
 	{
 		
@@ -190,7 +185,7 @@ public class ParkitectObj : ScriptableObject
 		return new List<XElement>(new XElement[]{ 
 			new XElement("Decorators",elements),
 			new XElement("Prefab",Prefab.name),
-		    new XElement("Key", this.key),
+		    new XElement("Key", key),
 		});
 	}
 
@@ -237,13 +232,7 @@ public class ParkitectObj : ScriptableObject
         return (T)decorators.SingleOrDefault(x => x.GetType() == typeof(T));
     }
 
-#if (!UNITY_EDITOR)
 
-    public virtual void BindToParkitect()
-    {
-        AssetManager.Instance.registerObject(this.prefab);
-    }
-#endif
 }
 
 
