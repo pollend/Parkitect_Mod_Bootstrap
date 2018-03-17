@@ -1,9 +1,8 @@
 ﻿using System;
-using UnityEngine;
 using System.Collections.Generic;
 using System.Xml.Linq;
-
-
+using UnityEngine;
+using UnityEngine.Rendering;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -17,25 +16,22 @@ public class FlatrideDecorator : Decorator
 	public float ZSize = 1;
 	public Vector3 closedAngleRetraints;
 
-	public FlatrideDecorator()
-	{
-	}
 #if UNITY_EDITOR
 public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 {
 
 	GUILayout.Space(10);
 	GUILayout.Label("Rating", EditorStyles.boldLabel);
-	this.Excitement = EditorGUILayout.Slider("Excitement (" + getRatingCategory(this.Excitement) + ")", this.Excitement, 0, 100);
-	this.Intensity = EditorGUILayout.Slider("Intensity (" + getRatingCategory(this.Intensity) + ")", this.Intensity, 0, 100);
-	this.Nausea = EditorGUILayout.Slider("Nausea (" + getRatingCategory(this.Nausea) + ")", this.Nausea, 0, 100);
+	Excitement = EditorGUILayout.Slider("Excitement (" + getRatingCategory(Excitement) + ")", Excitement, 0, 100);
+	Intensity = EditorGUILayout.Slider("Intensity (" + getRatingCategory(Intensity) + ")", Intensity, 0, 100);
+	Nausea = EditorGUILayout.Slider("Nausea (" + getRatingCategory(Nausea) + ")", Nausea, 0, 100);
 	GUILayout.Space(10);
-	this.closedAngleRetraints = EditorGUILayout.Vector3Field("Closed Restraints Angle", this.closedAngleRetraints);
+	closedAngleRetraints = EditorGUILayout.Vector3Field("Closed Restraints Angle", closedAngleRetraints);
 
 	GUILayout.Space(10);
 	GUI.color = Color.white;
-	this.XSize = (float)EditorGUILayout.IntField("X", (int)Math.Floor(this.XSize));
-	this.ZSize = (float)EditorGUILayout.IntField("Z", (int)Math.Floor(this.ZSize));
+	XSize = EditorGUILayout.IntField("X", (int)Math.Floor(XSize));
+	ZSize = EditorGUILayout.IntField("Z", (int)Math.Floor(ZSize));
 
 	base.RenderInspectorGUI (parkitectObj);
 }
@@ -46,14 +42,15 @@ public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 		if (refrence == null)
 			return;
 		
-		Vector3 topLeft = new Vector3(-this.XSize / 2.0f, 0, this.ZSize / 2.0f) + refrence.transform.position;
-		Vector3 topRight = new Vector3(this.XSize / 2.0f, 0, this.ZSize / 2.0f) + refrence.transform.position;
-		Vector3 bottomLeft = new Vector3(-this.XSize / 2.0f, 0, -this.ZSize / 2.0f) + refrence.transform.position;
-		Vector3 bottomRight = new Vector3(this.XSize / 2.0f, 0, -this.ZSize / 2.0f) + refrence.transform.position;
+		Vector3 topLeft = new Vector3(-XSize / 2.0f, 0, ZSize / 2.0f) + refrence.transform.position;
+		Vector3 topRight = new Vector3(XSize / 2.0f, 0, ZSize / 2.0f) + refrence.transform.position;
+		Vector3 bottomLeft = new Vector3(-XSize / 2.0f, 0, -ZSize / 2.0f) + refrence.transform.position;
+		Vector3 bottomRight = new Vector3(XSize / 2.0f, 0, -ZSize / 2.0f) + refrence.transform.position;
 
 		Color fill = Color.white;
 		fill.a = 0.1f;
-		Handles.DrawSolidRectangleWithOutline(new Vector3[] { topLeft, topRight, bottomRight, bottomLeft }, fill, Color.black);
+		Handles.zTest = CompareFunction.LessEqual;
+		Handles.DrawSolidRectangleWithOutline(new[] { topLeft, topRight, bottomRight, bottomLeft }, fill, Color.black);
 
 		base.RenderSceneGUI (parkitectObj);
 	}
@@ -79,7 +76,7 @@ public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 
 	public override List<XElement> Serialize (ParkitectObj parkitectObj)
 	{
-		return new List<XElement>(new XElement[]{
+		return new List<XElement>(new[]{
 			new XElement("Excitement",Excitement),
 			new XElement("Intensity",Intensity),
 			new XElement("Nausea",Nausea),

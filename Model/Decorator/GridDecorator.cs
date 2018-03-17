@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
-
-
+using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -23,14 +22,38 @@ public class GridDecorator : Decorator
 	#if UNITY_EDITOR
 	public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 	{
-		this.grid = EditorGUILayout.Toggle("GridSnap: ", this.grid);
-		this.heightDelta = EditorGUILayout.FloatField("HeightDelta: ", this.heightDelta);
-		this.snapCenter = EditorGUILayout.Toggle("SnapCenter: ", this.snapCenter);
-		this.gridSubdivision = EditorGUILayout.FloatField("Grid Subdivision", this.gridSubdivision);
-
+		
+		grid = EditorGUILayout.Toggle("GridSnap: ", this.grid);
+		snapCenter = EditorGUILayout.Toggle("SnapCenter: ", this.snapCenter);
+		
+		heightDelta = Mathf.RoundToInt(EditorGUILayout.Slider("Height delta: ", heightDelta, 0.05f, 1) * 200f) / 200f;
+		gridSubdivision = Mathf.RoundToInt(EditorGUILayout.Slider("Grid subdivision: ", gridSubdivision, 1, 9));
+		
 	    base.RenderInspectorGUI (parkitectObj);
 	}
-	#endif
+
+	public override void RenderSceneGUI(ParkitectObj parkitectObj)
+	{
+		GameObject gameObject = parkitectObj.getGameObjectRef(false);
+		if (gameObject)
+		{
+			var min = snapCenter ? -2.5f : -3f;
+			var max = snapCenter ? 2.5f : 3f;
+
+			for (float x = min; x <= max; x += 1 / gridSubdivision)
+			{
+				Handles.DrawLine(gameObject.transform.position + new Vector3(x, 0, min),gameObject.transform.position + new Vector3(x, 0, max));
+			}
+
+			for (float z = min; z <= max; z += 1 / gridSubdivision)
+			{
+				Handles.DrawLine(gameObject.transform.position + new Vector3(min, 0, z),gameObject.transform.position + new Vector3(max, 0, z));
+			}
+		}
+
+		base.RenderSceneGUI(parkitectObj);
+	}
+#endif
 
 	public override List<XElement> Serialize (ParkitectObj parkitectObj)
 	{

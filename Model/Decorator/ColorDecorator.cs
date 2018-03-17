@@ -13,8 +13,9 @@ using System.Collections.Generic;
 public class ColorDecorator : Decorator
 {
 	public bool isRecolorable;
-
-	public List<Color> colors = new List<Color>();
+	public Color[] colors =
+		{new Color(0.95f, 0, 0), new Color(0.32f, 0, 0), new Color(0.110f, 0.059f, 1f), new Color(1f, 0, 1f)};
+	public int colorCount = 1;
 
 	public ColorDecorator()
 	{
@@ -22,93 +23,66 @@ public class ColorDecorator : Decorator
 	}
 
 #if UNITY_EDITOR
-public override void RenderInspectorGUI (ParkitectObj parkitectObj)
-{
-	//ModManager.asset.Shader = (ParkitectObject.Shaders)EditorGUILayout.EnumPopup("Shader", ModManager.asset.Shader);
-    isRecolorable = EditorGUILayout.BeginToggleGroup("Recolorable", isRecolorable);
-
-    if (isRecolorable)
+	public override void RenderInspectorGUI(ParkitectObj parkitectObj)
 	{
-		try
+		//ModManager.asset.Shader = (ParkitectObject.Shaders)EditorGUILayout.EnumPopup("Shader", ModManager.asset.Shader);
+		isRecolorable = EditorGUILayout.BeginToggleGroup("Recolorable", isRecolorable);
+
+		if (isRecolorable)
 		{
-
-			for(int x =0; x < colors.Count; x++)
-			{
-				this.colors[x] = EditorGUILayout.ColorField("Color "+x, this.colors[x]);
-						
-			}
-
-			GUILayout.BeginHorizontal();
-
 			GUILayout.BeginVertical();
-
-			if(GUILayout.Button("Add Color"))
+			try
 			{
-					
-					switch(colors.Count)
-					{
-						case 0:
-							colors.Add(new Color(0.95f, 0, 0));
-							break;
-						case 1:
-							colors.Add(new Color(0.32f, 0, 0));
-							break;
-						case 2:
-							colors.Add(new Color(0.110f, 0.059f, 1f));
-							break;
-						case 3:
-							colors.Add(new Color(1f, 0, 1f));
-							break;
-					}
+				colorCount = Mathf.RoundToInt(EditorGUILayout.Slider("Color Count: ", colorCount, 1, 4));
+				for (int x = 0; x < colorCount; x++)
+				{
+					colors[x] = EditorGUILayout.ColorField("Color " + x, this.colors[x]);
 
+				}
 			}
-			GUILayout.EndVertical();
-
-			GUILayout.BeginVertical();
-			if(GUILayout.Button("Remove Color"))
+			catch (Exception)
 			{
-				colors.RemoveAt(colors.Count -1);
 			}
+
 			GUILayout.EndVertical();
-
-
-			GUILayout.EndHorizontal();
-
-
 		}
-		catch (Exception)
-		{
-		}
+		EditorGUILayout.EndToggleGroup();
+
+
+		base.RenderInspectorGUI(parkitectObj);
 	}
-	EditorGUILayout.EndToggleGroup();
-
-    base.RenderInspectorGUI (parkitectObj);
-}
 #endif
 
-	public override List<XElement> Serialize (ParkitectObj parkitectObj)
+	public override List<XElement> Serialize(ParkitectObj parkitectObj)
 	{
-		List<XElement> xmlcolors = new List<XElement> ();
-		for (int x = 0; x < colors.Count; x++) {	
-			xmlcolors.Add (new XElement("Color", Utility.SerializeColor (colors[x])));
+		List<XElement> xmlcolors = new List<XElement>();
+		for (int x = 0; x < colorCount; x++)
+		{
+			xmlcolors.Add(new XElement("Color", Utility.SerializeColor(colors[x])));
 		}
-		return new List<XElement>{
-			new XElement("Colors",xmlcolors),
-			new XElement("IsRecolorable",isRecolorable),
+
+		return new List<XElement>
+		{
+			new XElement("Colors", xmlcolors),
+			new XElement("IsRecolorable", isRecolorable),
 		};
 	}
 
-	public override void Deserialize (XElement elements)
+	public override void Deserialize(XElement elements)
 	{
-		if (elements.Element ("Colors") != null) {
-			foreach (XElement colorXml in elements.Element("Colors").Elements("Color")) {
-				colors.Add(Utility.DeSerializeColor (colorXml));
+		if (elements.Element("Colors") != null)
+		{
+			int index = 0;
+			foreach (XElement colorXml in elements.Element("Colors").Elements("Color"))
+			{
+				colors[index] = Utility.DeSerializeColor(colorXml);
+				index++;
 			}
 		}
-		if(elements.Element ("IsRecolorable") != null)
-			isRecolorable = bool.Parse (elements.Element ("IsRecolorable").Value);
-		base.Deserialize (elements);
-	}
 
+		if (elements.Element("IsRecolorable") != null)
+			isRecolorable = bool.Parse(elements.Element("IsRecolorable").Value);
+		base.Deserialize(elements);
+	}
 }
 

@@ -1,22 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
-
-
+using UnityEngine;
+using UnityEngine.Rendering;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-using UnityEngine;
 
 [Serializable]
 public class BaseDecorator : Decorator
 {
-		public BaseDecorator()
-		{
-		}
-
-
-		[SerializeField]
+	[SerializeField]
 		public string InGameName;
 
 		[SerializeField]
@@ -26,9 +20,8 @@ public class BaseDecorator : Decorator
 
     public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 	{
-
-		this.InGameName = EditorGUILayout.TextField("In Game name: ", this.InGameName);
-		this.price = EditorGUILayout.FloatField("Price: ", this.price);
+		InGameName = EditorGUILayout.TextField("In Game name: ", InGameName);
+		price = EditorGUILayout.FloatField("Price: ", price);
         base.RenderInspectorGUI (parkitectObj);
 	}
 #endif

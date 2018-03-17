@@ -107,10 +107,10 @@ public class ShopDecorator : Decorator
 
 	public override void CleanUp (ParkitectObj parkitectObj)
 	{
-		for (int i = 0; i < products.Count; i++) {
-			DestroyImmediate (products [i], true);
+		foreach (var t in products)
+		{
+			DestroyImmediate(t, true);
 		}
-
 		base.CleanUp (parkitectObj);
 	}
 	#endif

@@ -200,7 +200,7 @@ public class ParkitectObj : ScriptableObject
 			foreach (var decorator in element.Element("Decorators").Elements()) {
 				Decorator dec =  Utility.GetByTypeName<Decorator> (decorator.Name.LocalName);
 				dec.Deserialize (decorator);
-				this.decorators.Add (dec);
+				decorators.Add (dec);
 			}
 	}
 

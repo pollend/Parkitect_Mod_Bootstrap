@@ -11,13 +11,15 @@ public class FlatRideParkitectObject : ParkitectObj
 
 	public override Type[] SupportedDecorators()
 	{
-		return new Type[] {
-		typeof(BaseDecorator),
-		typeof(WaypointDecorator),
-		typeof(FlatrideDecorator),
-		typeof(BoundingBoxDecorator),
-		typeof(AnimatorDecorator)
-	};
+		return new Type[]
+		{
+			typeof(BaseDecorator),
+			typeof(WaypointDecorator),
+			typeof(FlatrideDecorator),
+			typeof(BoundingBoxDecorator),
+			typeof(AnimatorDecorator),
+			typeof(SeatDecorator)
+		};
 	}
 
 }

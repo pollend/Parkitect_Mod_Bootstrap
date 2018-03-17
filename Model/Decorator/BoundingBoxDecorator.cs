@@ -7,6 +7,7 @@ using System.Xml.Linq;
 using UnityEditor;
 #endif
 using System.Collections.Generic;
+using UnityEngine.Rendering;
 
 public class BoundingBoxDecorator : Decorator
 {
@@ -86,16 +87,16 @@ public class BoundingBoxDecorator : Decorator
         int controlID = GUIUtility.GetControlID(GetHashCode(), FocusType.Passive);
         switch (Event.current.type)
         {
-        case EventType.layout:
+        case EventType.Layout:
             HandleUtility.AddDefaultControl(controlID);
             break;
-        case EventType.keyDown:
+        case EventType.KeyDown:
             if (Event.current.keyCode == KeyCode.S)
             {
                 snap = true;
             }
             break;
-        case EventType.keyUp:
+        case EventType.KeyUp:
             if (Event.current.keyCode == KeyCode.S)
             {
                 snap = false;
@@ -128,22 +129,23 @@ public class BoundingBoxDecorator : Decorator
                 outer = Color.black;
             }
 
-            // left
+	        
+	        // left
             drawPlane(box.bounds.min, box.bounds.min + diffZ, box.bounds.min + diffZ + diffY, box.bounds.min + diffY, fill, outer, parkitectObj);
 
-            //back
+	        //back
             drawPlane(box.bounds.min, box.bounds.min + diffX, box.bounds.min + diffX + diffY, box.bounds.min + diffY, fill, outer, parkitectObj);
 
-            //right
+	        //right
             drawPlane(box.bounds.max, box.bounds.max - diffY, box.bounds.max - diffY - diffZ, box.bounds.max - diffZ, fill, outer, parkitectObj);
 
-            //forward
+	        //forward
             drawPlane(box.bounds.max, box.bounds.max - diffY, box.bounds.max - diffY - diffX, box.bounds.max - diffX, fill, outer, parkitectObj);
 
             //up
             drawPlane(box.bounds.max, box.bounds.max - diffX, box.bounds.max - diffX - diffZ, box.bounds.max - diffZ, fill, outer, parkitectObj);
-
-            //down
+            
+	        //down
             drawPlane(box.bounds.min, box.bounds.min + diffX, box.bounds.min + diffX + diffZ, box.bounds.min + diffZ, fill, outer, parkitectObj);
 
             if (enableEditing && box == selected)
