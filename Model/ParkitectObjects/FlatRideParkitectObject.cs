@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 
 [ParkitectObjectTag("FlatRide")]
@@ -22,7 +24,7 @@ public class FlatRideParkitectObject : ParkitectObj
 		};
 	}
 #if (PARKITECT)
-	public override void BindToParkitect()
+	public override void BindToParkitect(GameObject hider,List<SerializedMonoBehaviour> register)
 	{
 		BaseDecorator baseDecorator = this.DecoratorByInstance<BaseDecorator>();
 		WaypointDecorator waypointDecorator = this.DecoratorByInstance<WaypointDecorator>();
@@ -30,7 +32,7 @@ public class FlatRideParkitectObject : ParkitectObj
 		BoundingBoxDecorator boundingBoxDecorator = this.DecoratorByInstance<BoundingBoxDecorator>();
 		AnimatorDecorator animatorDecorator = this.DecoratorByInstance<AnimatorDecorator>();
 
-		base.BindToParkitect();
+		base.BindToParkitect(hider,register);
 	}
 #endif
 

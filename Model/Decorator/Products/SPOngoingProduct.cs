@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Xml.Linq;
 
 [Serializable]
@@ -46,4 +47,19 @@ public class SPOngoingProduct : SPProduct
 		if(element.Element ("DestroyWhenDepleted") != null)
 			this.DestroyWhenDepleted = bool.Parse(element.Element ("DestroyWhenDepleted").Value);
 	}
+	
+#if PARKITECT
+	public override Product Decorate()
+	{
+		GameObject go = new GameObject();
+		CustomOngoingEffectProduct ongoingEffectProduct =  go.AddComponent<CustomOngoingEffectProduct>();
+		
+		ongoingEffectProduct.duration = Duration;
+		ongoingEffectProduct.removeFromInventoryWhenDepleted = RemoveWhenDepleted;
+		ongoingEffectProduct.destroyWhenDepleted = DestroyWhenDepleted;
+		
+		return ongoingEffectProduct;
+
+	}
+#endif
 }

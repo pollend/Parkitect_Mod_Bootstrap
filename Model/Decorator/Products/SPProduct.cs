@@ -8,7 +8,7 @@ using UnityEditor;
 #endif
 using System.Collections.Generic;
 
-public class SPProduct : ScriptableObject
+public abstract class SPProduct : ScriptableObject
 {
 	public enum Temperature
 	{
@@ -153,5 +153,9 @@ public class SPProduct : ScriptableObject
 			}
 		}
 	}
+
+#if PARKITECT
+	public abstract Product Decorate();
+#endif
 
 }

@@ -1,12 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/Model/Proxy/Shop/Products/CustomConsumableProduct.cs" line="0" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="b2b85ec9-30e8-496e-93de-9f9a58a6de2c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.ParkitectModBootstrap/.idea/contentModel.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Model/ParkitectObjects/EmptyParkitectObject.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Model/Proxy/Shop/CustomShop.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlatRideAnimator/Motor/SPMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlatRideAnimator/Motor/SPMover.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/ModPayload.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/ModPayload.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/Decorator/ResizableDecorator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/ParkitectObjects/SignParkitectObject.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/ParkitectObjects/TrashbinParkitectObject.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/ParkitectObjects/TvParkitectObject.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/ParkitectObjects/WallDecoratorObject.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/Proxy/Shop/Products/BaseProduct.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/Proxy/Shop/Products/CustomConsumableProduct.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/Proxy/Shop/Products/CustomOngoingEffectProduct.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/Proxy/Shop/Products/CustomWerableProduct.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Utility/RemapUtility.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ParkitectModBootstrap/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ParkitectModBootstrap/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ParkitectModBootstrap/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ParkitectModBootstrap/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Decorator/BaseDecorator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Decorator/BaseDecorator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Decorator/CategoryDecorator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Decorator/CategoryDecorator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Decorator/ColorDecorator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Decorator/ColorDecorator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Decorator/Decorator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Decorator/Decorator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Decorator/GridDecorator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Decorator/GridDecorator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Decorator/Products/SPConsumableProduct.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Decorator/Products/SPConsumableProduct.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Decorator/Products/SPIngredients.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Decorator/Products/SPIngredients.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Decorator/Products/SPOngoingProduct.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Decorator/Products/SPOngoingProduct.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Decorator/Products/SPProduct.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Decorator/Products/SPProduct.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Decorator/Products/SPWearableProduct.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Decorator/Products/SPWearableProduct.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Decorator/ShopDecorator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Decorator/ShopDecorator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Model/ParkitectObj.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/ParkitectObj.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Model/ParkitectObjects/DecoParkitectObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/ParkitectObjects/DecoParkitectObject.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Model/ParkitectObjects/FlatRideParkitectObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/ParkitectObjects/FlatRideParkitectObject.cs" afterDir="false" />
@@ -14,6 +35,7 @@
       <change beforePath="$PROJECT_DIR$/Model/ParkitectObjects/SeatingParkitectObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/ParkitectObjects/SeatingParkitectObject.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Model/ParkitectObjects/ShopParkitectObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/ParkitectObjects/ShopParkitectObject.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Model/ParkitectObjects/WallParkitectObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/ParkitectObjects/WallParkitectObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Proxy/Shop/CustomShop.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Proxy/Shop/CustomShop.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ParkitectModBootstrap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ParkitectModBootstrap.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ParkitectModBootstrap.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ParkitectModBootstrap.csproj" afterDir="false" />
     </list>
@@ -26,83 +48,57 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DecoParkitectObject.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/DecoParkitectObject.cs">
+      <file leaf-file-name="SPConsumableProduct.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Model/Decorator/Products/SPConsumableProduct.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
+            <state relative-caret-position="136">
+              <caret line="11" column="17" lean-forward="true" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
               <folding>
-                <marker date="1521306474936" expanded="false" signature="6:32" ph="..." />
-                <marker date="1521306474936" expanded="true" signature="125:1838" ph="{...}" />
-                <marker date="1521306474936" expanded="true" signature="177:417" ph="{...}" />
-                <marker date="1521306474936" expanded="true" signature="213:410" ph="{...}" />
-                <marker date="1521306474936" expanded="true" signature="477:1829" ph="{...}" />
-                <marker date="1521306474936" expanded="true" signature="1466:1620" ph="{...}" />
-                <marker date="1521306474936" expanded="true" signature="1677:1790" ph="{...}" />
+                <marker date="1521337899315" expanded="false" signature="6:89" ph="..." />
+                <marker date="1521337899315" expanded="true" signature="305:3380" ph="{...}" />
+                <marker date="1521337899315" expanded="true" signature="916:1220" ph="{...}" />
+                <marker date="1521337899315" expanded="true" signature="1274:1831" ph="{...}" />
+                <marker date="1521337899315" expanded="true" signature="1883:3370" ph="{...}" />
+                <marker date="1521337899315" expanded="true" signature="2200:2736" ph="{...}" />
+                <marker date="1521337899315" expanded="true" signature="2758:3097" ph="{...}" />
+                <marker date="1521337899315" expanded="true" signature="3118:3295" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ParkitectObj.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Model/ParkitectObj.cs">
+      <file leaf-file-name="SPOngoingProduct.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Model/Decorator/Products/SPOngoingProduct.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="577">
-              <caret line="196" column="8" selection-start-line="196" selection-start-column="8" selection-end-line="196" selection-end-column="8" />
+            <state relative-caret-position="119">
+              <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
               <folding>
-                <marker date="1521306768229" expanded="false" signature="6:143" ph="..." />
-                <marker date="1521306768229" expanded="true" signature="284:4862" ph="{...}" />
-                <marker date="1521306768229" expanded="true" signature="2355:2546" ph="{...}" />
-                <marker date="1521306768229" expanded="true" signature="2505:2542" ph="{...}" />
-                <marker date="1521306768229" expanded="true" signature="2592:2623" ph="{...}" />
-                <marker date="1521306768229" expanded="true" signature="3741:4062" ph="{...}" />
-                <marker date="1521306768229" expanded="true" signature="3841:3945" ph="{...}" />
-                <marker date="1521306768229" expanded="true" signature="3980:4057" ph="{...}" />
-                <marker date="1521306768229" expanded="true" signature="4128:4644" ph="{...}" />
-                <marker date="1521306768229" expanded="true" signature="4377:4641" ph="{...}" />
-                <marker date="1521306768229" expanded="true" signature="4448:4634" ph="{...}" />
-                <marker date="1521306768229" expanded="true" signature="4703:4792" ph="{...}" />
+                <marker date="1521337899382" expanded="false" signature="50:158" ph="..." />
+                <marker date="1521337899382" expanded="true" signature="216:1917" ph="{...}" />
+                <marker date="1521337899382" expanded="true" signature="761:1037" ph="{...}" />
+                <marker date="1521337899382" expanded="true" signature="1091:1489" ph="{...}" />
+                <marker date="1521337899382" expanded="true" signature="1541:1908" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ParkitectModBootstrap.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ParkitectModBootstrap.cs">
+      <file leaf-file-name="SPProduct.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Model/Decorator/Products/SPProduct.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="38" column="38" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
+            <state relative-caret-position="2533">
+              <caret line="157" column="19" selection-start-line="157" selection-start-column="11" selection-end-line="157" selection-end-column="19" />
               <folding>
-                <marker date="1521306802551" expanded="false" signature="6:72" ph="..." />
-                <marker date="1521306802551" expanded="true" signature="134:3516" ph="{...}" />
-                <marker date="1521306802551" expanded="true" signature="174:187" ph="{...}" />
-                <marker date="1521306802551" expanded="true" signature="217:3281" ph="{...}" />
-                <marker date="1521306802551" expanded="true" signature="308:2175" ph="{...}" />
-                <marker date="1521306802551" expanded="true" signature="451:2165" ph="{...}" />
-                <marker date="1521306802551" expanded="true" signature="517:2134" ph="{...}" />
-                <marker date="1521306802551" expanded="true" signature="616:2116" ph="{...}" />
-                <marker date="1521306802551" expanded="true" signature="960:1819" ph="{...}" />
-                <marker date="1521306802551" expanded="true" signature="1375:1760" ph="{...}" />
-                <marker date="1521306802551" expanded="true" signature="1863:1966" ph="{...}" />
-                <marker date="1521306802551" expanded="true" signature="2183:3274" ph="/* try ... */" />
-                <marker date="1521306802551" expanded="true" signature="3311:3368" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ModPayload.cs" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Model/ModPayload.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="41" column="61" selection-start-line="41" selection-start-column="61" selection-end-line="41" selection-end-column="61" />
-              <folding>
-                <marker date="1521306789348" expanded="false" signature="6:134" ph="..." />
-                <marker date="1521306789348" expanded="true" signature="208:1453" ph="{...}" />
-                <marker date="1521306789348" expanded="true" signature="533:990" ph="{...}" />
-                <marker date="1521306789348" expanded="true" signature="644:764" ph="{...}" />
-                <marker date="1521306789348" expanded="true" signature="1058:1448" ph="{...}" />
-                <marker date="1521306789348" expanded="true" signature="1181:1344" ph="{...}" />
+                <marker date="1521328806813" expanded="false" signature="6:134" ph="..." />
+                <marker date="1521328806813" expanded="true" signature="186:3889" ph="{...}" />
+                <marker date="1521328806813" expanded="true" signature="213:241" ph="{...}" />
+                <marker date="1521328806813" expanded="true" signature="505:511" ph="{...}" />
+                <marker date="1521328806813" expanded="true" signature="2930:3293" ph="{...}" />
+                <marker date="1521328806813" expanded="true" signature="3036:3121" ph="{...}" />
+                <marker date="1521328806813" expanded="true" signature="3166:3288" ph="{...}" />
+                <marker date="1521328806813" expanded="true" signature="3345:3827" ph="{...}" />
+                <marker date="1521328806813" expanded="true" signature="3588:3824" ph="{...}" />
+                <marker date="1521328806813" expanded="true" signature="3681:3820" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -115,6 +111,10 @@
       <find>refrec</find>
       <find>vir</find>
       <find>prefab</find>
+      <find>GUI</find>
+      <find>dontSerialize</find>
+      <find>price</find>
+      <find>dis</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -122,40 +122,113 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Model/ParkitectObj.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4E0C5DF9-FDA0-4C8B-98C0-26588404E229/c8/f8144cac/Material.cs" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Model/ModPayload.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FlatRideAnimator/Motor/SPMover.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Model/Proxy/Shop/CustomShop.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Needs/SPBoundingBox.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14F465A1-8A30-46D3-B7B8-1BE39A30EA5C/a2/d9ebbaff/OngoingEffectProduct.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14F465A1-8A30-46D3-B7B8-1BE39A30EA5C/3c/9082eecc/Item.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$USER_HOME$/projects/ModSpark/Assets/Parkitect-Mod-Spark/Parkitect_Mod_Bootstrap/Model/ParkitectObj.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14F465A1-8A30-46D3-B7B8-1BE39A30EA5C/56/c463dce9/TemperaturePreference.cs" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/ParkitectModBootstrap.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14F465A1-8A30-46D3-B7B8-1BE39A30EA5C/24/668f82d9/Hand.cs" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/ParkitectObjectType.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/EmptyParkitectObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4E0C5DF9-FDA0-4C8B-98C0-26588404E229/75/3aa0de7d/ScriptableObject.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14F465A1-8A30-46D3-B7B8-1BE39A30EA5C/3a/9b4d0a61/ScriptableSingleton`1.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Model/Proxy/Shop/Products/BaseProduct.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14F465A1-8A30-46D3-B7B8-1BE39A30EA5C/d6/258e7ca9/Deco.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Needs/SPBoundingBox.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Decorator/ResizableDecorator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Decorator/Products/SPOngoingProduct.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Decorator/Products/SPConsumableProduct.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Decorator/Products/SPProduct.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14F465A1-8A30-46D3-B7B8-1BE39A30EA5C/61/68d510c6/SerializedMonoBehaviour.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Model/Decorator/Products/SPIngredients.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Decorator/Products/SPWearableProduct.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Decorator/FlatrideDecorator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Decorator/PathDecorator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/WallDecoratorObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Decorator/WaypointDecorator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/TrashbinParkitectObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Decorator/GridDecorator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/SignParkitectObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Decorator/ShopDecorator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/TvParkitectObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Decorator/CategoryDecorator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Decorator/SeatDecorator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Decorator/ColorDecorator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Decorator/AnimatorDecorator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Decorator/Decorator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14F465A1-8A30-46D3-B7B8-1BE39A30EA5C/c0/db61e17e/PathStyle.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Model/Decorator/BaseDecorator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/ParkitectObjectTag.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14F465A1-8A30-46D3-B7B8-1BE39A30EA5C/86/5799dd9e/AssetManager.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14F465A1-8A30-46D3-B7B8-1BE39A30EA5C/ba/b117de6e/PathStyleContainer.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14F465A1-8A30-46D3-B7B8-1BE39A30EA5C/20/97a9ea16/Seating.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4E0C5DF9-FDA0-4C8B-98C0-26588404E229/b5/9404c865/GameObject.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14F465A1-8A30-46D3-B7B8-1BE39A30EA5C/1b/6b32ba86/BuildableObject.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Utility/RemapUtility.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Proxy/Shop/Products/CustomConsumableProduct.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Proxy/Shop/Products/CustomOngoingEffectProduct.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Proxy/Shop/Products/CustomWerableProduct.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/WallParkitectObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/ShopParkitectObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14F465A1-8A30-46D3-B7B8-1BE39A30EA5C/21/b705afd4/Product.cs" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/SeatingParkitectObject.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Model/Decorator/AnimatorDecorator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/PathStyleParkitectObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/FlatRideParkitectObject.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Model/Decorator/Decorator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/DecoParkitectObject.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Model/ParkitectObjectTag.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/ParkitectModBootstrap.csproj" />
+        <option value="$PROJECT_DIR$/BootStrapper.cs" />
+        <option value="$PROJECT_DIR$/FlatRideAnimator/Motor/SPMover.cs" />
+        <option value="$PROJECT_DIR$/Model/ParkitectObjects/EmptyParkitectObject.cs" />
+        <option value="$PROJECT_DIR$/Model/ModPayload.cs" />
+        <option value="$PROJECT_DIR$/Model/Decorator/DecoDecorator.cs" />
+        <option value="$PROJECT_DIR$/Model/Decorator/ResizableDecorator.cs" />
+        <option value="$PROJECT_DIR$/Model/ParkitectObjects/TrashBinDecorator.cs" />
+        <option value="$PROJECT_DIR$/Model/ParkitectObjects/TrashbinParkitectObject.cs" />
+        <option value="$PROJECT_DIR$/Model/ParkitectObjects/BenchParkitectObject.cs" />
+        <option value="$PROJECT_DIR$/Model/ParkitectObjects/SignParkitectObject.cs" />
+        <option value="$PROJECT_DIR$/Model/ParkitectObjects/TvParkitectObject.cs" />
+        <option value="$PROJECT_DIR$/Model/Decorator/GridDecorator.cs" />
+        <option value="$PROJECT_DIR$/Model/Proxy/Shop/Products/ConsumableProduceInstance.cs" />
+        <option value="$PROJECT_DIR$/Model/Proxy/Shop/Products/ConsumableProduct.cs" />
+        <option value="$PROJECT_DIR$/Model/Proxy/Shop/Products/OngoingEffectProduct.cs" />
+        <option value="$PROJECT_DIR$/Model/Proxy/Shop/Products/CustomWerableProductInstance.cs.cs" />
+        <option value="$PROJECT_DIR$/Model/Proxy/Shop/CustomShop.cs" />
+        <option value="$PROJECT_DIR$/Model/ParkitectObj.cs" />
+        <option value="$PROJECT_DIR$/Model/ParkitectObjects/WallParkitectObject.cs" />
         <option value="$PROJECT_DIR$/Model/ParkitectObjects/PathStyleParkitectObject.cs" />
         <option value="$PROJECT_DIR$/Model/ParkitectObjects/FlatRideParkitectObject.cs" />
-        <option value="$PROJECT_DIR$/Model/Proxy/Shop/CustomShop.cs" />
-        <option value="$PROJECT_DIR$/BootStrapper.cs" />
-        <option value="$PROJECT_DIR$/Model/ParkitectObjects/SeatingParkitectObject.cs" />
-        <option value="$PROJECT_DIR$/Model/ParkitectObjects/ShopParkitectObject.cs" />
-        <option value="$PROJECT_DIR$/FlatRideAnimator/Motor/SPMover.cs" />
-        <option value="$PROJECT_DIR$/Model/ParkitectObjects/WallParkitectObject.cs" />
-        <option value="$PROJECT_DIR$/Model/ParkitectObjects/EmptyParkitectObject.cs" />
+        <option value="$PROJECT_DIR$/Model/Decorator/Decorator.cs" />
+        <option value="$PROJECT_DIR$/Model/Decorator/BaseDecorator.cs" />
+        <option value="$PROJECT_DIR$/Model/Decorator/CategoryDecorator.cs" />
+        <option value="$PROJECT_DIR$/Model/Decorator/ColorDecorator.cs" />
         <option value="$PROJECT_DIR$/Model/ParkitectObjects/DecoParkitectObject.cs" />
-        <option value="$PROJECT_DIR$/Model/ParkitectObj.cs" />
-        <option value="$PROJECT_DIR$/Model/ModPayload.cs" />
+        <option value="$PROJECT_DIR$/Model/ParkitectObjects/ShopParkitectObject.cs" />
+        <option value="$PROJECT_DIR$/Model/ParkitectObjects/SeatingParkitectObject.cs" />
+        <option value="$PROJECT_DIR$/Model/Decorator/Products/SPIngredients.cs" />
+        <option value="$PROJECT_DIR$/Utility/RemapUtility.cs" />
+        <option value="$PROJECT_DIR$/Model/ParkitectObjects/WallDecoratorObject.cs" />
+        <option value="$PROJECT_DIR$/Model/Decorator/Products/SPProduct.cs" />
+        <option value="$PROJECT_DIR$/Model/Decorator/ShopDecorator.cs" />
         <option value="$PROJECT_DIR$/ParkitectModBootstrap.cs" />
+        <option value="$PROJECT_DIR$/Model/Proxy/Shop/Products/CustomItemProduct.cs" />
+        <option value="$PROJECT_DIR$/Model/Decorator/Products/ProxyWearableProduct.cs" />
+        <option value="$PROJECT_DIR$/Model/Decorator/Products/SPWearableProduct.cs" />
+        <option value="$PROJECT_DIR$/Model/Decorator/BaseProductDecorator.cs" />
+        <option value="$PROJECT_DIR$/Model/Proxy/Shop/Products/BaseProduct.cs" />
+        <option value="$PROJECT_DIR$/Model/Proxy/Shop/Products/CustomOngoingEffectProduct.cs" />
+        <option value="$PROJECT_DIR$/Model/Proxy/Shop/Products/CustomWerableProduct.cs" />
+        <option value="$PROJECT_DIR$/Model/Proxy/Shop/Products/CustomConsumableProduct.cs" />
+        <option value="$PROJECT_DIR$/Model/Decorator/Products/SPItemProduct.cs" />
+        <option value="$PROJECT_DIR$/Model/Decorator/Products/SPConsumableProduct.cs" />
+        <option value="$PROJECT_DIR$/Model/Decorator/Products/SPOngoingProduct.cs" />
       </list>
     </option>
   </component>
@@ -190,13 +263,22 @@
               <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
               <item name="ParkitectModBootstrap (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="ParkitectModBootstrap" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="FlatRideAnimator" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Model" type="977d5f41:SolutionExplorerNodeRider" />
             </path>
             <path>
               <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
               <item name="ParkitectModBootstrap (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="ParkitectModBootstrap" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="Model" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Decorator" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="ParkitectModBootstrap (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="ParkitectModBootstrap" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Model" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Decorator" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Products" type="977d5f41:SolutionExplorerNodeRider" />
             </path>
             <path>
               <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
@@ -209,7 +291,31 @@
               <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
               <item name="ParkitectModBootstrap (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="ParkitectModBootstrap" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Needs" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Model" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Proxy" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="ParkitectModBootstrap (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="ParkitectModBootstrap" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Model" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Proxy" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Shop" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="ParkitectModBootstrap (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="ParkitectModBootstrap" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Model" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Proxy" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Shop" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Products" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="ParkitectModBootstrap (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="ParkitectModBootstrap" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Utility" type="977d5f41:SolutionExplorerNodeRider" />
             </path>
           </expand>
           <select />
@@ -221,7 +327,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Model/ParkitectObjectTag.cs" />
+    <property name="last_opened_file_path" value="$USER_HOME$/projects/ModSpark/ModSpark.sln" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -260,12 +366,12 @@
       <option name="presentableId" value="Default" />
       <updated>1521266270889</updated>
       <workItem from="1521266273085" duration="4670000" />
-      <workItem from="1521302393152" duration="2361000" />
+      <workItem from="1521302393152" duration="28342000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7031000" />
+    <option name="totallyTimeSpent" value="33012000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -282,16 +388,17 @@
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="Errors In Solution" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Unit Tests" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
+      <window_info anchor="bottom" id="Unit Tests" order="9" />
+      <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="NuGet" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20177104" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.12024826" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24161923" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Build" order="12" visible="true" weight="0.2086889" />
+      <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.12024826" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
@@ -301,7 +408,6 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Build" order="7" weight="0.32997677" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -311,173 +417,43 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/ShopParkitectObject.cs">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14F465A1-8A30-46D3-B7B8-1BE39A30EA5C/ba/b117de6e/PathStyleContainer.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+        <state relative-caret-position="-171">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/BenchParkitectObject.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14F465A1-8A30-46D3-B7B8-1BE39A30EA5C/20/97a9ea16/Seating.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1019">
+          <caret line="66" column="36" selection-start-line="66" selection-start-column="36" selection-end-line="66" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/Decorator/SeatDecorator.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-851">
           <folding>
-            <marker date="1521270945215" expanded="true" signature="106:579" ph="{...}" />
-            <marker date="1521270945215" expanded="true" signature="154:251" ph="{...}" />
-            <marker date="1521270945215" expanded="true" signature="173:247" ph="{...}" />
-            <marker date="1521270945215" expanded="true" signature="307:570" ph="{...}" />
-            <marker date="1521270945215" expanded="true" signature="530:540" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/WallParkitectObject.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
-          <folding>
-            <marker date="1521270945155" expanded="false" signature="6:32" ph="..." />
-            <marker date="1521270945155" expanded="true" signature="201:1612" ph="{...}" />
-            <marker date="1521270945155" expanded="true" signature="260:399" ph="{...}" />
-            <marker date="1521270945155" expanded="true" signature="296:388" ph="{...}" />
-            <marker date="1521270945155" expanded="true" signature="462:1599" ph="{...}" />
-            <marker date="1521270945155" expanded="true" signature="1192:1362" ph="{...}" />
-            <marker date="1521270945155" expanded="true" signature="1423:1552" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/ParkitectObj.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="20" column="29" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="29" />
-          <folding>
-            <marker date="1521306768229" expanded="false" signature="6:143" ph="..." />
-            <marker date="1521306768229" expanded="true" signature="284:4862" ph="{...}" />
-            <marker date="1521306768229" expanded="true" signature="2355:2546" ph="{...}" />
-            <marker date="1521306768229" expanded="true" signature="2505:2542" ph="{...}" />
-            <marker date="1521306768229" expanded="true" signature="2592:2623" ph="{...}" />
-            <marker date="1521306768229" expanded="true" signature="3741:4062" ph="{...}" />
-            <marker date="1521306768229" expanded="true" signature="3841:3945" ph="{...}" />
-            <marker date="1521306768229" expanded="true" signature="3980:4057" ph="{...}" />
-            <marker date="1521306768229" expanded="true" signature="4128:4644" ph="{...}" />
-            <marker date="1521306768229" expanded="true" signature="4377:4641" ph="{...}" />
-            <marker date="1521306768229" expanded="true" signature="4448:4634" ph="{...}" />
-            <marker date="1521306768229" expanded="true" signature="4703:4792" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ParkitectModBootstrap.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="40" column="52" selection-start-line="40" selection-start-column="49" selection-end-line="40" selection-end-column="52" />
-          <folding>
-            <marker date="1521306802551" expanded="false" signature="6:72" ph="..." />
-            <marker date="1521306802551" expanded="true" signature="134:3516" ph="{...}" />
-            <marker date="1521306802551" expanded="true" signature="174:187" ph="{...}" />
-            <marker date="1521306802551" expanded="true" signature="217:3281" ph="{...}" />
-            <marker date="1521306802551" expanded="true" signature="308:2175" ph="{...}" />
-            <marker date="1521306802551" expanded="true" signature="451:2165" ph="{...}" />
-            <marker date="1521306802551" expanded="true" signature="517:2134" ph="{...}" />
-            <marker date="1521306802551" expanded="true" signature="616:2116" ph="{...}" />
-            <marker date="1521306802551" expanded="true" signature="960:1819" ph="{...}" />
-            <marker date="1521306802551" expanded="true" signature="1375:1760" ph="{...}" />
-            <marker date="1521306802551" expanded="true" signature="1863:1966" ph="{...}" />
-            <marker date="1521306802551" expanded="true" signature="2183:3274" ph="/* try ... */" />
-            <marker date="1521306802551" expanded="true" signature="3311:3368" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ParkitectModBootstrap.csproj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="45" column="14" selection-start-line="45" selection-start-column="14" selection-end-line="45" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Needs/SPBoundingBox.cs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/ParkitectObjectTag.cs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/Decorator/Decorator.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="16" column="68" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/Proxy/Shop/CustomShop.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ParkitectObjectType.cs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BootStrapper.cs" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14F465A1-8A30-46D3-B7B8-1BE39A30EA5C/3a/9b4d0a61/ScriptableSingleton`1.cs" />
-    <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/PathStyleParkitectObject.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/SeatingParkitectObject.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FlatRideAnimator/Motor/SPMover.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1956">
-          <caret line="147" column="47" selection-start-line="147" selection-start-column="47" selection-end-line="147" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/Decorator/AnimatorDecorator.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3026">
-          <caret line="188" column="99" selection-start-line="188" selection-start-column="99" selection-end-line="188" selection-end-column="99" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/ShopParkitectObject.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
-          <folding>
-            <marker date="1521270945215" expanded="true" signature="106:579" ph="{...}" />
-            <marker date="1521270945215" expanded="true" signature="154:251" ph="{...}" />
-            <marker date="1521270945215" expanded="true" signature="173:247" ph="{...}" />
-            <marker date="1521270945215" expanded="true" signature="307:570" ph="{...}" />
-            <marker date="1521270945215" expanded="true" signature="530:540" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/WallParkitectObject.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
-          <folding>
-            <marker date="1521270945155" expanded="false" signature="6:32" ph="..." />
-            <marker date="1521270945155" expanded="true" signature="201:1612" ph="{...}" />
-            <marker date="1521270945155" expanded="true" signature="260:399" ph="{...}" />
-            <marker date="1521270945155" expanded="true" signature="296:388" ph="{...}" />
-            <marker date="1521270945155" expanded="true" signature="462:1599" ph="{...}" />
-            <marker date="1521270945155" expanded="true" signature="1192:1362" ph="{...}" />
-            <marker date="1521270945155" expanded="true" signature="1423:1552" ph="{...}" />
+            <marker date="1521265968824" expanded="false" signature="7:129" ph="..." />
+            <marker date="1521265968824" expanded="true" signature="169:3351" ph="{...}" />
+            <marker date="1521265968824" expanded="true" signature="342:505" ph="{...}" />
+            <marker date="1521265968824" expanded="true" signature="2064:2205" ph="/* Debug.Log (parkitectObj.Prefab.transform.GetInstanceID ()); ... */" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/EmptyParkitectObject.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+        <state relative-caret-position="68">
+          <caret line="4" column="49" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="49" />
           <folding>
             <marker date="1521306263112" expanded="true" signature="109:268" ph="{...}" />
             <marker date="1521306263112" expanded="true" signature="145:157" ph="{...}" />
@@ -487,90 +463,693 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/FlatRideParkitectObject.cs">
+    <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/TvParkitectObject.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="9" selection-start-line="13" selection-start-column="8" selection-end-line="14" selection-end-column="9" />
+        <state relative-caret-position="68">
+          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
           <folding>
-            <marker date="1521267533497" expanded="true" signature="115:944" ph="{...}" />
-            <marker date="1521267533497" expanded="true" signature="151:157" ph="{...}" />
-            <marker date="1521267533497" expanded="true" signature="204:413" ph="{...}" />
-            <marker date="1521267533497" expanded="true" signature="230:409" ph="{...}" />
-            <marker date="1521267533497" expanded="true" signature="469:934" ph="{...}" />
+            <marker date="1521315438995" expanded="true" signature="56:116" ph="{...}" />
+            <marker date="1521315438995" expanded="true" signature="93:114" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4E0C5DF9-FDA0-4C8B-98C0-26588404E229/b5/9404c865/GameObject.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="50" column="20" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/Decorator/DecoDecorator.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14F465A1-8A30-46D3-B7B8-1BE39A30EA5C/d6/258e7ca9/Deco.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14F465A1-8A30-46D3-B7B8-1BE39A30EA5C/1b/6b32ba86/BuildableObject.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/Decorator/WaypointDecorator.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6254">
+          <folding>
+            <marker date="1521265968824" expanded="false" signature="6:118" ph="..." />
+            <marker date="1521265968824" expanded="true" signature="205:11350" ph="{...}" />
+            <marker date="1521265968824" expanded="true" signature="230:264" ph="{...}" />
+            <marker date="1521265968824" expanded="true" signature="3070:3177" ph="/* else if (Event.current.keyCode == KeyCode.A) ... */" />
+            <marker date="1521265968824" expanded="true" signature="8092:8188" ph="/* if (waypoints.Count &gt; 0) { ... */" />
+            <marker date="1521265968824" expanded="true" signature="10775:11047" ph="{...}" />
+            <marker date="1521265968824" expanded="true" signature="10878:10960" ph="{...}" />
+            <marker date="1521265968824" expanded="true" signature="10995:11042" ph="{...}" />
+            <marker date="1521265968824" expanded="true" signature="11102:11347" ph="{...}" />
+            <marker date="1521265968824" expanded="true" signature="11155:11313" ph="{...}" />
+            <marker date="1521265968824" expanded="true" signature="11245:11309" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/Decorator/GridDecorator.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-304">
+          <caret line="19" column="51" selection-start-line="19" selection-start-column="51" selection-end-line="19" selection-end-column="51" />
+          <folding>
+            <marker date="1521318252987" expanded="false" signature="6:89" ph="..." />
+            <marker date="1521318252987" expanded="true" signature="188:2470" ph="{...}" />
+            <marker date="1521318252987" expanded="true" signature="1578:1825" ph="{...}" />
+            <marker date="1521318252987" expanded="true" signature="1615:1820" ph="{...}" />
+            <marker date="1521318252987" expanded="true" signature="1880:2466" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/Proxy/Shop/CustomShop.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding>
+            <marker date="1521321469165" expanded="true" signature="54:372" ph="{...}" />
+            <marker date="1521321469165" expanded="true" signature="94:175" ph="{...}" />
+            <marker date="1521321469165" expanded="true" signature="223:370" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/SignParkitectObject.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
+          <folding>
+            <marker date="1521315430162" expanded="true" signature="56:118" ph="{...}" />
+            <marker date="1521315430162" expanded="true" signature="95:116" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/TrashbinParkitectObject.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
+          <folding>
+            <marker date="1521315409230" expanded="true" signature="56:122" ph="{...}" />
+            <marker date="1521315409230" expanded="true" signature="99:120" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/Decorator/ResizableDecorator.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="42" selection-start-line="1" selection-start-column="42" selection-end-line="1" selection-end-column="42" />
+          <folding>
+            <marker date="1521315290809" expanded="true" signature="44:53" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/WallParkitectObject.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="747">
+          <caret line="48" column="38" selection-start-line="48" selection-start-column="38" selection-end-line="48" selection-end-column="47" />
+          <folding>
+            <marker date="1521323015750" expanded="false" signature="6:85" ph="..." />
+            <marker date="1521323015750" expanded="true" signature="143:1733" ph="{...}" />
+            <marker date="1521323015750" expanded="true" signature="254:1731" ph="{...}" />
+            <marker date="1521323015750" expanded="true" signature="313:452" ph="{...}" />
+            <marker date="1521323015750" expanded="true" signature="349:441" ph="{...}" />
+            <marker date="1521323015750" expanded="true" signature="570:1718" ph="{...}" />
+            <marker date="1521323015750" expanded="true" signature="1297:1467" ph="{...}" />
+            <marker date="1521323015750" expanded="true" signature="1528:1657" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/PathStyleParkitectObject.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="730">
+          <caret line="54" column="43" selection-start-line="54" selection-start-column="43" selection-end-line="54" selection-end-column="43" />
+          <folding>
+            <marker date="1521323020353" expanded="false" signature="6:66" ph="..." />
+            <marker date="1521323020353" expanded="true" signature="164:1995" ph="{...}" />
+            <marker date="1521323020353" expanded="true" signature="215:410" ph="{...}" />
+            <marker date="1521323020353" expanded="true" signature="242:403" ph="{...}" />
+            <marker date="1521323020353" expanded="true" signature="524:1986" ph="{...}" />
+            <marker date="1521323020353" expanded="true" signature="1517:1934" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/Decorator/Decorator.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="20" column="129" selection-start-line="20" selection-start-column="129" selection-end-line="20" selection-end-column="129" />
+          <folding>
+            <marker date="1521323103762" expanded="false" signature="6:89" ph="..." />
+            <marker date="1521323103762" expanded="true" signature="147:788" ph="{...}" />
+            <marker date="1521323103762" expanded="true" signature="169:175" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/Decorator/CategoryDecorator.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="43" column="131" selection-start-line="43" selection-start-column="131" selection-end-line="43" selection-end-column="131" />
+          <folding>
+            <marker date="1521323125455" expanded="false" signature="6:89" ph="..." />
+            <marker date="1521323125455" expanded="true" signature="192:1332" ph="{...}" />
+            <marker date="1521323125455" expanded="true" signature="601:734" ph="{...}" />
+            <marker date="1521323125455" expanded="true" signature="641:729" ph="{...}" />
+            <marker date="1521323125455" expanded="true" signature="788:929" ph="{...}" />
+            <marker date="1521323125455" expanded="true" signature="1075:1323" ph="{...}" />
+            <marker date="1521323125455" expanded="true" signature="1191:1262" ph="{...}" />
+            <marker date="1521323125455" expanded="true" signature="1269:1320" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/DecoParkitectObject.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
+        <state relative-caret-position="628">
+          <caret line="52" column="65" selection-start-line="52" selection-start-column="65" selection-end-line="52" selection-end-column="65" />
           <folding>
-            <marker date="1521306474936" expanded="false" signature="6:32" ph="..." />
-            <marker date="1521306474936" expanded="true" signature="125:1838" ph="{...}" />
-            <marker date="1521306474936" expanded="true" signature="177:417" ph="{...}" />
-            <marker date="1521306474936" expanded="true" signature="213:410" ph="{...}" />
-            <marker date="1521306474936" expanded="true" signature="477:1829" ph="{...}" />
-            <marker date="1521306474936" expanded="true" signature="1466:1620" ph="{...}" />
-            <marker date="1521306474936" expanded="true" signature="1677:1790" ph="{...}" />
+            <marker date="1521323138737" expanded="false" signature="6:85" ph="..." />
+            <marker date="1521323138737" expanded="true" signature="178:2083" ph="{...}" />
+            <marker date="1521323138737" expanded="true" signature="230:470" ph="{...}" />
+            <marker date="1521323138737" expanded="true" signature="266:463" ph="{...}" />
+            <marker date="1521323138737" expanded="true" signature="585:2074" ph="{...}" />
+            <marker date="1521323138737" expanded="true" signature="1904:2021" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/FlatRideParkitectObject.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="26" column="96" selection-start-line="26" selection-start-column="58" selection-end-line="26" selection-end-column="96" />
+          <folding>
+            <marker date="1521323020436" expanded="false" signature="6:66" ph="..." />
+            <marker date="1521323020436" expanded="true" signature="168:1066" ph="{...}" />
+            <marker date="1521323020436" expanded="true" signature="204:210" ph="{...}" />
+            <marker date="1521323020436" expanded="true" signature="257:466" ph="{...}" />
+            <marker date="1521323020436" expanded="true" signature="283:462" ph="{...}" />
+            <marker date="1521323020436" expanded="true" signature="577:1056" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/Decorator/ColorDecorator.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="88" column="131" selection-start-line="88" selection-start-column="131" selection-end-line="88" selection-end-column="131" />
+          <folding>
+            <marker date="1521323129378" expanded="false" signature="6:135" ph="..." />
+            <marker date="1521323129378" expanded="true" signature="191:2378" ph="{...}" />
+            <marker date="1521323129378" expanded="true" signature="405:412" ph="{...}" />
+            <marker date="1521323129378" expanded="true" signature="1219:1524" ph="{...}" />
+            <marker date="1521323129378" expanded="true" signature="1312:1396" ph="{...}" />
+            <marker date="1521323129378" expanded="true" signature="1428:1520" ph="{...}" />
+            <marker date="1521323129378" expanded="true" signature="1578:1962" ph="{...}" />
+            <marker date="1521323129378" expanded="true" signature="1623:1807" ph="{...}" />
+            <marker date="1521323129378" expanded="true" signature="1724:1803" ph="{...}" />
+            <marker date="1521323129378" expanded="true" signature="2108:2369" ph="{...}" />
+            <marker date="1521323129378" expanded="true" signature="2132:2366" ph="{...}" />
+            <marker date="1521323129378" expanded="true" signature="2282:2318" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4E0C5DF9-FDA0-4C8B-98C0-26588404E229/c8/f8144cac/Material.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-170">
+          <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14F465A1-8A30-46D3-B7B8-1BE39A30EA5C/86/5799dd9e/AssetManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="373" column="20" selection-start-line="373" selection-start-column="20" selection-end-line="373" selection-end-column="20" />
+          <folding>
+            <marker date="1521315534684" expanded="true" signature="0:311" ph="/* Decompiled with JetBrains decompiler ... */" />
+            <marker date="1521315534684" expanded="false" signature="319:463" ph="..." />
+            <marker date="1521315534684" expanded="true" signature="542:30980" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="2966:5902" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="5964:6124" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="14183:15388" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="14634:15173" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="14779:14953" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="15414:18444" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="16430:16715" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="16809:17402" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="16887:17004" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="17015:17396" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="17192:17372" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="17518:17828" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="17585:17808" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="18498:18808" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="18542:18629" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="18638:18804" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="18885:20734" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="18971:19093" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="19102:20730" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="19757:20375" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="19932:20292" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="20082:20282" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="20193:20270" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="20849:21370" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="20961:21109" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="21118:21366" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="21426:21740" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="21470:21559" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="21568:21736" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="21812:21913" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="21992:22978" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="23056:23166" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="23283:23492" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="23584:23846" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="23922:24296" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="24045:24249" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="24137:24243" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="24386:24900" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="24440:24568" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="24577:24896" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="24669:24828" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="24966:25059" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="25151:25222" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="25273:25463" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="25514:25954" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="25693:25832" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="25841:25950" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="26007:26126" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="26177:26272" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="26364:26491" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="26554:27190" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="26780:27150" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="27268:27320" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="27380:27447" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="27522:27570" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="27705:27824" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="27947:28211" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="28294:28383" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="28505:28690" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="28776:28869" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="28994:29122" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="29190:29240" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="29292:29337" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="29399:29449" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="29501:29546" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="29610:29661" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="29732:29790" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="29864:29920" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="29992:30047" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="30105:30153" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="30205:30250" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="30330:30386" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="30443:30483" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="30548:30978" ph="{...}" />
+            <marker date="1521315534684" expanded="true" signature="30557:30665" ph="/* ISSUE: object of a compiler-generated type is created ... */" />
+            <marker date="1521315534684" expanded="true" signature="30801:30832" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Utility/RemapUtility.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="78" selection-start-line="18" selection-start-column="78" selection-end-line="18" selection-end-column="78" />
+          <folding>
+            <marker date="1521324678032" expanded="true" signature="6:37" ph="..." />
+            <marker date="1521324678032" expanded="true" signature="71:1871" ph="{...}" />
+            <marker date="1521324678032" expanded="true" signature="126:1864" ph="{...}" />
+            <marker date="1521324678032" expanded="true" signature="249:1858" ph="{...}" />
+            <marker date="1521324678032" expanded="true" signature="387:1848" ph="{...}" />
+            <marker date="1521324678032" expanded="true" signature="495:1834" ph="{...}" />
+            <marker date="1521324678032" expanded="true" signature="574:743" ph="{...}" />
+            <marker date="1521324678032" expanded="true" signature="821:1002" ph="{...}" />
+            <marker date="1521324678032" expanded="true" signature="1069:1239" ph="{...}" />
+            <marker date="1521324678032" expanded="true" signature="1318:1500" ph="{...}" />
+            <marker date="1521324678032" expanded="true" signature="1618:1815" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/WallDecoratorObject.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <marker date="1521325661930" expanded="true" signature="32:41" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14F465A1-8A30-46D3-B7B8-1BE39A30EA5C/56/c463dce9/TemperaturePreference.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14F465A1-8A30-46D3-B7B8-1BE39A30EA5C/24/668f82d9/Hand.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1173">
+          <caret line="69" column="14" selection-start-line="69" selection-start-column="14" selection-end-line="69" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/ParkitectObj.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="577">
-          <caret line="196" column="8" selection-start-line="196" selection-start-column="8" selection-end-line="196" selection-end-column="8" />
+        <state relative-caret-position="956">
+          <caret line="216" column="24" selection-start-line="216" selection-start-column="24" selection-end-line="216" selection-end-column="24" />
           <folding>
-            <marker date="1521306768229" expanded="false" signature="6:143" ph="..." />
-            <marker date="1521306768229" expanded="true" signature="284:4862" ph="{...}" />
-            <marker date="1521306768229" expanded="true" signature="2355:2546" ph="{...}" />
-            <marker date="1521306768229" expanded="true" signature="2505:2542" ph="{...}" />
-            <marker date="1521306768229" expanded="true" signature="2592:2623" ph="{...}" />
-            <marker date="1521306768229" expanded="true" signature="3741:4062" ph="{...}" />
-            <marker date="1521306768229" expanded="true" signature="3841:3945" ph="{...}" />
-            <marker date="1521306768229" expanded="true" signature="3980:4057" ph="{...}" />
-            <marker date="1521306768229" expanded="true" signature="4128:4644" ph="{...}" />
-            <marker date="1521306768229" expanded="true" signature="4377:4641" ph="{...}" />
-            <marker date="1521306768229" expanded="true" signature="4448:4634" ph="{...}" />
-            <marker date="1521306768229" expanded="true" signature="4703:4792" ph="{...}" />
+            <marker date="1521322978552" expanded="false" signature="6:143" ph="..." />
+            <marker date="1521322978552" expanded="true" signature="284:4878" ph="{...}" />
+            <marker date="1521322978552" expanded="true" signature="2319:2507" ph="{...}" />
+            <marker date="1521322978552" expanded="true" signature="2466:2503" ph="{...}" />
+            <marker date="1521322978552" expanded="true" signature="2553:2584" ph="{...}" />
+            <marker date="1521322978552" expanded="true" signature="3702:4023" ph="{...}" />
+            <marker date="1521322978552" expanded="true" signature="3802:3906" ph="{...}" />
+            <marker date="1521322978552" expanded="true" signature="3941:4018" ph="{...}" />
+            <marker date="1521322978552" expanded="true" signature="4089:4605" ph="{...}" />
+            <marker date="1521322978552" expanded="true" signature="4338:4602" ph="{...}" />
+            <marker date="1521322978552" expanded="true" signature="4409:4595" ph="{...}" />
+            <marker date="1521322978552" expanded="true" signature="4664:4753" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4E0C5DF9-FDA0-4C8B-98C0-26588404E229/75/3aa0de7d/ScriptableObject.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="50" column="20" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ParkitectModBootstrap.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="38" column="38" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
+        <state relative-caret-position="816">
+          <caret line="53" column="42" lean-forward="true" selection-start-line="53" selection-start-column="42" selection-end-line="53" selection-end-column="42" />
           <folding>
-            <marker date="1521306802551" expanded="false" signature="6:72" ph="..." />
-            <marker date="1521306802551" expanded="true" signature="134:3516" ph="{...}" />
-            <marker date="1521306802551" expanded="true" signature="174:187" ph="{...}" />
-            <marker date="1521306802551" expanded="true" signature="217:3281" ph="{...}" />
-            <marker date="1521306802551" expanded="true" signature="308:2175" ph="{...}" />
-            <marker date="1521306802551" expanded="true" signature="451:2165" ph="{...}" />
-            <marker date="1521306802551" expanded="true" signature="517:2134" ph="{...}" />
-            <marker date="1521306802551" expanded="true" signature="616:2116" ph="{...}" />
-            <marker date="1521306802551" expanded="true" signature="960:1819" ph="{...}" />
-            <marker date="1521306802551" expanded="true" signature="1375:1760" ph="{...}" />
-            <marker date="1521306802551" expanded="true" signature="1863:1966" ph="{...}" />
-            <marker date="1521306802551" expanded="true" signature="2183:3274" ph="/* try ... */" />
-            <marker date="1521306802551" expanded="true" signature="3311:3368" ph="{...}" />
+            <marker date="1521331888942" expanded="false" signature="6:136" ph="..." />
+            <marker date="1521331888942" expanded="true" signature="198:3827" ph="{...}" />
+            <marker date="1521331888942" expanded="true" signature="372:385" ph="{...}" />
+            <marker date="1521331888942" expanded="true" signature="415:3593" ph="{...}" />
+            <marker date="1521331888942" expanded="true" signature="609:2487" ph="{...}" />
+            <marker date="1521331888942" expanded="true" signature="752:2477" ph="{...}" />
+            <marker date="1521331888942" expanded="true" signature="818:2446" ph="{...}" />
+            <marker date="1521331888942" expanded="true" signature="917:2428" ph="{...}" />
+            <marker date="1521331888942" expanded="true" signature="1249:2131" ph="{...}" />
+            <marker date="1521331888942" expanded="true" signature="1664:2072" ph="{...}" />
+            <marker date="1521331888942" expanded="true" signature="2175:2278" ph="{...}" />
+            <marker date="1521331888942" expanded="true" signature="2495:3586" ph="/* try ... */" />
+            <marker date="1521331888942" expanded="true" signature="3623:3635" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/ModPayload.cs">
+    <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/SeatingParkitectObject.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="41" column="61" selection-start-line="41" selection-start-column="61" selection-end-line="41" selection-end-column="61" />
+        <state relative-caret-position="582">
+          <caret line="43" column="65" selection-start-line="43" selection-start-column="65" selection-end-line="43" selection-end-column="65" />
           <folding>
-            <marker date="1521306789348" expanded="false" signature="6:134" ph="..." />
-            <marker date="1521306789348" expanded="true" signature="208:1453" ph="{...}" />
-            <marker date="1521306789348" expanded="true" signature="533:990" ph="{...}" />
-            <marker date="1521306789348" expanded="true" signature="644:764" ph="{...}" />
-            <marker date="1521306789348" expanded="true" signature="1058:1448" ph="{...}" />
-            <marker date="1521306789348" expanded="true" signature="1181:1344" ph="{...}" />
+            <marker date="1521323177219" expanded="false" signature="6:85" ph="..." />
+            <marker date="1521323177219" expanded="true" signature="184:2044" ph="{...}" />
+            <marker date="1521323177219" expanded="true" signature="235:466" ph="{...}" />
+            <marker date="1521323177219" expanded="true" signature="262:459" ph="{...}" />
+            <marker date="1521323177219" expanded="true" signature="578:2035" ph="{...}" />
+            <marker date="1521323177219" expanded="true" signature="1659:1813" ph="{...}" />
+            <marker date="1521323177219" expanded="true" signature="1870:1983" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/ShopParkitectObject.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
+          <folding>
+            <marker date="1521323177336" expanded="false" signature="6:66" ph="..." />
+            <marker date="1521323177336" expanded="true" signature="159:752" ph="{...}" />
+            <marker date="1521323177336" expanded="true" signature="207:304" ph="{...}" />
+            <marker date="1521323177336" expanded="true" signature="226:300" ph="{...}" />
+            <marker date="1521323177336" expanded="true" signature="415:743" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14F465A1-8A30-46D3-B7B8-1BE39A30EA5C/a2/d9ebbaff/OngoingEffectProduct.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
+          <folding>
+            <marker date="1521325750232" expanded="true" signature="0:319" ph="/* Decompiled with JetBrains decompiler ... */" />
+            <marker date="1521325750232" expanded="true" signature="415:1622" ph="{...}" />
+            <marker date="1521325750232" expanded="true" signature="615:1404" ph="{...}" />
+            <marker date="1521325750232" expanded="true" signature="708:751" ph="{...}" />
+            <marker date="1521325750232" expanded="true" signature="760:1400" ph="{...}" />
+            <marker date="1521325750232" expanded="true" signature="1058:1394" ph="{...}" />
+            <marker date="1521325750232" expanded="true" signature="1453:1620" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14F465A1-8A30-46D3-B7B8-1BE39A30EA5C/21/b705afd4/Product.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14F465A1-8A30-46D3-B7B8-1BE39A30EA5C/3c/9082eecc/Item.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <marker date="1521325877823" expanded="true" signature="0:303" ph="/* Decompiled with JetBrains decompiler ... */" />
+            <marker date="1521325877823" expanded="false" signature="311:423" ph="..." />
+            <marker date="1521325877823" expanded="true" signature="484:4181" ph="{...}" />
+            <marker date="1521325877823" expanded="true" signature="833:841" ph="{...}" />
+            <marker date="1521325877823" expanded="true" signature="873:881" ph="{...}" />
+            <marker date="1521325877823" expanded="true" signature="927:935" ph="{...}" />
+            <marker date="1521325877823" expanded="true" signature="970:978" ph="{...}" />
+            <marker date="1521325877823" expanded="true" signature="1013:1021" ph="{...}" />
+            <marker date="1521325877823" expanded="true" signature="1056:1131" ph="{...}" />
+            <marker date="1521325877823" expanded="true" signature="1181:1597" ph="{...}" />
+            <marker date="1521325877823" expanded="true" signature="1256:1463" ph="{...}" />
+            <marker date="1521325877823" expanded="true" signature="1472:1593" ph="{...}" />
+            <marker date="1521325877823" expanded="true" signature="1627:1980" ph="{...}" />
+            <marker date="1521325877823" expanded="true" signature="2010:2440" ph="{...}" />
+            <marker date="1521325877823" expanded="true" signature="2220:2309" ph="{...}" />
+            <marker date="1521325877823" expanded="true" signature="2318:2417" ph="{...}" />
+            <marker date="1521325877823" expanded="true" signature="2470:2828" ph="{...}" />
+            <marker date="1521325877823" expanded="true" signature="2701:2796" ph="{...}" />
+            <marker date="1521325877823" expanded="true" signature="2874:2918" ph="{...}" />
+            <marker date="1521325877823" expanded="true" signature="2976:3154" ph="{...}" />
+            <marker date="1521325877823" expanded="true" signature="3118:3149" ph="{...}" />
+            <marker date="1521325877823" expanded="true" signature="3221:3418" ph="{...}" />
+            <marker date="1521325877823" expanded="true" signature="3363:3413" ph="{...}" />
+            <marker date="1521325877823" expanded="true" signature="3454:3507" ph="{...}" />
+            <marker date="1521325877823" expanded="true" signature="3543:3700" ph="{...}" />
+            <marker date="1521325877823" expanded="true" signature="3765:4179" ph="{...}" />
+            <marker date="1521325877823" expanded="true" signature="3774:3882" ph="/* ISSUE: object of a compiler-generated type is created ... */" />
+            <marker date="1521325877823" expanded="true" signature="4002:4033" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/Proxy/Shop/Products/CustomItemProduct.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/Decorator/ShopDecorator.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2125">
+          <caret line="128" column="79" selection-start-line="128" selection-start-column="79" selection-end-line="128" selection-end-column="79" />
+          <folding>
+            <marker date="1521329548202" expanded="false" signature="50:144" ph="..." />
+            <marker date="1521329548202" expanded="true" signature="184:3719" ph="{...}" />
+            <marker date="1521329548202" expanded="true" signature="2431:2697" ph="{...}" />
+            <marker date="1521329548202" expanded="true" signature="2529:2623" ph="{...}" />
+            <marker date="1521329548202" expanded="true" signature="2651:2693" ph="{...}" />
+            <marker date="1521329548202" expanded="true" signature="2751:2995" ph="{...}" />
+            <marker date="1521329548202" expanded="true" signature="2815:2962" ph="{...}" />
+            <marker date="1521329548202" expanded="true" signature="3139:3710" ph="{...}" />
+            <marker date="1521329548202" expanded="true" signature="3350:3655" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/Decorator/Products/BaseProductDecorator.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/Decorator/Products/SPIngredients.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="52" column="16" selection-start-line="52" selection-start-column="16" selection-end-line="52" selection-end-column="16" />
+          <folding>
+            <marker date="1521323431107" expanded="false" signature="6:89" ph="..." />
+            <marker date="1521323431107" expanded="true" signature="209:1552" ph="{...}" />
+            <marker date="1521323431107" expanded="true" signature="506:902" ph="{...}" />
+            <marker date="1521323431107" expanded="true" signature="602:676" ph="{...}" />
+            <marker date="1521323431107" expanded="true" signature="714:897" ph="{...}" />
+            <marker date="1521323431107" expanded="true" signature="946:1550" ph="{...}" />
+            <marker date="1521323431107" expanded="true" signature="1371:1547" ph="{...}" />
+            <marker date="1521323431107" expanded="true" signature="1439:1543" ph="{...}" />
+            <marker date="1521323431107" expanded="true" signature="1589:2124" ph="{...}" />
+            <marker date="1521323431107" expanded="true" signature="1732:1844" ph="{...}" />
+            <marker date="1521323431107" expanded="true" signature="1771:1839" ph="{...}" />
+            <marker date="1521323431107" expanded="true" signature="1888:2122" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/Decorator/BaseDecorator.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+          <folding>
+            <marker date="1521323125518" expanded="false" signature="6:118" ph="..." />
+            <marker date="1521323125518" expanded="true" signature="216:1427" ph="{...}" />
+            <marker date="1521323125518" expanded="true" signature="657:835" ph="{...}" />
+            <marker date="1521323125518" expanded="true" signature="890:1132" ph="{...}" />
+            <marker date="1521323125518" expanded="true" signature="1277:1416" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/Proxy/Shop/Products/BaseProduct.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+          <folding>
+            <marker date="1521335139496" expanded="true" signature="6:56" ph="..." />
+            <marker date="1521335139496" expanded="true" signature="86:227" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/Decorator/Products/SPWearableProduct.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="47" column="24" selection-start-line="41" selection-start-column="8" selection-end-line="47" selection-end-column="24" />
+          <folding>
+            <marker date="1521328850991" expanded="false" signature="6:89" ph="..." />
+            <marker date="1521328850991" expanded="true" signature="192:2393" ph="{...}" />
+            <marker date="1521328850991" expanded="true" signature="1163:1559" ph="{...}" />
+            <marker date="1521328850991" expanded="true" signature="1613:2311" ph="{...}" />
+            <marker date="1521328850991" expanded="true" signature="2363:2384" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/Proxy/Shop/Products/CustomOngoingEffectProduct.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <marker date="1521335971661" expanded="false" signature="6:56" ph="..." />
+            <marker date="1521335971661" expanded="true" signature="120:297" ph="{...}" />
+            <marker date="1521335971661" expanded="true" signature="162:174" ph="{...}" />
+            <marker date="1521335971661" expanded="true" signature="213:294" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/Proxy/Shop/Products/CustomWerableProduct.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="51" selection-start-column="51" selection-end-column="51" />
+          <folding>
+            <marker date="1521335971478" expanded="true" signature="51:223" ph="{...}" />
+            <marker date="1521335971478" expanded="true" signature="88:101" ph="{...}" />
+            <marker date="1521335971478" expanded="true" signature="140:221" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/Proxy/Shop/Products/CustomConsumableProduct.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <marker date="1521335971561" expanded="true" signature="56:229" ph="{...}" />
+            <marker date="1521335971561" expanded="true" signature="95:108" ph="{...}" />
+            <marker date="1521335971561" expanded="true" signature="146:227" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/Decorator/Products/SPItemProduct.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="44" selection-start-line="2" selection-start-column="44" selection-end-line="2" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/Decorator/Products/SPOngoingProduct.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
+          <folding>
+            <marker date="1521337899382" expanded="false" signature="50:158" ph="..." />
+            <marker date="1521337899382" expanded="true" signature="216:1917" ph="{...}" />
+            <marker date="1521337899382" expanded="true" signature="761:1037" ph="{...}" />
+            <marker date="1521337899382" expanded="true" signature="1091:1489" ph="{...}" />
+            <marker date="1521337899382" expanded="true" signature="1541:1908" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/Decorator/Products/SPProduct.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2533">
+          <caret line="157" column="19" selection-start-line="157" selection-start-column="11" selection-end-line="157" selection-end-column="19" />
+          <folding>
+            <marker date="1521328806813" expanded="false" signature="6:134" ph="..." />
+            <marker date="1521328806813" expanded="true" signature="186:3889" ph="{...}" />
+            <marker date="1521328806813" expanded="true" signature="213:241" ph="{...}" />
+            <marker date="1521328806813" expanded="true" signature="505:511" ph="{...}" />
+            <marker date="1521328806813" expanded="true" signature="2930:3293" ph="{...}" />
+            <marker date="1521328806813" expanded="true" signature="3036:3121" ph="{...}" />
+            <marker date="1521328806813" expanded="true" signature="3166:3288" ph="{...}" />
+            <marker date="1521328806813" expanded="true" signature="3345:3827" ph="{...}" />
+            <marker date="1521328806813" expanded="true" signature="3588:3824" ph="{...}" />
+            <marker date="1521328806813" expanded="true" signature="3681:3820" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/Decorator/Products/SPConsumableProduct.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="11" column="17" lean-forward="true" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+          <folding>
+            <marker date="1521337899315" expanded="false" signature="6:89" ph="..." />
+            <marker date="1521337899315" expanded="true" signature="305:3380" ph="{...}" />
+            <marker date="1521337899315" expanded="true" signature="916:1220" ph="{...}" />
+            <marker date="1521337899315" expanded="true" signature="1274:1831" ph="{...}" />
+            <marker date="1521337899315" expanded="true" signature="1883:3370" ph="{...}" />
+            <marker date="1521337899315" expanded="true" signature="2200:2736" ph="{...}" />
+            <marker date="1521337899315" expanded="true" signature="2758:3097" ph="{...}" />
+            <marker date="1521337899315" expanded="true" signature="3118:3295" ph="{...}" />
           </folding>
         </state>
       </provider>

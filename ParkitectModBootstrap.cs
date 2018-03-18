@@ -1,13 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml.Linq;
 using UnityEngine;
+using Object = System.Object;
 
 #if PARKITECT
     
 public class ParkitectModBootstrap : IMod
 {
  
+    private GameObject hider;
+    private List<SerializedMonoBehaviour> registeredObjects = new List<SerializedMonoBehaviour>();
+    
     private ParkitectModBootstrap()
     {
 
@@ -16,6 +21,9 @@ public class ParkitectModBootstrap : IMod
 
     public void onEnabled()
     {
+        hider = new GameObject("hider");
+        UnityEngine.Object.DontDestroyOnLoad(hider);
+        
         foreach (String folder in Directory.GetDirectories(GameController.modsPath))
         {
             String[] files = Directory.GetFiles(folder, "*.spark", SearchOption.TopDirectoryOnly);
@@ -26,9 +34,9 @@ public class ParkitectModBootstrap : IMod
                     using (StreamReader reader = new StreamReader(sparkModFile))
                     {
                         Debug.Log("------------------------LOADING MOD------------------------");
-                        Debug.Log("Mod Path:" + sparkModFile);
+                        Debug.Log("Mod Path:" + folder);
 
-                        AssetBundle assetBundle = AssetBundle.LoadFromFile(sparkModFile + "/assetbundle");
+                        AssetBundle assetBundle = AssetBundle.LoadFromFile(folder + "/assetbundle");
                         
                         try
                         {
@@ -43,7 +51,7 @@ public class ParkitectModBootstrap : IMod
                                 BaseDecorator dec = obj.DecoratorByInstance<BaseDecorator>();
                                 if (dec != null)
                                     Debug.Log("---------------------------" + dec.InGameName + "---------------------------");
-                                obj.BindToParkitect();
+                                obj.BindToParkitect(hider,registeredObjects);
                             }
                                 
                         }
@@ -100,11 +108,10 @@ public class ParkitectModBootstrap : IMod
 
     public void onDisabled()
     {
-        throw new NotImplementedException();
     }
 
     public string Name => "Parkitect Mod Bootsrap";
-    public string Description => "";
+    public string Description => "bootstrapper used to run mods built by spark";
     public string Identifier => "ParkitectModBootsrap";
 }
 #endif

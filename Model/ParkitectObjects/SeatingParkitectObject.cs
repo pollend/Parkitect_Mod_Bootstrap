@@ -1,35 +1,48 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 [ParkitectObjectTag("Seating")]
 [Serializable]
 public class SeatingParkitectObject : ParkitectObj
 {
-    public SeatingParkitectObject()
-    {
-    }
-
     public override Type[] SupportedDecorators()
     {
-        return new Type[]{
+        return new[]{
             typeof(BaseDecorator),
             typeof(SeatDecorator),
             typeof(ColorDecorator),
-            typeof(BoundingBoxDecorator)
+            typeof(BoundingBoxDecorator),
+            typeof(CategoryDecorator)
         };
     }
-#if (PARKITECT)
-    public override void BindToParkitect()
+#if PARKITECT
+    public override void BindToParkitect(GameObject hider,List<SerializedMonoBehaviour> register)
     {
-        BaseDecorator baseDecorator = this.DecoratorByInstance<BaseDecorator>();
-        SeatDecorator seatDecorator= this.DecoratorByInstance<SeatDecorator>();
-        ColorDecorator colorDecorator = this.DecoratorByInstance<ColorDecorator>();
-        BoundingBoxDecorator boxDecorator = this.DecoratorByInstance<BoundingBoxDecorator>();
+        BaseDecorator baseDecorator = DecoratorByInstance<BaseDecorator>();
+        SeatDecorator seatDecorator= DecoratorByInstance<SeatDecorator>();
+        ColorDecorator colorDecorator = DecoratorByInstance<ColorDecorator>();
+        BoundingBoxDecorator boxDecorator = DecoratorByInstance<BoundingBoxDecorator>();
+        CategoryDecorator categoryDecorator = DecoratorByInstance<CategoryDecorator>();
 
-        Seating seat = Prefab.AddComponent<Seating>();
-        seat.name = getKey;
+        
+        GameObject gameObject = Instantiate(Prefab);
+        gameObject.transform.parent = hider.transform;
+
+        Seating seat = gameObject.AddComponent<Seating>();
+        seat.name = Key;
         seat.setDisplayName(baseDecorator.InGameName);
         seat.price = baseDecorator.price;
+        seat.categoryTag = "Patch Attachments/Benches";
+        
+        
+        RemapUtility.RemapMaterials(gameObject);
+
+        baseDecorator.Decorate(gameObject, hider, this,register);
+        colorDecorator.Decorate(gameObject, hider, this,register);
+        categoryDecorator.Decorate(gameObject,hider,this,register);
+
         if (colorDecorator.isRecolorable)
         {
             CustomColors colors = Prefab.AddComponent<CustomColors>();
@@ -41,7 +54,7 @@ public class SeatingParkitectObject : ParkitectObj
             var b = Prefab.AddComponent<BoundingBox>();
             b.setBounds(box.bounds);
         }
-        base.BindToParkitect();
+        base.BindToParkitect(hider,register);
     }
 #endif
 }

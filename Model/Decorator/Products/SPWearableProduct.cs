@@ -1,8 +1,7 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
-
+using UnityEngine;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -21,9 +20,9 @@ public class SPWearableProduct : SPProduct
 	[SerializeField]
 	public Temperature TempreaturePrefrence = Temperature.NONE;
 	[SerializeField]
-	public bool HideOnRide = false;
+	public bool HideOnRide;
 	[SerializeField]
-	public bool HideHair = false;
+	public bool HideHair;
 
 
 	#if UNITY_EDITOR
@@ -52,14 +51,21 @@ public class SPWearableProduct : SPProduct
 	public override void DeSerialize (XElement element)
 	{
 		if(element.Element ("BodyLocation") != null)
-			this.BodyLocation = (Body)Enum.Parse (typeof(Body), element.Element ("BodyLocation").Value);
+			BodyLocation = (Body)Enum.Parse (typeof(Body), element.Element ("BodyLocation").Value);
 		if(element.Element ("SeasonalPrefrence") != null)
-			this.SeasonalPrefrence = (Seasonal)Enum.Parse (typeof(Seasonal), element.Element ("SeasonalPrefrence").Value);
+			SeasonalPrefrence = (Seasonal)Enum.Parse (typeof(Seasonal), element.Element ("SeasonalPrefrence").Value);
 		if(element.Element ("TempreaturePrefrence") != null)
-			this.TempreaturePrefrence = (Temperature)Enum.Parse (typeof(Temperature), element.Element ("TempreaturePrefrence").Value);
+			TempreaturePrefrence = (Temperature)Enum.Parse (typeof(Temperature), element.Element ("TempreaturePrefrence").Value);
 		if(element.Element ("HideOnRide") != null)
-			this.HideOnRide = bool.Parse(element.Element ("HideOnRide").Value);
+			HideOnRide = bool.Parse(element.Element ("HideOnRide").Value);
 		if(element.Element ("HideHair") != null)
-			this.HideHair = bool.Parse (element.Element ("HideHair").Value);
+			HideHair = bool.Parse (element.Element ("HideHair").Value);
 	}
+	
+#if PARKITECT
+	public override Product Decorate()
+	{
+		return null;
+	}
+#endif
 }

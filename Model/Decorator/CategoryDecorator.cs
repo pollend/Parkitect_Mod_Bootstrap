@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
-
+using UnityEngine;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -13,9 +13,6 @@ public class CategoryDecorator : Decorator
 	public string category;
 	public String subCategory;
 
-	public CategoryDecorator()
-	{
-	}
 #if UNITY_EDITOR
 	public override void RenderInspectorGUI(ParkitectObj parkitectObj)
 	{
@@ -28,7 +25,7 @@ public class CategoryDecorator : Decorator
 
 	public override List<XElement> Serialize(ParkitectObj parkitectObj)
 	{
-		return new List<XElement>(new XElement[]
+		return new List<XElement>(new[]
 		{
 			new XElement("Category", category),
 			new XElement("SubCategory", subCategory)
@@ -42,5 +39,20 @@ public class CategoryDecorator : Decorator
 
 		base.Deserialize(elements);
 	}
+	
+#if PARKITECT
+	public override void Decorate(GameObject go, GameObject hider, ParkitectObj parkitectObj,List<SerializedMonoBehaviour> register)
+	{
+		BuildableObject buildableObject = go.GetComponent<BuildableObject>();
+		if (String.IsNullOrEmpty(subCategory))
+		{
+			buildableObject.categoryTag = category + "/" + subCategory;
+		}
+		else
+		{
+			buildableObject.categoryTag = category;
+		}
+	}
+#endif
 }
 

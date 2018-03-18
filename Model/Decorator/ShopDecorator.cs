@@ -2,10 +2,10 @@
 using UnityEditor;
 #endif
 
-using System;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Reflection;
 using System.Xml.Linq;
+using UnityEngine;
 
 public class ShopDecorator : Decorator
 {
@@ -18,11 +18,7 @@ public class ShopDecorator : Decorator
 	private SPProduct selected;
 #endif
 
-	public ShopDecorator()
-	{
-	}
-
-	#if UNITY_EDITOR
+#if UNITY_EDITOR
 	public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 	{
 
@@ -113,7 +109,7 @@ public class ShopDecorator : Decorator
 		}
 		base.CleanUp (parkitectObj);
 	}
-	#endif
+#endif
 
 	public override List<XElement> Serialize (ParkitectObj parkitectObj)
 	{
@@ -132,11 +128,32 @@ public class ShopDecorator : Decorator
 		{
 			SPProduct product = Utility.GetByTypeName<SPProduct> (ele.Name.NamespaceName);
 			product.DeSerialize (ele);
-			this.products.Add (product);
+			products.Add (product);
 		}
 		base.Deserialize (element);
 	}
+#if PARKITECT
+	public override void Decorate(GameObject go, GameObject hider, ParkitectObj parkitectObj,List<SerializedMonoBehaviour> register)
+	{
+		CustomShop customShop =  go.AddComponent<CustomShop>();
+		customShop.walkableFlag = Block.WalkableFlagType.FORWARD;
+		List<Product> productResults = new List<Product>();
+		foreach (var product in products)
+		{
+			Product p = product.Decorate();
+			
+			BindingFlags flags = BindingFlags.GetField | BindingFlags.Instance | BindingFlags.NonPublic;
+			typeof(Product).GetField("displayName", flags).SetValue(p, product.name);
+			
+			p.defaultPrice = product.Price;
+			register.Add(p);
+			productResults.Add(p);
+		}
 
+		customShop.products = productResults.ToArray();
+
+	}
+#endif
 }
 
 

@@ -12,7 +12,7 @@ public class CustomShop : ProductShop
     public override ShopSettings getSettings()
     {
         //hack to get products to be configured
-        if (this.products == null)
+        if (products == null)
             Awake();
 
         return base.getSettings();

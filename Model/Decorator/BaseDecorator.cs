@@ -44,5 +44,14 @@ public class BaseDecorator : Decorator
 		base.Deserialize (elements);
 	}
 
+#if PARKITECT
+	public override void Decorate(GameObject go, GameObject hider, ParkitectObj parkitectObj,List<SerializedMonoBehaviour> register)
+	{
+		BuildableObject component = go.GetComponent<BuildableObject>();
+		component.price = price;
+		component.setDisplayName(InGameName);
+	}
+#endif
+	
 }
 

@@ -84,5 +84,21 @@ public class ColorDecorator : Decorator
 			isRecolorable = bool.Parse(elements.Element("IsRecolorable").Value);
 		base.Deserialize(elements);
 	}
+	
+#if PARKITECT
+	public override void Decorate(GameObject go, GameObject hider, ParkitectObj parkitectObj,List<SerializedMonoBehaviour> register)
+	{
+		if (isRecolorable)
+		{
+			CustomColors customColors = go.AddComponent<CustomColors>();
+			List<Color> final = new List<Color>();
+			for (int x = 0; x < colorCount; x++)
+			{
+				final.Add(colors[x]);
+			}
+			customColors.setColors(final.ToArray());
+		}
+	}
+#endif
 }
 

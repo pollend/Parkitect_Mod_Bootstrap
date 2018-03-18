@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 [ParkitectObjectTag("Deco")]
 [Serializable]
@@ -19,7 +21,7 @@ public class DecoParkitectObject : ParkitectObj
     }
 
 #if (PARKITECT)
-    public override void BindToParkitect()
+    public override void BindToParkitect(GameObject hider,List<SerializedMonoBehaviour> register)
     {
         BaseDecorator baseDecorator = DecoratorByInstance<BaseDecorator>();
         GridDecorator gridDecorator = DecoratorByInstance<GridDecorator>();
@@ -27,32 +29,37 @@ public class DecoParkitectObject : ParkitectObj
         ColorDecorator colorDecorator = DecoratorByInstance<ColorDecorator>();
         BoundingBoxDecorator boxDecorator = DecoratorByInstance<BoundingBoxDecorator>();
 
+        GameObject gameObject = Instantiate(Prefab);
+        gameObject.transform.parent = hider.transform;
 
-        Deco deco = Prefab.AddComponent<Deco>();
-        deco.name = getKey;
+        Deco deco = gameObject.AddComponent<Deco>();
+        register.Add(deco);
+        deco.name = Key;
+
+        deco.buildOnLayerMask = 4096;
         deco.heightChangeDelta = gridDecorator.heightDelta;
         deco.defaultGridSubdivision = gridDecorator.gridSubdivision;
         deco.buildOnGrid = gridDecorator.grid;
         deco.defaultSnapToGridCenter = gridDecorator.snap;
-        deco.categoryTag = categoryDecorator.category;
-        deco.price = baseDecorator.price;
-        deco.setDisplayName(baseDecorator.InGameName);
-        deco.dontSerialize = true;
-        deco.isPreview = true;
 
-        if (colorDecorator.isRecolorable)
-        {
-            CustomColors colors = Prefab.AddComponent<CustomColors>();
-            colors.setColors(colorDecorator.colors.ToArray());
-        }
+        deco.isPreview = true;
+        deco.isStatic = true;
+        deco.dontSerialize = true;
+        
+        RemapUtility.RemapMaterials(gameObject);
+
+        baseDecorator.Decorate(gameObject, hider, this,register);
+        colorDecorator.Decorate(gameObject, hider, this,register);
+        categoryDecorator.Decorate(gameObject,hider,this,register);
+
 
         foreach (var box in boxDecorator.boundingBoxes)
         {
-            var b = Prefab.AddComponent<BoundingBox>();
+            var b = gameObject.AddComponent<BoundingBox>();
             b.setBounds(box.bounds);
         }
 
-        base.BindToParkitect();
+        base.BindToParkitect(hider,register);
     }
 #endif
 }

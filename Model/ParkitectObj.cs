@@ -30,11 +30,11 @@ public class ParkitectObj : ScriptableObject
 	[NonSerialized]
 	public GameObject sceneRef;
 
-	public string getKey { get { return key; } }
-	public GameObject Prefab { get { return prefab; } }
+	public string Key => key;
+	public GameObject Prefab => prefab;
 
 
-	#if UNITY_EDITOR
+#if UNITY_EDITOR
 	public void UpdatePrefab()
 	{
 		var refrence = getGameObjectRef (false);
@@ -107,7 +107,7 @@ public class ParkitectObj : ScriptableObject
 	{
 		decorators = parkitectObj.decorators;
 		prefab = parkitectObj.prefab;
-		key = parkitectObj.getKey;
+		key = parkitectObj.Key;
 
 		for (int x = 0; x < decorators.Count; x++)
 		{
@@ -214,7 +214,7 @@ public class ParkitectObj : ScriptableObject
     }
 
 #if (PARKITECT)
-	public virtual void BindToParkitect() { }
+	public virtual void BindToParkitect(GameObject hider,List<SerializedMonoBehaviour> register) { }
 #endif
 
 }

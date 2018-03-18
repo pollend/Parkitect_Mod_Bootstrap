@@ -1,17 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [ParkitectObjectTag("Path")]
 [Serializable]
 public class PathStyleParkitectObject : ParkitectObj
 {
-    public PathStyleParkitectObject()
-    {
-    }
-
     public override Type[] SupportedDecorators()
     {
-        return new Type[]{
+        return new[]{
             typeof(BaseDecorator),
             typeof(CategoryDecorator),
             typeof(PathDecorator),
@@ -19,25 +16,24 @@ public class PathStyleParkitectObject : ParkitectObj
         };
     }
 #if (PARKITECT)
-    public override void BindToParkitect()
+    public override void BindToParkitect(GameObject hider,List<SerializedMonoBehaviour> register)
     {
 
-        BaseDecorator baseDecorator = this.DecoratorByInstance<BaseDecorator>();
-        CategoryDecorator categoryDecorator = this.DecoratorByInstance<CategoryDecorator>();
-        PathDecorator pathDecorator = this.DecoratorByInstance<PathDecorator>();
-        BoundingBoxDecorator boxDecorator = this.DecoratorByInstance<BoundingBoxDecorator>();
+        BaseDecorator baseDecorator = DecoratorByInstance<BaseDecorator>();
+        CategoryDecorator categoryDecorator = DecoratorByInstance<CategoryDecorator>();
+        PathDecorator pathDecorator = DecoratorByInstance<PathDecorator>();
+        BoundingBoxDecorator boxDecorator = DecoratorByInstance<BoundingBoxDecorator>();
 
         PathStyle c = AssetManager.Instance.pathStyles.getPathStyle("concrete");
         PathStyle ps = new PathStyle();
 
-
         ps.handRailGO = c.handRailGO;
         ps.handRailRampGO = c.handRailRampGO;
-        Material Mat = GameObject.Instantiate(c.material);
-        Mat.mainTexture = pathDecorator.PathTexture;
-        ps.material = Mat;
+        Material mat = Instantiate(c.material);
+        mat.mainTexture = pathDecorator.PathTexture;
+        ps.material = mat;
         ps.platformTileMapper = AssetManager.Instance.platformTileMapper;
-        ps.identifier = this.getKey;
+        ps.identifier = Key;
         ps.spawnSound = c.spawnSound;
         ps.despawnSoundEvent = c.despawnSoundEvent;
         ps.spawnLastSound = c.spawnLastSound;
@@ -56,9 +52,7 @@ public class PathStyleParkitectObject : ParkitectObj
                 AssetManager.Instance.employeePathStyles.registerPathStyle(ps);
                 break;
         }
-
-
-        //base.BindToParkitect();
+        base.BindToParkitect(hider,register);
     }
 #endif
 }

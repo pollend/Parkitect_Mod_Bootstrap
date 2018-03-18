@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 [ParkitectObjectTag("Shop")]
 [Serializable]
@@ -12,20 +14,18 @@ public class ShopParkitectObject : ParkitectObj
 		};
 	}
 #if (PARKITECT)
-	public override void BindToParkitect()
+	public override void BindToParkitect(GameObject hider,List<SerializedMonoBehaviour> register)
 	{
 		var baseDecorator = DecoratorByInstance<BaseDecorator>();
 		var shopDecorator = DecoratorByInstance<ShopDecorator>();
 
-		var shop = Prefab.AddComponent<CustomShop>();
+		
+		GameObject gameObject = Instantiate(Prefab);
+		gameObject.transform.parent = hider.transform;
+		
+		shopDecorator.Decorate(gameObject,hider,this,register);
 
-		foreach (var product in shopDecorator.products)
-		{
-
-
-		}
-
-		base.BindToParkitect();
+		base.BindToParkitect(hider,register);
 	}
 #endif
 }

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace Parkitect_Mod_Bootstrap.Model.ParkitectObjects
 {
@@ -16,7 +18,7 @@ namespace Parkitect_Mod_Bootstrap.Model.ParkitectObjects
             };
         }
 #if (PARKITECT)
-        public override void BindToParkitect()
+        public override void BindToParkitect(GameObject hider,List<SerializedMonoBehaviour> register)
         {
             BaseDecorator baseDecorator = DecoratorByInstance<BaseDecorator>();
             CategoryDecorator categoryDecorator = DecoratorByInstance<CategoryDecorator>();
@@ -25,7 +27,7 @@ namespace Parkitect_Mod_Bootstrap.Model.ParkitectObjects
 
 
             Wall wall = Prefab.AddComponent<Wall>();
-            wall.name = getKey;
+            wall.name = Key;
             wall.categoryTag = categoryDecorator.category;
             wall.price = baseDecorator.price;
             wall.setDisplayName(baseDecorator.InGameName);
@@ -44,7 +46,7 @@ namespace Parkitect_Mod_Bootstrap.Model.ParkitectObjects
                 b.setBounds(box.bounds);
             }
 
-            base.BindToParkitect();
+            base.BindToParkitect(hider,register);
         }
 #endif
     }

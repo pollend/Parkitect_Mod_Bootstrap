@@ -47,6 +47,7 @@
             <e p="SPProduct.cs" t="Include" />
             <e p="SPWearableProduct.cs" t="Include" />
           </e>
+          <e p="ResizableDecorator.cs" t="Include" />
           <e p="SeatDecorator.cs" t="Include" />
           <e p="ShopDecorator.cs" t="Include" />
           <e p="WaypointDecorator.cs" t="Include" />
@@ -61,11 +62,21 @@
           <e p="PathStyleParkitectObject.cs" t="Include" />
           <e p="SeatingParkitectObject.cs" t="Include" />
           <e p="ShopParkitectObject.cs" t="Include" />
+          <e p="SignParkitectObject.cs" t="Include" />
+          <e p="TrashbinParkitectObject.cs" t="Include" />
+          <e p="TvParkitectObject.cs" t="Include" />
+          <e p="WallDecoratorObject.cs" t="Include" />
           <e p="WallParkitectObject.cs" t="Include" />
         </e>
         <e p="Proxy" t="Include">
           <e p="Shop" t="Include">
             <e p="CustomShop.cs" t="Include" />
+            <e p="Products" t="Include">
+              <e p="BaseProduct.cs" t="Include" />
+              <e p="CustomConsumableProduct.cs" t="Include" />
+              <e p="CustomOngoingEffectProduct.cs" t="Include" />
+              <e p="CustomWerableProduct.cs" t="Include" />
+            </e>
           </e>
         </e>
       </e>
@@ -79,6 +90,9 @@
       <e p="ParkitectObjectType.cs" t="Include" />
       <e p="Refrence.cs" t="Include" />
       <e p="RefrencedTransform.cs" t="Include" />
+      <e p="Utility" t="Include">
+        <e p="RemapUtility.cs" t="Include" />
+      </e>
       <e p="Utility.cs" t="Include" />
       <e p="bin" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />

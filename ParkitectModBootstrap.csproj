@@ -62,14 +62,23 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="FlatRideAnimator\Events\SPRideAnimationEvent.cs" />
+    <Compile Include="Model\Decorator\ResizableDecorator.cs" />
     <Compile Include="Model\ParkitectObjects\DecoParkitectObject.cs" />
     <Compile Include="Model\ParkitectObjects\EmptyParkitectObject.cs" />
     <Compile Include="Model\ParkitectObjects\FlatRideParkitectObject.cs" />
     <Compile Include="Model\ParkitectObjects\PathStyleParkitectObject.cs" />
     <Compile Include="Model\ParkitectObjects\SeatingParkitectObject.cs" />
     <Compile Include="Model\ParkitectObjects\ShopParkitectObject.cs" />
+    <Compile Include="Model\ParkitectObjects\SignParkitectObject.cs" />
+    <Compile Include="Model\ParkitectObjects\TrashbinParkitectObject.cs" />
+    <Compile Include="Model\ParkitectObjects\TvParkitectObject.cs" />
+    <Compile Include="Model\ParkitectObjects\WallDecoratorObject.cs" />
     <Compile Include="Model\ParkitectObjects\WallParkitectObject.cs" />
     <Compile Include="Model\Proxy\Shop\CustomShop.cs" />
+    <Compile Include="Model\Proxy\Shop\Products\BaseProduct.cs" />
+    <Compile Include="Model\Proxy\Shop\Products\CustomConsumableProduct.cs" />
+    <Compile Include="Model\Proxy\Shop\Products\CustomOngoingEffectProduct.cs" />
+    <Compile Include="Model\Proxy\Shop\Products\CustomWerableProduct.cs" />
     <Compile Include="ParkitectModBootstrap.cs" />
     <Compile Include="ParkitectObjectType.cs" />
     <Compile Include="Refrence.cs" />
@@ -116,6 +125,7 @@
     <Compile Include="FlatRideAnimator\Motor\SPRotateBetween.cs" />
     <Compile Include="FlatRideAnimator\Motor\SPRotator.cs" />
     <Compile Include="Utility.cs" />
+    <Compile Include="Utility\RemapUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Xml" />

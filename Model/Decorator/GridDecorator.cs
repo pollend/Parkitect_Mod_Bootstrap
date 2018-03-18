@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Xml.Linq;
 using UnityEngine;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -15,11 +16,7 @@ public class GridDecorator : Decorator
 	public float heightDelta;
 	public float gridSubdivision = 1;
 
-	public GridDecorator()
-	{
-	}
-
-	#if UNITY_EDITOR
+#if UNITY_EDITOR
 	public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 	{
 		
@@ -57,7 +54,7 @@ public class GridDecorator : Decorator
 
 	public override List<XElement> Serialize (ParkitectObj parkitectObj)
 	{
-		return new List<XElement>(new XElement[]{
+		return new List<XElement>(new[]{
 			new XElement("SnapCenter",snapCenter),
 			new XElement("Snap",snap),
 			new XElement("Grid",grid),
@@ -70,17 +67,18 @@ public class GridDecorator : Decorator
 	public override void Deserialize (XElement elements)
 	{
 		if(elements.Element ("SnapCenter") != null)
-			this.snapCenter = bool.Parse(elements.Element ("SnapCenter").Value);
+			snapCenter = bool.Parse(elements.Element ("SnapCenter").Value);
 		if(elements.Element ("Snap") != null)
-			this.snap = bool.Parse(elements.Element ("Snap").Value);
+			snap = bool.Parse(elements.Element ("Snap").Value);
 		if(elements.Element ("Grid") != null)
-			this.grid = bool.Parse(elements.Element ("Grid").Value);
+			grid = bool.Parse(elements.Element ("Grid").Value);
 		if(elements.Element ("HeightDelta") != null)
-			this.heightDelta = float.Parse(elements.Element ("HeightDelta").Value);
+			heightDelta = float.Parse(elements.Element ("HeightDelta").Value);
 		if(elements.Element ("GridSubdivisons") != null)
-			this.gridSubdivision = float.Parse(elements.Element ("GridSubdivisons").Value);
+			gridSubdivision = float.Parse(elements.Element ("GridSubdivisons").Value);
 		base.Deserialize (elements);
 	}
+	
 }
 
 
