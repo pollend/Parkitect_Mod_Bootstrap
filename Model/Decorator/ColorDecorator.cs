@@ -23,7 +23,7 @@ public class ColorDecorator : Decorator
 	}
 
 #if UNITY_EDITOR
-	public override void RenderInspectorGUI(ParkitectObj parkitectObj)
+	public override void RenderInspectorGui(ParkitectObj parkitectObj)
 	{
 		//ModManager.asset.Shader = (ParkitectObject.Shaders)EditorGUILayout.EnumPopup("Shader", ModManager.asset.Shader);
 		isRecolorable = EditorGUILayout.BeginToggleGroup("Recolorable", isRecolorable);
@@ -49,7 +49,7 @@ public class ColorDecorator : Decorator
 		EditorGUILayout.EndToggleGroup();
 
 
-		base.RenderInspectorGUI(parkitectObj);
+		base.RenderInspectorGui(parkitectObj);
 	}
 #endif
 

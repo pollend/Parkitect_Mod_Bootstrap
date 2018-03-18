@@ -18,11 +18,11 @@ public class BaseDecorator : Decorator
 
 #if UNITY_EDITOR
 
-    public override void RenderInspectorGUI (ParkitectObj parkitectObj)
+    public override void RenderInspectorGui (ParkitectObj parkitectObj)
 	{
 		InGameName = EditorGUILayout.TextField("In Game name: ", InGameName);
 		price = EditorGUILayout.FloatField("Price: ", price);
-        base.RenderInspectorGUI (parkitectObj);
+        base.RenderInspectorGui (parkitectObj);
 	}
 #endif
 

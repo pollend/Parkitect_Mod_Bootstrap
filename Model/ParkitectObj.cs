@@ -19,19 +19,22 @@ public class ParkitectObj : ScriptableObject
 	private List<Decorator> decorators = new List<Decorator>();
 	[SerializeField]
 	private GameObject prefab;
-
-
-
 	[SerializeField]
-	public string key;
+	private string key;
 
 	public float XSize;
 
 	[NonSerialized]
 	public GameObject sceneRef;
 
-	public string Key => key;
-	public GameObject Prefab => prefab;
+	public string Key
+	{
+		get { return key; }
+	}
+	public GameObject Prefab
+	{
+		get { return prefab; }
+	}
 
 
 #if UNITY_EDITOR

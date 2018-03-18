@@ -9,7 +9,7 @@ using System.Reflection;
 using System.Xml.Linq;
 
 [Serializable]
-public class SPOngoingProduct : SPProduct
+public class ShopOngoingProduct : ShopProduct
 {
 	[SerializeField]
 	public int Duration;

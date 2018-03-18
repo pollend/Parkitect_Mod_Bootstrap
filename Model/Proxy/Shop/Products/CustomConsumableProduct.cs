@@ -1,4 +1,5 @@
-﻿public class CustomConsumableProduct : ConsumableProduct
+﻿#if (PARKITECT)
+public class CustomConsumableProduct : ConsumableProduct
 {
     public CustomConsumableProduct()
     {
@@ -11,3 +12,4 @@
         base.Initialize();
     }
 }
+#endif

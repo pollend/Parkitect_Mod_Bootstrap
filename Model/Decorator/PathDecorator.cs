@@ -18,7 +18,7 @@ public class PathDecorator : Decorator
 	{
 	}
 	#if UNITY_EDITOR
-	public override void RenderInspectorGUI (ParkitectObj parkitectObj)
+	public override void RenderInspectorGui (ParkitectObj parkitectObj)
 	{
 		this.PathTexture = (Texture2D)EditorGUILayout.ObjectField("Texture",this.PathTexture, typeof(Texture2D), true);
 		if(GUILayout.Button("Create") && this.PathTexture)
@@ -27,7 +27,7 @@ public class PathDecorator : Decorator
 			this.PathTexture.wrapMode = TextureWrapMode.Repeat;
 			this.PathTexture.filterMode = FilterMode.Point;
 
-			AssetDatabase.DeleteAsset("Assets/Materials/Paths/" + parkitectObj.getKey + ".mat");
+			AssetDatabase.DeleteAsset("Assets/Materials/Paths/" + parkitectObj.Key + ".mat");
 			parkitectObj.Prefab.AddComponent<MeshRenderer>();
 			MeshRenderer MR = parkitectObj.Prefab.GetComponent<MeshRenderer>();
 
@@ -38,7 +38,7 @@ public class PathDecorator : Decorator
 				AssetDatabase.CreateFolder("Assets/Materials", "Paths");
 			Material material = new Material(Shader.Find("Transparent/Diffuse"));
 			material.mainTexture = this.PathTexture;
-			AssetDatabase.CreateAsset(material, "Assets/Materials/Paths/" + parkitectObj.getKey + ".mat");
+			AssetDatabase.CreateAsset(material, "Assets/Materials/Paths/" + parkitectObj.Key + ".mat");
 			MR.material = material;
 
 			parkitectObj.Prefab.AddComponent<MeshFilter>();
@@ -49,7 +49,7 @@ public class PathDecorator : Decorator
 			parkitectObj.Prefab.transform.eulerAngles = new Vector3(90,0,0);
 		}
 
-		base.RenderInspectorGUI (parkitectObj);
+		base.RenderInspectorGui (parkitectObj);
 	}
 	#endif
 	

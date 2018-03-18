@@ -1,4 +1,5 @@
-﻿public class CustomWerableProduct : WearableProduct
+﻿#if (PARKITECT)
+public class CustomWerableProduct : WearableProduct
 {
 
     public CustomWerableProduct()
@@ -13,3 +14,4 @@
         base.Initialize();
     }
 }
+#endif

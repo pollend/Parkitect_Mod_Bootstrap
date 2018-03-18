@@ -21,7 +21,7 @@ public class BoundingBoxDecorator : Decorator
 	public List<SPBoundingBox> boundingBoxes = new List<SPBoundingBox> ();
 
 #if UNITY_EDITOR
-    public override void RenderInspectorGUI (ParkitectObj parkitectObj)
+    public override void RenderInspectorGui (ParkitectObj parkitectObj)
     {
         Event e = Event.current;
 
@@ -69,10 +69,10 @@ public class BoundingBoxDecorator : Decorator
             GUILayout.Label("Hold S - Snap to 0.25");
         }
 
-        base.RenderInspectorGUI (parkitectObj);
+        base.RenderInspectorGui (parkitectObj);
     }
 
-    public override void RenderSceneGUI (ParkitectObj parkitectObj)
+    public override void RenderSceneGui (ParkitectObj parkitectObj)
     {
         drawBox(parkitectObj);
 
@@ -104,7 +104,7 @@ public class BoundingBoxDecorator : Decorator
             break;
         }
 
-        base.RenderSceneGUI (parkitectObj);
+        base.RenderInspectorGui (parkitectObj);
     }
 
     private void drawBox(ParkitectObj parkitectObj)

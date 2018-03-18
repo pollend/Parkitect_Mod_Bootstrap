@@ -30,7 +30,7 @@ public class SeatDecorator : Decorator
 	}
 
 
-	public override void RenderInspectorGUI (ParkitectObj parkitectObj)
+	public override void RenderInspectorGui (ParkitectObj parkitectObj)
 	{
 		GUILayout.BeginHorizontal();
 		if (GUILayout.Button("Create 1 Seats"))
@@ -64,11 +64,11 @@ public class SeatDecorator : Decorator
 		}
 		GUILayout.EndHorizontal();
 
-		base.RenderInspectorGUI (parkitectObj);
+		base.RenderInspectorGui (parkitectObj);
 	}
 
 
-	public override void RenderSceneGUI (ParkitectObj parkitectObj)
+	public override void RenderSceneGui (ParkitectObj parkitectObj)
 	{
 		//Debug.Log (parkitectObj.Prefab.transform.GetInstanceID ());
 		//Debug.Log (parkitectObj.getGameObjectRef(true).transform.GetInstanceID ());
@@ -94,7 +94,7 @@ public class SeatDecorator : Decorator
 					Handles.SphereCap (205, center3, transform.rotation, 0.02f);
 				}
 			}
-		base.RenderSceneGUI (parkitectObj);
+		base.RenderSceneGui (parkitectObj);
 	}
 	#endif
 

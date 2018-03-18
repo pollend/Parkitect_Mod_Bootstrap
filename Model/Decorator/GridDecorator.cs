@@ -17,7 +17,7 @@ public class GridDecorator : Decorator
 	public float gridSubdivision = 1;
 
 #if UNITY_EDITOR
-	public override void RenderInspectorGUI (ParkitectObj parkitectObj)
+	public override void RenderInspectorGui (ParkitectObj parkitectObj)
 	{
 		
 		grid = EditorGUILayout.Toggle("GridSnap: ", this.grid);
@@ -26,10 +26,10 @@ public class GridDecorator : Decorator
 		heightDelta = Mathf.RoundToInt(EditorGUILayout.Slider("Height delta: ", heightDelta, 0.05f, 1) * 200f) / 200f;
 		gridSubdivision = Mathf.RoundToInt(EditorGUILayout.Slider("Grid subdivision: ", gridSubdivision, 1, 9));
 		
-	    base.RenderInspectorGUI (parkitectObj);
+	    base.RenderInspectorGui (parkitectObj);
 	}
 
-	public override void RenderSceneGUI(ParkitectObj parkitectObj)
+	public override void RenderSceneGui(ParkitectObj parkitectObj)
 	{
 		GameObject gameObject = parkitectObj.getGameObjectRef(false);
 		if (gameObject)
@@ -48,7 +48,7 @@ public class GridDecorator : Decorator
 			}
 		}
 
-		base.RenderSceneGUI(parkitectObj);
+		base.RenderSceneGui(parkitectObj);
 	}
 #endif
 

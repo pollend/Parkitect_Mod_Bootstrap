@@ -17,7 +17,7 @@ public class FlatrideDecorator : Decorator
 	public Vector3 closedAngleRetraints;
 
 #if UNITY_EDITOR
-public override void RenderInspectorGUI (ParkitectObj parkitectObj)
+public override void RenderInspectorGui (ParkitectObj parkitectObj)
 {
 
 	GUILayout.Space(10);
@@ -33,10 +33,10 @@ public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 	XSize = EditorGUILayout.IntField("X", (int)Math.Floor(XSize));
 	ZSize = EditorGUILayout.IntField("Z", (int)Math.Floor(ZSize));
 
-	base.RenderInspectorGUI (parkitectObj);
+	base.RenderInspectorGui (parkitectObj);
 }
 
-	public override void RenderSceneGUI (ParkitectObj parkitectObj)
+	public override void RenderSceneGui (ParkitectObj parkitectObj)
 	{
 		GameObject refrence =  parkitectObj.getGameObjectRef (false);
 		if (refrence == null)
@@ -52,7 +52,7 @@ public override void RenderInspectorGUI (ParkitectObj parkitectObj)
 		Handles.zTest = CompareFunction.LessEqual;
 		Handles.DrawSolidRectangleWithOutline(new[] { topLeft, topRight, bottomRight, bottomLeft }, fill, Color.black);
 
-		base.RenderSceneGUI (parkitectObj);
+		base.RenderSceneGui (parkitectObj);
 	}
 #endif
 

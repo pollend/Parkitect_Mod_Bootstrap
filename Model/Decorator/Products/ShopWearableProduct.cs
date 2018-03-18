@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Linq;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ using UnityEditor;
 #endif
 
 [Serializable]
-public class SPWearableProduct : SPProduct
+public class ShopWearableProduct : ShopProduct
 {
 	public enum Seasonal { WINTER, SPRING, SUMMER, AUTUMN, NONE }
 	public enum Body { HEAD, FACE, BACK }
@@ -28,14 +29,15 @@ public class SPWearableProduct : SPProduct
 	#if UNITY_EDITOR
 	public override void RenderInspectorGUI()
 	{
-		BodyLocation = (Body)EditorGUILayout.EnumPopup("Body Location ", BodyLocation);
-		SeasonalPrefrence = (Seasonal)EditorGUILayout.EnumPopup ("Seasonal Prefrence ", SeasonalPrefrence);
-		TempreaturePrefrence = (Temperature)EditorGUILayout.EnumPopup ("Tempreature Prefrence", TempreaturePrefrence);
+		BodyLocation = (Body) EditorGUILayout.EnumPopup("Body Location ", BodyLocation);
+		SeasonalPrefrence = (Seasonal) EditorGUILayout.EnumPopup("Seasonal Prefrence ", SeasonalPrefrence);
+		TempreaturePrefrence = (Temperature) EditorGUILayout.EnumPopup("Tempreature Prefrence", TempreaturePrefrence);
 		HideHair = EditorGUILayout.Toggle("Hide Hair", HideHair);
-		HideOnRide = EditorGUILayout.Toggle ("Hide On Ride", HideOnRide);
+		HideOnRide = EditorGUILayout.Toggle("Hide On Ride", HideOnRide);
+
 		base.RenderInspectorGUI();
 	}
-	#endif
+#endif
 
 	public override List<XElement> Serialize()
 	{
@@ -60,6 +62,7 @@ public class SPWearableProduct : SPProduct
 			HideOnRide = bool.Parse(element.Element ("HideOnRide").Value);
 		if(element.Element ("HideHair") != null)
 			HideHair = bool.Parse (element.Element ("HideHair").Value);
+
 	}
 	
 #if PARKITECT

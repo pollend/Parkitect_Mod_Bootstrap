@@ -1,28 +1,28 @@
 ﻿#if UNITY_EDITOR
+using System.Collections.Generic;
 using UnityEditor;
 #endif
-
+using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Xml.Linq;
 using UnityEngine;
 
 public class ShopDecorator : Decorator
 {
-	public List<SPProduct> products = new List<SPProduct>();
+	public List<ShopProduct> products = new List<ShopProduct>();
 
 #if UNITY_EDITOR
-	[System.NonSerialized]
+	[NonSerialized]
 	private Vector2 scrollPos2;
-	[System.NonSerialized]
-	private SPProduct selected;
+	[NonSerialized]
+	private ShopProduct selected;
 #endif
 
 #if UNITY_EDITOR
-	public override void RenderInspectorGUI (ParkitectObj parkitectObj)
+	public override void RenderInspectorGui (ParkitectObj parkitectObj)
 	{
 
-		foreach (SPProduct p in products)
+		foreach (ShopProduct p in products)
 		{
 			try
 			{
@@ -43,13 +43,13 @@ public class ShopDecorator : Decorator
 			if (products[i] == selected)
 			{ GUI.color = Color.red; }
 
-			if (GUILayout.Button(products[i].Name + "    $" + products[i].Price + ".00" + " --" + products[i].ToString()))
+			if (GUILayout.Button(products[i].Name + "    $" + products[i].Price + " --" + products[i]))
 			{
 
 				GUI.FocusControl("");
 				if (e.button == 1)
 				{
-					GameObject.DestroyImmediate(products[i]);
+					DestroyImmediate(products[i],true);
 					products.RemoveAt(i);
 					return;
 				}
@@ -64,18 +64,19 @@ public class ShopDecorator : Decorator
 			GUI.color = gui;
 		}
 		EditorGUILayout.EndScrollView();
+
 		EditorGUILayout.BeginHorizontal();
 		if (GUILayout.Button("Add Wearable Product"))
 		{
-			AddProduct<SPWearableProduct> ();
+			AddProduct<ShopWearableProduct> ();
 		}
 		if (GUILayout.Button("Add Consumable Product"))
 		{
-			AddProduct<SPConsumableProduct> ();
+			AddProduct<ShopConsumableProduct> ();
 		}
 		if (GUILayout.Button("Add OnGoing Product"))
 		{
-			AddProduct<SPOngoingProduct> ();
+			AddProduct<ShopOngoingProduct> ();
 		}
 		EditorGUILayout.EndHorizontal();
 		if(selected != null)
@@ -89,12 +90,12 @@ public class ShopDecorator : Decorator
 			selected.RenderInspectorGUI();
 
 		}
-		base.RenderInspectorGUI (parkitectObj);
+		base.RenderInspectorGui (parkitectObj);
 	}
 
-	public void AddProduct<T>() where T : SPProduct
+	public void AddProduct<T>() where T : ShopProduct
 	{
-		SPProduct product = ScriptableObject.CreateInstance<T> ();
+		ShopProduct product = CreateInstance<T> ();
 		AssetDatabase.AddObjectToAsset (product,this);
 		EditorUtility.SetDirty(this);
 		AssetDatabase.SaveAssets();
@@ -115,7 +116,14 @@ public class ShopDecorator : Decorator
 	{
 		List<XElement> elements = new List<XElement> ();
 		for (int x = 0; x < products.Count; x++) {
-			elements.Add(new XElement(products[x].GetType().ToString(),products[x].Serialize()));
+			if (products[x] is ShopConsumableProduct)
+			{
+				elements.Add(new XElement("consumable", products[x].Serialize()));
+			}
+			else if (products[x] is ShopOngoingProduct)
+			{
+				elements.Add(new XElement("ongoing", products[x].Serialize()));
+			}
 		}
 		return new List<XElement>{
 			new XElement("Products",elements)
@@ -126,7 +134,7 @@ public class ShopDecorator : Decorator
 	{
 		foreach(var ele in element.Element("Products").Elements())
 		{
-			SPProduct product = Utility.GetByTypeName<SPProduct> (ele.Name.NamespaceName);
+			ShopProduct product = Utility.GetByTypeName<ShopProduct> (ele.Name.NamespaceName);
 			product.DeSerialize (ele);
 			products.Add (product);
 		}

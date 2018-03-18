@@ -12,7 +12,7 @@ public enum HandSide { Left, Right }
 public enum ConsumeAnimation { generic, drink_straw, lick, with_hands }
 
 [Serializable]
-public class SPConsumableProduct : SPProduct
+public class ShopConsumableProduct : ShopProduct
 {
 	[SerializeField]
 	public HandSide HandSide;
@@ -26,10 +26,10 @@ public class SPConsumableProduct : SPProduct
 	#if UNITY_EDITOR
 	public override void RenderInspectorGUI ()
 	{
-		Hand = Hand.Right;
+		HandSide = HandSide.Right;
 		ConsumeAnimation = (ConsumeAnimation)EditorGUILayout.EnumPopup("Consume Animation ", ConsumeAnimation);
-		Temp = (Temperature)EditorGUILayout.EnumPopup("Temprature ", Temp);
-		portions = EditorGUILayout.IntField("Portions ", portions);
+		Temprature = (Temperature)EditorGUILayout.EnumPopup("Temprature ", Temprature);
+		Portions = EditorGUILayout.IntField("Portions ", Portions);
 
 		base.RenderInspectorGUI ();
 	}

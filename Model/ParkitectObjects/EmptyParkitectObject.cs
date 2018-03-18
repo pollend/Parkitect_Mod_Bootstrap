@@ -1,6 +1,6 @@
 ﻿using System;
 
-[ParkitectObjectTag("empty")]
+[ParkitectObjectTag("Empty")]
 [Serializable]
 public class EmptyParkitectObject  : ParkitectObj
 {

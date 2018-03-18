@@ -29,7 +29,7 @@ public class WaypointDecorator : Decorator
 	[NonSerialized]
 	public SPWaypoint selectedWaypoint;
 
-	public override void RenderInspectorGUI (ParkitectObj parkitectObj)
+	public override void RenderInspectorGui (ParkitectObj parkitectObj)
 	{
 		GameObject sceneTransform = parkitectObj.getGameObjectRef (false);
 		if (sceneTransform == null)
@@ -94,14 +94,14 @@ public class WaypointDecorator : Decorator
 			}
 		}
 
-		base.RenderInspectorGUI (parkitectObj);
+		base.RenderInspectorGui (parkitectObj);
 	}
     
 
 
 
 
-	public override void RenderSceneGUI (ParkitectObj parkitectObj)
+	public override void RenderSceneGui (ParkitectObj parkitectObj)
 	{
 		GameObject sceneTransform = parkitectObj.getGameObjectRef (false);
 		if (sceneTransform == null)
@@ -223,7 +223,7 @@ public class WaypointDecorator : Decorator
             }
         }
 
-		base.RenderSceneGUI (parkitectObj);
+		base.RenderSceneGui (parkitectObj);
     }
 
 

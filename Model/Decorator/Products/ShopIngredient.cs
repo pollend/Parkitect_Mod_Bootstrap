@@ -6,7 +6,7 @@ using UnityEngine;
 public enum EffectTypes { HUNGER, THIRST, HAPPINESS, TIREDNESS, SUGARBOOST }
 
 [Serializable]
-public class SPIngredient
+public class ShopIngredient
 {
 
 	[SerializeField] public string Name = "New Ingredient";

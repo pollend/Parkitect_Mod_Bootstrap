@@ -1,14 +1,13 @@
 ﻿using System;
-using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Linq;
-
-
+using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-using System.Collections.Generic;
 
-public abstract class SPProduct : ScriptableObject
+public abstract class ShopProduct : ScriptableObject
 {
 	public enum Temperature
 	{
@@ -17,25 +16,45 @@ public abstract class SPProduct : ScriptableObject
 		HOT
 	}
 
-	public List<SPIngredient> Ingredients = new List<SPIngredient>();
+	public List<ShopIngredient> Ingredients = new List<ShopIngredient>();
 
-
+	[SerializeField] 
 	public string Name;
+	[SerializeField] 
 	public float Price;
-
-	[System.NonSerialized]
+	[SerializeField] 
+	public String key;
+	
+	[NonSerialized]
 	private Vector2 scrollPos = Vector2.zero;
-	[System.NonSerialized]
-	private SPIngredient selected = null;
-
-	public SPProduct()
-	{
-	}
+	[NonSerialized]
+	private ShopIngredient selected;
 
 #if UNITY_EDITOR
 	public virtual void RenderInspectorGUI(){
 		Name = EditorGUILayout.TextField ("Name",Name);
 		Price = EditorGUILayout.FloatField("Price ", Price);
+		
+		ParkitectObj[] pkObjects = ModPayload.Instance.ParkitectObjs.Where(x => x.Prefab != null).ToArray();
+		ParkitectObj pkObject = pkObjects.SingleOrDefault(x => x.Key == key);
+		
+		int index = -1;
+		if (pkObject == null)
+		{
+			key = "";
+		}
+		else
+		{
+			index = Array.IndexOf(pkObjects, pkObject);
+		}
+
+		index = EditorGUILayout.Popup("object", index, pkObjects.Select(x => x.Prefab.name).ToArray());
+		if (index < pkObjects.Length && index >= 0)
+		{
+			key = pkObjects[index].Key;
+		}
+
+		
 		DrawIngredients ();
 	}
 
@@ -73,10 +92,10 @@ public abstract class SPProduct : ScriptableObject
 			GUI.color = gui;
 		}
 		EditorGUILayout.EndScrollView();
-
+		
 		if (GUILayout.Button("Add Ingredients"))
 		{
-			Ingredients.Add(new SPIngredient());
+			Ingredients.Add(new ShopIngredient());
 		}
 		EditorGUILayout.EndVertical();
 		EditorGUILayout.BeginVertical();
@@ -87,6 +106,7 @@ public abstract class SPProduct : ScriptableObject
 				selected = null;
 				return;
 			}
+			
 			selected.Name = EditorGUILayout.TextField("Ingridient Name ", selected.Name);
 			selected.Price = EditorGUILayout.FloatField("Price ", selected.Price);
 			selected.Amount = EditorGUILayout.FloatField("Amount ", selected.Amount);
@@ -129,25 +149,29 @@ public abstract class SPProduct : ScriptableObject
 			xmlIngredient.Add (new XElement("Ingredient",Ingredients [x].Serialize ()));
 		}
 
-		return new List<XElement> (new XElement[]{
-			new XElement("Name",this.name),
-			new XElement("Price",this.Price),
-			new XElement("Ingredients",xmlIngredient)
+		return new List<XElement> (new[]{
+			new XElement("Name",name),
+			new XElement("Price",Price),
+			new XElement("Ingredients",xmlIngredient),
+			new XElement ("key", key)
 		});
 	}
 
 	public virtual void DeSerialize(XElement element)
 	{
 		if (element.Element ("Name") != null)
-			this.name = element.Element ("Name").Value;
+			name = element.Element ("Name").Value;
 
 		if (element.Element ("Price") != null)
-			this.Price = float.Parse(element.Element ("Price").Value);
+			Price = float.Parse(element.Element ("Price").Value);
 
+		if (element.Element("key") != null)
+			key = element.Element("key").Value;
+		
 		if (element.Element ("Ingredients") != null) {
 			foreach(XElement xmlingredient in element.Element("Ingredients").Elements("Ingredient"))
 			{
-				SPIngredient ingredient = new SPIngredient ();
+				ShopIngredient ingredient = new ShopIngredient ();
 				ingredient.DeSerialize (xmlingredient);
 				Ingredients.Add (ingredient);
 			}

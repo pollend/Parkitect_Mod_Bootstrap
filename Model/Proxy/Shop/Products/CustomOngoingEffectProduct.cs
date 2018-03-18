@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Linq;
-
+#if (PARKITECT)
 public class CustomOngoingEffectProduct : OngoingEffectProduct
 {
     public CustomOngoingEffectProduct()
@@ -15,3 +15,4 @@ public class CustomOngoingEffectProduct : OngoingEffectProduct
     }
 
 }
+#endif

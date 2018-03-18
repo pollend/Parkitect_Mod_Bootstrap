@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using UnityEngine;
 
+#if (PARKITECT)
 public static class RemapUtility
 {
     public static void RemapMaterials(GameObject go)
@@ -42,3 +43,5 @@ public static class RemapUtility
     }
     
 }
+   
+#endif
