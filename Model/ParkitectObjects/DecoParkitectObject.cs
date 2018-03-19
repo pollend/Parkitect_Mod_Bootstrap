@@ -21,7 +21,9 @@ public class DecoParkitectObject : ParkitectObj
     }
 
 #if (PARKITECT)
-    public override void BindToParkitect(GameObject hider,List<SerializedMonoBehaviour> register)
+    private Deco _deco;
+    
+    public override void BindToParkitect(GameObject hider, AssetBundle bundle)
     {
         BaseDecorator baseDecorator = DecoratorByInstance<BaseDecorator>();
         GridDecorator gridDecorator = DecoratorByInstance<GridDecorator>();
@@ -29,28 +31,27 @@ public class DecoParkitectObject : ParkitectObj
         ColorDecorator colorDecorator = DecoratorByInstance<ColorDecorator>();
         BoundingBoxDecorator boxDecorator = DecoratorByInstance<BoundingBoxDecorator>();
 
-        GameObject gameObject = Instantiate(Prefab);
+        GameObject gameObject = Instantiate(bundle.LoadAsset<GameObject>(Key));
         gameObject.transform.parent = hider.transform;
 
-        Deco deco = gameObject.AddComponent<Deco>();
-        register.Add(deco);
-        deco.name = Key;
+        _deco = gameObject.AddComponent<Deco>();
+        _deco.name = Key;
 
-        deco.buildOnLayerMask = 4096;
-        deco.heightChangeDelta = gridDecorator.heightDelta;
-        deco.defaultGridSubdivision = gridDecorator.gridSubdivision;
-        deco.buildOnGrid = gridDecorator.grid;
-        deco.defaultSnapToGridCenter = gridDecorator.snap;
+        _deco.buildOnLayerMask = 4096;
+        _deco.heightChangeDelta = gridDecorator.heightDelta;
+        _deco.defaultGridSubdivision = gridDecorator.gridSubdivision;
+        _deco.buildOnGrid = gridDecorator.grid;
+        _deco.defaultSnapToGridCenter = gridDecorator.snap;
 
-        deco.isPreview = true;
-        deco.isStatic = true;
-        deco.dontSerialize = true;
+        _deco.isPreview = true;
+        _deco.isStatic = true;
+        _deco.dontSerialize = true;
         
         RemapUtility.RemapMaterials(gameObject);
 
-        baseDecorator.Decorate(gameObject, hider, this,register);
-        colorDecorator.Decorate(gameObject, hider, this,register);
-        categoryDecorator.Decorate(gameObject,hider,this,register);
+        baseDecorator.Decorate(gameObject, hider, this,bundle);
+        colorDecorator.Decorate(gameObject, hider, this,bundle);
+        categoryDecorator.Decorate(gameObject,hider,this,bundle);
 
 
         foreach (var box in boxDecorator.boundingBoxes)
@@ -58,8 +59,13 @@ public class DecoParkitectObject : ParkitectObj
             var b = gameObject.AddComponent<BoundingBox>();
             b.setBounds(box.bounds);
         }
+        
+        AssetManager.Instance.registerObject(_deco);
+    }
 
-        base.BindToParkitect(hider,register);
+    public override void UnBindToParkitect(GameObject hider)
+    {
+        AssetManager.Instance.unregisterObject(_deco);
     }
 #endif
 }

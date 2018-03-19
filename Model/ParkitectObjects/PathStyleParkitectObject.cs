@@ -16,9 +16,9 @@ public class PathStyleParkitectObject : ParkitectObj
         };
     }
 #if (PARKITECT)
-    public override void BindToParkitect(GameObject hider,List<SerializedMonoBehaviour> register)
+    private PathStyle _pathStyle;
+    public override void BindToParkitect(GameObject hider, AssetBundle bundle)
     {
-
         BaseDecorator baseDecorator = DecoratorByInstance<BaseDecorator>();
         CategoryDecorator categoryDecorator = DecoratorByInstance<CategoryDecorator>();
         PathDecorator pathDecorator = DecoratorByInstance<PathDecorator>();
@@ -30,7 +30,7 @@ public class PathStyleParkitectObject : ParkitectObj
         ps.handRailGO = c.handRailGO;
         ps.handRailRampGO = c.handRailRampGO;
         Material mat = Instantiate(c.material);
-        mat.mainTexture = pathDecorator.PathTexture;
+        mat.mainTexture = bundle.LoadAsset<Texture>(pathDecorator.PathTexturePath);
         ps.material = mat;
         ps.platformTileMapper = AssetManager.Instance.platformTileMapper;
         ps.identifier = Key;
@@ -39,6 +39,7 @@ public class PathStyleParkitectObject : ParkitectObj
         ps.spawnLastSound = c.spawnLastSound;
         ps.spawnTilesOnPlatforms = true;
 
+        _pathStyle = ps;
 
         switch (pathDecorator.PathType)
         {
@@ -52,7 +53,24 @@ public class PathStyleParkitectObject : ParkitectObj
                 AssetManager.Instance.employeePathStyles.registerPathStyle(ps);
                 break;
         }
-        base.BindToParkitect(hider,register);
+    }
+
+    public override void UnBindToParkitect(GameObject hider)
+    {
+        PathDecorator pathDecorator = DecoratorByInstance<PathDecorator>();
+
+        switch (pathDecorator.PathType)
+        {
+            case PathType.Normal:
+                AssetManager.Instance.pathStyles.unregisterPathStyle(_pathStyle);
+                break;
+            case PathType.Queue:
+                AssetManager.Instance.queueStyles.unregisterPathStyle(_pathStyle);
+                break;
+            case PathType.Employee:
+                AssetManager.Instance.employeePathStyles.unregisterPathStyle(_pathStyle);
+                break;
+        }
     }
 #endif
 }

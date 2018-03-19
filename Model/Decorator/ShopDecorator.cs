@@ -101,47 +101,43 @@ public class ShopDecorator : Decorator
 	}
 #endif
 
-	public override List<XElement> Serialize (ParkitectObj parkitectObj)
+	public override List<XElement> Serialize(ParkitectObj parkitectObj)
 	{
-		List<XElement> elements = new List<XElement> ();
-		for (int x = 0; x < products.Count; x++) {
-			elements.Add(new XElement("product",products[x].Serialize()));
+		List<XElement> elements = new List<XElement>();
+		for (int x = 0; x < products.Count; x++)
+		{
+			elements.Add(new XElement("product", products[x].Serialize()));
 		}
-		return new List<XElement>{
-			new XElement("Products",elements)
+
+		return new List<XElement>
+		{
+			new XElement("Products", elements)
 		};
 	}
 
-	public override void Deserialize (XElement element)
+	public override void Deserialize(XElement element)
 	{
-		foreach(var ele in element.Element("Products").Elements())
+		foreach (var ele in element.Element("Products").Elements())
 		{
 			ShopProduct product = CreateInstance<ShopProduct>();
-			product.DeSerialize (ele);
-			products.Add (product);
+			product.DeSerialize(ele);
+			products.Add(product);
 		}
-		base.Deserialize (element);
+
+		base.Deserialize(element);
 	}
 #if PARKITECT
-	public override void Decorate(GameObject go, GameObject hider, ParkitectObj parkitectObj,List<SerializedMonoBehaviour> register)
+	public override void Decorate(GameObject go, GameObject hider, ParkitectObj parkitectObj, AssetBundle bundle)
 	{
-		CustomShop customShop =  go.AddComponent<CustomShop>();
+		CustomShop customShop = go.AddComponent<CustomShop>();
 		customShop.walkableFlag = Block.WalkableFlagType.FORWARD;
-		List<Product> productResults = new List<Product>();
-		foreach (var product in products)
+		List<Product> result = new List<Product>();
+		foreach (var p in products)
 		{
-			Product p = product.Decorate();
-			
-			BindingFlags flags = BindingFlags.GetField | BindingFlags.Instance | BindingFlags.NonPublic;
-			typeof(Product).GetField("displayName", flags).SetValue(p, product.name);
-			
-			p.defaultPrice = product.Price;
-			register.Add(p);
-			productResults.Add(p);
+			result.Add(p.Decorate(go, hider, parkitectObj, bundle));
 		}
 
-		customShop.products = productResults.ToArray();
-
+		customShop.products = result.ToArray();
 	}
 #endif
 }

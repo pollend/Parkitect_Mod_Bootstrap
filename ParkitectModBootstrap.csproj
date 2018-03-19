@@ -31,6 +31,9 @@
       <HintPath>../../Parkitect_Data/Managed/UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.IMGUIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\Parkitect_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>../../Parkitect_Data/Managed/UnityEngine.PhysicsModule.dll</HintPath>
       <Private>False</Private>
@@ -48,14 +51,14 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
+    <OutputPath>..\pollend@ParkitectModBootstrap\</OutputPath>
     <DefineConstants>DEBUG;PARKITECT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
+    <OutputPath>..\pollend@ParkitectModBootstrap\</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DefineConstants>PARKITECT</DefineConstants>
@@ -63,6 +66,7 @@
   <ItemGroup>
     <Compile Include="FlatRideAnimator\Events\SPRideAnimationEvent.cs" />
     <Compile Include="Model\Decorator\ResizableDecorator.cs" />
+    <Compile Include="Model\Decorator\ShopProduct.cs" />
     <Compile Include="Model\ParkitectObjects\DecoParkitectObject.cs" />
     <Compile Include="Model\ParkitectObjects\EmptyParkitectObject.cs" />
     <Compile Include="Model\ParkitectObjects\FlatRideParkitectObject.cs" />
@@ -74,11 +78,12 @@
     <Compile Include="Model\ParkitectObjects\TvParkitectObject.cs" />
     <Compile Include="Model\ParkitectObjects\WallDecoratorObject.cs" />
     <Compile Include="Model\ParkitectObjects\WallParkitectObject.cs" />
+    <Compile Include="Model\Proxy\FlatRide\CustomFlatRide.cs" />
     <Compile Include="Model\Proxy\Shop\CustomShop.cs" />
-    <Compile Include="Model\Proxy\Shop\Products\BaseProduct.cs" />
     <Compile Include="Model\Proxy\Shop\Products\CustomConsumableProduct.cs" />
     <Compile Include="Model\Proxy\Shop\Products\CustomOngoingEffectProduct.cs" />
     <Compile Include="Model\Proxy\Shop\Products\CustomWerableProduct.cs" />
+    <Compile Include="ParkitectMod.cs" />
     <Compile Include="ParkitectModBootstrap.cs" />
     <Compile Include="ParkitectObjectType.cs" />
     <Compile Include="Refrence.cs" />
@@ -98,11 +103,6 @@
     <Compile Include="Model\Decorator\SeatDecorator.cs" />
     <Compile Include="Model\Decorator\ShopDecorator.cs" />
     <Compile Include="Model\Decorator\WaypointDecorator.cs" />
-    <Compile Include="Model\Decorator\Products\SPConsumableProduct.cs" />
-    <Compile Include="Model\Decorator\Products\SPIngredients.cs" />
-    <Compile Include="Model\Decorator\Products\SPOngoingProduct.cs" />
-    <Compile Include="Model\Decorator\Products\SPProduct.cs" />
-    <Compile Include="Model\Decorator\Products\SPWearableProduct.cs" />
     <Compile Include="Needs\SPBoundingBox.cs" />
     <Compile Include="Needs\SPWaypoint.cs" />
     <Compile Include="FlatRideAnimator\MathHelper.cs" />
@@ -125,6 +125,7 @@
     <Compile Include="FlatRideAnimator\Motor\SPRotateBetween.cs" />
     <Compile Include="FlatRideAnimator\Motor\SPRotator.cs" />
     <Compile Include="Utility.cs" />
+    <Compile Include="Utility\Extra.cs" />
     <Compile Include="Utility\RemapUtility.cs" />
   </ItemGroup>
   <ItemGroup>

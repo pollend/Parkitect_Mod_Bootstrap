@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class ModPayload : ScriptableSingleton<ModPayload>
+public class ModPayload : ScriptableSingleton<ModPayload>, IMod
 {
 	[SerializeField]
 	public List<ParkitectObj> ParkitectObjs = new List<ParkitectObj>();
@@ -21,8 +21,6 @@ public class ModPayload : ScriptableSingleton<ModPayload>
 	public string modName;
 	[SerializeField]
 	public string description;
-
-    public AssetBundle Bundle { get; set; }
 
 	public List<XElement> Serialize()
 	{
@@ -39,14 +37,14 @@ public class ModPayload : ScriptableSingleton<ModPayload>
 		return mod;
 	}
 
-	public void Deserialize(XElement element,AssetBundle assetBundle)
+	public void Deserialize(XElement element)
 	{
 		ParkitectObjectType type = new ParkitectObjectType();
 
 		foreach (XElement e in element.Elements("ParkitectObjects"))
 		{
 			ParkitectObj o = (ParkitectObj) Activator.CreateInstance(type.GetType(e.Name.NamespaceName));
-			o.DeSerialize(e,assetBundle);
+			o.DeSerialize(e);
 			ParkitectObjs.Add(o);
 		}
 
@@ -54,5 +52,18 @@ public class ModPayload : ScriptableSingleton<ModPayload>
 		description = element.Element("Description").Value;
 	}
 
-	
+
+	public void onEnabled()
+	{
+		throw new NotImplementedException();
+	}
+
+	public void onDisabled()
+	{
+		throw new NotImplementedException();
+	}
+
+	public string Name => modName;
+	public string Description => description;
+	public string Identifier => modName.Replace(" ","_");
 }

@@ -21,7 +21,8 @@ public class ParkitectObj : ScriptableObject
 
 	public float XSize;
 
-	[NonSerialized] public GameObject sceneRef;
+	[NonSerialized] 
+	public GameObject sceneRef;
 
 #if UNITY_EDITOR
 	public void UpdatePrefab()
@@ -204,12 +205,10 @@ public class ParkitectObj : ScriptableObject
 		});
 	}
 
-	public void DeSerialize(XElement element, AssetBundle bundle)
+	public void DeSerialize(XElement element)
 	{
 		var keyElement = element.Element("key");
 		if (keyElement != null) Key = keyElement.Value;
-
-		Prefab = bundle.LoadAsset<GameObject>(Key);
 
 		var decoratorElement = element.Element("Decorators");
 		if (decoratorElement != null)
@@ -235,7 +234,16 @@ public class ParkitectObj : ScriptableObject
 	}
 
 #if (PARKITECT)
-	public virtual void BindToParkitect(GameObject hider,List<SerializedMonoBehaviour> register) { }
+	public virtual void BindToParkitect(GameObject hider, AssetBundle bundle)
+	{
+		throw new NotImplementedException();
+	}
+	
+	public virtual void UnBindToParkitect(GameObject hider)
+	{
+		throw new NotImplementedException();
+	}
+	
 #endif
 
 }

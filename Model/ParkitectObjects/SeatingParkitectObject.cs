@@ -18,7 +18,8 @@ public class SeatingParkitectObject : ParkitectObj
         };
     }
 #if PARKITECT
-    public override void BindToParkitect(GameObject hider,List<SerializedMonoBehaviour> register)
+    private Seating _seat;
+    public override void BindToParkitect(GameObject hider, AssetBundle bundle)
     {
         BaseDecorator baseDecorator = DecoratorByInstance<BaseDecorator>();
         SeatDecorator seatDecorator= DecoratorByInstance<SeatDecorator>();
@@ -26,35 +27,30 @@ public class SeatingParkitectObject : ParkitectObj
         BoundingBoxDecorator boxDecorator = DecoratorByInstance<BoundingBoxDecorator>();
         CategoryDecorator categoryDecorator = DecoratorByInstance<CategoryDecorator>();
 
-        
-        GameObject gameObject = Instantiate(Prefab);
+        GameObject gameObject = Instantiate(bundle.LoadAsset<GameObject>(Key));;
         gameObject.transform.parent = hider.transform;
 
-        Seating seat = gameObject.AddComponent<Seating>();
-        seat.name = Key;
-        seat.setDisplayName(baseDecorator.InGameName);
-        seat.price = baseDecorator.price;
-        seat.categoryTag = "Patch Attachments/Benches";
-        
+        _seat = gameObject.AddComponent<Seating>();
+        _seat.name = Key;
         
         RemapUtility.RemapMaterials(gameObject);
 
-        baseDecorator.Decorate(gameObject, hider, this,register);
-        colorDecorator.Decorate(gameObject, hider, this,register);
-        categoryDecorator.Decorate(gameObject,hider,this,register);
-
-        if (colorDecorator.isRecolorable)
-        {
-            CustomColors colors = Prefab.AddComponent<CustomColors>();
-            colors.setColors(colorDecorator.colors.ToArray());
-        }
-
+        baseDecorator.Decorate(gameObject, hider, this,bundle);
+        colorDecorator.Decorate(gameObject, hider, this,bundle);
+        categoryDecorator.Decorate(gameObject,hider,this,bundle);
+       
         foreach (var box in boxDecorator.boundingBoxes)
         {
             var b = Prefab.AddComponent<BoundingBox>();
             b.setBounds(box.bounds);
         }
-        base.BindToParkitect(hider,register);
+        
+        AssetManager.Instance.registerObject(_seat);
+    }
+
+    public override void UnBindToParkitect(GameObject hider)
+    {
+        AssetManager.Instance.unregisterObject(_seat);
     }
 #endif
 }

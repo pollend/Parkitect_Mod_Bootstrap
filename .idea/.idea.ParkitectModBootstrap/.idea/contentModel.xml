@@ -40,16 +40,10 @@
           <e p="FlatrideDecorator.cs" t="Include" />
           <e p="GridDecorator.cs" t="Include" />
           <e p="PathDecorator.cs" t="Include" />
-          <e p="Products" t="Include">
-            <e p="SPConsumableProduct.cs" t="Include" />
-            <e p="SPIngredients.cs" t="Include" />
-            <e p="SPOngoingProduct.cs" t="Include" />
-            <e p="SPProduct.cs" t="Include" />
-            <e p="SPWearableProduct.cs" t="Include" />
-          </e>
           <e p="ResizableDecorator.cs" t="Include" />
           <e p="SeatDecorator.cs" t="Include" />
           <e p="ShopDecorator.cs" t="Include" />
+          <e p="ShopProduct.cs" t="Include" />
           <e p="WaypointDecorator.cs" t="Include" />
         </e>
         <e p="ModPayload.cs" t="Include" />
@@ -69,10 +63,12 @@
           <e p="WallParkitectObject.cs" t="Include" />
         </e>
         <e p="Proxy" t="Include">
+          <e p="FlatRide" t="Include">
+            <e p="CustomFlatRide.cs" t="Include" />
+          </e>
           <e p="Shop" t="Include">
             <e p="CustomShop.cs" t="Include" />
             <e p="Products" t="Include">
-              <e p="BaseProduct.cs" t="Include" />
               <e p="CustomConsumableProduct.cs" t="Include" />
               <e p="CustomOngoingEffectProduct.cs" t="Include" />
               <e p="CustomWerableProduct.cs" t="Include" />
@@ -84,6 +80,7 @@
         <e p="SPBoundingBox.cs" t="Include" />
         <e p="SPWaypoint.cs" t="Include" />
       </e>
+      <e p="ParkitectMod.cs" t="Include" />
       <e p="ParkitectModBootstrap.cs" t="Include" />
       <e p="ParkitectModBootstrap.csproj" t="IncludeRecursive" />
       <e p="ParkitectModBootstrap.sln" t="IncludeFlat" />
@@ -91,12 +88,13 @@
       <e p="Refrence.cs" t="Include" />
       <e p="RefrencedTransform.cs" t="Include" />
       <e p="Utility" t="Include">
+        <e p="Extra.cs" t="Include" />
         <e p="RemapUtility.cs" t="Include" />
       </e>
       <e p="Utility.cs" t="Include" />
-      <e p="bin" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
     </e>
+    <e p="$PROJECT_DIR$/../pollend@ParkitectModBootstrap" t="ExcludeRecursive" />
   </component>
 </project>

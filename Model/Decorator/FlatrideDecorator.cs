@@ -12,8 +12,8 @@ public class FlatrideDecorator : Decorator
 	public float Excitement;
 	public float Intensity;
 	public float Nausea;
-	public float XSize = 1;
-	public float ZSize = 1;
+	public int XSize = 1;
+	public int ZSize = 1;
 	public Vector3 closedAngleRetraints;
 
 #if UNITY_EDITOR
@@ -56,6 +56,7 @@ public override void RenderInspectorGui (ParkitectObj parkitectObj)
 	}
 #endif
 
+
 	private string getRatingCategory(float ratingValue)
 	{
 		ratingValue /= 100f;
@@ -94,9 +95,9 @@ public override void RenderInspectorGui (ParkitectObj parkitectObj)
 		if (elements.Element ("Nausea") != null)
 			Nausea = float.Parse(elements.Element ("Nausea").Value);
 		if (elements.Element ("XSize") != null)
-			XSize = float.Parse(elements.Element ("XSize").Value);
+			XSize = int.Parse(elements.Element ("XSize").Value);
 		if (elements.Element ("ZSize") != null)
-			ZSize = float.Parse(elements.Element ("ZSize").Value);
+			ZSize = int.Parse(elements.Element ("ZSize").Value);
 		base.Deserialize (elements);
 	}
 }

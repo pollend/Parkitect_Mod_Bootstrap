@@ -14,18 +14,37 @@ public class ShopParkitectObject : ParkitectObj
 		};
 	}
 #if (PARKITECT)
-	public override void BindToParkitect(GameObject hider,List<SerializedMonoBehaviour> register)
+	private CustomShop _shop;
+	public override void BindToParkitect(GameObject hider, AssetBundle bundle)
 	{
+
 		var baseDecorator = DecoratorByInstance<BaseDecorator>();
 		var shopDecorator = DecoratorByInstance<ShopDecorator>();
 
-		
-		GameObject gameObject = Instantiate(Prefab);
+		GameObject gameObject = Instantiate(bundle.LoadAsset<GameObject>(Key));
 		gameObject.transform.parent = hider.transform;
-		
-		shopDecorator.Decorate(gameObject,hider,this,register);
 
-		base.BindToParkitect(hider,register);
+		shopDecorator.Decorate(gameObject, hider, this, bundle);
+		baseDecorator.Decorate(gameObject, hider, this, bundle);
+
+		CustomShop customShop = gameObject.GetComponent<CustomShop>();
+		_shop = customShop;
+		_shop.name = Key;
+		AssetManager.Instance.registerObject(_shop);
+
+		foreach (var prod in _shop.products)
+		{
+			AssetManager.Instance.registerObject(prod);
+		}
+	}
+
+	public override void UnBindToParkitect(GameObject hider)
+	{
+		foreach (var prod in _shop.products)
+		{
+			AssetManager.Instance.unregisterObject(prod);
+		}
+		AssetManager.Instance.unregisterObject(_shop);
 	}
 #endif
 }

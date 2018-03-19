@@ -45,7 +45,7 @@ public class BaseDecorator : Decorator
 	}
 
 #if PARKITECT
-	public override void Decorate(GameObject go, GameObject hider, ParkitectObj parkitectObj,List<SerializedMonoBehaviour> register)
+	public override void Decorate(GameObject go, GameObject hider, ParkitectObj parkitectObj, AssetBundle bundle)
 	{
 		BuildableObject component = go.GetComponent<BuildableObject>();
 		component.price = price;

@@ -18,15 +18,18 @@ namespace Parkitect_Mod_Bootstrap.Model.ParkitectObjects
             };
         }
 #if (PARKITECT)
-        public override void BindToParkitect(GameObject hider,List<SerializedMonoBehaviour> register)
+        public override void BindToParkitect(GameObject hider, AssetBundle bundle)
         {
+            base.BindToParkitect(hider,bundle);
+            
             BaseDecorator baseDecorator = DecoratorByInstance<BaseDecorator>();
             CategoryDecorator categoryDecorator = DecoratorByInstance<CategoryDecorator>();
             ColorDecorator colorDecorator = DecoratorByInstance<ColorDecorator>();
             BoundingBoxDecorator boxDecorator = DecoratorByInstance<BoundingBoxDecorator>();
 
-
-            Wall wall = Prefab.AddComponent<Wall>();
+            GameObject go = Instantiate(bundle.LoadAsset<GameObject>(Key));
+          
+            Wall wall = go.AddComponent<Wall>();
             wall.name = Key;
             wall.categoryTag = categoryDecorator.category;
             wall.price = baseDecorator.price;
@@ -36,17 +39,16 @@ namespace Parkitect_Mod_Bootstrap.Model.ParkitectObjects
 
             if (colorDecorator.isRecolorable)
             {
-                CustomColors colors = Prefab.AddComponent<CustomColors>();
+                CustomColors colors = go.AddComponent<CustomColors>();
                 colors.setColors(colorDecorator.colors.ToArray());
             }
 
             foreach (var box in boxDecorator.boundingBoxes)
             {
-                var b = Prefab.AddComponent<BoundingBox>();
+                var b = go.AddComponent<BoundingBox>();
                 b.setBounds(box.bounds);
             }
 
-            base.BindToParkitect(hider,register);
         }
 #endif
     }

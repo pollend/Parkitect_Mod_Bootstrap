@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Reflection;
 using System.Xml.Linq;
 using UnityEngine;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -27,7 +28,7 @@ public class ShopProduct : ScriptableObject
 	[SerializeField] public String Key;
 
 	[SerializeField] public bool IsTwoHanded;
-	[SerializeField] public bool IsInterestingToLookAt;
+	[SerializeField] public bool IsInterestingToLookAt ;
 	[SerializeField] public HandSide HandSide;
 	
 	//ongoing
@@ -334,8 +335,208 @@ public class ShopProduct : ScriptableObject
 	}
 
 #if PARKITECT
-	public abstract Product Decorate();
+	public Product Decorate(GameObject go, GameObject hider, ParkitectObj parkitectObj,AssetBundle assetBundle)
+	{
+		GameObject prod;
+		if (String.IsNullOrEmpty(Key))
+		{
+			prod = new GameObject();
+		}
+		else
+		{
+			prod = assetBundle.LoadAsset<GameObject>(Key);
+		}
+		prod.transform.parent = hider.transform;
+		Product product = null;
+		
+		switch (ProductType)
+		{
+			case ProductType.ON_GOING:
+			{
+				CustomOngoingEffectProduct c = prod.AddComponent<CustomOngoingEffectProduct>();
+				c.duration = Duration;
+				c.removeFromInventoryWhenDepleted = RemoveWhenDepleted;
+				c.destroyWhenDepleted = DestroyWhenDepleted;
+				product = c;
+			}
+				break;
+			case ProductType.CONSUMABLE:
+			{
+				CustomConsumableProduct c = prod.AddComponent<CustomConsumableProduct>();
+				switch (ConsumeAnimation)
+				{
+					case ConsumeAnimation.GENERIC:
+						c.consumeAnimation = ConsumableProduct.ConsumeAnimation.GENERIC;
+						break;
+					case ConsumeAnimation.DRINK_STRAW:
+
+						c.consumeAnimation = ConsumableProduct.ConsumeAnimation.DRINK_STRAW;
+						break;
+					case ConsumeAnimation.LICK:
+
+						c.consumeAnimation = ConsumableProduct.ConsumeAnimation.LICK;
+						break;
+					case ConsumeAnimation.WITH_HANDS:
+
+						c.consumeAnimation = ConsumableProduct.ConsumeAnimation.WITH_HANDS;
+						break;
+				}
+
+				switch (Temprature)
+				{
+					case Temperature.COLD:
+						c.temperaturePreference = TemperaturePreference.COLD;
+						break;
+					case Temperature.HOT:
+						c.temperaturePreference = TemperaturePreference.HOT;
+						break;
+					case Temperature.NONE:
+						c.temperaturePreference = TemperaturePreference.NONE;
+						break;
+				}
+
+				c.portions = Portions;
+				product = c;
+
+			}
+				break;
+			case ProductType.WEARABLE:
+			{
+				CustomWerableProduct c = prod.AddComponent<CustomWerableProduct>();
+				switch (TempreaturePrefrence)
+				{
+					case Temperature.COLD:
+						c.temperaturePreference = TemperaturePreference.COLD;
+						break;
+					case Temperature.HOT:
+						c.temperaturePreference = TemperaturePreference.HOT;
+						break;
+					case Temperature.NONE:
+						c.temperaturePreference = TemperaturePreference.NONE;
+						break;
+				}
+
+				switch (SeasonalPrefrence)
+				{
+					case Seasonal.WINTER:
+						c.seasonalPreference = WearableProduct.SeasonalPreference.WINTER;
+						break;
+					case Seasonal.SPRING:
+						c.seasonalPreference = WearableProduct.SeasonalPreference.SPRING;
+						break;
+					case Seasonal.SUMMER:
+						c.seasonalPreference = WearableProduct.SeasonalPreference.SUMMER;
+						break;
+					case Seasonal.AUTUMN:
+						c.seasonalPreference = WearableProduct.SeasonalPreference.AUTUMN;
+						break;
+					case Seasonal.NONE:
+						c.seasonalPreference = WearableProduct.SeasonalPreference.NONE;
+						break;
+				}
+				switch (BodyLocation)
+				{
+					case Body.HEAD:
+						c.bodyLocation = WearableProduct.BodyLocation.HEAD;
+						break;
+					case Body.FACE:
+						c.bodyLocation = WearableProduct.BodyLocation.FACE;
+						break;
+					case Body.BACK:
+						c.bodyLocation = WearableProduct.BodyLocation.BACK;
+						break;
+				}
+
+				c.hideOnRides = HideOnRide;
+				c.dontHideHair = HideHair;
+				
+				product = c;
+			}
+				break;
+		}
+
+		if (ProductType == ProductType.ON_GOING || ProductType == ProductType.CONSUMABLE)
+		{
+			switch (HandSide)
+			{
+				case HandSide.LEFT:
+					product.handSide = Hand.Side.LEFT;
+					break;
+				case HandSide.RIGHT:
+					product.handSide = Hand.Side.RIGHT;
+					break;
+			}
+
+			product.interestingToLookAt = IsInterestingToLookAt;
+			product.isTwoHanded = IsTwoHanded;
+		}
+		
+		BindingFlags flags = BindingFlags.GetField | BindingFlags.Instance | BindingFlags.NonPublic;
+		typeof(Product).GetField("displayName", flags).SetValue(product, Name);
+
+		product.ingredients = generateIngredient();
+		product.defaultPrice = Price;
+		return product;
+	}
+
+	public Ingredient[] generateIngredient()
+	{
+		List<Ingredient> results = new List<Ingredient>();
+		foreach (var t in Ingredients)
+		{
+			Ingredient ing = new Ingredient();
+			ing.defaultAmount = t.Amount;
+			ing.tweakable = t.Tweakable;
+			results.Add(ing);
+
+			var resource = CreateInstance<Resource>();
+			ing.resource = resource;
+			resource.name = t.Name;
+			resource.setDisplayName(t.Name);
+			resource.setCosts(t.Price);
+			resource.getResourceSettings().percentage = 1f;
+
+			List<ConsumableEffect> consumableEffects = new List<ConsumableEffect>();
+			foreach (var t1 in t.effects)
+			{
+				var consumableEffect = new ConsumableEffect();
+				consumableEffect.amount = t1.amount;
+				switch (t1.Type)
+				{
+					case EffectTypes.HUNGER:
+						consumableEffect.affectedStat = ConsumableEffect.AffectedStat.HUNGER;
+						break;
+					case EffectTypes.THIRST:
+
+						consumableEffect.affectedStat = ConsumableEffect.AffectedStat.THIRST;
+						break;
+					case EffectTypes.HAPPINESS:
+
+						consumableEffect.affectedStat = ConsumableEffect.AffectedStat.HAPPINESS;
+						break;
+					case EffectTypes.TIREDNESS:
+
+						consumableEffect.affectedStat = ConsumableEffect.AffectedStat.TIREDNESS;
+						break;
+					case EffectTypes.SUGARBOOST:
+
+						consumableEffect.affectedStat = ConsumableEffect.AffectedStat.SUGARBOOST;
+						break;
+					default:
+						throw new ArgumentOutOfRangeException();
+
+				}
+
+				consumableEffects.Add(consumableEffect);
+			}
+
+			resource.effects = consumableEffects.ToArray();
+		}
+
+		return results.ToArray();
+	}
 #endif
+	
 }
 
 

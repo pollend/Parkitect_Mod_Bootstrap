@@ -389,7 +389,23 @@ public class WaypointDecorator : Decorator
         return newPos;
     }
 #endif
-
+#if PARKITECT
+	
+	public override void Decorate(GameObject go, GameObject hider, ParkitectObj parkitectObj, AssetBundle bundle)
+	{
+		Waypoints w = go.AddComponent<Waypoints>();
+		foreach (var t in waypoints)
+		{
+			Waypoint waypoint = new Waypoint();
+			waypoint.connectedTo = t.connectedTo;
+			waypoint.isOuter = t.isOuter;
+			waypoint.isRabbitHoleGoal = t.isRabbitHoleGoal;
+			waypoint.localPosition = t.localPosition;
+			w.waypoints.Add(waypoint);
+		}
+	}
+#endif
+	
 	public override List<XElement> Serialize (ParkitectObj parkitectObj)
 	{
 		List<XElement> xmlWaypoints = new List<XElement> ();

@@ -21,8 +21,8 @@ public class Decorator : ScriptableObject
 	public virtual void PrepareExport(ParkitectObj parkitectObj) { }
 	public virtual List<XElement> Serialize(ParkitectObj parkitectObj){return null;}
 	public virtual void Deserialize(XElement elements){}
-	#if PARKITECT
-	public virtual void Decorate(GameObject go, GameObject hider,ParkitectObj parkitectObj,List<SerializedMonoBehaviour> register){}
-	#endif
+#if PARKITECT
+	public virtual void Decorate(GameObject go, GameObject hider,ParkitectObj parkitectObj, AssetBundle bundle){}
+#endif
 }
 

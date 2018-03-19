@@ -86,7 +86,7 @@ public class ColorDecorator : Decorator
 	}
 	
 #if PARKITECT
-	public override void Decorate(GameObject go, GameObject hider, ParkitectObj parkitectObj,List<SerializedMonoBehaviour> register)
+	public override void Decorate(GameObject go, GameObject hider, ParkitectObj parkitectObj, AssetBundle bundle)
 	{
 		if (isRecolorable)
 		{
