@@ -1,11 +1,12 @@
-﻿#if UNITY_EDITOR
-using System.Collections.Generic;
-using UnityEditor;
-#endif
+﻿using System.Collections.Generic;
 using System;
-using System.Collections.Generic;
 using System.Xml.Linq;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 
 public class ShopDecorator : Decorator
 {
@@ -43,7 +44,7 @@ public class ShopDecorator : Decorator
 			if (products[i] == selected)
 			{ GUI.color = Color.red; }
 
-			if (GUILayout.Button(products[i].Name + "    $" + products[i].Price + " --" + products[i]))
+			if (GUILayout.Button(products[i].Name + "    $" + products[i].Price + " (" + products[i].ProductType + ")"))
 			{
 
 				GUI.FocusControl("");
@@ -65,20 +66,15 @@ public class ShopDecorator : Decorator
 		}
 		EditorGUILayout.EndScrollView();
 
-		EditorGUILayout.BeginHorizontal();
-		if (GUILayout.Button("Add Wearable Product"))
+		
+		if (GUILayout.Button("Add Product"))
 		{
-			AddProduct<ShopWearableProduct> ();
+			ShopProduct product = CreateInstance<ShopProduct>();
+			AssetDatabase.AddObjectToAsset (product,this);
+			EditorUtility.SetDirty(this);
+			AssetDatabase.SaveAssets();
+			products.Add (product);
 		}
-		if (GUILayout.Button("Add Consumable Product"))
-		{
-			AddProduct<ShopConsumableProduct> ();
-		}
-		if (GUILayout.Button("Add OnGoing Product"))
-		{
-			AddProduct<ShopOngoingProduct> ();
-		}
-		EditorGUILayout.EndHorizontal();
 		if(selected != null)
 		{
 			if(!products.Contains(selected))
@@ -93,14 +89,7 @@ public class ShopDecorator : Decorator
 		base.RenderInspectorGui (parkitectObj);
 	}
 
-	public void AddProduct<T>() where T : ShopProduct
-	{
-		ShopProduct product = CreateInstance<T> ();
-		AssetDatabase.AddObjectToAsset (product,this);
-		EditorUtility.SetDirty(this);
-		AssetDatabase.SaveAssets();
-		products.Add (product);
-	}
+	
 
 	public override void CleanUp (ParkitectObj parkitectObj)
 	{
@@ -116,14 +105,7 @@ public class ShopDecorator : Decorator
 	{
 		List<XElement> elements = new List<XElement> ();
 		for (int x = 0; x < products.Count; x++) {
-			if (products[x] is ShopConsumableProduct)
-			{
-				elements.Add(new XElement("consumable", products[x].Serialize()));
-			}
-			else if (products[x] is ShopOngoingProduct)
-			{
-				elements.Add(new XElement("ongoing", products[x].Serialize()));
-			}
+			elements.Add(new XElement("product",products[x].Serialize()));
 		}
 		return new List<XElement>{
 			new XElement("Products",elements)
@@ -134,7 +116,7 @@ public class ShopDecorator : Decorator
 	{
 		foreach(var ele in element.Element("Products").Elements())
 		{
-			ShopProduct product = Utility.GetByTypeName<ShopProduct> (ele.Name.NamespaceName);
+			ShopProduct product = CreateInstance<ShopProduct>();
 			product.DeSerialize (ele);
 			products.Add (product);
 		}

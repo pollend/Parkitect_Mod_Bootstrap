@@ -10,6 +10,10 @@ public class Decorator : ScriptableObject
 	{
 	}
 
+	public virtual String[] getAssets()
+	{
+		return new string[] { };
+	}
 	public virtual void RenderSceneGui(ParkitectObj parkitectObj) { }
 	public virtual void RenderInspectorGui(ParkitectObj parkitectObj) { }
 	public virtual void CleanUp(ParkitectObj parkitectObj) { }

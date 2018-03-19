@@ -1,9 +1,7 @@
 ﻿using System;
-using UnityEngine;
 using System.Collections.Generic;
 using System.Xml.Linq;
-
-
+using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -13,19 +11,17 @@ public class PathDecorator : Decorator
 {
 	public PathType PathType;
 	public Texture2D PathTexture;
-
-	public PathDecorator()
-	{
-	}
-	#if UNITY_EDITOR
+	public String PathTexturePath;
+#if UNITY_EDITOR
 	public override void RenderInspectorGui (ParkitectObj parkitectObj)
 	{
-		this.PathTexture = (Texture2D)EditorGUILayout.ObjectField("Texture",this.PathTexture, typeof(Texture2D), true);
-		if(GUILayout.Button("Create") && this.PathTexture)
+		PathTexture = (Texture2D)EditorGUILayout.ObjectField("Texture",PathTexture, typeof(Texture2D), true);
+		PathTexturePath = AssetDatabase.GetAssetPath(PathTexture);
+		if(GUILayout.Button("Create") && PathTexture)
 		{
-			this.PathTexture.alphaIsTransparency = true;
-			this.PathTexture.wrapMode = TextureWrapMode.Repeat;
-			this.PathTexture.filterMode = FilterMode.Point;
+			PathTexture.alphaIsTransparency = true;
+			PathTexture.wrapMode = TextureWrapMode.Repeat;
+			PathTexture.filterMode = FilterMode.Point;
 
 			AssetDatabase.DeleteAsset("Assets/Materials/Paths/" + parkitectObj.Key + ".mat");
 			parkitectObj.Prefab.AddComponent<MeshRenderer>();
@@ -37,7 +33,7 @@ public class PathDecorator : Decorator
 			if (!AssetDatabase.IsValidFolder("Assets/Materials/Paths"))
 				AssetDatabase.CreateFolder("Assets/Materials", "Paths");
 			Material material = new Material(Shader.Find("Transparent/Diffuse"));
-			material.mainTexture = this.PathTexture;
+			material.mainTexture = PathTexture;
 			AssetDatabase.CreateAsset(material, "Assets/Materials/Paths/" + parkitectObj.Key + ".mat");
 			MR.material = material;
 
@@ -51,13 +47,19 @@ public class PathDecorator : Decorator
 
 		base.RenderInspectorGui (parkitectObj);
 	}
-	#endif
+
+	public override string[] getAssets()
+	{
+		return new[]{AssetDatabase.GetAssetPath(PathTexture)};
+	}
+#endif
 	
 	public override List<XElement> Serialize (ParkitectObj parkitectObj)
 	{
-		return new List<XElement>(new XElement[]{
-			new XElement("PathType",PathType)
-
+		
+		return new List<XElement>(new[]{
+			new XElement("PathType",PathType),
+			new XElement("texture",PathTexturePath)
 		});
 	}
 
@@ -65,6 +67,8 @@ public class PathDecorator : Decorator
 	{
 		if (elements.Element ("PathType") != null)
 			PathType = (PathType)Enum.Parse (typeof(PathType), elements.Element ("PathType").Value);
+		if (elements.Element ("texture") != null)
+			PathTexturePath = elements.Element ("texture").Value;
 		base.Deserialize (elements);
 	}
 
