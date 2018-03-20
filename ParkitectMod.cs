@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using MiniJSON;
 using UnityEngine;
 #if (PARKITECT)
 public class ParkitectMod : IMod
 {
-    private String name;
-    private String description;
-    private String identifier;
+    private String name = "";
+    private String description = "";
+    private String identifier = null;
 
-    private String path;
+    private String path ;
 
     private GameObject hider;
     private ModPayload _payload;
@@ -21,8 +22,6 @@ public class ParkitectMod : IMod
     public ParkitectMod(String path)
     {
         this.path = path;
-        
-
         String[] files = Directory.GetFiles(path, "*.spark", SearchOption.TopDirectoryOnly);
         foreach (var sparkModFile in files)
         {
@@ -30,8 +29,7 @@ public class ParkitectMod : IMod
             {
                 ModPayload payload = ScriptableObject.CreateInstance<ModPayload>();
 
-                XElement element = XElement.Load(reader);
-                payload.Deserialize(element.Element("mod"));
+                payload.Deserialize((Dictionary<string, object>) Json.Deserialize(reader.ReadToEnd()));
                 _payload = payload;
                 break;
 
@@ -41,13 +39,15 @@ public class ParkitectMod : IMod
 
     public void onEnabled()
     {
-        hider = new GameObject("hider");
-        UnityEngine.Object.DontDestroyOnLoad(hider);
+        if (path != null && _payload != null)
+        {
+            hider = new GameObject("hider");
+            UnityEngine.Object.DontDestroyOnLoad(hider);
 
-        Debug.Log("------------------------LOADING MOD------------------------");
-        Debug.Log("Mod Path:" + path);
+            Debug.Log("------------------------LOADING MOD------------------------");
+            Debug.Log("Mod Path:" + path);
 
-        AssetBundle assetBundle = AssetBundle.LoadFromFile(path + "/assetbundle");
+            AssetBundle assetBundle = AssetBundle.LoadFromFile(path + "/assetbundle");
 
 
             try
@@ -57,7 +57,7 @@ public class ParkitectMod : IMod
                     BaseDecorator dec = obj.DecoratorByInstance<BaseDecorator>();
                     if (dec != null)
                         Debug.Log("---------------------------" + dec.InGameName + "---------------------------");
-                    obj.BindToParkitect(hider,assetBundle);
+                    obj.BindToParkitect(hider, assetBundle);
                 }
 
             }
@@ -65,37 +65,66 @@ public class ParkitectMod : IMod
             {
                 Debug.LogException(e);
             }
-            
-        
 
-   
 
-        Debug.Log("------------------------DONE LOADING MOD------------------------");
 
+
+
+            Debug.Log("------------------------DONE LOADING MOD------------------------");
+        }
 
     }
 
     public void onDisabled()
     {
 
-        try
+        if (_payload != null)
         {
-            foreach (ParkitectObj obj in _payload.ParkitectObjs)
+            try
             {
-                obj.UnBindToParkitect(hider);
-            }
+                foreach (ParkitectObj obj in _payload.ParkitectObjs)
+                {
+                    obj.UnBindToParkitect(hider);
+                }
 
-        }
-        catch (Exception e)
-        {
-            Debug.LogException(e);
+            }
+            catch (Exception e)
+            {
+                Debug.LogException(e);
+            }
         }
 
 
     }
 
-    public string Name => _payload?.Identifier;
-    public string Description => _payload?.Description;
-    public string Identifier => _payload?.Identifier;
+    public string Name
+    {
+        get
+        {
+            if (_payload == null)
+                return null;
+            return _payload.modName;
+        }
+    }
+    public string Description
+    {
+        get
+        {
+            if (_payload == null)
+                return null;
+            return _payload.description;
+        }
+    }
+
+    public string Identifier
+    {
+        get
+        {
+            if (_payload == null)
+                return null;
+            return _payload.modName;
+        }
+    }
+
 }
 #endif

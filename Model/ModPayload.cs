@@ -32,7 +32,6 @@ public class ModPayload : ScriptableSingleton<ModPayload>
 		}
 		
 		payload.Add("ParkitectObjects",items);
-		
 		payload.Add("ModName",modName);
 		payload.Add("Description",description);
 		return payload;
@@ -42,15 +41,18 @@ public class ModPayload : ScriptableSingleton<ModPayload>
 	{
 		ParkitectObjectType type = new ParkitectObjectType();
 
-		foreach (var e in (Dictionary<String,object>)entries["ParkitectObjects"])
+		foreach (var e in (Dictionary<String, object>) entries["ParkitectObjects"])
 		{
 			ParkitectObj o = (ParkitectObj) Activator.CreateInstance(type.GetType(e.Key));
-			o.DeSerialize((Dictionary<String,object>)e.Value);
+			o.DeSerialize((Dictionary<String, object>) e.Value);
 			ParkitectObjs.Add(o);
 		}
+		
 
-		modName = (string) entries["ModName"];
-		description = (string)entries["Description"];
+		if(entries.ContainsKey("ModName"))
+			modName = (string) entries["ModName"];
+		if(entries.ContainsKey("Description"))
+			description = (string)entries["Description"];
 	}
 
 
