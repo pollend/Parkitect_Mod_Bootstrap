@@ -4,7 +4,6 @@ using UnityEditor;
 #endif
 using System;
 using System.Collections.Generic;
-using System.Xml.Linq;
 using UnityEngine;
 
 
@@ -12,41 +11,31 @@ using UnityEngine;
 [Serializable]
 public class SPRotateBetween : SPMotor
 {
-	[SerializeField]
-	public RefrencedTransform axis = new RefrencedTransform();
-	[SerializeField]
-	public Quaternion fromRotation;
-	[SerializeField]
-	public Vector3 rotationAxis = Vector3.up;
-	[SerializeField]
-	public Quaternion toRotation;
-	[SerializeField]
-	public Quaternion originalRotationValue;
-	[SerializeField]
-	public float duration = 1f;
+	[SerializeField] public RefrencedTransform axis = new RefrencedTransform();
+	[SerializeField] public Quaternion fromRotation;
+	[SerializeField] public Vector3 rotationAxis = Vector3.up;
+	[SerializeField] public Quaternion toRotation;
+	[SerializeField] public Quaternion originalRotationValue;
+	[SerializeField] public float duration = 1f;
 
-	[SerializeField]
-	private float currentPosition;
+	[SerializeField] private float currentPosition;
 
-	[SerializeField]
-	private float direction;
+	[SerializeField] private float direction;
 	public override string EventName
 	{
-		get
-		{
-			return "RotateBetween";
-		}
+		get { return "RotateBetween"; }
 	}
 #if UNITY_EDITOR
-public override void InspectorGUI(Transform root)
-{
+	public override void InspectorGUI(Transform root)
+	{
 
-    Identifier = EditorGUILayout.TextField("Name ", Identifier);
-	axis.SetSceneTransform((Transform)EditorGUILayout.ObjectField("axis", axis.FindSceneRefrence(root), typeof(Transform), true));
-    rotationAxis = EditorGUILayout.Vector3Field("Rotate To", rotationAxis);
-    duration = EditorGUILayout.FloatField("Time", duration);
-	base.InspectorGUI(root);
-}
+		Identifier = EditorGUILayout.TextField("Name ", Identifier);
+		axis.SetSceneTransform(
+			(Transform) EditorGUILayout.ObjectField("axis", axis.FindSceneRefrence(root), typeof(Transform), true));
+		rotationAxis = EditorGUILayout.Vector3Field("Rotate To", rotationAxis);
+		duration = EditorGUILayout.FloatField("Time", duration);
+		base.InspectorGUI(root);
+	}
 #endif
 	public override void Reset(Transform root)
 	{
@@ -58,15 +47,18 @@ public override void InspectorGUI(Transform root)
 
 		base.Reset(root);
 	}
+
 	public override void Enter(Transform root)
 	{
 		Transform transform = axis.FindSceneRefrence(root);
 		if (transform)
 		{
 			originalRotationValue = transform.localRotation;
-			Initialize(transform, transform.localRotation, Quaternion.Euler(transform.localEulerAngles + rotationAxis), duration);
+			Initialize(transform, transform.localRotation, Quaternion.Euler(transform.localEulerAngles + rotationAxis),
+				duration);
 		}
 	}
+
 	public void Initialize(Transform axis, Quaternion fromRotation, Quaternion toRotation, float duration)
 	{
 		this.axis.SetSceneTransform(axis);
@@ -83,6 +75,7 @@ public override void InspectorGUI(Transform root)
 			this.direction = 1f;
 			return true;
 		}
+
 		return false;
 	}
 
@@ -93,6 +86,7 @@ public override void InspectorGUI(Transform root)
 			this.direction = -1f;
 			return true;
 		}
+
 		return false;
 	}
 
@@ -102,6 +96,7 @@ public override void InspectorGUI(Transform root)
 		{
 			return this.currentPosition >= 0.99f;
 		}
+
 		return this.currentPosition <= 0.01f;
 	}
 
@@ -111,7 +106,8 @@ public override void InspectorGUI(Transform root)
 		this.currentPosition = Mathf.Clamp01(this.currentPosition);
 		var transform = this.axis.FindSceneRefrence(root);
 		if (transform)
-			transform.localRotation = Quaternion.Lerp(this.fromRotation, this.toRotation, MathHelper.Hermite(0f, 1f, this.currentPosition));
+			transform.localRotation =
+				Quaternion.Lerp(this.fromRotation, this.toRotation, MathHelper.Hermite(0f, 1f, this.currentPosition));
 	}
 
 	public override void PrepareExport(ParkitectObj parkitectObj)
@@ -121,14 +117,15 @@ public override void InspectorGUI(Transform root)
 	}
 
 
-	public override List<XElement> Serialize (Transform root)
-	{	
-		return new List<XElement> (new XElement[] {
-			new XElement("axis",axis.Serialize(root)),
-			new XElement("fromRotation", Utility.SerializeQuaternion(fromRotation)),
-			new XElement("rotationAxis", Utility.SerializeVector(rotationAxis)),
-			new XElement("toRotation",Utility.SerializeQuaternion(toRotation)),
-			new XElement("duration",duration)
-		});
+	public override Dictionary<string, object> Serialize(Transform root)
+	{
+		return new Dictionary<string, object>
+		{
+			{"axis", axis.Serialize(root)},
+			{"fromRotation", Utility.SerializeQuaternion(fromRotation)},
+			{"rotationAxis", Utility.SerializeVector(rotationAxis)},
+			{"toRotation", Utility.SerializeQuaternion(toRotation)},
+			{"duration", duration}
+		};
 	}
 }

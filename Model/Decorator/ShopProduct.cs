@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Xml.Linq;
-using UnityEngine;
-
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using UnityEditor;
 #endif
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public enum Temperature{NONE,COLD,HOT}
 public enum HandSide { LEFT, RIGHT }
@@ -211,124 +210,124 @@ public class ShopProduct : ScriptableObject
 	}
 #endif
 
-	public virtual List<XElement> Serialize()
+	public virtual Dictionary<string,object> Serialize()
 	{
-		List<XElement> xmlIngredient = new List<XElement>();
+		List<object> ing= new List<object>();
 		for (int x = 0; x < Ingredients.Count; x++)
 		{
-			xmlIngredient.Add(new XElement("Ingredient", Ingredients[x].Serialize()));
+			ing.Add(Ingredients[x].Serialize());
 		}
 
-		List<XElement> items = new List<XElement>(new[]
+		Dictionary<string, object> items = new Dictionary<string, object>()
 		{
-			new XElement("Name", name),
-			new XElement("Price", Price),
-			new XElement("Ingredients", xmlIngredient),
-			new XElement("key", Key),
-			new XElement("ProductType",ProductType) 
-		});
-		
+			{"Name", name},
+			{"Price", Price},
+			{"Ingredients", ing},
+			{"key", Key},
+			{"ProductType", ProductType}
+		};
 
-		if (ProductType == ProductType.ON_GOING || ProductType == ProductType.CONSUMABLE)
+
+			if (ProductType == ProductType.ON_GOING || ProductType == ProductType.CONSUMABLE)
 		{
-			items.Add (new XElement ("Hand", HandSide));
-			items.Add (new XElement ("IsInterestingToLookAt", IsInterestingToLookAt));
-			items.Add (new XElement ("IsTwoHanded", IsTwoHanded));
+			items.Add ("Hand", HandSide);
+			items.Add ("IsInterestingToLookAt", IsInterestingToLookAt);
+			items.Add ("IsTwoHanded", IsTwoHanded);
 		}
 
 		
 		switch (ProductType)
 		{
 			case ProductType.ON_GOING:
-				items.Add (new XElement ("Duration", Duration));
-				items.Add (new XElement ("RemoveWhenDepleted", RemoveWhenDepleted));
-				items.Add (new XElement ("DestroyWhenDepleted", DestroyWhenDepleted));
+				items.Add ("Duration", Duration);
+				items.Add ("RemoveWhenDepleted", RemoveWhenDepleted);
+				items.Add ("DestroyWhenDepleted", DestroyWhenDepleted);
 				break;
 			case ProductType.CONSUMABLE:
-				items.Add (new XElement ("ConsumeAnimation", ConsumeAnimation));
-				items.Add (new XElement ("Tempreature", Temprature));
-				items.Add (new XElement ("Portion", Portions));
+				items.Add ("ConsumeAnimation", ConsumeAnimation);
+				items.Add ("Tempreature", Temprature);
+				items.Add ("Portion", Portions);
 				break;
 			case ProductType.WEARABLE:
-				items.Add (new XElement ("BodyLocation", BodyLocation));
-				items.Add (new XElement ("SeasonalPrefrence", SeasonalPrefrence));
-				items.Add (new XElement ("TempreaturePrefrence", TempreaturePrefrence));
-				items.Add (new XElement ("HideOnRide", HideOnRide));
-				items.Add (new XElement ("HideHair", HideHair));
+				items.Add ("BodyLocation", BodyLocation);
+				items.Add ("SeasonalPrefrence", SeasonalPrefrence);
+				items.Add ("TempreaturePrefrence", TempreaturePrefrence);
+				items.Add ("HideOnRide", HideOnRide);
+				items.Add ("HideHair", HideHair);
 				break;
 		}
 		
 		return items;
 	}
 
-	public virtual void DeSerialize(XElement element)
+	public virtual void DeSerialize(Dictionary<string,object> elements)
 	{
-		if (element.Element("Name") != null)
-			name = element.Element("Name").Value;
+		if (elements.ContainsKey("Name") )
+			name = (string) elements["Name"];
 
-		if (element.Element("Price") != null)
-			Price = float.Parse(element.Element("Price").Value);
+		if (elements.ContainsKey("Price"))
+			Price = (float)(double)elements["Price"];
 
-		if (element.Element("key") != null)
-			Key = element.Element("key").Value;
+		if (elements.ContainsKey("key") )
+			Key = (string)elements["key"];
 
-		if (element.Element("ProductType") != null)
-			ProductType = (ProductType) Enum.Parse (typeof(ProductType), element.Element("ProductType").Value);
+		if (elements.ContainsKey("ProductType") )
+			ProductType = (ProductType) Enum.Parse (typeof(ProductType),(string)elements["ProductType"]);
 
 		if (ProductType == ProductType.ON_GOING || ProductType == ProductType.CONSUMABLE)
 		{
-			if (element.Element("Hand") != null)
-				HandSide = (HandSide) Enum.Parse(typeof(HandSide), element.Element("Hand").Value);
-			if (element.Element("IsInterestingToLookAt") != null)
-				IsInterestingToLookAt = bool.Parse(element.Element("IsInterestingToLookAt").Value);
-			if (element.Element("IsTwoHanded") != null)
-				IsTwoHanded = bool.Parse(element.Element("IsTwoHanded").Value);
+			if (elements.ContainsKey("Hand"))
+				HandSide = (HandSide) Enum.Parse(typeof(HandSide), (string)elements["Hand"]);
+			if (elements.ContainsKey("IsInterestingToLookAt") )
+				IsInterestingToLookAt = (bool)elements["IsInterestingToLookAt"];
+			if (elements.ContainsKey("IsTwoHanded") )
+				IsTwoHanded = (bool)elements["IsTwoHanded"];
 		}
 
 		switch (ProductType)
 		{
 			case ProductType.ON_GOING:
 			{
-				if (element.Element("Duration") != null)
-					Duration = int.Parse(element.Element("Duration").Value);
-				if (element.Element("RemoveWhenDepleted") != null)
-					RemoveWhenDepleted = bool.Parse(element.Element("RemoveWhenDepleted").Value);
-				if (element.Element("DestroyWhenDepleted") != null)
-					DestroyWhenDepleted = bool.Parse(element.Element("DestroyWhenDepleted").Value);
+				if (elements.ContainsKey("Duration"))
+					Duration = (int)(long)elements["Duration"];
+				if (elements.ContainsKey("RemoveWhenDepleted"))
+					RemoveWhenDepleted = (bool)elements["RemoveWhenDepleted"];
+				if (elements.ContainsKey("DestroyWhenDepleted"))
+					DestroyWhenDepleted = (bool)elements["DestroyWhenDepleted"];
 			}
 				break;
 			case ProductType.CONSUMABLE:
 			{
-				if(element.Element ("ConsumeAnimation") != null)
-					ConsumeAnimation = (ConsumeAnimation)Enum.Parse (typeof(ConsumeAnimation), element.Element ("ConsumeAnimation").Value);
-				if(element.Element ("Temprature") != null)
-					Temprature = (Temperature)Enum.Parse (typeof(Temperature), element.Element ("Temprature").Value);
-				if(element.Element ("Portions") != null)
-					Portions = int.Parse (element.Element ("Portion").Value);
+				if(elements.ContainsKey("ConsumeAnimation") )
+					ConsumeAnimation = (ConsumeAnimation)Enum.Parse (typeof(ConsumeAnimation),(string)elements["ConsumeAnimation"]);
+				if(elements.ContainsKey("Temprature"))
+					Temprature = (Temperature)Enum.Parse (typeof(Temperature), (string)elements["Temprature"]);
+				if(elements.ContainsKey("Portions"))
+					Portions =  (int)(long)elements["Portion"];
 			}
 				break;
 			case ProductType.WEARABLE:
 			{
-				if(element.Element ("BodyLocation") != null)
-					BodyLocation = (Body)Enum.Parse (typeof(Body), element.Element ("BodyLocation").Value);
-				if(element.Element ("SeasonalPrefrence") != null)
-					SeasonalPrefrence = (Seasonal)Enum.Parse (typeof(Seasonal), element.Element ("SeasonalPrefrence").Value);
-				if(element.Element ("TempreaturePrefrence") != null)
-					TempreaturePrefrence = (Temperature)Enum.Parse (typeof(Temperature), element.Element ("TempreaturePrefrence").Value);
-				if(element.Element ("HideOnRide") != null)
-					HideOnRide = bool.Parse(element.Element ("HideOnRide").Value);
-				if(element.Element ("HideHair") != null)
-					HideHair = bool.Parse (element.Element ("HideHair").Value);
+				if (elements.ContainsKey("BodyLocation"))
+					BodyLocation = (Body) Enum.Parse(typeof(Body), (string) elements["BodyLocation"]);
+				if (elements.ContainsKey("SeasonalPrefrence"))
+					SeasonalPrefrence = (Seasonal) Enum.Parse(typeof(Seasonal), (string) elements["SeasonalPrefrence"]);
+				if (elements.ContainsKey("TempreaturePrefrence"))
+					TempreaturePrefrence = (Temperature) Enum.Parse(typeof(Temperature), (string) elements["TempreaturePrefrence"]);
+				if (elements.ContainsKey("HideOnRide") )
+					HideOnRide = (bool) elements["HideOnRide"];
+				if (elements.ContainsKey("HideHair"))
+					HideHair = (bool) elements["HideHair"];
 			}
 				break;
 		}
 
-		if (element.Element("Ingredients") != null)
+		if (elements.ContainsKey("Ingredients"))
 		{
-			foreach (XElement xmlingredient in element.Element("Ingredients").Elements("Ingredient"))
+			foreach (var ing in (List<Dictionary<string,object>>)elements["Ingredients"])
 			{
 				ShopIngredient ingredient = new ShopIngredient();
-				ingredient.DeSerialize(xmlingredient);
+				ingredient.DeSerialize(ing);
 				Ingredients.Add(ingredient);
 			}
 		}
@@ -550,40 +549,40 @@ public class ShopIngredient
 	[SerializeField] public bool Tweakable = true;
 	[SerializeField] public List<Effect> effects = new List<Effect>();
 
-	public List<XElement> Serialize()
+	public Dictionary<string,object> Serialize()
 	{
-		List<XElement> xmlEffect = new List<XElement>();
-		for (int x = 0; x < effects.Count; x++)
+		List<object> eff = new List<object>();
+		foreach (var t in effects)
 		{
-			xmlEffect.Add(new XElement("Effect", effects[x].Serialize()));
+			eff.Add(t.Serialize());
 		}
 
-		return new List<XElement>(new[]
+		return new Dictionary<string, object>
 		{
-			new XElement("Name", Name),
-			new XElement("Price", Price),
-			new XElement("Amount", Amount),
-			new XElement("Tweakable", Tweakable),
-			new XElement("Effects", xmlEffect)
-		});
+			{"Name", Name},
+			{"Price", Price},
+			{"Amount", Amount},
+			{"Tweakable", Tweakable},
+			{"Effects", eff}
+		};
 	}
 
-	public void DeSerialize(XElement element)
+	public void DeSerialize(Dictionary<string,object> element)
 	{
-		if (element.Element("Name") != null)
-			Name = element.Element("Name").Value;
-		if (element.Element("Price") != null)
-			Price = float.Parse(element.Element("Price").Value);
-		if (element.Element("Amount") != null)
-			Amount = int.Parse(element.Element("Amount").Value);
-		if (element.Element("Tweakable") != null)
-			Tweakable = bool.Parse(element.Element("Tweakable").Value);
-		if (element.Element("Effects") != null)
+		if (element.ContainsKey("Name"))
+			Name = (string) element["Name"];
+		if (element.ContainsKey("Price") )
+			Price = (float)(double)element["Price"];
+		if (element.ContainsKey("Amount"))
+			Amount = (int)(long)element["Amount"];
+		if (element.ContainsKey("Tweakable"))
+			Tweakable = (bool) element["Tweakable"];
+		if (element.ContainsKey("Effects"))
 		{
-			foreach (XElement xmlEffect in element.Elements("Effects"))
+			foreach (var eff in (List<Dictionary<string,object>>)element["Effects"])
 			{
 				Effect effect = new Effect();
-				effect.DeSerialize(xmlEffect);
+				effect.DeSerialize(eff);
 				effects.Add(effect);
 			}
 		}
@@ -599,19 +598,20 @@ public class Effect
 	[SerializeField]
 	public float amount;
 
-	public List<XElement> Serialize()
+	public Dictionary<string, object> Serialize()
 	{
-		return new List<XElement> (new[] {
-			new XElement("Type",Type),
-			new XElement("Amount",amount)
-		});
+		return new Dictionary<string, object>
+		{
+			{"Type", Type},
+			{"Amount", amount}
+		};
 	}
 
-	public void DeSerialize(XElement element)
+	public void DeSerialize(Dictionary<string,object> elements)
 	{
-		if(element.Element ("Type") != null)
-			Type = (EffectTypes)Enum.Parse(typeof(EffectTypes), element.Element ("Type").Value);
-		if(element.Element ("Amount") != null)
-			amount = float.Parse (element.Element ("Amount").Value);
+		if(elements.ContainsKey("Type"))
+			Type = (EffectTypes)Enum.Parse(typeof(EffectTypes), (string) elements["Type"]);
+		if(elements.ContainsKey("Amount"))
+			amount = (float)(double)elements["Amount"];
 	}
 }

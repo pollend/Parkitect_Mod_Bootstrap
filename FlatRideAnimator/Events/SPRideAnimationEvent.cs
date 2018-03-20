@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
-using System.Xml.Linq;
 
 [ExecuteInEditMode]
 [Serializable]
@@ -37,8 +36,8 @@ public class SPRideAnimationEvent : ScriptableObject
 	}
 
 
-	public virtual List<XElement> Serialize(Transform root){return null;}
-	public virtual void Deserialize(XElement elements){}
+	public virtual Dictionary<string,object> Serialize(Transform root){return null;}
+	public virtual void Deserialize(Dictionary<string,object> elements){}
 
 
 }

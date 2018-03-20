@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+#if (PARKITECT)
 public static class Extra
 {
 
@@ -52,3 +53,4 @@ public static class Extra
         flatRide.entranceExitBuilderGO = AssetManager.Instance.flatRideEntranceExitBuilderGO;
     }
 }
+#endif

@@ -1,11 +1,10 @@
 
  #if UNITY_EDITOR
+using UnityEngine;
 using UnityEditor;
 #endif
-
 using System;
 using System.Collections.Generic;
-using System.Xml.Linq;
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -31,7 +30,7 @@ public class SPMover : SPMotor
 	public float duration = 10f;
 
 	[SerializeField]
-	private SPMover.State currentState = SPMover.State.STOPPED;
+	private State currentState = State.STOPPED;
 	[SerializeField]
 	private float currentPosition = 1f;
 	[SerializeField]
@@ -69,7 +68,7 @@ public class SPMover : SPMotor
 		Transform transform = axis.FindSceneRefrence(root);
 		if (transform)
 			originalRotationValue = transform.localPosition;
-		this.currentPosition = 1f;
+		currentPosition = 1f;
 
 		direction = -1;
 		Initialize(root, axis.FindSceneRefrence(root), transform.localPosition, toPosition, duration);
@@ -81,16 +80,16 @@ public class SPMover : SPMotor
 		this.fromPosition = fromPosition;
 		this.toPosition = toPosition;
 		this.duration = duration;
-		this.setPosition(root);
+		setPosition(root);
 	}
 
 	public bool startFromTo()
 	{
-		if (this.direction != 1)
+		if (direction != 1)
 		{
-			this.direction = 1;
-			this.currentPosition = 0f;
-			this.currentState = SPMover.State.RUNNING;
+			direction = 1;
+			currentPosition = 0f;
+			currentState = State.RUNNING;
 			return true;
 		}
 		return false;
@@ -98,11 +97,11 @@ public class SPMover : SPMotor
 
 	public bool startToFrom()
 	{
-		if (this.direction != -1)
+		if (direction != -1)
 		{
-			this.direction = -1;
-			this.currentPosition = 0f;
-			this.currentState = SPMover.State.RUNNING;
+			direction = -1;
+			currentPosition = 0f;
+			currentState = State.RUNNING;
 			return true;
 		}
 		return false;
@@ -110,37 +109,37 @@ public class SPMover : SPMotor
 
 	public bool reachedTarget()
 	{
-		return this.currentState == SPMover.State.STOPPED && this.currentPosition >= 1f;
+		return currentState == State.STOPPED && currentPosition >= 1f;
 	}
 
 	public void tick(float dt, Transform root)
 	{
-		this.currentPosition += dt * 1f / this.duration;
-		if (this.currentPosition >= 1f)
+		currentPosition += dt * 1f / duration;
+		if (currentPosition >= 1f)
 		{
-			this.currentPosition = 1f;
-			this.currentState = SPMover.State.STOPPED;
+			currentPosition = 1f;
+			currentState = State.STOPPED;
 		}
-		this.setPosition(root);
+		setPosition(root);
 	}
 
 	private void setPosition(Transform root)
 	{
 		Vector3 a;
 		Vector3 b;
-		if (this.direction == 1)
+		if (direction == 1)
 		{
-			a = this.fromPosition;
-			b = this.toPosition;
+			a = fromPosition;
+			b = toPosition;
 		}
 		else
 		{
-			a = this.toPosition;
-			b = this.fromPosition;
+			a = toPosition;
+			b = fromPosition;
 		}
-		Transform transform = this.axis.FindSceneRefrence(root);
+		Transform transform = axis.FindSceneRefrence(root);
 		if (transform != null)
-			transform.localPosition = Vector3.Lerp(a, b, MathHelper.Hermite(0f, 1f, this.currentPosition));
+			transform.localPosition = Vector3.Lerp(a, b, MathHelper.Hermite(0f, 1f, currentPosition));
 	}
 
 	public override void PrepareExport(ParkitectObj parkitectObj)
@@ -150,14 +149,14 @@ public class SPMover : SPMotor
 	}
 
 
-	public override List<XElement> Serialize (Transform root)
+	public override Dictionary<string,object> Serialize (Transform root)
 	{
-		return new List<XElement> (new XElement[] {
-			new XElement("transform",axis.Serialize(root)),
-			new XElement("from", Utility.SerializeVector(fromPosition)),
-			new XElement("to", Utility.SerializeVector(toPosition)),
-			new XElement("duration",duration)
-		});
+		return new Dictionary<string, object>{
+			{"transform",axis.Serialize(root)},
+			{"from", Utility.SerializeVector(fromPosition)},
+			{"to", Utility.SerializeVector(toPosition)},
+			{"duration",duration}
+		};
 	}
 
 

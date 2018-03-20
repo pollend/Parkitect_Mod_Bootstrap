@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Xml.Linq;
-using UnityEngine;
-
+﻿
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
+
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
 
 [Serializable]
 public class GridDecorator : Decorator
@@ -52,30 +53,30 @@ public class GridDecorator : Decorator
 	}
 #endif
 
-	public override List<XElement> Serialize (ParkitectObj parkitectObj)
+	public override Dictionary<string, object> Serialize(ParkitectObj parkitectObj)
 	{
-		return new List<XElement>(new[]{
-			new XElement("SnapCenter",snapCenter),
-			new XElement("Snap",snap),
-			new XElement("Grid",grid),
-			new XElement("HeightDelta",heightDelta),
-			new XElement("GridSubdivisons",gridSubdivision)
-		
-		});
+		return new Dictionary<string, object>
+		{
+			{"SnapCenter", snapCenter},
+			{"Snap", snap},
+			{"Grid", grid},
+			{"HeightDelta", heightDelta},
+			{"GridSubdivisons", gridSubdivision}
+		};
 	}
 
-	public override void Deserialize (XElement elements)
+	public override void Deserialize (Dictionary<string,object> elements)
 	{
-		if(elements.Element ("SnapCenter") != null)
-			snapCenter = bool.Parse(elements.Element ("SnapCenter").Value);
-		if(elements.Element ("Snap") != null)
-			snap = bool.Parse(elements.Element ("Snap").Value);
-		if(elements.Element ("Grid") != null)
-			grid = bool.Parse(elements.Element ("Grid").Value);
-		if(elements.Element ("HeightDelta") != null)
-			heightDelta = float.Parse(elements.Element ("HeightDelta").Value);
-		if(elements.Element ("GridSubdivisons") != null)
-			gridSubdivision = float.Parse(elements.Element ("GridSubdivisons").Value);
+		if(elements.ContainsKey("SnapCenter"))
+			snapCenter = (bool)elements["SnapCenter"];
+		if(elements.ContainsKey ("Snap") )
+			snap = (bool)elements["Snap"];
+		if(elements.ContainsKey ("Grid") )
+			grid = (bool)elements["Grid"];
+		if(elements.ContainsKey ("HeightDelta"))
+			heightDelta = (float)(double)elements["HeightDelta"];
+		if(elements.ContainsKey ("GridSubdivisons"))
+			gridSubdivision = (float)(double)elements["GridSubdivisons"];
 		base.Deserialize (elements);
 	}
 	

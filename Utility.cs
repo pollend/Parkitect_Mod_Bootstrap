@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Text;
 using UnityEngine;
 using System.Collections.Generic;
-using System.Xml.Linq;
 using System.Reflection;
 using System.Linq;
+
 public static class Utility
 {
 	public static void recursiveFindTransformsStartingWith(string name, Transform parentTransform, List<Transform> transforms)
@@ -31,83 +30,86 @@ public static class Utility
 		}
 	}
 
-	public static List<XElement> SerializeVector(Vector2 v)
+	public static Dictionary<string, object> SerializeVector(Vector2 v)
 	{
-		return new List<XElement> (new XElement[] {
-			new XElement("X",v.x),
-			new XElement("Y",v.y)
-		});
-		
+		return new Dictionary<string, object>
+		{
+			{"X", v.x},
+			{"Y", v.y}
+		};
 	}
 
 
-	public static Vector2 DeseralizeVector2(XElement element)
+	public static Vector2 DeseralizeVector2(Dictionary<string,object> elements)
 	{
 
 		Vector2 v = new Vector2 ();
-		v.x = float.Parse(element.Element ("X").Value);
-		v.y = float.Parse(element.Element ("Y").Value);
+		v.x = (float)(double)elements["X"];
+		v.y = (float)(double)elements["Y"];
 		return v;
 	}
 
-	public static List<XElement> SerializeVector(Vector3 v)
+	public static Dictionary<string, object> SerializeVector(Vector3 v)
 	{
-		return new List<XElement> (new XElement[] {
-			new XElement("X",v.x),
-			new XElement("Y",v.y),
-			new XElement("Z",v.z)
-		});
+		return new Dictionary<string, object>()
+		{
+			{"X", v.x},
+			{"Y", v.y},
+			{"Z", v.z}
+		};
 	}
 
-	public static Vector3 DeseralizeVector3(XElement element)
+	public static Vector3 DeseralizeVector3(Dictionary<string,object> elements)
 	{
 		Vector3 v = new Vector3 ();
-		v.x = float.Parse(element.Element ("X").Value);
-		v.y = float.Parse(element.Element ("Y").Value);
-		v.z = float.Parse(element.Element ("Z").Value);
+		v.x = (float)(double)elements["X"];
+		v.y = (float)(double)elements["Y"];
+		v.z = (float)(double)elements["Z"];
 		return v;
 
 	}
 
-	public static List<XElement> SerializeColor(Color c)
+	public static Dictionary<string, object> SerializeColor(Color c)
 	{
-		return new List<XElement> (new XElement[] {
-			new XElement("R",c.r),
-			new XElement("G",c.g),
-			new XElement("B",c.b),
-			new XElement("A",c.a)
-		});
+		return new Dictionary<string, object>
+		{
+			{"R", c.r},
+			{"G", c.g},
+			{"B", c.b},
+			{"A", c.a}
+		};
 	}
 
-	public static List<XElement> SerializeQuaternion(Quaternion quaternion)
+	public static Dictionary<string, object> SerializeQuaternion(Quaternion quaternion)
 	{
-		return new List<XElement> (new XElement[] {
-			new XElement("X",quaternion.x),
-			new XElement("Y",quaternion.y),
-			new XElement("Z",quaternion.z),
-			new XElement("W",quaternion.w)
-		});
+		return new Dictionary<string, object>()
+		{
+			{"X", quaternion.x},
+			{"Y", quaternion.y},
+			{"Z", quaternion.z},
+			{"W", quaternion.w}
+		};
 	}
 
-	public static Color DeSerializeColor(XElement element)
+	public static Color DeSerializeColor(Dictionary<string, object> element)
 	{
 		Color c = new Color ();
-		c.r = float.Parse(element.Element ("R").Value);
-		c.g = float.Parse(element.Element ("G").Value);
-		c.b = float.Parse(element.Element ("B").Value);
-		c.a = float.Parse(element.Element ("A").Value);
+		c.r = (float)(double)element["R"];
+		c.g = (float)(double)element["G"];
+		c.b = (float)(double)element["B"];
+		c.a = (float)(double)element["A"];
 		return c;
 
 	}
 
 
-	public static Quaternion DeSerializeQuaternion(XElement element)
+	public static Quaternion DeSerializeQuaternion(Dictionary<string, object> elements)
 	{
 		Quaternion quaternion = new Quaternion ();
-		quaternion.x = float.Parse (element.Element ("X").Value);
-		quaternion.y = float.Parse (element.Element ("Y").Value);
-		quaternion.z = float.Parse (element.Element ("Z").Value);
-		quaternion.w = float.Parse (element.Element ("W").Value);
+		quaternion.x = (float)(double)elements["X"];
+		quaternion.y = (float)(double)elements["Y"];
+		quaternion.z = (float)(double)elements["Z"];
+		quaternion.w = (float)(double)elements["W"];
 		return quaternion;
 	}
 

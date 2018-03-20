@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
-using System.Xml.Linq;
 
 
 [Serializable]
@@ -66,15 +65,15 @@ public class RefrencedTransform
 		int index;
 	}
 
-	public Transform Deserialize(Transform root,XElement element)
+	public Transform Deserialize(Transform root,Dictionary<string,object> element)
 	{
 		Transform current = null;
-		foreach(XElement e in element.Elements())
+		foreach(var e in element)
 		{
 			if (current == null) {
 				current = root;
 			} else {
-				current = current.GetChild (int.Parse (e.Value));
+				current = current.GetChild ((int)(long)e.Value);
 			}
 		}
 
@@ -82,23 +81,23 @@ public class RefrencedTransform
 
 	}
 
-	public List<XElement> Serialize (Transform root)
+	public Dictionary<string,object> Serialize (Transform root)
 	{
-		List<XElement> element = new List<XElement> ();
+		Dictionary<string,object> elements = new Dictionary<string,object>();
 		if(root != null)
 		{
 			Transform current = Refrence.findTransformByKey(root, key);
 			do
 			{
-				element.Add(new XElement(current.name,current.GetSiblingIndex()));
+				elements.Add(current.name,current.GetSiblingIndex());
 				if(current == root)
 					break;
 				current = current.parent;
 			}
 			while(current != null);
 		}
-		element.Reverse ();
-		return element;
+		//element.Reverse ();
+		return elements;
 	}
 
 }

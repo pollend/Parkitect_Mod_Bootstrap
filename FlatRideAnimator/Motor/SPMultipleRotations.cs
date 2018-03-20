@@ -4,8 +4,6 @@ using UnityEditor;
 #endif
 
 using UnityEngine;
-using System.Collections;
-using System.Xml.Linq;
 using System.Collections.Generic;
 using System;
 
@@ -81,16 +79,16 @@ public class SPMultipleRotations : SPMotor
 	}
 
 
-	public override List<XElement>Serialize (Transform root)
+	public override Dictionary<string,object> Serialize (Transform root)
 	{
-		List<XElement> axiss = new List<XElement> ();
+		List<object> axiss = new List<object> ();
 		for (int i = 0; i < Axiss.Count; i++) {
-			axiss.Add (new XElement ("axis",Axiss [i].Serialize (root)));
+			axiss.Add (Axiss [i].Serialize (root));
 		}
 
-		return new List<XElement> (new XElement[] {
-			new XElement("mainTransform",mainAxis.Serialize(root)),
-			new XElement("axisses",axiss)
-		});
+		return new Dictionary<string, object> {
+			{"mainTransform",mainAxis.Serialize(root)},
+			{"axisses",axiss}
+		};
 	}
 }

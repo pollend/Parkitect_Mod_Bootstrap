@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
 using UnityEngine;
-using Object = UnityEngine.Object;
-
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -42,7 +39,7 @@ public class ParkitectObj : ScriptableObject
 		GameObject[] rootSceneNodes = EditorSceneManager.GetActiveScene().GetRootGameObjects();
 		for (int x = 0; x < rootSceneNodes.Length; x++)
 		{
-			var gameObject = rootSceneNodes[x].transform.Find(this.Key);
+			var gameObject = rootSceneNodes[x].transform.Find(Key);
 			if (gameObject != null)
 				return gameObject.parent.gameObject;
 		}
@@ -83,19 +80,19 @@ public class ParkitectObj : ScriptableObject
 
 		if (gameRef == null)
 		{
-			gameRef = new GameObject("pkref-" + System.Guid.NewGuid().ToString()).transform;
+			gameRef = new GameObject("pkref-" + Guid.NewGuid()).transform;
 			gameRef.transform.parent = g.transform;
 
 		}
 
 		var path = "Assets/Resources/" + g.name + ".prefab";
 
-		this.Key = gameRef.name;
+		Key = gameRef.name;
 		GameObject prefab = PrefabUtility.CreatePrefab(path, g);
 		PrefabUtility.ConnectGameObjectToPrefab(g, prefab);
 
 
-		this.Prefab = prefab;
+		Prefab = prefab;
 		EditorUtility.SetDirty(this);
 		return prefab;
 	}
@@ -123,7 +120,7 @@ public class ParkitectObj : ScriptableObject
 #if UNITY_EDITOR
 	public virtual void PrepareForExport()
 	{
-		this.UpdatePrefab();
+		UpdatePrefab();
 		for (int x = 0; x < decorators.Count; x++)
 		{
 			decorators[x].PrepareExport(this);
@@ -157,7 +154,7 @@ public class ParkitectObj : ScriptableObject
 
 		if (createInstance)
 		{
-			Decorator dec = (Decorator) ScriptableObject.CreateInstance(t);
+			Decorator dec = (Decorator) CreateInstance(t);
 
 			AssetDatabase.AddObjectToAsset(dec, this);
 			EditorUtility.SetDirty(dec);
@@ -181,7 +178,7 @@ public class ParkitectObj : ScriptableObject
 			if (decorators[x] != null)
 			{
 				decorators[x].CleanUp(this);
-				UnityEngine.Object.DestroyImmediate(decorators[x], true);
+				DestroyImmediate(decorators[x], true);
 			}
 		}
 
@@ -190,33 +187,30 @@ public class ParkitectObj : ScriptableObject
 
 #endif
 
-	public List<XElement> Serialize()
+	public Dictionary<String, object> Serialize()
 	{
-		List<XElement> elements = new List<XElement>();
-		for (int i = 0; i < decorators.Count; i++)
+		Dictionary<String, object> dictDecorators = new Dictionary<String, object>();
+		foreach (var decorator in decorators)
 		{
-			elements.Add(new XElement(decorators[i].GetType().ToString(), decorators[i].Serialize(this)));
+			dictDecorators.Add(decorator.GetType().ToString(), decorator.Serialize(this));
 		}
 
-		return new List<XElement>(new[]
-		{
-			new XElement("Decorators", elements),
-			new XElement("Key", Key)
-		});
+		Dictionary<String, object> result = new Dictionary<string, object> {{"Decorators", dictDecorators}, {"Key", Key}};
+		return result;
 	}
 
-	public void DeSerialize(XElement element)
+	public void DeSerialize(Dictionary<string, object> element)
 	{
-		var keyElement = element.Element("key");
-		if (keyElement != null) Key = keyElement.Value;
-
-		var decoratorElement = element.Element("Decorators");
+		if(element.ContainsKey("Key"))
+			Key = (string)element["Key"];
+		
+		var decoratorElement = (Dictionary<string,object>) element["Decorators"];
 		if (decoratorElement != null)
 		{
-			foreach (var decorator in decoratorElement.Elements())
+			foreach (var decorator in decoratorElement)
 			{
-				Decorator dec = Utility.GetByTypeName<Decorator>(decorator.Name.LocalName);
-				dec.Deserialize(decorator);
+				Decorator dec = Utility.GetByTypeName<Decorator>(decorator.Key);
+				dec.Deserialize((Dictionary<string,object>)decorator.Value);
 				decorators.Add(dec);
 			}
 		}
@@ -224,7 +218,7 @@ public class ParkitectObj : ScriptableObject
 
 	public String GetObjectTag()
 	{
-		object[] attributes = this.GetType().GetCustomAttributes(typeof(ParkitectObjectTag), false);
+		object[] attributes = GetType().GetCustomAttributes(typeof(ParkitectObjectTag), false);
 		return (attributes[0] as ParkitectObjectTag).Name;
 	}
 

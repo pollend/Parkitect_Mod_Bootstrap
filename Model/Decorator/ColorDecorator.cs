@@ -1,7 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using System.Xml.Linq;
-
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -13,8 +11,7 @@ using System.Collections.Generic;
 public class ColorDecorator : Decorator
 {
 	public bool isRecolorable;
-	public Color[] colors =
-		{new Color(0.95f, 0, 0), new Color(0.32f, 0, 0), new Color(0.110f, 0.059f, 1f), new Color(1f, 0, 1f)};
+	public Color[] colors = {new Color(0.95f, 0, 0), new Color(0.32f, 0, 0), new Color(0.110f, 0.059f, 1f), new Color(1f, 0, 1f)};
 	public int colorCount = 1;
 
 	public ColorDecorator()
@@ -53,35 +50,35 @@ public class ColorDecorator : Decorator
 	}
 #endif
 
-	public override List<XElement> Serialize(ParkitectObj parkitectObj)
+	public override Dictionary<string, object> Serialize(ParkitectObj parkitectObj)
 	{
-		List<XElement> xmlcolors = new List<XElement>();
+		List<object> c = new List<object>();
 		for (int x = 0; x < colorCount; x++)
 		{
-			xmlcolors.Add(new XElement("Color", Utility.SerializeColor(colors[x])));
+			c.Add( Utility.SerializeColor(colors[x]));
 		}
 
-		return new List<XElement>
+		return new Dictionary<string, object>
 		{
-			new XElement("Colors", xmlcolors),
-			new XElement("IsRecolorable", isRecolorable),
+			{"Colors", c},
+			{"IsRecolorable", isRecolorable}
 		};
 	}
 
-	public override void Deserialize(XElement elements)
+	public override void Deserialize(Dictionary<string,object> elements)
 	{
-		if (elements.Element("Colors") != null)
+		if (elements.ContainsKey("Colors"))
 		{
 			int index = 0;
-			foreach (XElement colorXml in elements.Element("Colors").Elements("Color"))
+			foreach (var colordeserialize in (List<Dictionary<string,object>>)elements["Colors"])
 			{
-				colors[index] = Utility.DeSerializeColor(colorXml);
+				colors[index] = Utility.DeSerializeColor(colordeserialize);
 				index++;
 			}
 		}
 
-		if (elements.Element("IsRecolorable") != null)
-			isRecolorable = bool.Parse(elements.Element("IsRecolorable").Value);
+		if (elements.ContainsKey("IsRecolorable"))
+			isRecolorable = (bool)elements["IsRecolorable"];
 		base.Deserialize(elements);
 	}
 	

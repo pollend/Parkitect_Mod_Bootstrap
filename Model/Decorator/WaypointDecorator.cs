@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Xml.Linq;
-using UnityEngine;
-using UnityEngine.Rendering;
+﻿
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
+
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Rendering;
+
 
 public class WaypointDecorator : Decorator
 {
@@ -405,25 +407,27 @@ public class WaypointDecorator : Decorator
 		}
 	}
 #endif
-	
-	public override List<XElement> Serialize (ParkitectObj parkitectObj)
+
+	public override Dictionary<string, object> Serialize(ParkitectObj parkitectObj)
 	{
-		List<XElement> xmlWaypoints = new List<XElement> ();
-		for (int i = 0; i < waypoints.Count; i++) {
-			xmlWaypoints.Add (new XElement ("Waypoint", waypoints [i].Serialize ()));
+		List<object> wp = new List<object>();
+		for (int i = 0; i < waypoints.Count; i++)
+		{
+			wp.Add(waypoints[i].Serialize());
 		}
 
-		return new List<XElement>(new[]{
-			new XElement("Waypoints",xmlWaypoints)
-		});
+		return new Dictionary<string, object>()
+		{
+			{"Waypoints", wp}
+		};
 	}
 
-	public override void Deserialize (XElement elements)
+	public override void Deserialize (Dictionary<string,object> elements)
 	{
 		
-		if (elements.Element ("Waypoints") != null) {
-			foreach (XElement waypointXML in elements.Element("Waypoints").Elements("Waypoint")) {
-				waypoints.Add (SPWaypoint.Deserialize (waypointXML));
+		if (elements.ContainsKey("Waypoints")) {
+			foreach (var wp in (List<Dictionary<string,object>> )elements["Waypoints"]) {
+				waypoints.Add (SPWaypoint.Deserialize (wp));
 			}
 		}
 		base.Deserialize (elements);

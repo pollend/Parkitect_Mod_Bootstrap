@@ -1,11 +1,9 @@
 
-﻿#if UNITY_EDITOR
+ #if UNITY_EDITOR
+using UnityEngine;
 using UnityEditor;
 #endif
-
 using System;
-using System.Runtime.CompilerServices;
-using System.Xml.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -37,7 +35,7 @@ public class SPRotator : SPMotor
 	public Quaternion initialRotation;
 
 	[SerializeField]
-	public SPRotator.State currentState = SPRotator.State.STOPPING;
+	public State currentState = State.STOPPING;
 
 	[SerializeField]
 	public float currentSpeed;
@@ -84,7 +82,7 @@ public override void InspectorGUI(Transform root)
 		if (transform)
 			originalRotationValue = transform.localRotation;
 		resetRotations();
-		this.currentRotation = 0;
+		currentRotation = 0;
 		currentSpeed = 0;
 		changeState(State.STARTING);
 		Initialize(root, axis.FindSceneRefrence(root), accelerationSpeed, maxSpeed, rotationAxis);
@@ -93,7 +91,7 @@ public override void InspectorGUI(Transform root)
 
 	public void Initialize(Transform root, Transform axis, float accelerationSpeed, float maxSpeed)
 	{
-		this.Initialize(root, axis, accelerationSpeed, maxSpeed, Vector3.up);
+		Initialize(root, axis, accelerationSpeed, maxSpeed, Vector3.up);
 	}
 
 	public void Initialize(Transform root, Transform axis, float accelerationSpeed, float maxSpeed, Vector3 rotationAxis)
@@ -101,14 +99,14 @@ public override void InspectorGUI(Transform root)
 		this.axis.SetSceneTransform(axis);
 		this.accelerationSpeed = accelerationSpeed;
 		this.maxSpeed = maxSpeed;
-		this.setRotationAxis(rotationAxis);
-		this.setInitialRotation(axis.localRotation);
-		axis.Rotate(rotationAxis, this.currentRotation);
+		setRotationAxis(rotationAxis);
+		setInitialRotation(axis.localRotation);
+		axis.Rotate(rotationAxis, currentRotation);
 	}
 
 	public void setInitialRotation(Quaternion initialLocalRotation)
 	{
-		this.initialRotation = initialLocalRotation;
+		initialRotation = initialLocalRotation;
 	}
 
 	public void setMinRotationSpeedPercent(float minRotationSpeedPercent)
@@ -121,25 +119,25 @@ public override void InspectorGUI(Transform root)
 		this.rotationAxis = rotationAxis;
 		if (rotationAxis.x != 0f)
 		{
-			this.rotationAxisIndex = 0;
+			rotationAxisIndex = 0;
 		}
 		else if (rotationAxis.y != 0f)
 		{
-			this.rotationAxisIndex = 1;
+			rotationAxisIndex = 1;
 		}
 		else if (rotationAxis.z != 0f)
 		{
-			this.rotationAxisIndex = 2;
+			rotationAxisIndex = 2;
 		}
 	}
 
 	public bool start()
 	{
-		if (this.currentState != SPRotator.State.STARTING && this.currentState != SPRotator.State.RUNNING)
+		if (currentState != State.STARTING && currentState != State.RUNNING)
 		{
-			this.changeState(SPRotator.State.STARTING);
-			this.currentSpeed = 0f;
-			this.currentRotation = 0f;
+			changeState(State.STARTING);
+			currentSpeed = 0f;
+			currentRotation = 0f;
 			return true;
 		}
 		return false;
@@ -147,45 +145,45 @@ public override void InspectorGUI(Transform root)
 
 	public void stop()
 	{
-		this.changeState(SPRotator.State.REQUEST_STOP);
+		changeState(State.REQUEST_STOP);
 	}
 
 	public void pause()
 	{
-		this.changeState(SPRotator.State.PAUSING);
+		changeState(State.PAUSING);
 	}
 
 	public bool isStopped()
 	{
-		return this.currentState == SPRotator.State.STOPPING && Mathf.Approximately(this.currentSpeed, 0f);
+		return currentState == State.STOPPING && Mathf.Approximately(currentSpeed, 0f);
 	}
 
-	public SPRotator.State getState()
+	public State getState()
 	{
-		return this.currentState;
+		return currentState;
 	}
 
 	public void resetRotations()
 	{
-		this.currentRotation = 0f;
+		currentRotation = 0f;
 	}
 
 	public float getRotationsCount()
 	{
-		return Mathf.Abs(this.currentRotation) / 360f;
+		return Mathf.Abs(currentRotation) / 360f;
 	}
 
 	public int getCompletedRotationsCount()
 	{
-		return Mathf.FloorToInt(this.getRotationsCount());
+		return Mathf.FloorToInt(getRotationsCount());
 	}
 
 	public bool isInAngleRange(Transform root, float fromAngle, float toAngle)
 	{
 		fromAngle %= 360f;
 		toAngle %= 360f;
-		Transform transform = this.axis.FindSceneRefrence(root);
-		float num = transform.localEulerAngles[this.rotationAxisIndex];
+		Transform transform = axis.FindSceneRefrence(root);
+		float num = transform.localEulerAngles[rotationAxisIndex];
 		if (fromAngle >= toAngle)
 		{
 			return num >= fromAngle || num <= toAngle;
@@ -195,17 +193,17 @@ public override void InspectorGUI(Transform root)
 
 	public bool reachedFullSpeed()
 	{
-		return this.currentState != SPRotator.State.STARTING;
+		return currentState != State.STARTING;
 	}
 
 	public float getCurrentSpeed()
 	{
-		return this.currentSpeed;
+		return currentSpeed;
 	}
 
 	public float getMaxSpeed()
 	{
-		return this.maxSpeed;
+		return maxSpeed;
 	}
 
 	public void setDirection(int direction)
@@ -215,12 +213,12 @@ public override void InspectorGUI(Transform root)
 
 	public int getDirection()
 	{
-		return this.direction;
+		return direction;
 	}
 
-	public void changeState(SPRotator.State newState)
+	public void changeState(State newState)
 	{
-		this.currentState = newState;
+		currentState = newState;
 
 	}
 
@@ -228,57 +226,57 @@ public override void InspectorGUI(Transform root)
 	{
 		Transform transformAxis = axis.FindSceneRefrence(root);
 
-		float num = this.currentSpeed * dt;
-		this.currentRotation += num;
-		if (this.currentState == SPRotator.State.STARTING || this.currentState == SPRotator.State.RUNNING || this.currentState == SPRotator.State.PAUSING)
+		float num = currentSpeed * dt;
+		currentRotation += num;
+		if (currentState == State.STARTING || currentState == State.RUNNING || currentState == State.PAUSING)
 		{
-			transformAxis.Rotate(this.rotationAxis, num * (float)this.direction);
+			transformAxis.Rotate(rotationAxis, num * direction);
 		}
-		if (this.currentState == SPRotator.State.STARTING)
+		if (currentState == State.STARTING)
 		{
-			if (this.currentSpeed < this.maxSpeed)
+			if (currentSpeed < maxSpeed)
 			{
-				this.currentSpeed += dt * this.accelerationSpeed;
+				currentSpeed += dt * accelerationSpeed;
 			}
 			else
 			{
-				this.changeState(SPRotator.State.RUNNING);
+				changeState(State.RUNNING);
 			}
 		}
-		else if (this.currentState == SPRotator.State.PAUSING)
+		else if (currentState == State.PAUSING)
 		{
-			this.currentSpeed -= dt * this.accelerationSpeed;
-			if (this.currentSpeed < 0f)
+			currentSpeed -= dt * accelerationSpeed;
+			if (currentSpeed < 0f)
 			{
-				this.currentSpeed = 0f;
+				currentSpeed = 0f;
 			}
 		}
-		else if (this.currentState == SPRotator.State.REQUEST_STOP)
+		else if (currentState == State.REQUEST_STOP)
 		{
-			this.currentSpeed -= dt * this.accelerationSpeed;
-			this.currentSpeed = Mathf.Max(this.maxSpeed * this.minRotationSpeedPercent - 0.01f, this.currentSpeed);
-			if (this.currentSpeed < this.maxSpeed * this.minRotationSpeedPercent)
+			currentSpeed -= dt * accelerationSpeed;
+			currentSpeed = Mathf.Max(maxSpeed * minRotationSpeedPercent - 0.01f, currentSpeed);
+			if (currentSpeed < maxSpeed * minRotationSpeedPercent)
 			{
-				float num2 = transformAxis.localEulerAngles[this.rotationAxisIndex] - this.initialRotation.eulerAngles[this.rotationAxisIndex] + 180f;
+				float num2 = transformAxis.localEulerAngles[rotationAxisIndex] - initialRotation.eulerAngles[rotationAxisIndex] + 180f;
 				float num3 = num2 - 360f * Mathf.Round(num2 / 360f);
-				if ((num3 > 0f && this.direction > 0) || (num3 < 0f && this.direction < 0))
+				if ((num3 > 0f && direction > 0) || (num3 < 0f && direction < 0))
 				{
-					this.changeState(SPRotator.State.STOPPING);
+					changeState(State.STOPPING);
 				}
 			}
-			transformAxis.Rotate(this.rotationAxis, num * (float)this.direction);
+			transformAxis.Rotate(rotationAxis, num * direction);
 		}
-		else if (this.currentState == SPRotator.State.STOPPING && this.currentSpeed != 0f)
+		else if (currentState == State.STOPPING && currentSpeed != 0f)
 		{
-			float b = Quaternion.Angle(transformAxis.localRotation, this.initialRotation);
-			this.currentSpeed = Mathf.Min(this.currentSpeed, b);
-			transformAxis.localRotation = Quaternion.RotateTowards(axis.FindSceneRefrence(root).localRotation, this.initialRotation, Mathf.Max(1f, this.currentSpeed) * dt);
-			float num4 = transformAxis.localEulerAngles[this.rotationAxisIndex] - this.initialRotation.eulerAngles[this.rotationAxisIndex];
+			float b = Quaternion.Angle(transformAxis.localRotation, initialRotation);
+			currentSpeed = Mathf.Min(currentSpeed, b);
+			transformAxis.localRotation = Quaternion.RotateTowards(axis.FindSceneRefrence(root).localRotation, initialRotation, Mathf.Max(1f, currentSpeed) * dt);
+			float num4 = transformAxis.localEulerAngles[rotationAxisIndex] - initialRotation.eulerAngles[rotationAxisIndex];
 			float num5 = num4 - 360f * Mathf.Round(num4 / 360f);
-			if ((num5 > 0f && this.direction > 0) || (num5 < 0f && this.direction < 0))
+			if ((num5 > 0f && direction > 0) || (num5 < 0f && direction < 0))
 			{
-				transformAxis.localRotation = this.initialRotation;
-				this.currentSpeed = 0f;
+				transformAxis.localRotation = initialRotation;
+				currentSpeed = 0f;
 			}
 		}
 	}
@@ -290,15 +288,16 @@ public override void InspectorGUI(Transform root)
 	}
 
 
-	public virtual List<XElement> Serialize (Transform root)
+	public virtual Dictionary<string, object> Serialize(Transform root)
 	{
-		return new List<XElement> {
-			new XElement("axis",axis.Serialize(root)),
-			new XElement("minRotationSpeedPercent",minRotationSpeedPercent),
-			new XElement("rotationAxisIndex",rotationAxisIndex),
-			new XElement("rotationAxis",Utility.SerializeVector(rotationAxis)),
-			new XElement("maxSpeed",maxSpeed),
-			new XElement("accelerationSpeed",accelerationSpeed),
+		return new Dictionary<string, object>
+		{
+			{"axis", axis.Serialize(root)},
+			{"minRotationSpeedPercent", minRotationSpeedPercent},
+			{"rotationAxisIndex", rotationAxisIndex},
+			{"rotationAxis", Utility.SerializeVector(rotationAxis)},
+			{"maxSpeed", maxSpeed},
+			{"accelerationSpeed", accelerationSpeed}
 
 		};
 	}

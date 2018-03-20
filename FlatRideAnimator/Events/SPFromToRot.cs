@@ -5,7 +5,6 @@ using System;
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
-using System.Xml.Linq;
 
 [ExecuteInEditMode]
 [Serializable]
@@ -57,24 +56,24 @@ public class SPFromToRot : SPRideAnimationEvent
 		}
 	}
 
-	public override void Deserialize (XElement elements)
+	public override void Deserialize (Dictionary<string,object> elements)
 	{
-		if (elements.Element ("rotator") != null) {
-			this.rotator = new SPRotateBetween ();
-			rotator.Deserialize (elements.Element ("rotator"));
+		if (elements.ContainsKey("rotator")) {
+			rotator = new SPRotateBetween ();
+			rotator.Deserialize ((Dictionary<string, object>)elements["rotator"]);
 		}
 
 		base.Deserialize (elements);
 	}
 
 
-	public override List<XElement> Serialize (Transform root)
+	public override Dictionary<string,object> Serialize (Transform root)
 	{
 		if (rotator == null)
 			return null;
 		
-		return new List<XElement> (new XElement[] {
-			new XElement ("rotator", rotator.Serialize (root)),
-		});
+		return new Dictionary<string, object>(){
+			{"rotator", rotator.Serialize (root)}
+		};
 	}
 }

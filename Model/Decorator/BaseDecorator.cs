@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Xml.Linq;
-using UnityEngine;
-using UnityEngine.Rendering;
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using UnityEditor;
 #endif
+
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
 
 [Serializable]
 public class BaseDecorator : Decorator
@@ -26,20 +26,21 @@ public class BaseDecorator : Decorator
 	}
 #endif
 
-	public override List<XElement> Serialize (ParkitectObj parkitectObj)
+	public override Dictionary<string,object> Serialize (ParkitectObj parkitectObj)
 	{
-		List<XElement> element = new List<XElement> ();
-		element.Add (new XElement ("InGameName", InGameName));
-		element.Add (new XElement ("Price", price));
-		return element;
+		return new Dictionary<string, object>
+		{
+			{"InGameName",InGameName},
+			{"Price",price}
+		};
 	}
 
-	public override void Deserialize (XElement elements)
+	public override void Deserialize (Dictionary<string,object> elements)
 	{
-		if (elements.Element ("InGameName") != null)
-			InGameName = elements.Element ("InGameName").Value;
-		if (elements.Element ("Price") != null)
-			price = float.Parse(elements.Element ("Price").Value);
+		if (elements.ContainsKey("InGameName") )
+			InGameName = (string) elements["InGameName"];
+		if (elements.ContainsKey ("Price") )
+			price = (float)(double)elements["Price"];
 		
 		base.Deserialize (elements);
 	}

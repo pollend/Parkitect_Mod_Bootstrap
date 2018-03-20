@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Xml.Linq;
 
 
 #if UNITY_EDITOR
@@ -7,9 +6,10 @@ using UnityEditor;
 #endif
 using System.Collections.Generic;
 using UnityEngine;
+using Object = System.Object;
 
 [Serializable]
-public class ModPayload : ScriptableSingleton<ModPayload>, IMod
+public class ModPayload : ScriptableSingleton<ModPayload>
 {
 	[SerializeField]
 	public List<ParkitectObj> ParkitectObjs = new List<ParkitectObj>();
@@ -22,48 +22,44 @@ public class ModPayload : ScriptableSingleton<ModPayload>, IMod
 	[SerializeField]
 	public string description;
 
-	public List<XElement> Serialize()
+	public Dictionary<String,Object> Serialize()
 	{
-		List<XElement> xmlParkitectObjs = new List<XElement> ();
+		Dictionary<String,Object> payload = new Dictionary<string, object>();
+		
+		Dictionary<String,Object> items = new Dictionary<string, object>();
 		for (int i = 0; i < ParkitectObjs.Count; i++) {
-			xmlParkitectObjs.Add (new XElement (ParkitectObjs [i].GetType ().ToString (), ParkitectObjs [i].Serialize ()));
+			items.Add (ParkitectObjs [i].GetType ().ToString (), ParkitectObjs [i].Serialize ());
 		}
 		
-		List<XElement> mod = new List<XElement>();
-		mod.Add(new XElement("ParkitectObjects",xmlParkitectObjs));
+		payload.Add("ParkitectObjects",items);
 		
-		mod.Add(new XElement("ModName",modName));
-		mod.Add(new XElement("Description",description));
-		return mod;
+		payload.Add("ModName",modName);
+		payload.Add("Description",description);
+		return payload;
 	}
 
-	public void Deserialize(XElement element)
+	public void Deserialize(Dictionary<String,object> entries)
 	{
 		ParkitectObjectType type = new ParkitectObjectType();
 
-		foreach (XElement e in element.Elements("ParkitectObjects"))
+		foreach (var e in (Dictionary<String,object>)entries["ParkitectObjects"])
 		{
-			ParkitectObj o = (ParkitectObj) Activator.CreateInstance(type.GetType(e.Name.NamespaceName));
-			o.DeSerialize(e);
+			ParkitectObj o = (ParkitectObj) Activator.CreateInstance(type.GetType(e.Key));
+			o.DeSerialize((Dictionary<String,object>)e.Value);
 			ParkitectObjs.Add(o);
 		}
 
-		modName = element.Element("ModName").Value;
-		description = element.Element("Description").Value;
+		modName = (string) entries["ModName"];
+		description = (string)entries["Description"];
 	}
 
 
 	public void onEnabled()
 	{
-		throw new NotImplementedException();
 	}
 
 	public void onDisabled()
 	{
-		throw new NotImplementedException();
 	}
 
-	public string Name => modName;
-	public string Description => description;
-	public string Identifier => modName.Replace(" ","_");
 }

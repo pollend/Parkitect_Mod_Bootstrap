@@ -1,7 +1,6 @@
 ﻿#if UNITY_EDITOR
 using UnityEditor;
 #endif
-using System.Xml.Linq;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
@@ -56,22 +55,22 @@ public class SPToFromMove : SPRideAnimationEvent
 			base.Run (root);
 		}
 	}
-	public override void Deserialize (XElement elements)
+	public override void Deserialize (Dictionary<string,object> elements)
 	{
-		if (elements.Element ("rotator") != null) {
+		if (elements.ContainsKey("rotator") ) {
 			this.mover = new SPMover ();
-			mover.Deserialize (elements.Element ("rotator"));
+			mover.Deserialize ((Dictionary<string, object>) elements["rotator"]);
 		}
 		
 		base.Deserialize (elements);
 	}
-	public override List<XElement> Serialize (Transform root)
+	public override Dictionary<string,object> Serialize (Transform root)
 	{
 		if (mover == null)
 			return null;
-		return new List<XElement> (new XElement[] {
-			new XElement ("rotator", mover.Serialize (root))
-		});
+		return new Dictionary<string, object>{
+			{"rotator", mover.Serialize (root)}
+		};
 	}
 
 

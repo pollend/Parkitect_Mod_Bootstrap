@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-using System.Xml.Linq;
-
-
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using UnityEditor;
 #endif
+
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using UnityEngine;
 
 
 public class AnimatorDecorator : Decorator
@@ -36,12 +33,12 @@ public class AnimatorDecorator : Decorator
 		EditorUtility.SetDirty (this);
 		AssetDatabase.SaveAssets ();
 
-		this.motors.Add (motor);
+		motors.Add (motor);
 	}
 
 	public void RemoveMotor(SPMotor motor)
 	{
-		this.motors.Remove (motor);
+		motors.Remove (motor);
 		DestroyImmediate (motor, true);
 	}
 
@@ -51,12 +48,12 @@ public class AnimatorDecorator : Decorator
 		EditorUtility.SetDirty(this);
 		AssetDatabase.SaveAssets();
 
-		this.phases.Add (phase);
+		phases.Add (phase);
 	}
 
 	public void RemovePhase(SPPhase phase)
 	{
-		this.phases.Remove (phase);
+		phases.Remove (phase);
 		DestroyImmediate (phase, true);
 	}
 #endif
@@ -171,27 +168,31 @@ public class AnimatorDecorator : Decorator
 		}
 	}
 
-	public override void Deserialize (XElement elements)
+	public override void Deserialize (Dictionary<string,object> elements)
 	{
-		foreach (var ele in elements.Element("phases").Elements()) {
-			SPPhase phase = Utility.GetByTypeName<SPPhase> (ele.Name.NamespaceName);
-			phase.Deserialize (ele);
-			this.phases.Add (phase);
+		foreach (var ele in (Dictionary<string,object>)elements["phases"]) {
+			SPPhase phase = Utility.GetByTypeName<SPPhase> (ele.Key);
+			phase.Deserialize ((Dictionary<string, object>) ele.Value);
+			phases.Add (phase);
 		}
 	}
 
 
-	public override List<XElement> Serialize (ParkitectObj parkitectObj)
+	public override Dictionary<string, object> Serialize(ParkitectObj parkitectObj)
 	{
-		
-		List<XElement> ph = new List<XElement> ();
-		for (int x = 0; x < phases.Count; x++) {
-			ph.Add(new XElement(phases [x].GetType().ToString(),phases [x].Serialize (parkitectObj.Prefab.transform)));
+
+		List<Dictionary<string, object>> ph = new List<Dictionary<string, object>>();
+		foreach (var t in phases)
+		{
+			ph.Add(new Dictionary<string, object> {{t.GetType().ToString(), t.Serialize(parkitectObj.Prefab.transform)}});
 		}
 
-		return new List<XElement> (new XElement[] {
-			new XElement("phases",ph)
-		});
+		return new Dictionary<string, object>
+		{
+			{
+				"phases", ph
+			}
+		};
 	}
 }
 

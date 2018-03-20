@@ -1,11 +1,10 @@
 ﻿#if UNITY_EDITOR
-using UnityEditor;
-#endif
-using System;
 using UnityEngine;
 using System.Linq;
-using System.Xml.Linq;
+#endif
+using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 [ExecuteInEditMode]
 [Serializable]
@@ -57,24 +56,24 @@ public class SPApplyRotation : SPRideAnimationEvent
 
 	}
 
-	public override void Deserialize (XElement elements)
+	public override void Deserialize (Dictionary<string,object> elements)
 	{
-		
-		XElement element = elements.Element ("rotator");
-		if (element != null) {
-			this.rotator = new SPMultipleRotations ();
-			rotator.Deserialize (element);
+		if (elements.ContainsKey("rotator")) {
+			rotator = new SPMultipleRotations ();
+			rotator.Deserialize ((Dictionary<string, object>) elements["rotator"]);
 		}
 		base.Deserialize (elements);
 	}
 
-	public override List<XElement> Serialize (Transform root)
+	public override Dictionary<string, object> Serialize(Transform root)
 	{
 		if (rotator == null)
 			return null;
-		return new List<XElement> (new XElement[] {
-			new XElement("rotator",rotator.Serialize(root))
-		});
+
+		return new Dictionary<string, object>
+		{
+			{"rotator", rotator.Serialize(root)}
+		};
 	}
 
 }

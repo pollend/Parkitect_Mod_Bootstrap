@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Xml.Linq;
 using UnityEngine;
-
+#if (PARKITECT)
 public class ParkitectMod : IMod
 {
     private String name;
@@ -99,3 +98,4 @@ public class ParkitectMod : IMod
     public string Description => _payload?.Description;
     public string Identifier => _payload?.Identifier;
 }
+#endif

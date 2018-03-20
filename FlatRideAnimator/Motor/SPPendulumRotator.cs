@@ -3,40 +3,32 @@
 using UnityEditor;
 #endif
 
-using System;
-using System.Xml.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SPPendulumRotator : SPRotator
 {
-	[SerializeField]
-	public float armLength;
-	[SerializeField]
-	public float gravity;
-	[SerializeField]
-	public float angularFriction;
-	[SerializeField]
-	public bool pendulum;
+	[SerializeField] public float armLength;
+	[SerializeField] public float gravity;
+	[SerializeField] public float angularFriction;
+	[SerializeField] public bool pendulum;
 
-	#if UNITY_EDITOR
+#if UNITY_EDITOR
 	public override void InspectorGUI(Transform root)
 	{
-	    armLength = EditorGUILayout.FloatField("armLength ", armLength);
-	    gravity = EditorGUILayout.FloatField("gravity", gravity);
-	    angularFriction = EditorGUILayout.FloatField("angularFriction", angularFriction);
-	    pendulum = EditorGUILayout.Toggle("pendulum", pendulum);
+		armLength = EditorGUILayout.FloatField("armLength ", armLength);
+		gravity = EditorGUILayout.FloatField("gravity", gravity);
+		angularFriction = EditorGUILayout.FloatField("angularFriction", angularFriction);
+		pendulum = EditorGUILayout.Toggle("pendulum", pendulum);
 		base.InspectorGUI(root);
 	}
-	#endif
+#endif
 
 	public override string EventName
 	{
-		get
-		{
-			return "";
-		}
+		get { return ""; }
 	}
+
 	public void setActAsPendulum(bool pendulum)
 	{
 		this.pendulum = pendulum;
@@ -53,7 +45,9 @@ public class SPPendulumRotator : SPRotator
 			base.tick(dt, root);
 			return;
 		}
-		float num = -1f * this.gravity * Mathf.Sin(transformAxis.localEulerAngles[this.rotationAxisIndex] * 0.0174532924f) / this.armLength * 157.29578f;
+
+		float num = -1f * this.gravity * Mathf.Sin(transformAxis.localEulerAngles[this.rotationAxisIndex] * 0.0174532924f) /
+		            this.armLength * 157.29578f;
 		num = Mathf.Clamp(num, -this.accelerationSpeed, this.accelerationSpeed);
 		this.currentSpeed += num * dt;
 		this.currentRotation += num * dt;
@@ -65,7 +59,8 @@ public class SPPendulumRotator : SPRotator
 		float num2 = localEulerAngles[rotationAxisIndex];
 		localEulerAngles[expr_C6] = num2 + this.currentSpeed * dt;
 		transformAxis.localEulerAngles = localEulerAngles;
-		if (this.currentState == SPRotator.State.REQUEST_STOP && Mathf.Abs(this.currentSpeed) <= 0.5f && Mathf.Abs(num) <= 0.3f)
+		if (this.currentState == SPRotator.State.REQUEST_STOP && Mathf.Abs(this.currentSpeed) <= 0.5f &&
+		    Mathf.Abs(num) <= 0.3f)
 		{
 			base.changeState(SPRotator.State.STOPPING);
 			transformAxis.localRotation = this.initialRotation;
@@ -74,20 +69,20 @@ public class SPPendulumRotator : SPRotator
 	}
 
 
-	public override List<XElement> Serialize (Transform root)
+	public override Dictionary<string,object> Serialize(Transform root)
 	{
-		return new List<XElement> (new XElement[] {
-			new XElement("armLength",armLength),
-			new XElement("gravity",gravity),
-			new XElement("angularFriction",angularFriction),
-			new XElement("pendulum",pendulum),
-			new XElement("axis",axis.Serialize(root)),
-			new XElement("minRotationSpeedPercent",minRotationSpeedPercent),
-			new XElement("rotationAxisIndex",rotationAxisIndex),
-			new XElement("rotationAxis",Utility.SerializeVector(rotationAxis)),
-			new XElement("maxSpeed",maxSpeed),
-			new XElement("accelerationSpeed",accelerationSpeed),
-		});
+		return new Dictionary<string, object>
+		{
+			{"armLength", armLength},
+			{"gravity", gravity},
+			{"angularFriction", angularFriction},
+			{"pendulum", pendulum},
+			{"axis", axis.Serialize(root)},
+			{"minRotationSpeedPercent", minRotationSpeedPercent},
+			{"rotationAxisIndex", rotationAxisIndex},
+			{"rotationAxis", Utility.SerializeVector(rotationAxis)},
+			{"maxSpeed", maxSpeed},
+			{"accelerationSpeed", accelerationSpeed}
+		};
 	}
-
 }

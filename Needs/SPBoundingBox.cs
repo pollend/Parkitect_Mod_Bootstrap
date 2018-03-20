@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System;
 using System.Collections.Generic;
-using System.Xml.Linq;
 
 [Serializable]
 public class SPBoundingBox
@@ -10,37 +8,38 @@ public class SPBoundingBox
 	public Bounds bounds;
 	private Bounds liveBounds;
 
-	public List<XElement> Serialize()
+	public Dictionary<string, object> Serialize()
 	{
-		return new List<XElement>(new XElement[]{
-			new XElement("XMin",bounds.min.x),
-			new XElement("XMax",bounds.max.x),
-			new XElement("YMin",bounds.min.y),
-			new XElement("YMax",bounds.max.y),
-			new XElement("ZMin",bounds.min.z),
-			new XElement("ZMax",bounds.max.z)
-		});
-		
+		return new Dictionary<string, object>()
+		{
+			{"XMin", bounds.min.x},
+			{"XMax", bounds.max.x},
+			{"YMin", bounds.min.y},
+			{"YMax", bounds.max.y},
+			{"ZMin", bounds.min.z},
+			{"ZMax", bounds.max.z}
+		};
+
 	}
 
-	public static SPBoundingBox Deserialize(XElement element)
+	public static SPBoundingBox Deserialize(Dictionary<string, object> element)
 	{
 		Bounds b = new Bounds ();
 		Vector3 min = new Vector3 ();
-		if (element.Element ("XMin") != null)
-			min.x = float.Parse(element.Element ("XMin").Value);
-		if (element.Element ("YMin") != null)
-			min.y = float.Parse(element.Element ("YMin").Value);
-		if (element.Element ("ZMin") != null)
-			min.z = float.Parse(element.Element ("ZMin").Value);
+		if (element.ContainsKey ("XMin") )
+			min.x = (float)(double)element["XMin"];
+		if (element.ContainsKey ("YMin"))
+			min.y = (float)(double)element["YMin"];
+		if (element.ContainsKey ("ZMin"))
+			min.z = (float)(double)element["ZMin"];
 
 		Vector3 max = new Vector3 ();
-		if (element.Element ("XMax") != null)
-			max.x = float.Parse(element.Element ("XMax").Value);
-		if (element.Element ("YMax") != null)
-			max.y = float.Parse(element.Element ("YMax").Value);
-		if (element.Element ("ZMax")  != null)
-			max.z = float.Parse(element.Element ("ZMax").Value);
+		if (element.ContainsKey ("XMax") )
+			max.x = (float)(double)element["XMax"];
+		if (element.ContainsKey ("YMax"))
+			max.y = (float)(double)element["YMax"];
+		if (element.ContainsKey ("ZMax"))
+			max.z = (float)(double)element["ZMax"];
 
 		b.min = min;
 		b.max = max;

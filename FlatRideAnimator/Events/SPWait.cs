@@ -1,69 +1,65 @@
 ﻿#if UNITY_EDITOR
 using UnityEditor;
-using System.Collections.Generic;
-using System.Xml.Linq;
-
-
 #endif
-using System.Collections.Generic;
-using System.Xml.Linq;
-using UnityEngine;
 using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 [Serializable]
 [ExecuteInEditMode]
 public class SPWait : SPRideAnimationEvent
 {
-	[SerializeField]
-	public float seconds;
+	[SerializeField] public float seconds;
 	float timeLimit;
-	public override string EventName {
-		get {
-			return "Wait";
-		}
+	public override string EventName
+	{
+		get { return "Wait"; }
 	}
 #if UNITY_EDITOR
 	public override void RenderInspectorGUI(SPMotor[] motors)
 	{
-		seconds = EditorGUILayout.FloatField ("Seconds", seconds);
-		if (isPlaying) {
-			GUILayout.Label ("Time" + (timeLimit - Time.realtimeSinceStartup));
+		seconds = EditorGUILayout.FloatField("Seconds", seconds);
+		if (isPlaying)
+		{
+			GUILayout.Label("Time" + (timeLimit - Time.realtimeSinceStartup));
 		}
-		base.RenderInspectorGUI (motors);
+
+		base.RenderInspectorGUI(motors);
 	}
 #endif
 
 	public override void Enter()
 	{
 		timeLimit = Time.realtimeSinceStartup + seconds;
-		base.Enter ();
+		base.Enter();
 	}
+
 	public override void Run(Transform root)
 	{
-		if (Time.realtimeSinceStartup > timeLimit) {
-
+		if (Time.realtimeSinceStartup > timeLimit)
+		{
 			done = true;
-		} else {
-
 		}
-		base.Run (root);
+		base.Run(root);
 	}
 
-	public override void Deserialize (XElement elements)
+	public override void Deserialize(Dictionary<string, object> elements)
 	{
 
-		if (elements.Element ("timeLimit") != null) {
-			this.timeLimit = int.Parse(elements.Element ("timeLimit").Value);
+		if (elements.ContainsKey("timeLimit"))
+		{
+			timeLimit = (int) (long) elements["timeLimit"];
 		}
-		base.Deserialize (elements);
+
+		base.Deserialize(elements);
 	}
-	public override List<XElement> Serialize (Transform root)
+
+	public override Dictionary<string, object> Serialize(Transform root)
 	{
-		return new List<XElement> (new XElement[] {
-			new XElement ("timeLimit", timeLimit)
-		});
+		return new Dictionary<string, object>
+		{
+			{"timeLimit", timeLimit}
+		};
 	}
-
-
 }
 

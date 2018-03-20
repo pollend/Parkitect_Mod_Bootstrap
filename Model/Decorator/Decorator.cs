@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
-using System.Xml.Linq;
 
 [Serializable]
 public class Decorator : ScriptableObject
@@ -19,8 +18,8 @@ public class Decorator : ScriptableObject
 	public virtual void CleanUp(ParkitectObj parkitectObj) { }
 	public virtual void Load(ParkitectObj parkitectObj) { }
 	public virtual void PrepareExport(ParkitectObj parkitectObj) { }
-	public virtual List<XElement> Serialize(ParkitectObj parkitectObj){return null;}
-	public virtual void Deserialize(XElement elements){}
+	public virtual Dictionary<string,object> Serialize(ParkitectObj parkitectObj){return null;}
+	public virtual void Deserialize( Dictionary<string,object> elements){}
 #if PARKITECT
 	public virtual void Decorate(GameObject go, GameObject hider,ParkitectObj parkitectObj, AssetBundle bundle){}
 #endif

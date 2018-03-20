@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Xml.Linq;
-using UnityEngine;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -23,19 +21,19 @@ public class CategoryDecorator : Decorator
 	}
 #endif
 
-	public override List<XElement> Serialize(ParkitectObj parkitectObj)
+	public override Dictionary<string, object> Serialize(ParkitectObj parkitectObj)
 	{
-		return new List<XElement>(new[]
+		return new Dictionary<string, object>
 		{
-			new XElement("Category", category),
-			new XElement("SubCategory", subCategory)
-		});
+			{"Category", category},
+			{"SubCategory", subCategory}
+		};
 	}
 
-	public override void Deserialize(XElement elements)
+	public override void Deserialize(Dictionary<string,object> elements)
 	{
-		category = elements.Element("Category").Value;
-		subCategory = elements.Element("SubCategory").Value;
+		category = (string) elements["Category"];
+		subCategory = (string) elements["SubCategory"];
 
 		base.Deserialize(elements);
 	}

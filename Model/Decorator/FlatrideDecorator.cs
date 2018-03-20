@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Xml.Linq;
-using UnityEngine;
-using UnityEngine.Rendering;
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using UnityEditor;
 #endif
+
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Rendering;
+
 
 public class FlatrideDecorator : Decorator
 {
@@ -30,8 +30,8 @@ public override void RenderInspectorGui (ParkitectObj parkitectObj)
 
 	GUILayout.Space(10);
 	GUI.color = Color.white;
-	XSize = EditorGUILayout.IntField("X", (int)Math.Floor(XSize));
-	ZSize = EditorGUILayout.IntField("Z", (int)Math.Floor(ZSize));
+	XSize = EditorGUILayout.IntField("X", XSize);
+	ZSize = EditorGUILayout.IntField("Z", ZSize);
 
 	base.RenderInspectorGui (parkitectObj);
 }
@@ -75,29 +75,30 @@ public override void RenderInspectorGui (ParkitectObj parkitectObj)
 		return "Low";
 	}
 
-	public override List<XElement> Serialize (ParkitectObj parkitectObj)
+	public override Dictionary<string, object> Serialize(ParkitectObj parkitectObj)
 	{
-		return new List<XElement>(new[]{
-			new XElement("Excitement",Excitement),
-			new XElement("Intensity",Intensity),
-			new XElement("Nausea",Nausea),
-			new XElement("XSize",XSize),
-			new XElement("ZSize",ZSize)
-		});
+		return new Dictionary<string, object>()
+		{
+			{"Excitement", Excitement},
+			{"Intensity", Intensity},
+			{"Nausea", Nausea},
+			{"XSize", XSize},
+			{"ZSize", ZSize}
+		};
 	}
 
-	public override void Deserialize (XElement elements)
+	public override void Deserialize (Dictionary<string,object> elements)
 	{
-		if (elements.Element ("Excitement") != null)
-			Excitement = float.Parse(elements.Element ("Excitement").Value);
-		if (elements.Element ("Intensity") != null)
-			Intensity = float.Parse(elements.Element ("Intensity").Value);
-		if (elements.Element ("Nausea") != null)
-			Nausea = float.Parse(elements.Element ("Nausea").Value);
-		if (elements.Element ("XSize") != null)
-			XSize = int.Parse(elements.Element ("XSize").Value);
-		if (elements.Element ("ZSize") != null)
-			ZSize = int.Parse(elements.Element ("ZSize").Value);
+		if (elements.ContainsKey("Excitement"))
+			Excitement = (float)(double)elements["Excitement"];
+		if (elements.ContainsKey("Intensity"))
+			Intensity = (float)(double)elements["Intensity"];
+		if (elements.ContainsKey("Nausea"))
+			Nausea = (float)(double)elements["Nausea"];
+		if (elements.ContainsKey("XSize"))
+			XSize = (int)(long)elements["XSize"];
+		if (elements.ContainsKey("ZSize"))
+			ZSize = (int)(long)elements["ZSize"];
 		base.Deserialize (elements);
 	}
 }

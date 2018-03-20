@@ -1,20 +1,18 @@
-﻿using System;
-using UnityEngine;
-using System.Xml.Linq;
-
-
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using UnityEditor;
 #endif
+
+using System;
 using System.Collections.Generic;
-using UnityEngine.Rendering;
+using UnityEngine;
+
 
 public class BoundingBoxDecorator : Decorator
 {
 
-	[System.NonSerialized]
-	private bool enableEditing = false;
-	private bool snap = false;
+	[NonSerialized]
+	private bool enableEditing;
+	private bool snap;
 	private Vector2 scrollPos2;
 	public SPBoundingBox selected;
 
@@ -26,26 +24,26 @@ public class BoundingBoxDecorator : Decorator
         Event e = Event.current;
 
         scrollPos2 = EditorGUILayout.BeginScrollView(scrollPos2, "GroupBox", GUILayout.Height(100));
-        for (int i = 0; i < this.boundingBoxes.Count; i++)
+        for (int i = 0; i < boundingBoxes.Count; i++)
         {
             Color gui = GUI.color;
-            if (this.boundingBoxes[i] == selected)
+            if (boundingBoxes[i] == selected)
             { GUI.color = Color.red; }
 
             if (GUILayout.Button("BoudingBox" + (i + 1)))
             {
                 if (e.button == 1)
                 {
-                    this.boundingBoxes.RemoveAt(i);
+                    boundingBoxes.RemoveAt(i);
                     return;
                 }
 
-                if (selected == this.boundingBoxes[i])
+                if (selected == boundingBoxes[i])
                 {
                     selected = null;
                     return;
                 }
-                selected = this.boundingBoxes[i];
+                selected = boundingBoxes[i];
             }
             GUI.color = gui;
         }
@@ -53,7 +51,7 @@ public class BoundingBoxDecorator : Decorator
 
         if (GUILayout.Button("Add BoudingBox"))
         {
-			this.boundingBoxes.Add(new SPBoundingBox());
+			boundingBoxes.Add(new SPBoundingBox());
         }
         string caption = "Enable Editing";
         if (enableEditing)
@@ -110,7 +108,7 @@ public class BoundingBoxDecorator : Decorator
     private void drawBox(ParkitectObj parkitectObj)
     {
  
-		foreach (SPBoundingBox box in this.boundingBoxes)
+		foreach (SPBoundingBox box in boundingBoxes)
         {
 
 
@@ -179,27 +177,28 @@ public class BoundingBoxDecorator : Decorator
 
 	private void drawPlane(Vector3 p1, Vector3 p2, Vector3 p3, Vector3 p4, Color fill, Color outer, ParkitectObj PO)
 	{
-		Handles.DrawSolidRectangleWithOutline(new Vector3[] { PO.Prefab.transform.TransformPoint(p1), PO.Prefab.transform.TransformPoint(p2), PO.Prefab.transform.TransformPoint(p3), PO.Prefab.transform.TransformPoint(p4) }, fill, outer);
+		Handles.DrawSolidRectangleWithOutline(new[] { PO.Prefab.transform.TransformPoint(p1), PO.Prefab.transform.TransformPoint(p2), PO.Prefab.transform.TransformPoint(p3), PO.Prefab.transform.TransformPoint(p4) }, fill, outer);
 	}
 #endif
 
 
-	public override List<XElement> Serialize (ParkitectObj parkitectObj)
+	public override Dictionary<string,object> Serialize (ParkitectObj parkitectObj)
 	{
-		List<XElement> boxes = new List<XElement> ();
+		List<object> boxes = new List<object> ();
 		for (int x = 0; x < boundingBoxes.Count; x++) {
-			boxes.Add (new XElement ("BoundBox",boundingBoxes[x].Serialize()));
+			boxes.Add (boundingBoxes[x].Serialize());
 		}
-		return new List<XElement>{
-			new XElement("BoundingBoxes",boxes)
+		return new Dictionary<string, object>
+		{
+			{"BoundingBoxes",boxes}
 		};
 	}
 
-	public override void Deserialize (XElement elements)
+	public override void Deserialize (Dictionary<string,object> elements)
 	{
-		if (elements.Element ("BoundingBoxes") != null) {
-			foreach (XElement xmlBoundingBox in elements.Element ("BoundingBoxes").Elements("BoundBox")) {
-				this.boundingBoxes.Add (SPBoundingBox.Deserialize (xmlBoundingBox));
+		if (elements.ContainsKey("BoundingBoxes")) {
+			foreach (var box in (List<Dictionary<string,object> >) elements["BoundingBoxes"]) {
+				boundingBoxes.Add (SPBoundingBox.Deserialize (box));
 			}
 		}
 		base.Deserialize (elements);

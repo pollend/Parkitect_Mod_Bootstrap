@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Xml.Linq;
-using UnityEngine;
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using UnityEditor;
 #endif
+
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
 public enum PathType { Normal, Queue, Employee }
 
 public class PathDecorator : Decorator
@@ -53,22 +54,23 @@ public class PathDecorator : Decorator
 		return new[]{AssetDatabase.GetAssetPath(PathTexture)};
 	}
 #endif
-	
-	public override List<XElement> Serialize (ParkitectObj parkitectObj)
+
+	public override Dictionary<string, object> Serialize(ParkitectObj parkitectObj)
 	{
-		
-		return new List<XElement>(new[]{
-			new XElement("PathType",PathType),
-			new XElement("texture",PathTexturePath)
-		});
+
+		return new Dictionary<string, object>
+		{
+			{"PathType", PathType},
+			{"texture", PathTexturePath}
+		};
 	}
 
-	public override void Deserialize (XElement elements)
+	public override void Deserialize (Dictionary<string,object> elements)
 	{
-		if (elements.Element ("PathType") != null)
-			PathType = (PathType)Enum.Parse (typeof(PathType), elements.Element ("PathType").Value);
-		if (elements.Element ("texture") != null)
-			PathTexturePath = elements.Element ("texture").Value;
+		if (elements.ContainsKey("PathType") )
+			PathType = (PathType)Enum.Parse (typeof(PathType), (string) elements["PathType"]);
+		if (elements.ContainsKey ("texture"))
+			PathTexturePath = (string) elements["texture"];
 		base.Deserialize (elements);
 	}
 

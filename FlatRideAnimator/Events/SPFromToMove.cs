@@ -5,7 +5,6 @@ using UnityEditor;
 using System;
 using UnityEngine;
 using System.Linq;
-using System.Xml.Linq;
 using System.Collections.Generic;
 
 [ExecuteInEditMode]
@@ -60,22 +59,22 @@ public class SPFromToMove : SPRideAnimationEvent
 	}
 
 
-	public override void Deserialize (XElement elements)
+	public override void Deserialize (Dictionary<string,object> elements)
 	{
-		if (elements.Element ("mover") != null) {
+		if (elements.ContainsKey ("mover") ) {
 			this.mover = new SPMover ();
-			mover.Deserialize (elements.Element ("mover"));
+			mover.Deserialize ((Dictionary<string, object>) elements["mover"]);
 		}
 		base.Deserialize (elements);
 	}
 
-	public override List<XElement> Serialize (Transform root)
+	public override Dictionary<string,object> Serialize (Transform root)
 	{
 		if (mover == null)
 			return null;
-		return new List<XElement> (new XElement[] {
-			new XElement ("mover", mover.Serialize (root)),
-		});
+		return new Dictionary<string, object>(){
+			{"mover", mover.Serialize (root)}
+		};
 	}
 }
 

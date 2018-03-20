@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-using System;
-using System.Xml.Linq;
-using UnityEngine;
-
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using UnityEditor;
 #endif
 
+using System.Collections.Generic;
+using System;
+using UnityEngine;
 
 public class ShopDecorator : Decorator
 {
@@ -101,30 +99,28 @@ public class ShopDecorator : Decorator
 	}
 #endif
 
-	public override List<XElement> Serialize(ParkitectObj parkitectObj)
+	public override Dictionary<string,object> Serialize(ParkitectObj parkitectObj)
 	{
-		List<XElement> elements = new List<XElement>();
-		for (int x = 0; x < products.Count; x++)
+		List<object> elements = new List<object>();
+		foreach (var prod in products)
 		{
-			elements.Add(new XElement("product", products[x].Serialize()));
+			elements.Add(prod.Serialize());
 		}
 
-		return new List<XElement>
+		return new Dictionary<string, object>()
 		{
-			new XElement("Products", elements)
+			{"Products", elements}
 		};
 	}
 
-	public override void Deserialize(XElement element)
+	public override void Deserialize(Dictionary<string,object> elements)
 	{
-		foreach (var ele in element.Element("Products").Elements())
+		foreach (var ele in (List<Dictionary<string,object>>)elements["Products"])
 		{
 			ShopProduct product = CreateInstance<ShopProduct>();
 			product.DeSerialize(ele);
 			products.Add(product);
 		}
-
-		base.Deserialize(element);
 	}
 #if PARKITECT
 	public override void Decorate(GameObject go, GameObject hider, ParkitectObj parkitectObj, AssetBundle bundle)

@@ -1,12 +1,10 @@
-﻿using System;
-using UnityEngine;
-using System.Collections.Generic;
-using System.Xml.Linq;
-
-
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using UnityEditor;
 #endif
+
+using System;
+using UnityEngine;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 [ExecuteInEditMode]
@@ -86,21 +84,25 @@ public class SPPhase : ScriptableObject
 	}
 
 
-	public List<XElement> Serialize(Transform root){
+	public Dictionary<string,object> Serialize(Transform root){
 
-		List<XElement> e = new List<XElement> ();
+		List<Dictionary<string,object>> e = new List<Dictionary<string,object>> ();
 	
-		for (int i = 0; i < events.Count; i++) {
-			List<XElement> element = events [i].Serialize (root);
-			if(element != null)
-				e.Add (new XElement(events [i].GetType().Name,element));
+		for (int i = 0; i < events.Count; i++)
+		{
+			Dictionary<string, object> o = events[i].Serialize(root);
+			o.Add("type",events[i].GetType().Name);
+			e.Add(o);
+			//List<XElement> element = events [i].Serialize (root);
+			//if(element != null)
+			//	e.Add (new XElement(events [i].GetType().Name,element));
 		}
 
-		return new List<XElement> (new XElement[] {
-			 new XElement("events",e)
-		});
+		return new Dictionary<string, object>()  {
+			{"events",e}
+		};
 	}
-	public void Deserialize(XElement elements){}
+	public void Deserialize(Dictionary<string,object> elements){}
 
 
 }

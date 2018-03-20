@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Xml.Linq;
 
 
 [Serializable]
@@ -20,38 +19,34 @@ public class SPWaypoint
 		return pivot.position + pivot.rotation * this.localPosition;
 	}
 
-	public List<XElement> Serialize ()
+	public Dictionary<string, object> Serialize()
 	{
-		List<XElement> xmlConnected = new List<XElement> ();
-		for (int i = 0; i < connectedTo.Count; i++) {
-			xmlConnected.Add (new XElement ("I", connectedTo [i]));
-		}
-
-		return new List<XElement> (new XElement[] {
-			new XElement("Outer",isOuter),
-			new XElement("IsRabbitHoleGoal",isRabbitHoleGoal),
-			new XElement("LocalPosition",Utility.SerializeVector(localPosition)),
-			new XElement("ConnectedTo",xmlConnected)		
-		});
+		return new Dictionary<string, object>()
+		{
+			{"Outer", isOuter},
+			{"IsRabbitHoleGoal", isRabbitHoleGoal},
+			{"LocalPosition", Utility.SerializeVector(localPosition)},
+			{"ConnectedTo", connectedTo}
+		};
 	}
 
 
-	public static SPWaypoint Deserialize(XElement element)
+	public static SPWaypoint Deserialize(Dictionary<string,object> elements)
 	{
 		SPWaypoint waypoint = new SPWaypoint (); 
 
-		if(element.Element ("Outer") != null)
-			waypoint.isOuter = bool.Parse (element.Element ("Outer").Value);
-		if(element.Element ("IsRabbitHoleGoal") != null)
-			waypoint.isOuter = bool.Parse (element.Element ("Outer").Value);
-		if(element.Element ("LocalPosition") != null)
-			waypoint.isOuter = bool.Parse (element.Element ("Outer").Value);
+		if(elements.ContainsKey("Outer"))
+			waypoint.isOuter = (bool) elements["Outer"];
+		if(elements.ContainsKey ("IsRabbitHoleGoal") )
+			waypoint.isOuter =(bool) elements["Outer"];
+		if(elements.ContainsKey("LocalPosition"))
+			waypoint.isOuter = (bool) elements["Outer"];
 		
-		if (element.Element ("ConnectedTo") != null) {
+		if (elements.ContainsKey("ConnectedTo")) {
 			
-			foreach(XElement c in element.Element("ConnectedTo").Elements("I"))
+			foreach(var c in (List<object>)elements["ConnectedTo"])
 			{
-				waypoint.connectedTo.Add (int.Parse (c.Value));	
+				waypoint.connectedTo.Add ((int)(long)c);	
 			}
 		}
 		return waypoint;

@@ -5,7 +5,6 @@ using UnityEditor;
 
 using System;
 using System.Collections.Generic;
-using System.Xml.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -40,7 +39,7 @@ public class SPMotor : ScriptableObject
 	{
 	}
 		
-	public virtual List<XElement> Serialize(Transform root){return null;}
-	public virtual void Deserialize(XElement elements){}
+	public virtual Dictionary<string,object> Serialize(Transform root){return null;}
+	public virtual void Deserialize(Dictionary<string,object> elements){}
 
 }

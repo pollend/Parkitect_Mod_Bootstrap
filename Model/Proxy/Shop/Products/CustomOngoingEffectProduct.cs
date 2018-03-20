@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Xml.Linq;
-#if (PARKITECT)
+﻿#if (PARKITECT)
 public class CustomOngoingEffectProduct : OngoingEffectProduct
 {
     public CustomOngoingEffectProduct()

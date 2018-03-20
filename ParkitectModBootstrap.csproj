@@ -5,13 +5,17 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4C156FA3-43F0-46C6-B387-B94BA3A13B23}</ProjectGuid>
+    <ProjectGuid>{B35E86CF-2724-43D2-A56F-6492C83D9DF2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>ParkitectModBootstrap</RootNamespace>
     <AssemblyName>ParkitectModBootstrap</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
     <Reference Include="Parkitect, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>../../Parkitect_Data/Managed/Parkitect.dll</HintPath>
       <Private>False</Private>
@@ -32,7 +36,8 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.IMGUIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\Parkitect_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <HintPath>../../Parkitect_Data/Managed/UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>../../Parkitect_Data/Managed/UnityEngine.PhysicsModule.dll</HintPath>
@@ -131,9 +136,6 @@
   <ItemGroup>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="UnityEngine">
-      <HintPath>..\..\Parkitect_Data\Managed\UnityEngine.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
