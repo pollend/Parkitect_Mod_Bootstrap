@@ -31,22 +31,22 @@ namespace Parkitect_Mod_Bootstrap.Model.ParkitectObjects
           
             Wall wall = go.AddComponent<Wall>();
             wall.name = Key;
-            wall.categoryTag = categoryDecorator.category;
+            wall.categoryTag = categoryDecorator.Category;
             wall.price = baseDecorator.Price;
             wall.setDisplayName(baseDecorator.InGameName);
             wall.dontSerialize = true;
             wall.isPreview = true;
 
-            if (colorDecorator.isRecolorable)
+            if (colorDecorator.IsRecolorable)
             {
                 CustomColors colors = go.AddComponent<CustomColors>();
-                colors.setColors(colorDecorator.colors.ToArray());
+                colors.setColors(colorDecorator.Colors.ToArray());
             }
 
             foreach (var box in boxDecorator.boundingBoxes)
             {
                 var b = go.AddComponent<BoundingBox>();
-                b.setBounds(box.bounds);
+                b.setBounds(box.Bounds);
             }
 
         }

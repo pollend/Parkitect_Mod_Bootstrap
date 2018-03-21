@@ -18,31 +18,31 @@ public class SPMover : SPMotor
 		STOPPED
 	}
 	[SerializeField]
-	public RefrencedTransform axis = new RefrencedTransform();
+	public RefrencedTransform Axis = new RefrencedTransform();
 
 	[SerializeField]
-	public Vector3 originalRotationValue;
+	public Vector3 OriginalRotationValue;
 	[SerializeField]
-	private Vector3 fromPosition;
+	private Vector3 _fromPosition;
 	[SerializeField]
-	public Vector3 toPosition;
+	public Vector3 ToPosition;
 	[SerializeField]
-	public float duration = 10f;
+	public float Duration = 10f;
 
 	[SerializeField]
-	private State currentState = State.STOPPED;
+	private State _currentState = State.STOPPED;
 	[SerializeField]
-	private float currentPosition = 1f;
+	private float _currentPosition = 1f;
 	[SerializeField]
-	private int direction = -1;
+	private int _direction = -1;
 
 	public override void Reset(Transform root)
 	{
-		Transform transform = axis.FindSceneRefrence(root);
+		Transform transform = Axis.FindSceneRefrence(root);
 		if (transform)
-			transform.localPosition = originalRotationValue;
-		currentPosition = 1f;
-		direction = -1;
+			transform.localPosition = OriginalRotationValue;
+		_currentPosition = 1f;
+		_direction = -1;
 		base.Reset(root);
 	}
 	public override string EventName
@@ -65,86 +65,86 @@ public class SPMover : SPMotor
 #endif
 	public override void Enter(Transform root)
 	{
-		Transform transform = axis.FindSceneRefrence(root);
+		Transform transform = Axis.FindSceneRefrence(root);
 		if (transform)
-			originalRotationValue = transform.localPosition;
-		currentPosition = 1f;
+			OriginalRotationValue = transform.localPosition;
+		_currentPosition = 1f;
 
-		direction = -1;
-		Initialize(root, axis.FindSceneRefrence(root), transform.localPosition, toPosition, duration);
+		_direction = -1;
+		Initialize(root, Axis.FindSceneRefrence(root), transform.localPosition, ToPosition, Duration);
 		base.Enter(root);
 	}
 	public void Initialize(Transform root, Transform axis, Vector3 fromPosition, Vector3 toPosition, float duration)
 	{
-		this.axis.SetSceneTransform(axis);
-		this.fromPosition = fromPosition;
-		this.toPosition = toPosition;
-		this.duration = duration;
-		setPosition(root);
+		this.Axis.SetSceneTransform(axis);
+		this._fromPosition = fromPosition;
+		this.ToPosition = toPosition;
+		this.Duration = duration;
+		SetPosition(root);
 	}
 
 	public bool startFromTo()
 	{
-		if (direction != 1)
+		if (_direction != 1)
 		{
-			direction = 1;
-			currentPosition = 0f;
-			currentState = State.RUNNING;
+			_direction = 1;
+			_currentPosition = 0f;
+			_currentState = State.RUNNING;
 			return true;
 		}
 		return false;
 	}
 
-	public bool startToFrom()
+	public bool StartToFrom()
 	{
-		if (direction != -1)
+		if (_direction != -1)
 		{
-			direction = -1;
-			currentPosition = 0f;
-			currentState = State.RUNNING;
+			_direction = -1;
+			_currentPosition = 0f;
+			_currentState = State.RUNNING;
 			return true;
 		}
 		return false;
 	}
 
-	public bool reachedTarget()
+	public bool ReachedTarget()
 	{
-		return currentState == State.STOPPED && currentPosition >= 1f;
+		return _currentState == State.STOPPED && _currentPosition >= 1f;
 	}
 
-	public void tick(float dt, Transform root)
+	public void Tick(float dt, Transform root)
 	{
-		currentPosition += dt * 1f / duration;
-		if (currentPosition >= 1f)
+		_currentPosition += dt * 1f / Duration;
+		if (_currentPosition >= 1f)
 		{
-			currentPosition = 1f;
-			currentState = State.STOPPED;
+			_currentPosition = 1f;
+			_currentState = State.STOPPED;
 		}
-		setPosition(root);
+		SetPosition(root);
 	}
 
-	private void setPosition(Transform root)
+	private void SetPosition(Transform root)
 	{
 		Vector3 a;
 		Vector3 b;
-		if (direction == 1)
+		if (_direction == 1)
 		{
-			a = fromPosition;
-			b = toPosition;
+			a = _fromPosition;
+			b = ToPosition;
 		}
 		else
 		{
-			a = toPosition;
-			b = fromPosition;
+			a = ToPosition;
+			b = _fromPosition;
 		}
-		Transform transform = axis.FindSceneRefrence(root);
+		Transform transform = Axis.FindSceneRefrence(root);
 		if (transform != null)
-			transform.localPosition = Vector3.Lerp(a, b, MathHelper.Hermite(0f, 1f, currentPosition));
+			transform.localPosition = Vector3.Lerp(a, b, MathHelper.Hermite(0f, 1f, _currentPosition));
 	}
 
 	public override void PrepareExport(ParkitectObj parkitectObj)
 	{
-		axis.UpdatePrefabRefrence(parkitectObj.Prefab.transform);
+		Axis.UpdatePrefabRefrence(parkitectObj.Prefab.transform);
 		base.PrepareExport(parkitectObj);
 	}
 
@@ -152,10 +152,10 @@ public class SPMover : SPMotor
 	public override Dictionary<string,object> Serialize (Transform root)
 	{
 		return new Dictionary<string, object>{
-			{"transform",axis.Serialize(root)},
-			{"from", Utility.SerializeVector(fromPosition)},
-			{"to", Utility.SerializeVector(toPosition)},
-			{"duration",duration}
+			{"transform",Axis.Serialize(root)},
+			{"from", Utility.SerializeVector(_fromPosition)},
+			{"to", Utility.SerializeVector(ToPosition)},
+			{"duration",Duration}
 		};
 	}
 

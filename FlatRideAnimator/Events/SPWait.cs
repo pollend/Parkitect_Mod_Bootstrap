@@ -9,8 +9,8 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class SPWait : SPRideAnimationEvent
 {
-	[SerializeField] public float seconds;
-	float timeLimit;
+	[SerializeField] public float Seconds;
+	private float _timeLimit;
 	public override string EventName
 	{
 		get { return "Wait"; }
@@ -30,15 +30,15 @@ public class SPWait : SPRideAnimationEvent
 
 	public override void Enter()
 	{
-		timeLimit = Time.realtimeSinceStartup + seconds;
+		_timeLimit = Time.realtimeSinceStartup + Seconds;
 		base.Enter();
 	}
 
 	public override void Run(Transform root)
 	{
-		if (Time.realtimeSinceStartup > timeLimit)
+		if (Time.realtimeSinceStartup > _timeLimit)
 		{
-			done = true;
+			Done = true;
 		}
 		base.Run(root);
 	}
@@ -48,7 +48,7 @@ public class SPWait : SPRideAnimationEvent
 
 		if (elements.ContainsKey("timeLimit"))
 		{
-			timeLimit = Convert.ToInt32(elements["timeLimit"]);
+			_timeLimit = Convert.ToInt32(elements["timeLimit"]);
 		}
 
 		base.Deserialize(elements);
@@ -58,7 +58,7 @@ public class SPWait : SPRideAnimationEvent
 	{
 		return new Dictionary<string, object>
 		{
-			{"timeLimit", timeLimit}
+			{"timeLimit", _timeLimit}
 		};
 	}
 }

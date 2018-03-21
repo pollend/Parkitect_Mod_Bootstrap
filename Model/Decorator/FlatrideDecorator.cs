@@ -15,7 +15,7 @@ public class FlatrideDecorator : Decorator
 	public float Nausea;
 	public int XSize = 1;
 	public int ZSize = 1;
-	public Vector3 closedAngleRetraints;
+	public Vector3 ClosedAngleRetraints;
 
 #if UNITY_EDITOR
 public override void RenderInspectorGui (ParkitectObj parkitectObj)

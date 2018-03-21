@@ -38,10 +38,10 @@ public class DecoParkitectObject : ParkitectObj
         _deco.name = Key;
 
         _deco.buildOnLayerMask = 4096;
-        _deco.heightChangeDelta = gridDecorator.heightDelta;
-        _deco.defaultGridSubdivision = gridDecorator.gridSubdivision;
-        _deco.buildOnGrid = gridDecorator.grid;
-        _deco.defaultSnapToGridCenter = gridDecorator.snap;
+        _deco.heightChangeDelta = gridDecorator.HeightDelta;
+        _deco.defaultGridSubdivision = gridDecorator.GridSubdivision;
+        _deco.buildOnGrid = gridDecorator.Grid;
+        _deco.defaultSnapToGridCenter = gridDecorator.Snap;
 
         _deco.isPreview = true;
         _deco.isStatic = true;
@@ -57,7 +57,7 @@ public class DecoParkitectObject : ParkitectObj
         foreach (var box in boxDecorator.boundingBoxes)
         {
             var b = gameObject.AddComponent<BoundingBox>();
-            b.setBounds(box.bounds);
+            b.setBounds(box.Bounds);
         }
         
         AssetManager.Instance.registerObject(_deco);

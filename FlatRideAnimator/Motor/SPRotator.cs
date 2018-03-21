@@ -20,43 +20,62 @@ public class SPRotator : SPMotor
 		STOPPING
 	}
 	[SerializeField]
-	public Quaternion originalRotationValue;
+	public Quaternion OriginalRotationValue;
 	[SerializeField]
-	public float accelerationSpeed = 12f;
+	public float AccelerationSpeed = 12f;
 	[SerializeField]
-	public float maxSpeed = 180f;
+	public float MaxSpeed = 180f;
 	[SerializeField]
-	public Vector3 rotationAxis = Vector3.up;
+	private Vector3 _rotationAxis = Vector3.up;
 	[SerializeField]
-	public int rotationAxisIndex = 1;
+	public int RotationAxisIndex = 1;
 	[SerializeField]
-	public float minRotationSpeedPercent = 0.3f;
+	public float MinRotationSpeedPercent = 0.3f;
 	[SerializeField]
-	public Quaternion initialRotation;
+	public Quaternion InitialRotation;
+	[SerializeField]
+	public State CurrentState = State.STOPPING;
+	[SerializeField]
+	public float CurrentSpeed;
+	[SerializeField]
+	public float CurrentRotation;
+	[SerializeField]
+	public int Direction = 1;
+	[SerializeField]
+	public RefrencedTransform Axis = new RefrencedTransform();
 
-	[SerializeField]
-	public State currentState = State.STOPPING;
-
-	[SerializeField]
-	public float currentSpeed;
-
-	[SerializeField]
-	public float currentRotation;
-
-	[SerializeField]
-	public int direction = 1;
-
-	[SerializeField]
-	public RefrencedTransform axis = new RefrencedTransform();
-
+	
+	public Vector3 RotationAxis
+	{
+		get { return _rotationAxis; }
+		set
+		{
+			_rotationAxis = value;
+			if (value.x != 0f)
+			{
+				RotationAxisIndex = 0;
+			}
+			else if (value.y != 0f)
+			{
+				RotationAxisIndex = 1;
+			}
+			else if (value.z != 0f)
+			{
+				RotationAxisIndex = 2;
+			}
+		}
+	}
 
 	public override void Reset(Transform root)
 	{
-		Transform transform = axis.FindSceneRefrence(root);
+		Transform transform = Axis.FindSceneRefrence(root);
 		if (transform)
-			transform.localRotation = originalRotationValue;
+			transform.localRotation = OriginalRotationValue;
 		base.Reset(root);
 	}
+	
+	
+	
 	public override string EventName
 	{
 		get
@@ -78,14 +97,14 @@ public override void InspectorGUI(Transform root)
 #endif
 	public override void Enter(Transform root)
 	{
-		Transform transform = axis.FindSceneRefrence(root);
+		Transform transform = Axis.FindSceneRefrence(root);
 		if (transform)
-			originalRotationValue = transform.localRotation;
-		resetRotations();
-		currentRotation = 0;
-		currentSpeed = 0;
-		changeState(State.STARTING);
-		Initialize(root, axis.FindSceneRefrence(root), accelerationSpeed, maxSpeed, rotationAxis);
+			OriginalRotationValue = transform.localRotation;
+		ResetRotations();
+		CurrentRotation = 0;
+		CurrentSpeed = 0;
+		ChangeState(State.STARTING);
+		Initialize(root, Axis.FindSceneRefrence(root), AccelerationSpeed, MaxSpeed, _rotationAxis);
 		base.Enter(root);
 	}
 
@@ -96,94 +115,62 @@ public override void InspectorGUI(Transform root)
 
 	public void Initialize(Transform root, Transform axis, float accelerationSpeed, float maxSpeed, Vector3 rotationAxis)
 	{
-		this.axis.SetSceneTransform(axis);
-		this.accelerationSpeed = accelerationSpeed;
-		this.maxSpeed = maxSpeed;
-		setRotationAxis(rotationAxis);
-		setInitialRotation(axis.localRotation);
-		axis.Rotate(rotationAxis, currentRotation);
+		Axis.SetSceneTransform(axis);
+		AccelerationSpeed = accelerationSpeed;
+		MaxSpeed = maxSpeed;
+		RotationAxis = rotationAxis;
+		InitialRotation = axis.localRotation;
+		axis.Rotate(rotationAxis, CurrentRotation);
 	}
 
-	public void setInitialRotation(Quaternion initialLocalRotation)
+	public bool Start()
 	{
-		initialRotation = initialLocalRotation;
-	}
-
-	public void setMinRotationSpeedPercent(float minRotationSpeedPercent)
-	{
-		this.minRotationSpeedPercent = minRotationSpeedPercent;
-	}
-
-	private void setRotationAxis(Vector3 rotationAxis)
-	{
-		this.rotationAxis = rotationAxis;
-		if (rotationAxis.x != 0f)
+		if (CurrentState != State.STARTING && CurrentState != State.RUNNING)
 		{
-			rotationAxisIndex = 0;
-		}
-		else if (rotationAxis.y != 0f)
-		{
-			rotationAxisIndex = 1;
-		}
-		else if (rotationAxis.z != 0f)
-		{
-			rotationAxisIndex = 2;
-		}
-	}
-
-	public bool start()
-	{
-		if (currentState != State.STARTING && currentState != State.RUNNING)
-		{
-			changeState(State.STARTING);
-			currentSpeed = 0f;
-			currentRotation = 0f;
+			ChangeState(State.STARTING);
+			CurrentSpeed = 0f;
+			CurrentRotation = 0f;
 			return true;
 		}
 		return false;
 	}
 
-	public void stop()
+	public void Stop()
 	{
-		changeState(State.REQUEST_STOP);
+		ChangeState(State.REQUEST_STOP);
 	}
 
-	public void pause()
+	public void Pause()
 	{
-		changeState(State.PAUSING);
+		ChangeState(State.PAUSING);
 	}
 
-	public bool isStopped()
+	public bool IsStopped()
 	{
-		return currentState == State.STOPPING && Mathf.Approximately(currentSpeed, 0f);
+		return CurrentState == State.STOPPING && Mathf.Approximately(CurrentSpeed, 0f);
 	}
 
-	public State getState()
+	public void ResetRotations()
 	{
-		return currentState;
+		CurrentRotation = 0f;
 	}
 
-	public void resetRotations()
+	public float GetRotationsCount()
 	{
-		currentRotation = 0f;
+		return Mathf.Abs(CurrentRotation) / 360f;
 	}
 
-	public float getRotationsCount()
+	public int GetCompletedRotationsCount()
 	{
-		return Mathf.Abs(currentRotation) / 360f;
+		return Mathf.FloorToInt(GetRotationsCount());
 	}
 
-	public int getCompletedRotationsCount()
-	{
-		return Mathf.FloorToInt(getRotationsCount());
-	}
-
-	public bool isInAngleRange(Transform root, float fromAngle, float toAngle)
+	public bool IsInAngleRange(Transform root, float fromAngle, float toAngle)
 	{
 		fromAngle %= 360f;
 		toAngle %= 360f;
-		Transform transform = axis.FindSceneRefrence(root);
-		float num = transform.localEulerAngles[rotationAxisIndex];
+		Transform transform = Axis.FindSceneRefrence(root);
+		float num = transform.localEulerAngles[RotationAxisIndex];
 		if (fromAngle >= toAngle)
 		{
 			return num >= fromAngle || num <= toAngle;
@@ -191,99 +178,79 @@ public override void InspectorGUI(Transform root)
 		return num < toAngle && num > fromAngle;
 	}
 
-	public bool reachedFullSpeed()
+	public bool ReachedFullSpeed()
 	{
-		return currentState != State.STARTING;
+		return CurrentState != State.STARTING;
 	}
 
-	public float getCurrentSpeed()
+	public void ChangeState(State newState)
 	{
-		return currentSpeed;
-	}
-
-	public float getMaxSpeed()
-	{
-		return maxSpeed;
-	}
-
-	public void setDirection(int direction)
-	{
-		this.direction = direction;
-	}
-
-	public int getDirection()
-	{
-		return direction;
-	}
-
-	public void changeState(State newState)
-	{
-		currentState = newState;
+		CurrentState = newState;
 
 	}
 
 	public virtual void tick(float dt, Transform root)
 	{
-		Transform transformAxis = axis.FindSceneRefrence(root);
+		Transform transformAxis = Axis.FindSceneRefrence(root);
 
-		float num = currentSpeed * dt;
-		currentRotation += num;
-		if (currentState == State.STARTING || currentState == State.RUNNING || currentState == State.PAUSING)
+		float num = CurrentSpeed * dt;
+		CurrentRotation += num;
+		if (CurrentState == State.STARTING || CurrentState == State.RUNNING || CurrentState == State.PAUSING)
 		{
-			transformAxis.Rotate(rotationAxis, num * direction);
+			transformAxis.Rotate(_rotationAxis, num * Direction);
 		}
-		if (currentState == State.STARTING)
+		if (CurrentState == State.STARTING)
 		{
-			if (currentSpeed < maxSpeed)
+			if (CurrentSpeed < MaxSpeed)
 			{
-				currentSpeed += dt * accelerationSpeed;
+				CurrentSpeed += dt * AccelerationSpeed;
 			}
 			else
 			{
-				changeState(State.RUNNING);
+				ChangeState(State.RUNNING);
 			}
 		}
-		else if (currentState == State.PAUSING)
+		else if (CurrentState == State.PAUSING)
 		{
-			currentSpeed -= dt * accelerationSpeed;
-			if (currentSpeed < 0f)
+			CurrentSpeed -= dt * AccelerationSpeed;
+			if (CurrentSpeed < 0f)
 			{
-				currentSpeed = 0f;
+				CurrentSpeed = 0f;
 			}
 		}
-		else if (currentState == State.REQUEST_STOP)
+		else if (CurrentState == State.REQUEST_STOP)
 		{
-			currentSpeed -= dt * accelerationSpeed;
-			currentSpeed = Mathf.Max(maxSpeed * minRotationSpeedPercent - 0.01f, currentSpeed);
-			if (currentSpeed < maxSpeed * minRotationSpeedPercent)
+			CurrentSpeed -= dt * AccelerationSpeed;
+			CurrentSpeed = Mathf.Max(MaxSpeed * MinRotationSpeedPercent - 0.01f, CurrentSpeed);
+			if (CurrentSpeed < MaxSpeed * MinRotationSpeedPercent)
 			{
-				float num2 = transformAxis.localEulerAngles[rotationAxisIndex] - initialRotation.eulerAngles[rotationAxisIndex] + 180f;
+				float num2 = transformAxis.localEulerAngles[RotationAxisIndex] - InitialRotation.eulerAngles[RotationAxisIndex] + 180f;
 				float num3 = num2 - 360f * Mathf.Round(num2 / 360f);
-				if ((num3 > 0f && direction > 0) || (num3 < 0f && direction < 0))
+				if ((num3 > 0f && Direction > 0) || (num3 < 0f && Direction < 0))
 				{
-					changeState(State.STOPPING);
+					ChangeState(State.STOPPING);
 				}
 			}
-			transformAxis.Rotate(rotationAxis, num * direction);
+			transformAxis.Rotate(_rotationAxis, num * Direction);
 		}
-		else if (currentState == State.STOPPING && currentSpeed != 0f)
+		else if (CurrentState == State.STOPPING && CurrentSpeed != 0f)
 		{
-			float b = Quaternion.Angle(transformAxis.localRotation, initialRotation);
-			currentSpeed = Mathf.Min(currentSpeed, b);
-			transformAxis.localRotation = Quaternion.RotateTowards(axis.FindSceneRefrence(root).localRotation, initialRotation, Mathf.Max(1f, currentSpeed) * dt);
-			float num4 = transformAxis.localEulerAngles[rotationAxisIndex] - initialRotation.eulerAngles[rotationAxisIndex];
+			float b = Quaternion.Angle(transformAxis.localRotation, InitialRotation);
+			CurrentSpeed = Mathf.Min(CurrentSpeed, b);
+			transformAxis.localRotation = Quaternion.RotateTowards(Axis.FindSceneRefrence(root).localRotation, InitialRotation, Mathf.Max(1f, CurrentSpeed) * dt);
+			float num4 = transformAxis.localEulerAngles[RotationAxisIndex] - InitialRotation.eulerAngles[RotationAxisIndex];
 			float num5 = num4 - 360f * Mathf.Round(num4 / 360f);
-			if ((num5 > 0f && direction > 0) || (num5 < 0f && direction < 0))
+			if ((num5 > 0f && Direction > 0) || (num5 < 0f && Direction < 0))
 			{
-				transformAxis.localRotation = initialRotation;
-				currentSpeed = 0f;
+				transformAxis.localRotation = InitialRotation;
+				CurrentSpeed = 0f;
 			}
 		}
 	}
 
 	public override void PrepareExport(ParkitectObj parkitectObj)
 	{
-		axis.UpdatePrefabRefrence(parkitectObj.Prefab.transform);
+		Axis.UpdatePrefabRefrence(parkitectObj.Prefab.transform);
 		base.PrepareExport(parkitectObj);
 	}
 
@@ -292,12 +259,12 @@ public override void InspectorGUI(Transform root)
 	{
 		return new Dictionary<string, object>
 		{
-			{"axis", axis.Serialize(root)},
-			{"minRotationSpeedPercent", minRotationSpeedPercent},
-			{"rotationAxisIndex", rotationAxisIndex},
-			{"rotationAxis", Utility.SerializeVector(rotationAxis)},
-			{"maxSpeed", maxSpeed},
-			{"accelerationSpeed", accelerationSpeed}
+			{"axis", Axis.Serialize(root)},
+			{"minRotationSpeedPercent", MinRotationSpeedPercent},
+			{"rotationAxisIndex", RotationAxisIndex},
+			{"rotationAxis", Utility.SerializeVector(_rotationAxis)},
+			{"maxSpeed", MaxSpeed},
+			{"accelerationSpeed", AccelerationSpeed}
 
 		};
 	}

@@ -12,7 +12,7 @@ using System;
 public class SPMultipleRotations : SPMotor
 {
 	[SerializeField]
-	public RefrencedTransform mainAxis = new RefrencedTransform();
+	public RefrencedTransform MainAxis = new RefrencedTransform();
 	[SerializeField]
 	public List<RefrencedTransform> Axiss = new List<RefrencedTransform>();
 #if UNITY_EDITOR
@@ -53,16 +53,16 @@ public class SPMultipleRotations : SPMotor
 #endif
 	public override void Reset(Transform root)
 	{
-		Transform transform = mainAxis.FindSceneRefrence (root);
+		Transform transform = MainAxis.FindSceneRefrence (root);
 		if (transform) {
 			foreach (RefrencedTransform T in Axiss) {
 				T.FindSceneRefrence (root).localRotation = transform.localRotation;
 			}
 		}
 	}
-	public void tick(float dt, Transform root)
+	public void Tick(float dt, Transform root)
 	{
-		Transform transform = mainAxis.FindSceneRefrence (root);
+		Transform transform = MainAxis.FindSceneRefrence (root);
 		if (transform) {
 			foreach (RefrencedTransform T in Axiss) {
 				T.FindSceneRefrence (root).localRotation = transform.localRotation;
@@ -87,7 +87,7 @@ public class SPMultipleRotations : SPMotor
 		}
 
 		return new Dictionary<string, object> {
-			{"mainTransform",mainAxis.Serialize(root)},
+			{"mainTransform",MainAxis.Serialize(root)},
 			{"axisses",axiss}
 		};
 	}

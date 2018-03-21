@@ -12,9 +12,9 @@ using System.Collections.Generic;
 [Serializable]
 public class SPToFromRot : SPRideAnimationEvent
 {
-	public SPRotateBetween rotator;
+	public SPRotateBetween Rotator;
 
-	float lastTime;
+	private float _lastTime;
 	public override string EventName {
 		get {
 			return "To-From Rot";
@@ -40,18 +40,18 @@ public class SPToFromRot : SPRideAnimationEvent
 
 	public override void Enter()
 	{
-		lastTime = Time.realtimeSinceStartup;
+		_lastTime = Time.realtimeSinceStartup;
 
-		rotator.startToFrom ();
+		Rotator.startToFrom ();
 		base.Enter ();
 	}
 	public override void Run(Transform root)
 	{
-		if (rotator) {
-			rotator.tick (Time.realtimeSinceStartup - lastTime, root);
-			lastTime = Time.realtimeSinceStartup;
-			if (rotator.isStopped ()) {
-				done = true;
+		if (Rotator) {
+			Rotator.tick (Time.realtimeSinceStartup - _lastTime, root);
+			_lastTime = Time.realtimeSinceStartup;
+			if (Rotator.isStopped ()) {
+				Done = true;
 			}
 			base.Run (root);
 		}
@@ -59,18 +59,18 @@ public class SPToFromRot : SPRideAnimationEvent
 	public override void Deserialize (Dictionary<string,object> elements)
 	{
 		if (elements.ContainsKey("rotator") ) {
-			rotator = new SPRotateBetween ();
-			rotator.Deserialize ((Dictionary<string, object>) elements["rotator"]);
+			Rotator = new SPRotateBetween ();
+			Rotator.Deserialize ((Dictionary<string, object>) elements["rotator"]);
 		}
 
 		base.Deserialize (elements);
 	}
 	public override Dictionary<string,object> Serialize (Transform root)
 	{
-		if (rotator == null)
+		if (Rotator == null)
 			return null;
 		return new Dictionary<string, object>{
-			{"rotator", rotator.Serialize (root)}
+			{"rotator", Rotator.Serialize (root)}
 		};
 	}
 

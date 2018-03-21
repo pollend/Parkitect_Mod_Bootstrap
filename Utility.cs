@@ -6,7 +6,7 @@ using System.Linq;
 
 public static class Utility
 {
-	public static void recursiveFindTransformsStartingWith(string name, Transform parentTransform, List<Transform> transforms)
+	public static void RecursiveFindTransformsStartingWith(string name, Transform parentTransform, List<Transform> transforms)
 	{
 		Transform[] componentsInChildren = parentTransform.GetComponentsInChildren<Transform>(true);
 		for (int i = 0; i < componentsInChildren.Length; i++)
@@ -19,14 +19,14 @@ public static class Utility
 		}
 	}
 
-	public static void findAllChildrenWithName(Transform transform,String name,List<GameObject> collection)
+	public static void FindAllChildrenWithName(Transform transform,String name,List<GameObject> collection)
 	{
 		for(int i = 0; i < transform.childCount;i++ ) {
 			var temp  = transform.GetChild(i);
 			if (temp.name == name) {
 				collection.Add (temp.gameObject);
 			}
-			findAllChildrenWithName (temp, name, collection);
+			FindAllChildrenWithName (temp, name, collection);
 		}
 	}
 

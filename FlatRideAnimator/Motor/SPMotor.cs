@@ -12,7 +12,7 @@ using Random = UnityEngine.Random;
 public class SPMotor : ScriptableObject
 {
 	[NonSerialized]
-	public bool showSettings;
+	public bool ShowSettings;
 	public string Identifier = "";
 	public Color ColorIdentifier;
 	public virtual string EventName { set; get; }

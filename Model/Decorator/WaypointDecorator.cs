@@ -15,9 +15,9 @@ public class WaypointDecorator : Decorator
     {
         NONE, CONNECT
     }
-    private State state = State.NONE;
+    private State _state = State.NONE;
 
-	public List<SPWaypoint> waypoints = new List<SPWaypoint>();
+	public List<SPWaypoint> Waypoints = new List<SPWaypoint>();
 
 	#if UNITY_EDITOR
 	public Tool currentTool = Tool.None;
@@ -396,7 +396,7 @@ public class WaypointDecorator : Decorator
 	public override void Decorate(GameObject go, GameObject hider, ParkitectObj parkitectObj, AssetBundle bundle)
 	{
 		Waypoints w = go.AddComponent<Waypoints>();
-		foreach (var t in waypoints)
+		foreach (var t in Waypoints)
 		{
 			Waypoint waypoint = new Waypoint();
 			waypoint.connectedTo = t.connectedTo;
@@ -411,9 +411,9 @@ public class WaypointDecorator : Decorator
 	public override Dictionary<string, object> Serialize(ParkitectObj parkitectObj)
 	{
 		List<object> wp = new List<object>();
-		for (int i = 0; i < waypoints.Count; i++)
+		for (int i = 0; i < Waypoints.Count; i++)
 		{
-			wp.Add(waypoints[i].Serialize());
+			wp.Add(Waypoints[i].Serialize());
 		}
 
 		return new Dictionary<string, object>()
@@ -427,7 +427,7 @@ public class WaypointDecorator : Decorator
 		
 		if (elements.ContainsKey("Waypoints")) {
 			foreach (var wp in (List<object> )elements["Waypoints"]) {
-				waypoints.Add (SPWaypoint.Deserialize (wp as Dictionary<string,object>));
+				Waypoints.Add (SPWaypoint.Deserialize (wp as Dictionary<string,object>));
 			}
 		}
 		base.Deserialize (elements);

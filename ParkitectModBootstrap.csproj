@@ -109,7 +109,6 @@
     <Compile Include="Model\Decorator\WaypointDecorator.cs" />
     <Compile Include="Needs\SPBoundingBox.cs" />
     <Compile Include="Needs\SPWaypoint.cs" />
-    <Compile Include="FlatRideAnimator\MathHelper.cs" />
     <Compile Include="FlatRideAnimator\SPPhase.cs" />
     <Compile Include="FlatRideAnimator\SPRideAnimation.cs" />
     <Compile Include="FlatRideAnimator\Events\SPApplyRotation.cs" />
@@ -130,6 +129,7 @@
     <Compile Include="FlatRideAnimator\Motor\SPRotator.cs" />
     <Compile Include="Utility.cs" />
     <Compile Include="Utility\Extra.cs" />
+    <Compile Include="Utility\MathHelper.cs" />
     <Compile Include="Utility\RemapUtility.cs" />
   </ItemGroup>
   <ItemGroup>

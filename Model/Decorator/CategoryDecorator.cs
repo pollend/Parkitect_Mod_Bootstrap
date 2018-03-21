@@ -9,8 +9,8 @@ using UnityEditor;
 [Serializable]
 public class CategoryDecorator : Decorator
 {
-	public string category;
-	public String subCategory;
+	public string Category;
+	public String SubCategory;
 
 #if UNITY_EDITOR
 	public override void RenderInspectorGui(ParkitectObj parkitectObj)
@@ -26,15 +26,15 @@ public class CategoryDecorator : Decorator
 	{
 		return new Dictionary<string, object>
 		{
-			{"Category", category},
-			{"SubCategory", subCategory}
+			{"Category", Category},
+			{"SubCategory", SubCategory}
 		};
 	}
 
 	public override void Deserialize(Dictionary<string,object> elements)
 	{
-		category = (string) elements["Category"];
-		subCategory = (string) elements["SubCategory"];
+		Category = (string) elements["Category"];
+		SubCategory = (string) elements["SubCategory"];
 
 		base.Deserialize(elements);
 	}
@@ -43,13 +43,13 @@ public class CategoryDecorator : Decorator
 	public override void Decorate(GameObject go, GameObject hider, ParkitectObj parkitectObj, AssetBundle bundle)
 	{
 		BuildableObject buildableObject = go.GetComponent<BuildableObject>();
-		if (String.IsNullOrEmpty(subCategory))
+		if (!String.IsNullOrEmpty(SubCategory))
 		{
-			buildableObject.categoryTag = category + "/" + subCategory;
+			buildableObject.categoryTag = Category + "/" + SubCategory;
 		}
 		else
 		{
-			buildableObject.categoryTag = category;
+			buildableObject.categoryTag = Category;
 		}
 	}
 #endif

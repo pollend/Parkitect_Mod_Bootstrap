@@ -46,29 +46,20 @@ public class ParkitectMod : IMod
 
             Debug.Log("------------------------LOADING MOD------------------------");
             Debug.Log("Mod Path:" + path);
-
             AssetBundle assetBundle = AssetBundle.LoadFromFile(path + "/assetbundle");
-
 
             try
             {
                 foreach (ParkitectObj obj in _payload.ParkitectObjs)
                 {
-                    BaseDecorator dec = obj.DecoratorByInstance<BaseDecorator>();
-                    if (dec != null)
-                        Debug.Log("---------------------------" + dec.InGameName + "---------------------------");
+                    Debug.Log("Loading Object:" + obj.Key);
                     obj.BindToParkitect(hider, assetBundle);
                 }
-
             }
             catch (Exception e)
             {
                 Debug.LogException(e);
             }
-
-
-
-
 
             Debug.Log("------------------------DONE LOADING MOD------------------------");
         }

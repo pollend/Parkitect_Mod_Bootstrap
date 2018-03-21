@@ -8,7 +8,7 @@ public static class Extra
     public static GameObject Fence(GameObject Parent)
     {
         List<Transform> list = new List<Transform>();
-        Utility.recursiveFindTransformsStartingWith("Fence", Parent.transform, list);
+        Utility.RecursiveFindTransformsStartingWith("Fence", Parent.transform, list);
         if (list.Count > 0)
         {
             return list[0].gameObject;
@@ -21,7 +21,7 @@ public static class Extra
     public static Entrance FlatRideEntrance(GameObject Parent)
     {
         List<Transform> list = new List<Transform>();
-        Utility.recursiveFindTransformsStartingWith("Entrance", Parent.transform, list);
+        Utility.RecursiveFindTransformsStartingWith("Entrance", Parent.transform, list);
         if (list.Count > 0)
         {
             Entrance E = GameObject.Instantiate(AssetManager.Instance.attractionEntranceGO);
@@ -36,7 +36,7 @@ public static class Extra
     public static void FixSeats(GameObject Parent)
     {
         List<Transform> list = new List<Transform>();
-        Utility.recursiveFindTransformsStartingWith("Seat", Parent.transform, list);
+        Utility.RecursiveFindTransformsStartingWith("Seat", Parent.transform, list);
         foreach (var item in list)
         {
             item.transform.localScale = new Vector3(1, 1, 1);

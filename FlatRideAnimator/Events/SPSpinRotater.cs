@@ -53,7 +53,7 @@ public class SPSpinRotater : SPRideAnimationEvent
 	public override void Enter()
 	{
 		lastTime = Time.realtimeSinceStartup;
-		rotator.resetRotations();
+		rotator.ResetRotations();
 		base.Enter();
 	}
 
@@ -65,14 +65,14 @@ public class SPSpinRotater : SPRideAnimationEvent
 			lastTime = Time.realtimeSinceStartup;
 			if (spin)
 			{
-				if (rotator.getRotationsCount() >= spins)
+				if (rotator.GetRotationsCount() >= spins)
 				{
-					done = true;
+					Done = true;
 				}
 			}
 			else
 			{
-				done = true;
+				Done = true;
 			}
 
 			base.Run(root);

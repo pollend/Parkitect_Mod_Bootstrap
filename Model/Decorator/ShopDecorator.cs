@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class ShopDecorator : Decorator
 {
-	public List<ShopProduct> products = new List<ShopProduct>();
+	public List<ShopProduct> Products = new List<ShopProduct>();
 
 #if UNITY_EDITOR
 	[NonSerialized]
@@ -102,7 +102,7 @@ public class ShopDecorator : Decorator
 	public override Dictionary<string,object> Serialize(ParkitectObj parkitectObj)
 	{
 		List<object> elements = new List<object>();
-		foreach (var prod in products)
+		foreach (var prod in Products)
 		{
 			elements.Add(prod.Serialize());
 		}
@@ -120,7 +120,7 @@ public class ShopDecorator : Decorator
 			Dictionary<string, object> prod = (Dictionary<string, object>) ele;
 			ShopProduct product = CreateInstance<ShopProduct>();
 			product.DeSerialize(prod);
-			products.Add(product);
+			Products.Add(product);
 		}
 	}
 #if PARKITECT
@@ -129,7 +129,7 @@ public class ShopDecorator : Decorator
 		CustomShop customShop = go.AddComponent<CustomShop>();
 		customShop.walkableFlag = Block.WalkableFlagType.FORWARD;
 		List<Product> result = new List<Product>();
-		foreach (var p in products)
+		foreach (var p in Products)
 		{
 			result.Add(p.Decorate(go, hider, parkitectObj, bundle));
 		}

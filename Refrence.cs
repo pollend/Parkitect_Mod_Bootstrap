@@ -4,20 +4,20 @@ using UnityEngine;
 public class Refrence : MonoBehaviour
 {
 	[SerializeField]
-	private string refrence;
+	private string _refrence;
 
 	public string GetRefrence()
 	{
-		return refrence;
+		return _refrence;
 	}
 
 	public String Key
 	{
 		get
 		{
-			if (string.IsNullOrEmpty(refrence))
-				refrence = Guid.NewGuid().ToString();
-			return refrence;
+			if (string.IsNullOrEmpty(_refrence))
+				_refrence = Guid.NewGuid().ToString();
+			return _refrence;
 		}
 	}
 		

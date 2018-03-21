@@ -11,21 +11,21 @@ using UnityEngine;
 public class AnimatorDecorator : Decorator
 {
 		[SerializeField]
-		private List<SPMotor> motors = new List<SPMotor>();
+		private List<SPMotor> _motors = new List<SPMotor>();
 
 		[SerializeField]
-		private List<SPPhase> phases = new List<SPPhase>();
+		private List<SPPhase> _phases = new List<SPPhase>();
 
 		[SerializeField]
-		public SPPhase currentPhase;
-		int phaseNum;
+		public SPPhase CurrentPhase;
+		int _phaseNum;
 
 		[SerializeField]
-		public bool animating;
+		public bool Animating;
 
-		public ReadOnlyCollection<SPMotor> Motors { get { return motors.AsReadOnly(); } }
+		public ReadOnlyCollection<SPMotor> Motors { get { return _motors.AsReadOnly(); } }
 
-		public ReadOnlyCollection<SPPhase> Phases { get { return phases.AsReadOnly(); } }
+		public ReadOnlyCollection<SPPhase> Phases { get { return _phases.AsReadOnly(); } }
 #if UNITY_EDITOR
 	public void AddMotor(SPMotor motor)
 	{
@@ -61,59 +61,59 @@ public class AnimatorDecorator : Decorator
 	public override void PrepareExport(ParkitectObj parkitectObj)
 	{
 
-		for (int x = 0; x < motors.Count; x++) {
-			motors [x].PrepareExport (parkitectObj);
+		for (int x = 0; x < _motors.Count; x++) {
+			_motors [x].PrepareExport (parkitectObj);
 		}
 		base.PrepareExport (parkitectObj);
 	}
 
 	public override void CleanUp(ParkitectObj parkitectObj)
 	{
-		for (int x = 0; x < phases.Count; x++) {
-			if (phases [x] != null) {
-				phases [x].CleanUp ();
-				DestroyImmediate (phases [x], true);
+		for (int x = 0; x < _phases.Count; x++) {
+			if (_phases [x] != null) {
+				_phases [x].CleanUp ();
+				DestroyImmediate (_phases [x], true);
 			}
 		}
-		for (int x = 0; x < motors.Count; x++) {
-			if (motors [x] != null) {
-				DestroyImmediate (motors [x], true);
+		for (int x = 0; x < _motors.Count; x++) {
+			if (_motors [x] != null) {
+				DestroyImmediate (_motors [x], true);
 			}
 		}
-		motors.Clear ();
-		phases.Clear ();
+		_motors.Clear ();
+		_phases.Clear ();
 
 		base.CleanUp (parkitectObj);
 	}
 
 	public void Animate(Transform root)
 	{
-		motors.RemoveAll (x => x == null);
-		phases.RemoveAll (x => x == null);
+		_motors.RemoveAll (x => x == null);
+		_phases.RemoveAll (x => x == null);
 
-		foreach (SPMotor m in motors) {
+		foreach (SPMotor m in _motors) {
 			m.Enter (root);
 		}
-		if (phases.Count <= 0) {
-			animating = false;
-			foreach (SPMotor m in motors) {
+		if (_phases.Count <= 0) {
+			Animating = false;
+			foreach (SPMotor m in _motors) {
 				m.Reset (root);
 			}
-			foreach (SPMultipleRotations R in motors.OfType<SPMultipleRotations>()) {
+			foreach (SPMultipleRotations R in _motors.OfType<SPMultipleRotations>()) {
 				R.Reset (root);
 			}
 			return;
 		}
-		foreach (SPMotor m in motors) {
+		foreach (SPMotor m in _motors) {
 			m.Enter (root);
 		}
 
-		animating = true;
-		phaseNum = 0;
-		currentPhase = phases [phaseNum];
-		currentPhase.running = true;
-		currentPhase.Enter ();
-		currentPhase.Run (root);
+		Animating = true;
+		_phaseNum = 0;
+		CurrentPhase = _phases [_phaseNum];
+		CurrentPhase.running = true;
+		CurrentPhase.Enter ();
+		CurrentPhase.Run (root);
 	}
 
 
@@ -121,48 +121,48 @@ public class AnimatorDecorator : Decorator
 	void NextPhase(Transform root)
 	{
 
-		currentPhase.Exit ();
-		currentPhase.running = false;
-		phaseNum++;
-		if (phases.Count > phaseNum) {
-			currentPhase = phases [phaseNum];
-			currentPhase.running = true;
-			currentPhase.Enter ();
-			currentPhase.Run (root);
+		CurrentPhase.Exit ();
+		CurrentPhase.running = false;
+		_phaseNum++;
+		if (_phases.Count > _phaseNum) {
+			CurrentPhase = _phases [_phaseNum];
+			CurrentPhase.running = true;
+			CurrentPhase.Enter ();
+			CurrentPhase.Run (root);
 			return;
 		}
-		animating = false;
-		foreach (SPMotor m in motors.OfType<SPRotator>()) {
+		Animating = false;
+		foreach (SPMotor m in _motors.OfType<SPRotator>()) {
 			m.Enter (root);
 
 		}
-		foreach (SPRotator m in motors.OfType<SPRotator>()) {
+		foreach (SPRotator m in _motors.OfType<SPRotator>()) {
+			Transform transform = m.Axis.FindSceneRefrence (root);
+			if (transform != null)
+				transform.localRotation = m.OriginalRotationValue;
+
+		}
+		foreach (SPRotateBetween m in _motors.OfType<SPRotateBetween>()) {
 			Transform transform = m.axis.FindSceneRefrence (root);
 			if (transform != null)
 				transform.localRotation = m.originalRotationValue;
 
 		}
-		foreach (SPRotateBetween m in motors.OfType<SPRotateBetween>()) {
-			Transform transform = m.axis.FindSceneRefrence (root);
+		foreach (SPMover m in _motors.OfType<SPMover>()) {
+			Transform transform = m.Axis.FindSceneRefrence (root);
 			if (transform != null)
-				transform.localRotation = m.originalRotationValue;
-
-		}
-		foreach (SPMover m in motors.OfType<SPMover>()) {
-			Transform transform = m.axis.FindSceneRefrence (root);
-			if (transform != null)
-				transform.localPosition = m.originalRotationValue;
+				transform.localPosition = m.OriginalRotationValue;
 
 		}
 
-		currentPhase = null;
+		CurrentPhase = null;
 	}
 
 	public void Run(Transform transform)
 	{
-		if (currentPhase != null) {
-			currentPhase.Run (transform);
-			if (!currentPhase.running) {
+		if (CurrentPhase != null) {
+			CurrentPhase.Run (transform);
+			if (!CurrentPhase.running) {
 				NextPhase (transform);
 			}
 		}
@@ -173,7 +173,7 @@ public class AnimatorDecorator : Decorator
 		foreach (var ele in (Dictionary<string,object>)elements["phases"]) {
 			SPPhase phase = Utility.GetByTypeName<SPPhase> (ele.Key);
 			phase.Deserialize ((Dictionary<string, object>) ele.Value);
-			phases.Add (phase);
+			_phases.Add (phase);
 		}
 	}
 
@@ -182,7 +182,7 @@ public class AnimatorDecorator : Decorator
 	{
 
 		List<Dictionary<string, object>> ph = new List<Dictionary<string, object>>();
-		foreach (var t in phases)
+		foreach (var t in _phases)
 		{
 			ph.Add(new Dictionary<string, object> {{t.GetType().ToString(), t.Serialize(parkitectObj.Prefab.transform)}});
 		}

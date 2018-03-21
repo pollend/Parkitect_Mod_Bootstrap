@@ -44,7 +44,7 @@ public class SPStopRotator : SPRideAnimationEvent
 	{
 		lastTime = Time.realtimeSinceStartup;
 
-		rotator.stop();
+		rotator.Stop();
 		base.Enter();
 	}
 
@@ -54,9 +54,9 @@ public class SPStopRotator : SPRideAnimationEvent
 		{
 			rotator.tick(Time.realtimeSinceStartup - lastTime, root);
 			lastTime = Time.realtimeSinceStartup;
-			if (rotator.isStopped())
+			if (rotator.IsStopped())
 			{
-				done = true;
+				Done = true;
 			}
 
 			base.Run(root);

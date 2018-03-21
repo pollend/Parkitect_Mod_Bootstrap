@@ -344,7 +344,7 @@ public class ShopProduct : ScriptableObject
 		}
 		else
 		{
-			prod = assetBundle.LoadAsset<GameObject>(Key);
+			prod = Instantiate(assetBundle.LoadAsset<GameObject>(Key));
 		}
 		prod.transform.parent = hider.transform;
 		Product product = null;
@@ -454,7 +454,6 @@ public class ShopProduct : ScriptableObject
 			}
 				break;
 		}
-		Debug.Log("a1");
 		
 		if (ProductType == ProductType.ON_GOING || ProductType == ProductType.CONSUMABLE)
 		{
@@ -472,16 +471,12 @@ public class ShopProduct : ScriptableObject
 			product.isTwoHanded = IsTwoHanded;
 		}
 		
-		Debug.Log(product == null);
-		
-		BindingFlags flags = BindingFlags.GetField | BindingFlags.Instance | BindingFlags.NonPublic;
-		typeof(Product).GetField("displayName", flags).SetValue(product, Name);
-
-		Debug.Log("a3");
 		product.ingredients = generateIngredient();
 		product.defaultPrice = Price;
 		
-		Debug.Log("a3");
+		typeof(Item).GetField ("displayName", BindingFlags.NonPublic | BindingFlags.Instance).SetValue (product, Name);
+
+		
 		return product;
 	}
 

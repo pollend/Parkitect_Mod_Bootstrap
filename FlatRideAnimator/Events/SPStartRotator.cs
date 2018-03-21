@@ -40,7 +40,7 @@ public class SPStartRotator : SPRideAnimationEvent
 	{
 		lastTime = Time.realtimeSinceStartup;
 
-		rotator.start ();
+		rotator.Start ();
 		base.Enter ();
 	}
 
@@ -50,8 +50,8 @@ public class SPStartRotator : SPRideAnimationEvent
 
 			rotator.tick (Time.realtimeSinceStartup - lastTime, root);
 			lastTime = Time.realtimeSinceStartup;
-			if (rotator.reachedFullSpeed ()) {
-				done = true;
+			if (rotator.ReachedFullSpeed ()) {
+				Done = true;
 			}
 			base.Run (root);
 		}

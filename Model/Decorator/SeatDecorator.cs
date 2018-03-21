@@ -12,12 +12,12 @@ public class SeatDecorator : Decorator
 	private const string SEAT = "Seat";
 
 	[System.NonSerialized]
-	private List<GameObject> seats = new List<GameObject>();
+	private List<GameObject> _seats = new List<GameObject>();
 
     public List<GameObject> Seats(Transform root)
     {
         List<GameObject> transform = new List<GameObject>();
-        Utility.findAllChildrenWithName(root, SEAT, transform);
+        Utility.FindAllChildrenWithName(root, SEAT, transform);
         return transform;
     }
 

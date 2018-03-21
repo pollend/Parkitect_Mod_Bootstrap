@@ -6,9 +6,9 @@ using System.Collections.Generic;
 [Serializable]
 public class SPRideAnimationEvent : ScriptableObject
 {
-	public bool done = false;
-	public bool showSettings;
-	public bool isPlaying;
+	public bool Done = false;
+	public bool ShowSettings;
+	public bool IsPlaying;
 	public Color ColorIdentifier;
 	public virtual string EventName { set; get; }
 
@@ -18,7 +18,7 @@ public class SPRideAnimationEvent : ScriptableObject
 	}
 	public virtual void Enter()
 	{
-		isPlaying = true;
+		IsPlaying = true;
 	}
 	public virtual void Run(Transform root)
 	{
@@ -27,8 +27,8 @@ public class SPRideAnimationEvent : ScriptableObject
 	public virtual void Exit()
 	{
 
-		isPlaying = false;
-		done = false;
+		IsPlaying = false;
+		Done = false;
 	}
 
 	public virtual void Bootstrap()

@@ -8,9 +8,9 @@ using UnityEditor;
 [Serializable]
 public class ColorDecorator : Decorator
 {
-	public bool isRecolorable;
-	public Color[] colors = {new Color(0.95f, 0, 0), new Color(0.32f, 0, 0), new Color(0.110f, 0.059f, 1f), new Color(1f, 0, 1f)};
-	public int colorCount = 1;
+	public bool IsRecolorable;
+	public Color[] Colors = {new Color(0.95f, 0, 0), new Color(0.32f, 0, 0), new Color(0.110f, 0.059f, 1f), new Color(1f, 0, 1f)};
+	public int ColorCount = 1;
 
 	public ColorDecorator()
 	{
@@ -51,15 +51,15 @@ public class ColorDecorator : Decorator
 	public override Dictionary<string, object> Serialize(ParkitectObj parkitectObj)
 	{
 		List<object> c = new List<object>();
-		for (int x = 0; x < colorCount; x++)
+		for (int x = 0; x < ColorCount; x++)
 		{
-			c.Add( Utility.SerializeColor(colors[x]));
+			c.Add( Utility.SerializeColor(Colors[x]));
 		}
 
 		return new Dictionary<string, object>
 		{
 			{"Colors", c},
-			{"IsRecolorable", isRecolorable}
+			{"IsRecolorable", IsRecolorable}
 		};
 	}
 
@@ -70,26 +70,26 @@ public class ColorDecorator : Decorator
 			int index = 0;
 			foreach (var colordeserialize in (List<object>)elements["Colors"])
 			{
-				colors[index] = Utility.DeSerializeColor(colordeserialize as Dictionary<string,object>);
+				Colors[index] = Utility.DeSerializeColor(colordeserialize as Dictionary<string,object>);
 				index++;
 			}
 		}
 
 		if (elements.ContainsKey("IsRecolorable"))
-			isRecolorable = (bool)elements["IsRecolorable"];
+			IsRecolorable = (bool)elements["IsRecolorable"];
 		base.Deserialize(elements);
 	}
 	
 #if PARKITECT
 	public override void Decorate(GameObject go, GameObject hider, ParkitectObj parkitectObj, AssetBundle bundle)
 	{
-		if (isRecolorable)
+		if (IsRecolorable)
 		{
 			CustomColors customColors = go.AddComponent<CustomColors>();
 			List<Color> final = new List<Color>();
-			for (int x = 0; x < colorCount; x++)
+			for (int x = 0; x < ColorCount; x++)
 			{
-				final.Add(colors[x]);
+				final.Add(Colors[x]);
 			}
 			customColors.setColors(final.ToArray());
 		}

@@ -11,11 +11,11 @@ using UnityEngine;
 [Serializable]
 public class GridDecorator : Decorator
 {
-	public bool snapCenter = true;
-	public bool snap;
-	public bool grid;
-	public float heightDelta;
-	public float gridSubdivision = 1;
+	public bool SnapCenter = true;
+	public bool Snap;
+	public bool Grid;
+	public float HeightDelta;
+	public float GridSubdivision = 1;
 
 	public GridDecorator()
 	{
@@ -62,26 +62,26 @@ public class GridDecorator : Decorator
 	{
 		return new Dictionary<string, object>
 		{
-			{"SnapCenter", snapCenter},
-			{"Snap", snap},
-			{"Grid", grid},
-			{"HeightDelta", heightDelta},
-			{"GridSubdivisons", gridSubdivision}
+			{"SnapCenter", SnapCenter},
+			{"Snap", Snap},
+			{"Grid", Grid},
+			{"HeightDelta", HeightDelta},
+			{"GridSubdivisons", GridSubdivision}
 		};
 	}
 
 	public override void Deserialize (Dictionary<string,object> elements)
 	{
 		if(elements.ContainsKey("SnapCenter"))
-			snapCenter = (bool)elements["SnapCenter"];
+			SnapCenter = (bool)elements["SnapCenter"];
 		if(elements.ContainsKey ("Snap") )
-			snap = (bool)elements["Snap"];
+			Snap = (bool)elements["Snap"];
 		if(elements.ContainsKey ("Grid") )
-			grid = (bool)elements["Grid"];
+			Grid = (bool)elements["Grid"];
 		if(elements.ContainsKey ("HeightDelta"))
-			heightDelta = Convert.ToSingle(elements["HeightDelta"]);
+			HeightDelta = Convert.ToSingle(elements["HeightDelta"]);
 		if(elements.ContainsKey ("GridSubdivisons"))
-			gridSubdivision = Convert.ToSingle(elements["GridSubdivisons"]);
+			GridSubdivision = Convert.ToSingle(elements["GridSubdivisons"]);
 		base.Deserialize (elements);
 	}
 	

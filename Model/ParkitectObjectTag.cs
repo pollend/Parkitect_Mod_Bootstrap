@@ -2,17 +2,14 @@
 
 public class ParkitectObjectTag : System.Attribute
 {
-	public readonly string name;
-	public string Name
-	{
-		get { return name; }
-	}
+	public string Name { get; }
+
 	public ParkitectObjectTag()
 	{
 	}
 	public ParkitectObjectTag(string name)
 	{
-		this.name = name;
+		Name = name;
 	}
 }
 

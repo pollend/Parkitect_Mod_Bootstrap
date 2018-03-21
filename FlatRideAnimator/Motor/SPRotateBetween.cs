@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 [ExecuteInEditMode]
 [Serializable]
 public class SPRotateBetween : SPMotor
@@ -70,9 +69,9 @@ public class SPRotateBetween : SPMotor
 
 	public bool startFromTo()
 	{
-		if (this.direction != 1f)
+		if (direction != 1f)
 		{
-			this.direction = 1f;
+			direction = 1f;
 			return true;
 		}
 
@@ -81,9 +80,9 @@ public class SPRotateBetween : SPMotor
 
 	public bool startToFrom()
 	{
-		if (this.direction != -1f)
+		if (direction != -1f)
 		{
-			this.direction = -1f;
+			direction = -1f;
 			return true;
 		}
 
@@ -92,22 +91,22 @@ public class SPRotateBetween : SPMotor
 
 	public bool isStopped()
 	{
-		if (this.direction == 1f)
+		if (direction == 1f)
 		{
-			return this.currentPosition >= 0.99f;
+			return currentPosition >= 0.99f;
 		}
 
-		return this.currentPosition <= 0.01f;
+		return currentPosition <= 0.01f;
 	}
 
 	public void tick(float dt, Transform root)
 	{
-		this.currentPosition += dt * this.direction * 1f / this.duration;
-		this.currentPosition = Mathf.Clamp01(this.currentPosition);
-		var transform = this.axis.FindSceneRefrence(root);
+		currentPosition += dt * direction * 1f / duration;
+		currentPosition = Mathf.Clamp01(currentPosition);
+		var transform = axis.FindSceneRefrence(root);
 		if (transform)
 			transform.localRotation =
-				Quaternion.Lerp(this.fromRotation, this.toRotation, MathHelper.Hermite(0f, 1f, this.currentPosition));
+				Quaternion.Lerp(fromRotation, toRotation, MathHelper.Hermite(0f, 1f, currentPosition));
 	}
 
 	public override void PrepareExport(ParkitectObj parkitectObj)

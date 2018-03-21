@@ -41,16 +41,16 @@ public class SPToFromMove : SPRideAnimationEvent
 	{
 		lastTime = Time.realtimeSinceStartup;
 
-		mover.startToFrom ();
+		mover.StartToFrom ();
 		base.Enter ();
 	}
 	public override void Run(Transform root)
 	{
 		if (mover) {
-			mover.tick (Time.realtimeSinceStartup - lastTime, root);
+			mover.Tick (Time.realtimeSinceStartup - lastTime, root);
 			lastTime = Time.realtimeSinceStartup;
-			if (mover.reachedTarget ()) {
-				done = true;
+			if (mover.ReachedTarget ()) {
+				Done = true;
 			}
 			base.Run (root);
 		}

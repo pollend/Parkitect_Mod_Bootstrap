@@ -7,21 +7,21 @@ using System.Collections.Generic;
 public class RefrencedTransform
 {
 	[SerializeField]
-	private string key;
+	private string _key;
 
 	[SerializeField]
-	private Transform prefabTransform;
+	private Transform _prefabTransform;
 
 	[System.NonSerialized]
-	private Transform cachedSceneRefrence;
+	private Transform _cachedSceneRefrence;
 	[System.NonSerialized]
-	private Transform root;
+	private Transform _root;
 
 	public Transform PrefabTransform
 	{
 		get
 		{
-			return prefabTransform;
+			return _prefabTransform;
 		}
 	}
 
@@ -36,31 +36,31 @@ public class RefrencedTransform
 		else
 			refrence = transform.gameObject.AddComponent<Refrence>();
 
-		if (key != refrence.Key)
-			root = null;
-		key = refrence.Key;
+		if (_key != refrence.Key)
+			_root = null;
+		_key = refrence.Key;
 
 	}
 
 	public Transform FindSceneRefrence(Transform root)
 	{
-		if (this.root != root || cachedSceneRefrence == null)
+		if (this._root != root || _cachedSceneRefrence == null)
 		{
-			this.root = root;
-			cachedSceneRefrence = Refrence.FindTransformByKey(root, key);
+			this._root = root;
+			_cachedSceneRefrence = Refrence.FindTransformByKey(root, _key);
 		}
-		return cachedSceneRefrence;
+		return _cachedSceneRefrence;
 	}
 
 	public void UpdatePrefabRefrence(Transform root)
 	{
-		if (this.root != null)
+		if (this._root != null)
 		{
-			this.prefabTransform = Refrence.FindTransformByKey(root, key);
+			this._prefabTransform = Refrence.FindTransformByKey(root, _key);
 		}
 	}
 
-	struct pairs{
+	struct Pairs{
 		String element;
 		int index;
 	}
@@ -86,7 +86,7 @@ public class RefrencedTransform
 		Dictionary<string,object> elements = new Dictionary<string,object>();
 		if(root != null)
 		{
-			Transform current = Refrence.FindTransformByKey(root, key);
+			Transform current = Refrence.FindTransformByKey(root, _key);
 			do
 			{
 				elements.Add(current.name,current.GetSiblingIndex());

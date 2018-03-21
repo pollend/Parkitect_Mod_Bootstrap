@@ -17,7 +17,6 @@ public class ParkitectModBootstrap : IMod
             String[] files = Directory.GetFiles(folder, "*.spark", SearchOption.TopDirectoryOnly);
             if (files.Length > 0)
             {
-                Debug.Log("------------------------Adding Mod------------------------");
                 Debug.Log("Loading Mod From: " + folder);
                 try
                 {
@@ -28,8 +27,6 @@ public class ParkitectModBootstrap : IMod
                 {
                     Debug.LogError(e);
                 }
-                Debug.Log("------------------------Finished Adding Mod------------------------");
-
 
             }
         }
@@ -47,8 +44,8 @@ public class ParkitectModBootstrap : IMod
     {
     }
 
-    public string Name => "Parkitect Mod Bootsrap";
+    public string Name => "Parkitect Mod Bootstrap";
     public string Description => "bootstrapper used to run mods built by spark";
-    public string Identifier => "ParkitectModBootsrap";
+    public string Identifier => "ParkitectModBootstrap";
 }
 #endif

@@ -5,19 +5,19 @@ using System.Collections.Generic;
 [Serializable]
 public class SPBoundingBox
 {
-	public Bounds bounds;
-	private Bounds liveBounds;
+	public Bounds Bounds;
+	private Bounds _liveBounds;
 
 	public Dictionary<string, object> Serialize()
 	{
 		return new Dictionary<string, object>()
 		{
-			{"XMin", bounds.min.x},
-			{"XMax", bounds.max.x},
-			{"YMin", bounds.min.y},
-			{"YMax", bounds.max.y},
-			{"ZMin", bounds.min.z},
-			{"ZMax", bounds.max.z}
+			{"XMin", Bounds.min.x},
+			{"XMax", Bounds.max.x},
+			{"YMin", Bounds.min.y},
+			{"YMax", Bounds.max.y},
+			{"ZMin", Bounds.min.z},
+			{"ZMax", Bounds.max.z}
 		};
 
 	}
@@ -45,7 +45,7 @@ public class SPBoundingBox
 		b.max = max;
 
 		SPBoundingBox box = new SPBoundingBox ();
-		box.bounds = b;
+		box.Bounds = b;
 		return box;
 	
 	}

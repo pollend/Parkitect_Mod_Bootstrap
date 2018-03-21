@@ -42,7 +42,7 @@ public class SeatingParkitectObject : ParkitectObj
         foreach (var box in boxDecorator.boundingBoxes)
         {
             var b = Prefab.AddComponent<BoundingBox>();
-            b.setBounds(box.bounds);
+            b.setBounds(box.Bounds);
         }
         
         AssetManager.Instance.registerObject(_seat);

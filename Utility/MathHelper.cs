@@ -7,6 +7,4 @@ public class MathHelper
 	{
 		return Mathf.Lerp(start, end, value * value * (3f - 2f * value));
 	}
-
-
 }

@@ -14,7 +14,7 @@ public class SPWaypoint
 
 	public List<int> connectedTo = new List<int>();
 
-	public Vector3 getWorldPosition(Transform pivot)
+	public Vector3 GetWorldPosition(Transform pivot)
 	{
 		return pivot.position + pivot.rotation * this.localPosition;
 	}

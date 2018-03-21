@@ -62,7 +62,7 @@ public class SPPhase : ScriptableObject
 		done = true;
 		foreach (SPRideAnimationEvent RAE in events)
 		{
-			if (!RAE.done)
+			if (!RAE.Done)
 			{
 				running = true;
 				done = false;

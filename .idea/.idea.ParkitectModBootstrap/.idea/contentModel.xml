@@ -17,7 +17,6 @@
           <e p="SPToFromRot.cs" t="Include" />
           <e p="SPWait.cs" t="Include" />
         </e>
-        <e p="MathHelper.cs" t="Include" />
         <e p="Motor" t="Include">
           <e p="SPMotor.cs" t="Include" />
           <e p="SPMover.cs" t="Include" />
@@ -88,6 +87,7 @@
       <e p="RefrencedTransform.cs" t="Include" />
       <e p="Utility" t="Include">
         <e p="Extra.cs" t="Include" />
+        <e p="MathHelper.cs" t="Include" />
         <e p="RemapUtility.cs" t="Include" />
       </e>
       <e p="Utility.cs" t="Include" />

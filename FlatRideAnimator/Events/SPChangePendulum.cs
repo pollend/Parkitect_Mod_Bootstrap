@@ -63,7 +63,7 @@ public class SPChangePendulum : SPRideAnimationEvent
 	{
 		rotator.setActAsPendulum(pendulum);
 		rotator.angularFriction = friction;
-		done = true;
+		Done = true;
 	}
 
 	public override void Run(Transform root)

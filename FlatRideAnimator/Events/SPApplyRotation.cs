@@ -48,9 +48,9 @@ public class SPApplyRotation : SPRideAnimationEvent
 	{
 		if (rotator)
 		{
-			rotator.tick(Time.realtimeSinceStartup - lastTime, root);
+			rotator.Tick(Time.realtimeSinceStartup - lastTime, root);
 			lastTime = Time.realtimeSinceStartup;
-			done = true;
+			Done = true;
 			base.Run(root);
 		}
 
