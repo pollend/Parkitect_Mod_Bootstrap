@@ -30,7 +30,7 @@ public class ModPayload : ScriptableSingleton<ModPayload>
 		foreach (var t in ParkitectObjs)
 		{
 			Dictionary<string, object> e = t.Serialize();
-			e.Add("tag", ParkitectObj.GetTagFromParkitectObject(t.GetType()));
+			e.Add("Tag", ParkitectObj.GetTagFromParkitectObject(t.GetType()));
 			items.Add(e);
 		}
 		payload.Add("ParkitectObjects",items);
@@ -41,18 +41,28 @@ public class ModPayload : ScriptableSingleton<ModPayload>
 
 	public void Deserialize(Dictionary<String,object> entries)
 	{
-
-		foreach (var e in (List<Dictionary<String, object>>) entries["ParkitectObjects"])
-		{
-			ParkitectObj o = (ParkitectObj) Activator.CreateInstance(ParkitectObj.FindByParkitectObjectByTag((string) e["tag"]));
-			o.DeSerialize(e);
-			ParkitectObjs.Add(o);
-		}
-
 		if(entries.ContainsKey("ModName"))
 			ModName = (string) entries["ModName"];
 		if(entries.ContainsKey("Description"))
 			Description = (string)entries["Description"];
+		
+		Debug.Log("Loading Mod: " + ModName);
+
+		foreach (var e in (List<object>) entries["ParkitectObjects"])
+		{
+			Dictionary<string, object> entry = e as Dictionary<string, object>;
+			Type type = ParkitectObj.FindByParkitectObjectByTag((string) entry["Tag"]);
+			if (type == null)
+			{
+				Debug.Log("Can't Find ParkitectObject For Tag: " + entry["Tag"]);
+			}
+			else
+			{
+				ParkitectObj o = (ParkitectObj) CreateInstance(type);
+				o.DeSerialize(entry);
+				ParkitectObjs.Add(o);
+			}
+		}
 	}
 
 	

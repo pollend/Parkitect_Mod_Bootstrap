@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using Object = UnityEngine.Object;
+
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -21,6 +23,7 @@ public class ParkitectObj : ScriptableObject
 
 	[NonSerialized] 
 	public GameObject sceneRef;
+
 
 #if UNITY_EDITOR
 	public void UpdatePrefab()
@@ -204,15 +207,25 @@ public class ParkitectObj : ScriptableObject
 	{
 		if(element.ContainsKey("Key"))
 			Key = (string)element["Key"];
+
 		
-		var decoratorElement = (Dictionary<string,object>) element["Decorators"];
-		if (decoratorElement != null)
+		if (element.ContainsKey("Decorators"))
 		{
-			foreach (var decorator in decoratorElement)
+			var decoratorElement =  element["Decorators"] as Dictionary<string,object>;
+			
+			foreach (var decorator in SupportedDecorators())
 			{
-				Decorator dec = Utility.GetByTypeName<Decorator>(decorator.Key);
-				dec.Deserialize((Dictionary<string,object>)decorator.Value);
-				decorators.Add(dec);
+				if (decoratorElement.ContainsKey(decorator.Name))
+				{
+					Decorator dec = (Decorator)CreateInstance(decorator);
+					dec.Deserialize((Dictionary<string,object>)decoratorElement[decorator.Name]);
+					decorators.Add(dec);
+				}
+				else
+				{
+					Debug.LogError("Can't find decorator: " + decorator.Name);
+				}
+					
 			}
 		}
 	}
@@ -230,7 +243,7 @@ public class ParkitectObj : ScriptableObject
 
 	public static Type FindByParkitectObjectByTag(String tag)
 	{
-		IEnumerable<Assembly> scriptAssemblies = AppDomain.CurrentDomain.GetAssemblies ().Where (assembly => assembly.FullName.Contains ("Assembly"));
+		IEnumerable<Assembly> scriptAssemblies = AppDomain.CurrentDomain.GetAssemblies ();
 		foreach (Assembly assembly in scriptAssemblies) 
 		{
 			foreach (Type type in assembly.GetTypes().Where(T => T.IsClass && T.IsSubclassOf(typeof(ParkitectObj))))

@@ -20,33 +20,33 @@ public class ShopProduct : ScriptableObject
 {
 	public List<ShopIngredient> Ingredients = new List<ShopIngredient>();
 
-	[SerializeField] public ProductType ProductType;
+	[SerializeField] public ProductType ProductType = ProductType.CONSUMABLE;
 	
 	//base
-	[SerializeField] public string Name;
-	[SerializeField] public float Price;
-	[SerializeField] public String Key;
+	[SerializeField] public string Name = "temp";
+	[SerializeField] public float Price = 0.0f;
+	[SerializeField] public String Key = null;
 
-	[SerializeField] public bool IsTwoHanded;
-	[SerializeField] public bool IsInterestingToLookAt ;
-	[SerializeField] public HandSide HandSide;
+	[SerializeField] public bool IsTwoHanded = false;
+	[SerializeField] public bool IsInterestingToLookAt = false;
+	[SerializeField] public HandSide HandSide = HandSide.LEFT;
 	
 	//ongoing
-	[SerializeField] public int Duration;
-	[SerializeField] public bool RemoveWhenDepleted;
-	[SerializeField] public bool DestroyWhenDepleted;
+	[SerializeField] public int Duration = 1;
+	[SerializeField] public bool RemoveWhenDepleted = true;
+	[SerializeField] public bool DestroyWhenDepleted = true;
 	
 	//wearable
 	[SerializeField] public Body BodyLocation = Body.HEAD;
 	[SerializeField] public Seasonal SeasonalPrefrence = Seasonal.NONE;
 	[SerializeField] public Temperature TempreaturePrefrence = Temperature.NONE;
-	[SerializeField] public bool HideOnRide;
-	[SerializeField] public bool HideHair;
+	[SerializeField] public bool HideOnRide = false;
+	[SerializeField] public bool HideHair = false;
 	
 	//consumable
-	[SerializeField] public ConsumeAnimation ConsumeAnimation;
-	[SerializeField] public Temperature Temprature;
-	[SerializeField] public int Portions;
+	[SerializeField] public ConsumeAnimation ConsumeAnimation = ConsumeAnimation.LICK;
+	[SerializeField] public Temperature Temprature = Temperature.COLD;
+	[SerializeField] public int Portions = 0;
 	
 	[NonSerialized] private Vector2 scrollPos = Vector2.zero;
 	[NonSerialized] private ShopIngredient selected;
@@ -221,7 +221,7 @@ public class ShopProduct : ScriptableObject
 
 		Dictionary<string, object> items = new Dictionary<string, object>()
 		{
-			{"Name", name},
+			{"Name", Name},
 			{"Price", Price},
 			{"Ingredients", ing},
 			{"key", Key},
@@ -264,10 +264,10 @@ public class ShopProduct : ScriptableObject
 	public virtual void DeSerialize(Dictionary<string,object> elements)
 	{
 		if (elements.ContainsKey("Name") )
-			name = (string) elements["Name"];
+			Name = (string) elements["Name"];
 
 		if (elements.ContainsKey("Price"))
-			Price = (float)(double)elements["Price"];
+			Price = Convert.ToSingle(elements["Price"]);
 
 		if (elements.ContainsKey("key") )
 			Key = (string)elements["key"];
@@ -290,7 +290,7 @@ public class ShopProduct : ScriptableObject
 			case ProductType.ON_GOING:
 			{
 				if (elements.ContainsKey("Duration"))
-					Duration = (int)(long)elements["Duration"];
+					Duration = Convert.ToInt32(elements["Duration"]);
 				if (elements.ContainsKey("RemoveWhenDepleted"))
 					RemoveWhenDepleted = (bool)elements["RemoveWhenDepleted"];
 				if (elements.ContainsKey("DestroyWhenDepleted"))
@@ -304,7 +304,7 @@ public class ShopProduct : ScriptableObject
 				if(elements.ContainsKey("Temprature"))
 					Temprature = (Temperature)Enum.Parse (typeof(Temperature), (string)elements["Temprature"]);
 				if(elements.ContainsKey("Portions"))
-					Portions =  (int)(long)elements["Portion"];
+					Portions =  Convert.ToInt32(elements["Portion"]);
 			}
 				break;
 			case ProductType.WEARABLE:
@@ -325,10 +325,10 @@ public class ShopProduct : ScriptableObject
 
 		if (elements.ContainsKey("Ingredients"))
 		{
-			foreach (var ing in (List<Dictionary<string,object>>)elements["Ingredients"])
+			foreach (var ing in (List<object>)elements["Ingredients"])
 			{
 				ShopIngredient ingredient = new ShopIngredient();
-				ingredient.DeSerialize(ing);
+				ingredient.DeSerialize(ing as Dictionary<string,object>);
 				Ingredients.Add(ingredient);
 			}
 		}
@@ -454,7 +454,8 @@ public class ShopProduct : ScriptableObject
 			}
 				break;
 		}
-
+		Debug.Log("a1");
+		
 		if (ProductType == ProductType.ON_GOING || ProductType == ProductType.CONSUMABLE)
 		{
 			switch (HandSide)
@@ -471,11 +472,16 @@ public class ShopProduct : ScriptableObject
 			product.isTwoHanded = IsTwoHanded;
 		}
 		
+		Debug.Log(product == null);
+		
 		BindingFlags flags = BindingFlags.GetField | BindingFlags.Instance | BindingFlags.NonPublic;
 		typeof(Product).GetField("displayName", flags).SetValue(product, Name);
 
+		Debug.Log("a3");
 		product.ingredients = generateIngredient();
 		product.defaultPrice = Price;
+		
+		Debug.Log("a3");
 		return product;
 	}
 
@@ -573,17 +579,17 @@ public class ShopIngredient
 		if (element.ContainsKey("Name"))
 			Name = (string) element["Name"];
 		if (element.ContainsKey("Price") )
-			Price = (float)(double)element["Price"];
+			Price = Convert.ToSingle(element["Price"]);
 		if (element.ContainsKey("Amount"))
-			Amount = (int)(long)element["Amount"];
+			Amount = Convert.ToInt32(element["Amount"]);
 		if (element.ContainsKey("Tweakable"))
 			Tweakable = (bool) element["Tweakable"];
 		if (element.ContainsKey("Effects"))
 		{
-			foreach (var eff in (List<Dictionary<string,object>>)element["Effects"])
+			foreach (var eff in (List<object>)element["Effects"])
 			{
 				Effect effect = new Effect();
-				effect.DeSerialize(eff);
+				effect.DeSerialize(eff as Dictionary<string,object>);
 				effects.Add(effect);
 			}
 		}
@@ -613,6 +619,6 @@ public class Effect
 		if(elements.ContainsKey("Type"))
 			Type = (EffectTypes)Enum.Parse(typeof(EffectTypes), (string) elements["Type"]);
 		if(elements.ContainsKey("Amount"))
-			amount = (float)(double)elements["Amount"];
+			amount = Convert.ToSingle(elements["Amount"]);
 	}
 }

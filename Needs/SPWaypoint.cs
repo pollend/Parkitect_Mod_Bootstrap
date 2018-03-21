@@ -46,7 +46,7 @@ public class SPWaypoint
 			
 			foreach(var c in (List<object>)elements["ConnectedTo"])
 			{
-				waypoint.connectedTo.Add ((int)(long)c);	
+				waypoint.connectedTo.Add (Convert.ToInt32(c));	
 			}
 		}
 		return waypoint;

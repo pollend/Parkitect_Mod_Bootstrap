@@ -68,9 +68,9 @@ public class ColorDecorator : Decorator
 		if (elements.ContainsKey("Colors"))
 		{
 			int index = 0;
-			foreach (var colordeserialize in (List<Dictionary<string,object>>)elements["Colors"])
+			foreach (var colordeserialize in (List<object>)elements["Colors"])
 			{
-				colors[index] = Utility.DeSerializeColor(colordeserialize);
+				colors[index] = Utility.DeSerializeColor(colordeserialize as Dictionary<string,object>);
 				index++;
 			}
 		}

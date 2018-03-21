@@ -84,7 +84,6 @@
       <e p="ParkitectModBootstrap.cs" t="Include" />
       <e p="ParkitectModBootstrap.csproj" t="IncludeRecursive" />
       <e p="ParkitectModBootstrap.sln" t="IncludeFlat" />
-      <e p="ParkitectObjectType.cs" t="Include" />
       <e p="Refrence.cs" t="Include" />
       <e p="RefrencedTransform.cs" t="Include" />
       <e p="Utility" t="Include">

@@ -10,11 +10,9 @@ using UnityEngine;
 [Serializable]
 public class BaseDecorator : Decorator
 {
-	[SerializeField]
-		public string InGameName;
+	[SerializeField] public string InGameName;
 
-		[SerializeField]
-		public float Price;
+	[SerializeField] public float Price;
 
 #if UNITY_EDITOR
 
@@ -26,33 +24,33 @@ public class BaseDecorator : Decorator
 	}
 #endif
 
-	public override Dictionary<string,object> Serialize (ParkitectObj parkitectObj)
+	public override Dictionary<string, object> Serialize(ParkitectObj parkitectObj)
 	{
 		return new Dictionary<string, object>
 		{
-			{"InGameName",InGameName},
-			{"Price",Price}
+			{"InGameName", InGameName},
+			{"Price", Price}
 		};
 	}
 
-	public override void Deserialize (Dictionary<string,object> elements)
+	public override void Deserialize(Dictionary<string, object> elements)
 	{
-		if (elements.ContainsKey("InGameName") )
+		if (elements.ContainsKey("InGameName"))
 			InGameName = (string) elements["InGameName"];
-		if (elements.ContainsKey ("Price") )
-			Price = (float)(double)elements["Price"];
+		if (elements.ContainsKey("Price"))
+			Price = Convert.ToSingle(elements["Price"]);
 		
-		base.Deserialize (elements);
+		base.Deserialize(elements);
 	}
 
 #if PARKITECT
 	public override void Decorate(GameObject go, GameObject hider, ParkitectObj parkitectObj, AssetBundle bundle)
 	{
 		BuildableObject component = go.GetComponent<BuildableObject>();
-		component.price = price;
+		component.price = Price;
 		component.setDisplayName(InGameName);
 	}
 #endif
-	
+
 }
 

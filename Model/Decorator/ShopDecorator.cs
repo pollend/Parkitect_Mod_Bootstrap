@@ -115,10 +115,11 @@ public class ShopDecorator : Decorator
 
 	public override void Deserialize(Dictionary<string,object> elements)
 	{
-		foreach (var ele in (List<Dictionary<string,object>>)elements["Products"])
+		foreach (var ele in (List<object>)elements["Products"])
 		{
+			Dictionary<string, object> prod = (Dictionary<string, object>) ele;
 			ShopProduct product = CreateInstance<ShopProduct>();
-			product.DeSerialize(ele);
+			product.DeSerialize(prod);
 			products.Add(product);
 		}
 	}

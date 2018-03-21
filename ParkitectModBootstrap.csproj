@@ -90,7 +90,6 @@
     <Compile Include="Model\Proxy\Shop\Products\CustomWerableProduct.cs" />
     <Compile Include="ParkitectMod.cs" />
     <Compile Include="ParkitectModBootstrap.cs" />
-    <Compile Include="ParkitectObjectType.cs" />
     <Compile Include="Refrence.cs" />
     <Compile Include="RefrencedTransform.cs" />
     <Compile Include="Model\ModPayload.cs" />

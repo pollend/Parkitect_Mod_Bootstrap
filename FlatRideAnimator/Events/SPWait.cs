@@ -48,7 +48,7 @@ public class SPWait : SPRideAnimationEvent
 
 		if (elements.ContainsKey("timeLimit"))
 		{
-			timeLimit = (int) (long) elements["timeLimit"];
+			timeLimit = Convert.ToInt32(elements["timeLimit"]);
 		}
 
 		base.Deserialize(elements);

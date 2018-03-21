@@ -198,8 +198,8 @@ public class BoundingBoxDecorator : Decorator
 	public override void Deserialize (Dictionary<string,object> elements)
 	{
 		if (elements.ContainsKey("BoundingBoxes")) {
-			foreach (var box in (List<Dictionary<string,object> >) elements["BoundingBoxes"]) {
-				boundingBoxes.Add (SPBoundingBox.Deserialize (box));
+			foreach (var box in (List<object>) elements["BoundingBoxes"]) {
+				boundingBoxes.Add (SPBoundingBox.Deserialize (box as Dictionary<string,object>));
 			}
 		}
 		base.Deserialize (elements);

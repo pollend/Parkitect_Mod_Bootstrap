@@ -103,7 +103,7 @@ public class ParkitectMod : IMod
         {
             if (_payload == null)
                 return null;
-            return _payload.modName;
+            return _payload.ModName;
         }
     }
     public string Description
@@ -112,7 +112,7 @@ public class ParkitectMod : IMod
         {
             if (_payload == null)
                 return null;
-            return _payload.description;
+            return _payload.Description;
         }
     }
 
@@ -122,7 +122,7 @@ public class ParkitectMod : IMod
         {
             if (_payload == null)
                 return null;
-            return _payload.modName;
+            return _payload.ModName;
         }
     }
 

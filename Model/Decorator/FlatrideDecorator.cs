@@ -2,6 +2,7 @@
 using UnityEditor;
 #endif
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -90,16 +91,17 @@ public override void RenderInspectorGui (ParkitectObj parkitectObj)
 	public override void Deserialize (Dictionary<string,object> elements)
 	{
 		if (elements.ContainsKey("Excitement"))
-			Excitement = (float)(double)elements["Excitement"];
+			Excitement = Convert.ToSingle(elements["Excitement"]);
 		if (elements.ContainsKey("Intensity"))
-			Intensity = (float)(double)elements["Intensity"];
+			Intensity = Convert.ToSingle(elements["Intensity"]);
 		if (elements.ContainsKey("Nausea"))
-			Nausea = (float)(double)elements["Nausea"];
+			Nausea = Convert.ToSingle(elements["Nausea"]);
 		if (elements.ContainsKey("XSize"))
-			XSize = (int)(long)elements["XSize"];
+			XSize = Convert.ToInt32(elements["XSize"]);
 		if (elements.ContainsKey("ZSize"))
-			ZSize = (int)(long)elements["ZSize"];
+			ZSize = Convert.ToInt32(elements["ZSize"]);
 		base.Deserialize (elements);
+		
 	}
 }
 

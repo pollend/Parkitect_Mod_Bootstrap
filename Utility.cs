@@ -44,8 +44,8 @@ public static class Utility
 	{
 
 		Vector2 v = new Vector2 ();
-		v.x = (float)(double)elements["X"];
-		v.y = (float)(double)elements["Y"];
+		v.x = Convert.ToSingle(elements["X"]);
+		v.y = Convert.ToSingle(elements["Y"]);
 		return v;
 	}
 
@@ -62,9 +62,9 @@ public static class Utility
 	public static Vector3 DeseralizeVector3(Dictionary<string,object> elements)
 	{
 		Vector3 v = new Vector3 ();
-		v.x = (float)(double)elements["X"];
-		v.y = (float)(double)elements["Y"];
-		v.z = (float)(double)elements["Z"];
+		v.x = Convert.ToSingle(elements["X"]);
+		v.y = Convert.ToSingle(elements["Y"]);
+		v.z = Convert.ToSingle(elements["Z"]);
 		return v;
 
 	}
@@ -94,10 +94,10 @@ public static class Utility
 	public static Color DeSerializeColor(Dictionary<string, object> element)
 	{
 		Color c = new Color ();
-		c.r = (float)(double)element["R"];
-		c.g = (float)(double)element["G"];
-		c.b = (float)(double)element["B"];
-		c.a = (float)(double)element["A"];
+		c.r = Convert.ToSingle(element["R"]);
+		c.g = Convert.ToSingle(element["G"]);
+		c.b = Convert.ToSingle(element["B"]);
+		c.a = Convert.ToSingle(element["A"]);
 		return c;
 
 	}
@@ -106,16 +106,16 @@ public static class Utility
 	public static Quaternion DeSerializeQuaternion(Dictionary<string, object> elements)
 	{
 		Quaternion quaternion = new Quaternion ();
-		quaternion.x = (float)(double)elements["X"];
-		quaternion.y = (float)(double)elements["Y"];
-		quaternion.z = (float)(double)elements["Z"];
-		quaternion.w = (float)(double)elements["W"];
+		quaternion.x = Convert.ToSingle(elements["X"]);
+		quaternion.y = Convert.ToSingle(elements["Y"]);
+		quaternion.z = Convert.ToSingle(elements["Z"]);
+		quaternion.w = Convert.ToSingle(elements["W"]);
 		return quaternion;
 	}
 
 	public static T GetByTypeName<T>(string name)
 	{
-		IEnumerable<Assembly> scriptAssemblies = AppDomain.CurrentDomain.GetAssemblies ().Where ((Assembly assembly) => assembly.FullName.Contains ("Assembly"));
+		IEnumerable<Assembly> scriptAssemblies = AppDomain.CurrentDomain.GetAssemblies ();
 		foreach (Assembly assembly in scriptAssemblies) 
 		{
 			foreach (Type type in assembly.GetTypes().Where(subType => subType.IsClass && subType.IsSubclassOf(typeof(T))))

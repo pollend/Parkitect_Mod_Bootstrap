@@ -18,8 +18,19 @@ public class ParkitectModBootstrap : IMod
             if (files.Length > 0)
             {
                 Debug.Log("------------------------Adding Mod------------------------");
-                ModManager.Instance.addMod(new ParkitectMod(folder), folder,
-                    AbstractGameContent.ContentSource.USER_CREATED, 0);
+                Debug.Log("Loading Mod From: " + folder);
+                try
+                {
+                    ModManager.Instance.addMod(new ParkitectMod(folder), folder,
+                        AbstractGameContent.ContentSource.USER_CREATED, 0);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError(e);
+                }
+                Debug.Log("------------------------Finished Adding Mod------------------------");
+
+
             }
         }
         Debug.Log("------------------------Finished Bootstrap------------------------");

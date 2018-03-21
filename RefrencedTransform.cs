@@ -73,7 +73,7 @@ public class RefrencedTransform
 			if (current == null) {
 				current = root;
 			} else {
-				current = current.GetChild ((int)(long)e.Value);
+				current = current.GetChild (Convert.ToInt32(e.Value));
 			}
 		}
 

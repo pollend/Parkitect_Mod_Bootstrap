@@ -32,7 +32,7 @@ namespace Parkitect_Mod_Bootstrap.Model.ParkitectObjects
             Wall wall = go.AddComponent<Wall>();
             wall.name = Key;
             wall.categoryTag = categoryDecorator.category;
-            wall.price = baseDecorator.price;
+            wall.price = baseDecorator.Price;
             wall.setDisplayName(baseDecorator.InGameName);
             wall.dontSerialize = true;
             wall.isPreview = true;

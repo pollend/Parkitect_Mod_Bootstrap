@@ -94,7 +94,7 @@ public class SPSpinRotater : SPRideAnimationEvent
 
 		if (elements.ContainsKey("spins"))
 		{
-			spins = (int) (long) elements["spins"];
+			spins = Convert.ToInt32(elements["spins"]);
 		}
 
 		base.Deserialize(elements);

@@ -426,8 +426,8 @@ public class WaypointDecorator : Decorator
 	{
 		
 		if (elements.ContainsKey("Waypoints")) {
-			foreach (var wp in (List<Dictionary<string,object>> )elements["Waypoints"]) {
-				waypoints.Add (SPWaypoint.Deserialize (wp));
+			foreach (var wp in (List<object> )elements["Waypoints"]) {
+				waypoints.Add (SPWaypoint.Deserialize (wp as Dictionary<string,object>));
 			}
 		}
 		base.Deserialize (elements);

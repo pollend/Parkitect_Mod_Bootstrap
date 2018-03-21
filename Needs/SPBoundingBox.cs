@@ -27,19 +27,19 @@ public class SPBoundingBox
 		Bounds b = new Bounds ();
 		Vector3 min = new Vector3 ();
 		if (element.ContainsKey ("XMin") )
-			min.x = (float)(double)element["XMin"];
+			min.x = Convert.ToSingle(element["XMin"]);
 		if (element.ContainsKey ("YMin"))
-			min.y = (float)(double)element["YMin"];
+			min.y = Convert.ToSingle(element["YMin"]);
 		if (element.ContainsKey ("ZMin"))
-			min.z = (float)(double)element["ZMin"];
+			min.z = Convert.ToSingle(element["ZMin"]);
 
 		Vector3 max = new Vector3 ();
 		if (element.ContainsKey ("XMax") )
-			max.x = (float)(double)element["XMax"];
+			max.x = Convert.ToSingle(element["XMax"]);
 		if (element.ContainsKey ("YMax"))
-			max.y = (float)(double)element["YMax"];
+			max.y = Convert.ToSingle(element["YMax"]);
 		if (element.ContainsKey ("ZMax"))
-			max.z = (float)(double)element["ZMax"];
+			max.z = Convert.ToSingle(element["ZMax"]);
 
 		b.min = min;
 		b.max = max;

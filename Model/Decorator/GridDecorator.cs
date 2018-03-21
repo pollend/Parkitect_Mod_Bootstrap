@@ -79,9 +79,9 @@ public class GridDecorator : Decorator
 		if(elements.ContainsKey ("Grid") )
 			grid = (bool)elements["Grid"];
 		if(elements.ContainsKey ("HeightDelta"))
-			heightDelta = (float)(double)elements["HeightDelta"];
+			heightDelta = Convert.ToSingle(elements["HeightDelta"]);
 		if(elements.ContainsKey ("GridSubdivisons"))
-			gridSubdivision = (float)(double)elements["GridSubdivisons"];
+			gridSubdivision = Convert.ToSingle(elements["GridSubdivisons"]);
 		base.Deserialize (elements);
 	}
 	

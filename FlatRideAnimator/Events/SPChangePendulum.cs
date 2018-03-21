@@ -86,7 +86,7 @@ public class SPChangePendulum : SPRideAnimationEvent
 		if (elements.ContainsKey("pendulum") )
 			pendulum = (bool) elements["pendulum"];
 		if (elements.ContainsKey("friction") )
-			friction = (float)(double) elements["friction"];
+			friction = Convert.ToSingle(elements["friction"]);
 
 		base.Deserialize(elements);
 	}
