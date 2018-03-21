@@ -54,7 +54,7 @@ public class DecoParkitectObject : ParkitectObj
         categoryDecorator.Decorate(gameObject,hider,this,bundle);
 
 
-        foreach (var box in boxDecorator.boundingBoxes)
+        foreach (var box in boxDecorator.BoundingBoxes)
         {
             var b = gameObject.AddComponent<BoundingBox>();
             b.setBounds(box.Bounds);

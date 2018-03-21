@@ -43,7 +43,7 @@ namespace Parkitect_Mod_Bootstrap.Model.ParkitectObjects
                 colors.setColors(colorDecorator.Colors.ToArray());
             }
 
-            foreach (var box in boxDecorator.boundingBoxes)
+            foreach (var box in boxDecorator.BoundingBoxes)
             {
                 var b = go.AddComponent<BoundingBox>();
                 b.setBounds(box.Bounds);

@@ -39,7 +39,7 @@ public class SeatingParkitectObject : ParkitectObj
         colorDecorator.Decorate(gameObject, hider, this,bundle);
         categoryDecorator.Decorate(gameObject,hider,this,bundle);
        
-        foreach (var box in boxDecorator.boundingBoxes)
+        foreach (var box in boxDecorator.BoundingBoxes)
         {
             var b = Prefab.AddComponent<BoundingBox>();
             b.setBounds(box.Bounds);
