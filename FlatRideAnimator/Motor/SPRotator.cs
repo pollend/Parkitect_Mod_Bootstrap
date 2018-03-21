@@ -88,10 +88,10 @@ public override void InspectorGUI(Transform root)
 {
 
     Identifier = EditorGUILayout.TextField("Name ", Identifier);
-	axis.SetSceneTransform((Transform)EditorGUILayout.ObjectField("axis", axis.FindSceneRefrence(root), typeof(Transform),true));
-    maxSpeed = EditorGUILayout.FloatField("maxSpeed", maxSpeed);
-    accelerationSpeed = EditorGUILayout.FloatField("accelerationSpeed", accelerationSpeed);
-    rotationAxis = EditorGUILayout.Vector3Field("rotationAxis", rotationAxis);
+	Axis.SetSceneTransform((Transform)EditorGUILayout.ObjectField("axis", Axis.FindSceneRefrence(root), typeof(Transform),true));
+	MaxSpeed = EditorGUILayout.FloatField("maxSpeed", MaxSpeed);
+    AccelerationSpeed = EditorGUILayout.FloatField("accelerationSpeed", AccelerationSpeed);
+	RotationAxis = EditorGUILayout.Vector3Field("rotationAxis", RotationAxis);
 	base.InspectorGUI(root);
 }
 #endif

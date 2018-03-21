@@ -56,9 +56,9 @@ public class SPMover : SPMotor
 	public override void InspectorGUI(Transform root)
 	{
 		Identifier = EditorGUILayout.TextField("Name ", Identifier);
-		axis.SetSceneTransform((Transform)EditorGUILayout.ObjectField("axis", axis.FindSceneRefrence (root), typeof(Transform), true));
-	    toPosition = EditorGUILayout.Vector3Field("Move To", toPosition);
-	    duration = EditorGUILayout.FloatField("Time", duration);
+		Axis.SetSceneTransform((Transform)EditorGUILayout.ObjectField("axis", Axis.FindSceneRefrence (root), typeof(Transform), true));
+	    ToPosition = EditorGUILayout.Vector3Field("Move To", ToPosition );
+		Duration = EditorGUILayout.FloatField("Time", Duration);
 		base.InspectorGUI(root);
 
 	}

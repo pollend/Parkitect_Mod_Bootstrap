@@ -16,7 +16,7 @@ public class BoundingBoxDecorator : Decorator
 	private Vector2 scrollPos2;
 	public SPBoundingBox selected;
 
-	public List<SPBoundingBox> boundingBoxes = new List<SPBoundingBox> ();
+	public List<SPBoundingBox> BoundingBoxes = new List<SPBoundingBox> ();
 
 #if UNITY_EDITOR
     public override void RenderInspectorGui (ParkitectObj parkitectObj)
@@ -24,26 +24,26 @@ public class BoundingBoxDecorator : Decorator
         Event e = Event.current;
 
         scrollPos2 = EditorGUILayout.BeginScrollView(scrollPos2, "GroupBox", GUILayout.Height(100));
-        for (int i = 0; i < boundingBoxes.Count; i++)
+        for (int i = 0; i < BoundingBoxes.Count; i++)
         {
             Color gui = GUI.color;
-            if (boundingBoxes[i] == selected)
+            if (BoundingBoxes[i] == selected)
             { GUI.color = Color.red; }
 
             if (GUILayout.Button("BoudingBox" + (i + 1)))
             {
                 if (e.button == 1)
                 {
-                    boundingBoxes.RemoveAt(i);
+                    BoundingBoxes.RemoveAt(i);
                     return;
                 }
 
-                if (selected == boundingBoxes[i])
+                if (selected == BoundingBoxes[i])
                 {
                     selected = null;
                     return;
                 }
-                selected = boundingBoxes[i];
+                selected = BoundingBoxes[i];
             }
             GUI.color = gui;
         }
@@ -51,7 +51,7 @@ public class BoundingBoxDecorator : Decorator
 
         if (GUILayout.Button("Add BoudingBox"))
         {
-			boundingBoxes.Add(new SPBoundingBox());
+			BoundingBoxes.Add(new SPBoundingBox());
         }
         string caption = "Enable Editing";
         if (enableEditing)
@@ -108,11 +108,10 @@ public class BoundingBoxDecorator : Decorator
     private void drawBox(ParkitectObj parkitectObj)
     {
  
-		foreach (SPBoundingBox box in boundingBoxes)
+		foreach (SPBoundingBox box in BoundingBoxes)
         {
 
-
-            Vector3 diff = box.bounds.max - box.bounds.min;
+            Vector3 diff = box.Bounds.max - box.Bounds.min;
             Vector3 diffX = new Vector3(diff.x, 0, 0);
             Vector3 diffY = new Vector3(0, diff.y, 0);
             Vector3 diffZ = new Vector3(0, 0, diff.z);
@@ -129,29 +128,29 @@ public class BoundingBoxDecorator : Decorator
 
 	        
 	        // left
-            drawPlane(box.bounds.min, box.bounds.min + diffZ, box.bounds.min + diffZ + diffY, box.bounds.min + diffY, fill, outer, parkitectObj);
+            drawPlane(box.Bounds.min, box.Bounds.min + diffZ, box.Bounds.min + diffZ + diffY, box.Bounds.min + diffY, fill, outer, parkitectObj);
 
 	        //back
-            drawPlane(box.bounds.min, box.bounds.min + diffX, box.bounds.min + diffX + diffY, box.bounds.min + diffY, fill, outer, parkitectObj);
+            drawPlane(box.Bounds.min, box.Bounds.min + diffX, box.Bounds.min + diffX + diffY, box.Bounds.min + diffY, fill, outer, parkitectObj);
 
 	        //right
-            drawPlane(box.bounds.max, box.bounds.max - diffY, box.bounds.max - diffY - diffZ, box.bounds.max - diffZ, fill, outer, parkitectObj);
+            drawPlane(box.Bounds.max, box.Bounds.max - diffY, box.Bounds.max - diffY - diffZ, box.Bounds.max - diffZ, fill, outer, parkitectObj);
 
 	        //forward
-            drawPlane(box.bounds.max, box.bounds.max - diffY, box.bounds.max - diffY - diffX, box.bounds.max - diffX, fill, outer, parkitectObj);
+            drawPlane(box.Bounds.max, box.Bounds.max - diffY, box.Bounds.max - diffY - diffX, box.Bounds.max - diffX, fill, outer, parkitectObj);
 
             //up
-            drawPlane(box.bounds.max, box.bounds.max - diffX, box.bounds.max - diffX - diffZ, box.bounds.max - diffZ, fill, outer, parkitectObj);
+            drawPlane(box.Bounds.max, box.Bounds.max - diffX, box.Bounds.max - diffX - diffZ, box.Bounds.max - diffZ, fill, outer, parkitectObj);
             
 	        //down
-            drawPlane(box.bounds.min, box.bounds.min + diffX, box.bounds.min + diffX + diffZ, box.bounds.min + diffZ, fill, outer, parkitectObj);
+            drawPlane(box.Bounds.min, box.Bounds.min + diffX, box.Bounds.min + diffX + diffZ, box.Bounds.min + diffZ, fill, outer, parkitectObj);
 
             if (enableEditing && box == selected)
             {
-                box.bounds.min = handleModifyValue(box.bounds.min, parkitectObj.Prefab.transform.InverseTransformPoint(Handles.PositionHandle(parkitectObj.Prefab.transform.TransformPoint(box.bounds.min), Quaternion.LookRotation(Vector3.left, Vector3.down))));
-                box.bounds.max = handleModifyValue(box.bounds.max, parkitectObj.Prefab.transform.InverseTransformPoint(Handles.PositionHandle(parkitectObj.Prefab.transform.TransformPoint(box.bounds.max), Quaternion.LookRotation(Vector3.forward))));
-                Handles.Label(parkitectObj.Prefab.transform.position + box.bounds.min, box.bounds.min.ToString("F2"));
-                Handles.Label(parkitectObj.Prefab.transform.position +  box.bounds.max, box.bounds.max.ToString("F2"));
+                box.Bounds.min = handleModifyValue(box.Bounds.min, parkitectObj.Prefab.transform.InverseTransformPoint(Handles.PositionHandle(parkitectObj.Prefab.transform.TransformPoint(box.Bounds.min), Quaternion.LookRotation(Vector3.left, Vector3.down))));
+                box.Bounds.max = handleModifyValue(box.Bounds.max, parkitectObj.Prefab.transform.InverseTransformPoint(Handles.PositionHandle(parkitectObj.Prefab.transform.TransformPoint(box.Bounds.max), Quaternion.LookRotation(Vector3.forward))));
+                Handles.Label(parkitectObj.Prefab.transform.position + box.Bounds.min, box.Bounds.min.ToString("F2"));
+                Handles.Label(parkitectObj.Prefab.transform.position +  box.Bounds.max, box.Bounds.max.ToString("F2"));
             }
         }
     }
@@ -185,7 +184,7 @@ public class BoundingBoxDecorator : Decorator
 	public override Dictionary<string,object> Serialize (ParkitectObj parkitectObj)
 	{
 		List<object> boxes = new List<object> ();
-		foreach (var b in boundingBoxes)
+		foreach (var b in BoundingBoxes)
 		{
 			boxes.Add (b.Serialize());
 		}
@@ -199,7 +198,7 @@ public class BoundingBoxDecorator : Decorator
 	{
 		if (elements.ContainsKey("BoundingBoxes")) {
 			foreach (var box in (List<object>) elements["BoundingBoxes"]) {
-				boundingBoxes.Add (SPBoundingBox.Deserialize (box as Dictionary<string,object>));
+				BoundingBoxes.Add (SPBoundingBox.Deserialize (box as Dictionary<string,object>));
 			}
 		}
 		base.Deserialize (elements);

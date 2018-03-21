@@ -92,7 +92,7 @@ public class WaypointDecorator : Decorator
 			}
 			if (GUILayout.Button("Clear all"))
 			{
-				waypoints.Clear();
+				Waypoints.Clear();
 			}
 		}
 
@@ -128,13 +128,13 @@ public class WaypointDecorator : Decorator
 				case EventType.KeyUp:
 					if (Event.current.keyCode == KeyCode.C)
 					{
-						if (state != State.CONNECT)
+						if (_state != State.CONNECT)
 						{
-							state = State.CONNECT;
+							_state = State.CONNECT;
 						}
 						else
 						{
-							state = State.NONE;
+							_state = State.NONE;
 						}
 					}
 					else if (Event.current.keyCode == KeyCode.R)
@@ -166,7 +166,7 @@ public class WaypointDecorator : Decorator
 
 
 		int i = 0;
-		foreach (SPWaypoint waypoint in waypoints)
+		foreach (SPWaypoint waypoint in Waypoints)
 		{
 			if (waypoint == selectedWaypoint)
 			{
@@ -200,7 +200,7 @@ public class WaypointDecorator : Decorator
 			foreach (int connectedIndex in waypoint.connectedTo)
 			{
 				Handles.zTest = CompareFunction.Always;
-				Handles.DrawLine(worldPos, waypoints[connectedIndex].localPosition + sceneTransform.transform.position);
+				Handles.DrawLine(worldPos, Waypoints[connectedIndex].localPosition + sceneTransform.transform.position);
 			}
 
 			Handles.Label(worldPos, "#" + i, labelStyle);
@@ -210,12 +210,12 @@ public class WaypointDecorator : Decorator
 		if (selectedWaypoint != null)
         {
             Vector3 worldPos = selectedWaypoint.localPosition + sceneTransform.transform.position;
-            Vector3 newPos = Handles.PositionHandle (selectedWaypoint.getWorldPosition (sceneTransform.transform), Quaternion.identity);
+            Vector3 newPos = Handles.PositionHandle (selectedWaypoint.GetWorldPosition (sceneTransform.transform), Quaternion.identity);
             selectedWaypoint.localPosition = handleSnap(newPos, selectedWaypoint);
 
             selectedWaypoint.localPosition = handleSnap(newPos, selectedWaypoint);
 
-            if (state == State.CONNECT)
+            if (_state == State.CONNECT)
             {
                 Handles.Label(worldPos, "\nConnecting...", labelStyle);
             }
@@ -232,17 +232,17 @@ public class WaypointDecorator : Decorator
     public void handleClick(SPWaypoint waypoint)
     {
 
-        if (state == State.NONE && waypoint != null)
+        if (_state == State.NONE && waypoint != null)
         {
             selectedWaypoint = waypoint;
         }
-        else if (state == State.CONNECT && selectedWaypoint != null)
+        else if (_state == State.CONNECT && selectedWaypoint != null)
         {
-            int closestWaypointIndex =waypoints.FindIndex(delegate (SPWaypoint wp)
+            int closestWaypointIndex =Waypoints.FindIndex(delegate (SPWaypoint wp)
             {
                 return wp == waypoint;
             });
-            int selectedWaypointIndex = waypoints.FindIndex(delegate (SPWaypoint wp)
+            int selectedWaypointIndex = Waypoints.FindIndex(delegate (SPWaypoint wp)
             {
                 return wp == selectedWaypoint;
             });
@@ -280,7 +280,7 @@ public class WaypointDecorator : Decorator
             selectedWaypoint.localPosition = new Vector3(0, helperPlaneY, 0);
         }
 
-        waypoints.Add(selectedWaypoint);
+	    Waypoints.Add(selectedWaypoint);
     }
 
     private void generateOuterGrid(FlatrideDecorator flatRideDecorator)
@@ -305,7 +305,7 @@ public class WaypointDecorator : Decorator
 				//if (waypoints.Count > 0) {
 				//    newWaypoint.connectedTo.Add(waypoints.Count - 1);
 				//}
-				waypoints.Add(newWaypoint);
+				Waypoints.Add(newWaypoint);
 			}
 		}
 
@@ -313,17 +313,17 @@ public class WaypointDecorator : Decorator
     public void removeSelectedWaypoint()
     {
 
-        int selectedWaypointIndex = waypoints.FindIndex(delegate (SPWaypoint wp)
+        int selectedWaypointIndex = Waypoints.FindIndex(delegate (SPWaypoint wp)
         {
             return wp == selectedWaypoint;
         });
-        foreach (SPWaypoint waypoint in waypoints)
+        foreach (SPWaypoint waypoint in Waypoints)
         {
             waypoint.connectedTo.Remove(selectedWaypointIndex);
         }
-        waypoints.Remove(selectedWaypoint);
+	    Waypoints.Remove(selectedWaypoint);
 
-        foreach (SPWaypoint waypoint in waypoints)
+        foreach (SPWaypoint waypoint in Waypoints)
         {
             for (int i = 0; i < waypoint.connectedTo.Count; i++)
             {
@@ -342,7 +342,7 @@ public class WaypointDecorator : Decorator
     {
         Vector3 pos = transform.position;
 
-        foreach (SPWaypoint waypoint in waypoints)
+        foreach (SPWaypoint waypoint in Waypoints)
         {
             Vector3 dir = waypoint.localPosition - pos;
             dir.y = 0;
@@ -381,7 +381,7 @@ public class WaypointDecorator : Decorator
 
         foreach (int connectedIndex in waypoint.connectedTo)
         {
-            SPWaypoint connectedWaypoint = waypoints[connectedIndex];
+            SPWaypoint connectedWaypoint = Waypoints[connectedIndex];
             if (Mathf.Abs(newPos[axisIndex] - connectedWaypoint.localPosition[axisIndex]) < 0.1f)
             {
                 newPos[axisIndex] = connectedWaypoint.localPosition[axisIndex];

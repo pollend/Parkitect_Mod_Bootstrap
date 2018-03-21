@@ -15,8 +15,8 @@ public class CategoryDecorator : Decorator
 #if UNITY_EDITOR
 	public override void RenderInspectorGui(ParkitectObj parkitectObj)
 	{
-		category = EditorGUILayout.TextField("Category: ", category);
-		subCategory = EditorGUILayout.TextField("Sub-Category: ", this.subCategory);
+		Category = EditorGUILayout.TextField("Category: ", Category);
+		SubCategory = EditorGUILayout.TextField("Sub-Category: ", SubCategory);
 
 		base.RenderInspectorGui(parkitectObj);
 	}

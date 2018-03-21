@@ -21,17 +21,17 @@ public class ColorDecorator : Decorator
 	public override void RenderInspectorGui(ParkitectObj parkitectObj)
 	{
 		//ModManager.asset.Shader = (ParkitectObject.Shaders)EditorGUILayout.EnumPopup("Shader", ModManager.asset.Shader);
-		isRecolorable = EditorGUILayout.BeginToggleGroup("Recolorable", isRecolorable);
+		IsRecolorable = EditorGUILayout.BeginToggleGroup("Recolorable", IsRecolorable);
 
-		if (isRecolorable)
+		if (IsRecolorable)
 		{
 			GUILayout.BeginVertical();
 			try
 			{
-				colorCount = Mathf.RoundToInt(EditorGUILayout.Slider("Color Count: ", colorCount, 1, 4));
-				for (int x = 0; x < colorCount; x++)
+				ColorCount = Mathf.RoundToInt(EditorGUILayout.Slider("Color Count: ", ColorCount, 1, 4));
+				for (int x = 0; x < ColorCount; x++)
 				{
-					colors[x] = EditorGUILayout.ColorField("Color " + x, colors[x]);
+					Colors[x] = EditorGUILayout.ColorField("Color " + x, Colors[x]);
 
 				}
 			}

@@ -18,10 +18,10 @@ public class SPWait : SPRideAnimationEvent
 #if UNITY_EDITOR
 	public override void RenderInspectorGUI(SPMotor[] motors)
 	{
-		seconds = EditorGUILayout.FloatField("Seconds", seconds);
-		if (isPlaying)
+		Seconds = EditorGUILayout.FloatField("Seconds", Seconds);
+		if (IsPlaying)
 		{
-			GUILayout.Label("Time" + (timeLimit - Time.realtimeSinceStartup));
+			GUILayout.Label("Time" + (_timeLimit - Time.realtimeSinceStartup));
 		}
 
 		base.RenderInspectorGUI(motors);

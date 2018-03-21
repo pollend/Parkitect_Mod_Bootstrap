@@ -31,7 +31,7 @@ public class SPSpinRotater : SPRideAnimationEvent
 			if (spin)
 				spins = EditorGUILayout.FloatField("spins ", spins);
 
-			EditorGUILayout.LabelField("Amount " + rotator.getRotationsCount());
+			EditorGUILayout.LabelField("Amount " + rotator.GetRotationsCount());
 		}
 
 		foreach (SPRotator R in motors.OfType<SPRotator>().ToList())

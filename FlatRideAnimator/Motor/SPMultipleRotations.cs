@@ -20,7 +20,7 @@ public class SPMultipleRotations : SPMotor
 	{
 
 	    Identifier = EditorGUILayout.TextField("Name ", Identifier);
-		mainAxis.SetSceneTransform((Transform)EditorGUILayout.ObjectField("MainAxis", mainAxis.FindSceneRefrence(root), typeof(Transform), true));
+		MainAxis.SetSceneTransform((Transform)EditorGUILayout.ObjectField("MainAxis", MainAxis.FindSceneRefrence(root), typeof(Transform), true));
 	    Transform Axis = (Transform)EditorGUILayout.ObjectField("Add axis", null, typeof(Transform), true);
 		if (Axis) {
 			var refrenceTransform = new RefrencedTransform ();

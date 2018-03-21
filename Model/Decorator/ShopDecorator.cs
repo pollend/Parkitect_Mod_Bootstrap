@@ -21,7 +21,7 @@ public class ShopDecorator : Decorator
 	public override void RenderInspectorGui (ParkitectObj parkitectObj)
 	{
 
-		foreach (ShopProduct p in products)
+		foreach (ShopProduct p in Products)
 		{
 			try
 			{
@@ -36,29 +36,29 @@ public class ShopDecorator : Decorator
 		GUILayout.Space(10);
 		EditorGUILayout.LabelField("Products:", EditorStyles.boldLabel);
 		scrollPos2 = EditorGUILayout.BeginScrollView(scrollPos2, "GroupBox", GUILayout.Height(100));
-		for (int i = 0; i < products.Count; i++)
+		for (int i = 0; i < Products.Count; i++)
 		{
 			Color gui = GUI.color;
-			if (products[i] == selected)
+			if (Products[i] == selected)
 			{ GUI.color = Color.red; }
 
-			if (GUILayout.Button(products[i].Name + "    $" + products[i].Price + " (" + products[i].ProductType + ")"))
+			if (GUILayout.Button(Products[i].Name + "    $" + Products[i].Price + " (" + Products[i].ProductType + ")"))
 			{
 
 				GUI.FocusControl("");
 				if (e.button == 1)
 				{
-					DestroyImmediate(products[i],true);
-					products.RemoveAt(i);
+					DestroyImmediate(Products[i],true);
+					Products.RemoveAt(i);
 					return;
 				}
 
-				if (selected == products[i])
+				if (selected == Products[i])
 				{
 					selected = null;
 					return;
 				}
-				selected = products[i];
+				selected = Products[i];
 			}
 			GUI.color = gui;
 		}
@@ -71,11 +71,11 @@ public class ShopDecorator : Decorator
 			AssetDatabase.AddObjectToAsset (product,this);
 			EditorUtility.SetDirty(this);
 			AssetDatabase.SaveAssets();
-			products.Add (product);
+			Products.Add (product);
 		}
 		if(selected != null)
 		{
-			if(!products.Contains(selected))
+			if(!Products.Contains(selected))
 			{
 				selected = null;
 				return;
@@ -91,7 +91,7 @@ public class ShopDecorator : Decorator
 
 	public override void CleanUp (ParkitectObj parkitectObj)
 	{
-		foreach (var t in products)
+		foreach (var t in Products)
 		{
 			DestroyImmediate(t, true);
 		}

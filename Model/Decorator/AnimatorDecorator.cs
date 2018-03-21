@@ -18,7 +18,7 @@ public class AnimatorDecorator : Decorator
 
 		[SerializeField]
 		public SPPhase CurrentPhase;
-		int _phaseNum;
+		private int _phaseNum;
 
 		[SerializeField]
 		public bool Animating;
@@ -33,12 +33,12 @@ public class AnimatorDecorator : Decorator
 		EditorUtility.SetDirty (this);
 		AssetDatabase.SaveAssets ();
 
-		motors.Add (motor);
+		_motors.Add (motor);
 	}
 
 	public void RemoveMotor(SPMotor motor)
 	{
-		motors.Remove (motor);
+		_motors.Remove (motor);
 		DestroyImmediate (motor, true);
 	}
 
@@ -48,12 +48,12 @@ public class AnimatorDecorator : Decorator
 		EditorUtility.SetDirty(this);
 		AssetDatabase.SaveAssets();
 
-		phases.Add (phase);
+		_phases.Add (phase);
 	}
 
 	public void RemovePhase(SPPhase phase)
 	{
-		phases.Remove (phase);
+		_phases.Remove (phase);
 		DestroyImmediate (phase, true);
 	}
 #endif

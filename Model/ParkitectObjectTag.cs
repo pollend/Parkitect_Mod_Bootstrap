@@ -2,7 +2,7 @@
 
 public class ParkitectObjectTag : System.Attribute
 {
-	public string Name { get; }
+	public string Name { get; set; }
 
 	public ParkitectObjectTag()
 	{

@@ -21,14 +21,14 @@ public class SPFromToRot : SPRideAnimationEvent
 #if UNITY_EDITOR
 	public override void RenderInspectorGUI(SPMotor[] motors)
 	{
-		if (rotator) {
-			ColorIdentifier = rotator.ColorIdentifier;
+		if (Rotator) {
+			ColorIdentifier = Rotator.ColorIdentifier;
 		}
 		foreach (SPRotateBetween R in motors.OfType<SPRotateBetween>().ToList()) {
-			if (R == rotator)
+			if (R == Rotator)
 				GUI.color = Color.red;
 			if (GUILayout.Button (R.Identifier)) {
-				rotator = R;
+				Rotator = R;
 			}
 			GUI.color = Color.white;
 		}

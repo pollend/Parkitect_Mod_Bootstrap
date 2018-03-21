@@ -27,7 +27,7 @@ public override void RenderInspectorGui (ParkitectObj parkitectObj)
 	Intensity = EditorGUILayout.Slider("Intensity (" + getRatingCategory(Intensity) + ")", Intensity, 0, 100);
 	Nausea = EditorGUILayout.Slider("Nausea (" + getRatingCategory(Nausea) + ")", Nausea, 0, 100);
 	GUILayout.Space(10);
-	closedAngleRetraints = EditorGUILayout.Vector3Field("Closed Restraints Angle", closedAngleRetraints);
+	ClosedAngleRetraints = EditorGUILayout.Vector3Field("Closed Restraints Angle", ClosedAngleRetraints);
 
 	GUILayout.Space(10);
 	GUI.color = Color.white;
