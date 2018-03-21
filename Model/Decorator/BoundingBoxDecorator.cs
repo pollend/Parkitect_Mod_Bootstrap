@@ -185,8 +185,9 @@ public class BoundingBoxDecorator : Decorator
 	public override Dictionary<string,object> Serialize (ParkitectObj parkitectObj)
 	{
 		List<object> boxes = new List<object> ();
-		for (int x = 0; x < boundingBoxes.Count; x++) {
-			boxes.Add (boundingBoxes[x].Serialize());
+		foreach (var b in boundingBoxes)
+		{
+			boxes.Add (b.Serialize());
 		}
 		return new Dictionary<string, object>
 		{

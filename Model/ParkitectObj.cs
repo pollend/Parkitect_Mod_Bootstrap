@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -225,6 +226,38 @@ public class ParkitectObj : ScriptableObject
 	public T DecoratorByInstance<T>() where T : Decorator
 	{
 		return (T) decorators.SingleOrDefault(x => x.GetType() == typeof(T));
+	}
+
+	public static Type FindByParkitectObjectByTag(String tag)
+	{
+		IEnumerable<Assembly> scriptAssemblies = AppDomain.CurrentDomain.GetAssemblies ().Where (assembly => assembly.FullName.Contains ("Assembly"));
+		foreach (Assembly assembly in scriptAssemblies) 
+		{
+			foreach (Type type in assembly.GetTypes().Where(T => T.IsClass && T.IsSubclassOf(typeof(ParkitectObj))))
+			{
+				object[] nodeAttributes = type.GetCustomAttributes(typeof(ParkitectObjectTag), false);                    
+				ParkitectObjectTag attr = nodeAttributes[0] as ParkitectObjectTag;
+				if (attr != null) {
+					if (attr.Name.Equals(tag))
+					{
+						return type;
+					}
+				}
+			}
+		}
+
+		return null;
+	}
+
+	public static String GetTagFromParkitectObject(Type type)
+	{
+		object[] nodeAttributes = type.GetCustomAttributes(typeof(ParkitectObjectTag), false);
+		ParkitectObjectTag attr = nodeAttributes[0] as ParkitectObjectTag;
+		if (attr != null)
+		{
+			return attr.Name;
+		}
+		return null;
 	}
 
 #if (PARKITECT)

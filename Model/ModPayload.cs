@@ -15,46 +15,47 @@ public class ModPayload : ScriptableSingleton<ModPayload>
 	public List<ParkitectObj> ParkitectObjs = new List<ParkitectObj>();
 
 	[SerializeField] 
-	public ParkitectObj selectedParkitectObject;
+	public ParkitectObj SelectedParkitectObject;
 
 	[SerializeField]
-	public string modName;
+	public string ModName;
 	[SerializeField]
-	public string description;
+	public string Description;
 
 	public Dictionary<String,Object> Serialize()
 	{
 		Dictionary<String,Object> payload = new Dictionary<string, object>();
 		
-		Dictionary<String,Object> items = new Dictionary<string, object>();
-		for (int i = 0; i < ParkitectObjs.Count; i++) {
-			items.Add (ParkitectObjs [i].GetType ().ToString (), ParkitectObjs [i].Serialize ());
+		List<Dictionary<string, object>> items = new List<Dictionary<string, object>>();
+		foreach (var t in ParkitectObjs)
+		{
+			Dictionary<string, object> e = t.Serialize();
+			e.Add("tag", ParkitectObj.GetTagFromParkitectObject(t.GetType()));
+			items.Add(e);
 		}
-		
 		payload.Add("ParkitectObjects",items);
-		payload.Add("ModName",modName);
-		payload.Add("Description",description);
+		payload.Add("ModName",ModName);
+		payload.Add("Description",Description);
 		return payload;
 	}
 
 	public void Deserialize(Dictionary<String,object> entries)
 	{
-		ParkitectObjectType type = new ParkitectObjectType();
 
-		foreach (var e in (Dictionary<String, object>) entries["ParkitectObjects"])
+		foreach (var e in (List<Dictionary<String, object>>) entries["ParkitectObjects"])
 		{
-			ParkitectObj o = (ParkitectObj) Activator.CreateInstance(type.GetType(e.Key));
-			o.DeSerialize((Dictionary<String, object>) e.Value);
+			ParkitectObj o = (ParkitectObj) Activator.CreateInstance(ParkitectObj.FindByParkitectObjectByTag((string) e["tag"]));
+			o.DeSerialize(e);
 			ParkitectObjs.Add(o);
 		}
-		
 
 		if(entries.ContainsKey("ModName"))
-			modName = (string) entries["ModName"];
+			ModName = (string) entries["ModName"];
 		if(entries.ContainsKey("Description"))
-			description = (string)entries["Description"];
+			Description = (string)entries["Description"];
 	}
 
+	
 
 	public void onEnabled()
 	{

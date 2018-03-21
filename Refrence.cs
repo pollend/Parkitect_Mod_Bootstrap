@@ -1,13 +1,12 @@
 ﻿using System;
 using UnityEngine;
-using System.Collections.Generic;
 
 public class Refrence : MonoBehaviour
 {
 	[SerializeField]
 	private string refrence;
 
-	public string getRefrence()
+	public string GetRefrence()
 	{
 		return refrence;
 	}
@@ -16,13 +15,13 @@ public class Refrence : MonoBehaviour
 	{
 		get
 		{
-			if (refrence == null || refrence == "")
-				this.refrence = System.Guid.NewGuid().ToString();
+			if (string.IsNullOrEmpty(refrence))
+				refrence = Guid.NewGuid().ToString();
 			return refrence;
 		}
 	}
 		
-	public static Transform findTransformByKey(Transform root, String key)
+	public static Transform FindTransformByKey(Transform root, String key)
 	{
 
 		for (int i = 0; i < root.childCount; i++)
@@ -35,7 +34,7 @@ public class Refrence : MonoBehaviour
 				if (refrence.Key == key)
 					return temp;
 			}
-			Transform result = findTransformByKey(temp, key);
+			Transform result = FindTransformByKey(temp, key);
 			if (result != null)
 				return result;
 		}

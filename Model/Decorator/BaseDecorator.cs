@@ -14,14 +14,14 @@ public class BaseDecorator : Decorator
 		public string InGameName;
 
 		[SerializeField]
-		public float price;
+		public float Price;
 
 #if UNITY_EDITOR
 
     public override void RenderInspectorGui (ParkitectObj parkitectObj)
 	{
 		InGameName = EditorGUILayout.TextField("In Game name: ", InGameName);
-		price = EditorGUILayout.FloatField("Price: ", price);
+		Price = EditorGUILayout.FloatField("Price: ", Price);
         base.RenderInspectorGui (parkitectObj);
 	}
 #endif
@@ -31,7 +31,7 @@ public class BaseDecorator : Decorator
 		return new Dictionary<string, object>
 		{
 			{"InGameName",InGameName},
-			{"Price",price}
+			{"Price",Price}
 		};
 	}
 
@@ -40,7 +40,7 @@ public class BaseDecorator : Decorator
 		if (elements.ContainsKey("InGameName") )
 			InGameName = (string) elements["InGameName"];
 		if (elements.ContainsKey ("Price") )
-			price = (float)(double)elements["Price"];
+			Price = (float)(double)elements["Price"];
 		
 		base.Deserialize (elements);
 	}

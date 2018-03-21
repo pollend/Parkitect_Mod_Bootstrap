@@ -1,11 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
-
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-
-using System.Collections.Generic;
 
 [Serializable]
 public class ColorDecorator : Decorator
@@ -16,7 +14,7 @@ public class ColorDecorator : Decorator
 
 	public ColorDecorator()
 	{
-
+		
 	}
 
 #if UNITY_EDITOR
@@ -33,7 +31,7 @@ public class ColorDecorator : Decorator
 				colorCount = Mathf.RoundToInt(EditorGUILayout.Slider("Color Count: ", colorCount, 1, 4));
 				for (int x = 0; x < colorCount; x++)
 				{
-					colors[x] = EditorGUILayout.ColorField("Color " + x, this.colors[x]);
+					colors[x] = EditorGUILayout.ColorField("Color " + x, colors[x]);
 
 				}
 			}

@@ -47,7 +47,7 @@ public class RefrencedTransform
 		if (this.root != root || cachedSceneRefrence == null)
 		{
 			this.root = root;
-			cachedSceneRefrence = Refrence.findTransformByKey(root, key);
+			cachedSceneRefrence = Refrence.FindTransformByKey(root, key);
 		}
 		return cachedSceneRefrence;
 	}
@@ -56,7 +56,7 @@ public class RefrencedTransform
 	{
 		if (this.root != null)
 		{
-			this.prefabTransform = Refrence.findTransformByKey(root, key);
+			this.prefabTransform = Refrence.FindTransformByKey(root, key);
 		}
 	}
 
@@ -86,7 +86,7 @@ public class RefrencedTransform
 		Dictionary<string,object> elements = new Dictionary<string,object>();
 		if(root != null)
 		{
-			Transform current = Refrence.findTransformByKey(root, key);
+			Transform current = Refrence.FindTransformByKey(root, key);
 			do
 			{
 				elements.Add(current.name,current.GetSiblingIndex());

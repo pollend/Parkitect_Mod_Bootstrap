@@ -1,8 +1,8 @@
 ﻿
 #if UNITY_EDITOR
+using System.Collections.Generic;
 using UnityEditor;
 #endif
-
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,12 +17,17 @@ public class GridDecorator : Decorator
 	public float heightDelta;
 	public float gridSubdivision = 1;
 
+	public GridDecorator()
+	{
+		
+	}
+
 #if UNITY_EDITOR
 	public override void RenderInspectorGui (ParkitectObj parkitectObj)
 	{
 		
-		grid = EditorGUILayout.Toggle("GridSnap: ", this.grid);
-		snapCenter = EditorGUILayout.Toggle("SnapCenter: ", this.snapCenter);
+		grid = EditorGUILayout.Toggle("GridSnap: ", grid);
+		snapCenter = EditorGUILayout.Toggle("SnapCenter: ", snapCenter);
 		
 		heightDelta = Mathf.RoundToInt(EditorGUILayout.Slider("Height delta: ", heightDelta, 0.05f, 1) * 200f) / 200f;
 		gridSubdivision = Mathf.RoundToInt(EditorGUILayout.Slider("Grid subdivision: ", gridSubdivision, 1, 9));
