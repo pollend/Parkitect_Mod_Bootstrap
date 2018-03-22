@@ -5,41 +5,41 @@ using System.Linq;
 
 [Serializable]
 [ExecuteInEditMode]
-public class SPRideAnimation
+public class RideAnimation
 {
 
 	[SerializeField]
-	public List<SPMotor> Motors = new List<SPMotor>();
+	public List<Motor> Motors = new List<Motor>();
 
 	[SerializeField]
-	public List<SPPhase> Phases = new List<SPPhase>();
+	public List<Phase> Phases = new List<Phase>();
 
 	[SerializeField]
-	public SPPhase CurrentPhase;
+	public Phase CurrentPhase;
 	private int _phaseNum;
 
 	[SerializeField]
 	public bool Animating;
 	public void Animate(Transform root)
 	{
-		foreach (SPMotor m in Motors)
+		foreach (Motor m in Motors)
 		{
 			m.Enter(root);
 		}
 		if (Phases.Count <= 0)
 		{
 			Animating = false;
-			foreach (SPMotor m in Motors)
+			foreach (Motor m in Motors)
 			{
 				m.Reset(root);
 			}
-			foreach (SPMultipleRotations R in Motors.OfType<SPMultipleRotations>().ToList())
+			foreach (MultipleRotations R in Motors.OfType<MultipleRotations>().ToList())
 			{
 				R.Reset(root);
 			}
 			return;
 		}
-		foreach (SPMotor m in Motors)
+		foreach (Motor m in Motors)
 		{
 			m.Enter(root);
 		}
@@ -47,7 +47,7 @@ public class SPRideAnimation
 		Animating = true;
 		_phaseNum = 0;
 		CurrentPhase = Phases[_phaseNum];
-		CurrentPhase.running = true;
+		CurrentPhase.Running = true;
 		CurrentPhase.Enter();
 		CurrentPhase.Run(root);
 	}
@@ -55,36 +55,36 @@ public class SPRideAnimation
 	{
 
 		CurrentPhase.Exit();
-		CurrentPhase.running = false;
+		CurrentPhase.Running = false;
 		_phaseNum++;
 		if (Phases.Count > _phaseNum)
 		{
 			CurrentPhase = Phases[_phaseNum];
-			CurrentPhase.running = true;
+			CurrentPhase.Running = true;
 			CurrentPhase.Enter();
 			CurrentPhase.Run(root);
 			return;
 		}
 		Animating = false;
-		foreach (SPMotor m in Motors.OfType<SPRotator>().ToList())
+		foreach (Rotator m in Motors.OfType<Rotator>().ToList())
 		{
 			m.Enter(root);
 
 		}
-		foreach (SPRotator m in Motors.OfType<SPRotator>().ToList())
+		foreach (Rotator m in Motors.OfType<Rotator>().ToList())
 		{
 
 			m.Axis.FindSceneRefrence(root).localRotation = m.OriginalRotationValue;
 
 		}
-		foreach (SPRotateBetween m in Motors.OfType<SPRotateBetween>().ToList())
+		foreach (RotateBetween m in Motors.OfType<RotateBetween>().ToList())
 		{
-			Transform transform = m.axis.FindSceneRefrence(root);
+			Transform transform = m.Axis.FindSceneRefrence(root);
 			if (transform)
-				transform.localRotation = m.originalRotationValue;
+				transform.localRotation = m.OriginalRotationValue;
 
 		}
-		foreach (SPMover m in Motors.OfType<SPMover>().ToList())
+		foreach (Mover m in Motors.OfType<Mover>().ToList())
 		{
 			Transform transform = m.Axis.FindSceneRefrence(root);
 			if (transform != null)
@@ -99,7 +99,7 @@ public class SPRideAnimation
 		if (CurrentPhase != null)
 		{
 			CurrentPhase.Run(root);
-			if (!CurrentPhase.running)
+			if (!CurrentPhase.Running)
 			{
 				NextPhase(root);
 			}

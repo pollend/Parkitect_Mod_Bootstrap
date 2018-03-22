@@ -7,7 +7,8 @@ using UnityEngine;
 
 [Serializable]
 [ExecuteInEditMode]
-public class SPWait : SPRideAnimationEvent
+[RideAnimationEventTag("Wait")]
+public class Wait : RideAnimationEvent
 {
 	[SerializeField] public float Seconds;
 	private float _timeLimit;
@@ -16,7 +17,7 @@ public class SPWait : SPRideAnimationEvent
 		get { return "Wait"; }
 	}
 #if UNITY_EDITOR
-	public override void RenderInspectorGUI(SPMotor[] motors)
+	public override void RenderInspectorGUI(Motor[] motors)
 	{
 		Seconds = EditorGUILayout.FloatField("Seconds", Seconds);
 		if (IsPlaying)

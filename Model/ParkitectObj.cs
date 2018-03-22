@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
-using Object = UnityEngine.Object;
-
+using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -18,11 +17,6 @@ public class ParkitectObj : ScriptableObject
 	[SerializeField] private List<Decorator> decorators = new List<Decorator>();
 	[SerializeField] public GameObject Prefab;
 	[SerializeField] public string Key;
-
-	public float XSize;
-
-	[NonSerialized] 
-	public GameObject sceneRef;
 
 
 #if UNITY_EDITOR
@@ -69,7 +63,7 @@ public class ParkitectObj : ScriptableObject
 	}
 
 
-	public virtual GameObject SetGameObject(GameObject g)
+	public GameObject SetGameObject(GameObject g)
 	{
 		Transform gameRef = null;
 
@@ -100,6 +94,29 @@ public class ParkitectObj : ScriptableObject
 		EditorUtility.SetDirty(this);
 		return prefab;
 	}
+
+	public virtual void RenderSceneGui()
+	{
+		Type[] types = SupportedDecorators();
+		foreach (var type in types)
+		{
+			var decorator = GetDecorator(type, true);
+			if (decorator != null)
+				decorator.RenderSceneGui(this);
+		}
+	}
+
+	public virtual void RenderInspectorGui()
+	{
+		Type[] types = SupportedDecorators();
+		foreach (var type in types)
+		{
+			var decorator = GetDecorator(type, true);
+			if (decorator != null)
+				decorator.RenderInspectorGui(this);
+		}
+	}
+
 #endif
 
 	public void Load(ParkitectObj parkitectObj)
@@ -130,7 +147,11 @@ public class ParkitectObj : ScriptableObject
 			decorators[x].PrepareExport(this);
 		}
 	}
-
+	public virtual string[] getAssets()
+	{
+		return new string[]{};
+	}
+	
 	public String[] getAssetPaths()
 	{
 		List<String> paths = new List<string>();
@@ -138,6 +159,7 @@ public class ParkitectObj : ScriptableObject
 		{
 			paths.AddRange(decorators[x].getAssets());
 		}
+		paths.AddRange(getAssets());
 
 		return paths.ToArray();
 	}
@@ -145,13 +167,13 @@ public class ParkitectObj : ScriptableObject
 	public Decorator GetDecorator(Type t, bool createInstance)
 	{
 
-		for (int x = 0; x < decorators.Count; x++)
+		foreach (var t1 in decorators)
 		{
-			if (decorators[x] != null)
+			if (t1 != null)
 			{
-				if (decorators[x].GetType().Equals(t))
+				if (t1.GetType() == t)
 				{
-					return decorators[x];
+					return t1;
 				}
 			}
 		}
@@ -163,8 +185,8 @@ public class ParkitectObj : ScriptableObject
 			AssetDatabase.AddObjectToAsset(dec, this);
 			EditorUtility.SetDirty(dec);
 			AssetDatabase.SaveAssets();
-			if (!EditorSceneManager.GetActiveScene().isDirty)
-				EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+			if (!SceneManager.GetActiveScene().isDirty)
+				EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
 
 
 			decorators.Add(dec);
@@ -174,7 +196,7 @@ public class ParkitectObj : ScriptableObject
 		return null;
 	}
 
-	public void CleanUp()
+	public virtual void CleanUp()
 	{
 
 		for (int x = 0; x < decorators.Count; x++)
@@ -191,7 +213,7 @@ public class ParkitectObj : ScriptableObject
 
 #endif
 
-	public Dictionary<String, object> Serialize()
+	public virtual Dictionary<String, object> Serialize()
 	{
 		Dictionary<String, object> dictDecorators = new Dictionary<String, object>();
 		foreach (var decorator in decorators)
@@ -203,7 +225,7 @@ public class ParkitectObj : ScriptableObject
 		return result;
 	}
 
-	public void DeSerialize(Dictionary<string, object> element)
+	public virtual void DeSerialize(Dictionary<string, object> element)
 	{
 		if(element.ContainsKey("Key"))
 			Key = (string)element["Key"];
@@ -229,6 +251,8 @@ public class ParkitectObj : ScriptableObject
 			}
 		}
 	}
+	
+
 
 	public String GetObjectTag()
 	{
@@ -249,6 +273,7 @@ public class ParkitectObj : ScriptableObject
 			foreach (Type type in assembly.GetTypes().Where(T => T.IsClass && T.IsSubclassOf(typeof(ParkitectObj))))
 			{
 				object[] nodeAttributes = type.GetCustomAttributes(typeof(ParkitectObjectTag), false);                    
+				if (nodeAttributes.Length <= 0) continue;
 				ParkitectObjectTag attr = nodeAttributes[0] as ParkitectObjectTag;
 				if (attr != null) {
 					if (attr.Name.Equals(tag))
@@ -265,6 +290,7 @@ public class ParkitectObj : ScriptableObject
 	public static String GetTagFromParkitectObject(Type type)
 	{
 		object[] nodeAttributes = type.GetCustomAttributes(typeof(ParkitectObjectTag), false);
+		if (nodeAttributes.Length <= 0) return null;
 		ParkitectObjectTag attr = nodeAttributes[0] as ParkitectObjectTag;
 		if (attr != null)
 		{

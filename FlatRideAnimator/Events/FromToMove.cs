@@ -9,9 +9,10 @@ using System.Collections.Generic;
 
 [ExecuteInEditMode]
 [Serializable]
-public class SPFromToMove : SPRideAnimationEvent
+[RideAnimationEventTag("From-ToMove")]
+public class FromToMove : RideAnimationEvent
 {
-	public SPMover mover;
+	public Mover mover;
 
 	float lastTime;
 	public override string EventName {
@@ -21,12 +22,12 @@ public class SPFromToMove : SPRideAnimationEvent
 	}
 
 #if UNITY_EDITOR
-	public override void RenderInspectorGUI(SPMotor[] motors)
+	public override void RenderInspectorGUI(Motor[] motors)
 	{
 		if (mover) {
 			ColorIdentifier = mover.ColorIdentifier;
 		}
-		foreach (SPMover R in motors.OfType<SPMover>().ToList()) {
+		foreach (Mover R in motors.OfType<Mover>().ToList()) {
 			if (R == mover)
 				GUI.color = Color.red / 1.3f;
 			if (GUILayout.Button (R.Identifier)) {
@@ -62,7 +63,7 @@ public class SPFromToMove : SPRideAnimationEvent
 	public override void Deserialize (Dictionary<string,object> elements)
 	{
 		if (elements.ContainsKey ("mover") ) {
-			this.mover = new SPMover ();
+			this.mover = new Mover ();
 			mover.Deserialize ((Dictionary<string, object>) elements["mover"]);
 		}
 		base.Deserialize (elements);

@@ -20,6 +20,7 @@ public class Refrence : MonoBehaviour
 			return _refrence;
 		}
 	}
+	
 		
 	public static Transform FindTransformByKey(Transform root, String key)
 	{

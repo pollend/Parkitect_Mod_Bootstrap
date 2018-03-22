@@ -8,23 +8,24 @@ using UnityEngine;
 
 [ExecuteInEditMode]
 [Serializable]
-public class SPStopRotator : SPRideAnimationEvent
+[RideAnimationEventTag("StopRotator")]
+public class StopRotator : RideAnimationEvent
 {
-	public SPRotator rotator;
+	public Rotator rotator;
 	float lastTime;
 	public override string EventName
 	{
 		get { return "StopRotator"; }
 	}
 #if UNITY_EDITOR
-	public override void RenderInspectorGUI(SPMotor[] motors)
+	public override void RenderInspectorGUI(Motor[] motors)
 	{
 		if (rotator)
 		{
 			ColorIdentifier = rotator.ColorIdentifier;
 		}
 
-		foreach (SPRotator R in motors.OfType<SPRotator>().ToList())
+		foreach (Rotator R in motors.OfType<Rotator>().ToList())
 		{
 			if (R == rotator)
 				GUI.color = Color.red / 1.3f;
@@ -67,7 +68,7 @@ public class SPStopRotator : SPRideAnimationEvent
 	{
 		if (elements.ContainsKey("rotator"))
 		{
-			rotator = new SPRotator();
+			rotator = new Rotator();
 			rotator.Deserialize((Dictionary<string, object>) elements["rotator"]);
 		}
 

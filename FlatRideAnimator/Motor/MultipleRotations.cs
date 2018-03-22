@@ -1,5 +1,5 @@
-
-﻿#if UNITY_EDITOR
+﻿
+ #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
@@ -9,7 +9,8 @@ using System;
 
 [ExecuteInEditMode]
 [Serializable]
-public class SPMultipleRotations : SPMotor
+[MotorTag("MultiplyRotations")]
+public class MultipleRotations : Motor
 {
 	[SerializeField]
 	public RefrencedTransform MainAxis = new RefrencedTransform();
@@ -21,10 +22,10 @@ public class SPMultipleRotations : SPMotor
 
 	    Identifier = EditorGUILayout.TextField("Name ", Identifier);
 		MainAxis.SetSceneTransform((Transform)EditorGUILayout.ObjectField("MainAxis", MainAxis.FindSceneRefrence(root), typeof(Transform), true));
-	    Transform Axis = (Transform)EditorGUILayout.ObjectField("Add axis", null, typeof(Transform), true);
-		if (Axis) {
+	    Transform axis = (Transform)EditorGUILayout.ObjectField("Add axis", null, typeof(Transform), true);
+		if (axis) {
 			var refrenceTransform = new RefrencedTransform ();
-			refrenceTransform.SetSceneTransform (Axis);
+			refrenceTransform.SetSceneTransform (axis);
 			Axiss.Add (refrenceTransform);
 		}
 		if (Selection.objects.Length > 0) {
@@ -42,10 +43,10 @@ public class SPMultipleRotations : SPMotor
 				if (Event.current.button == 1) {
 					Axiss.Remove (T);
 					return;
-				} else {
-					Selection.objects = new GameObject[] { T.FindSceneRefrence (root).gameObject };
-					EditorGUIUtility.PingObject (T.FindSceneRefrence (root).gameObject);
 				}
+
+				Selection.objects = new GameObject[] { T.FindSceneRefrence (root).gameObject };
+				EditorGUIUtility.PingObject (T.FindSceneRefrence (root).gameObject);
 			}
 		}
 		base.InspectorGUI(root);

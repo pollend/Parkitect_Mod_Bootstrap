@@ -8,9 +8,10 @@ using System.Linq;
 
 [ExecuteInEditMode]
 [Serializable]
-public class SPStartRotator : SPRideAnimationEvent
+[RideAnimationEventTag("StartRotator")]
+public class StartRotator : RideAnimationEvent
 {
-	public SPRotator rotator;
+	public Rotator rotator;
 	float lastTime;
 	public override string EventName {
 		get {
@@ -19,12 +20,12 @@ public class SPStartRotator : SPRideAnimationEvent
 	}
 
 #if UNITY_EDITOR
-	public override void RenderInspectorGUI(SPMotor[] motors)
+	public override void RenderInspectorGUI(Motor[] motors)
 	{
 		if (rotator) {
 			ColorIdentifier = rotator.ColorIdentifier;
 		}
-		foreach (SPRotator R in motors.OfType<SPRotator>().ToList()) {
+		foreach (Rotator R in motors.OfType<Rotator>().ToList()) {
 			if (R == rotator)
 				GUI.color = Color.red / 1.3f;
 			if (GUILayout.Button (R.Identifier)) {
@@ -60,7 +61,7 @@ public class SPStartRotator : SPRideAnimationEvent
 	public override void Deserialize (Dictionary<string,object> elements)
 	{
 		if (elements.ContainsKey("rotator") ) {
-			this.rotator = new SPRotator ();
+			this.rotator = new Rotator ();
 			rotator.Deserialize ((Dictionary<string, object>) elements["rotator"]);
 		}
 

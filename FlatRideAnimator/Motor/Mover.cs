@@ -9,9 +9,9 @@ using UnityEngine;
 
 [ExecuteInEditMode]
 [Serializable]
-public class SPMover : SPMotor
+[MotorTag("Mover")]
+public class Mover : Motor
 {
-
 	private enum State
 	{
 		RUNNING,
@@ -159,6 +159,10 @@ public class SPMover : SPMotor
 		};
 	}
 
-
+	public override void Deserialize(Dictionary<string, object> elements)
+	{
+		
+		base.Deserialize(elements);
+	}
 }
 

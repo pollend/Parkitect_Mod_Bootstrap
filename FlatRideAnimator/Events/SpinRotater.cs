@@ -9,9 +9,10 @@ using UnityEngine;
 
 [ExecuteInEditMode]
 [Serializable]
-public class SPSpinRotater : SPRideAnimationEvent
+[RideAnimationEventTag("SpinRotator")]
+public class SpinRotater : RideAnimationEvent
 {
-	[SerializeField] public SPRotator rotator;
+	[SerializeField] public Rotator rotator;
 	[SerializeField] public bool spin;
 	[SerializeField] public float spins = 1;
 	float lastTime;
@@ -22,7 +23,7 @@ public class SPSpinRotater : SPRideAnimationEvent
 		get { return "SpinRotator"; }
 	}
 #if UNITY_EDITOR
-	public override void RenderInspectorGUI(SPMotor[] motors)
+	public override void RenderInspectorGUI(Motor[] motors)
 	{
 		if (rotator)
 		{
@@ -34,7 +35,7 @@ public class SPSpinRotater : SPRideAnimationEvent
 			EditorGUILayout.LabelField("Amount " + rotator.GetRotationsCount());
 		}
 
-		foreach (SPRotator R in motors.OfType<SPRotator>().ToList())
+		foreach (Rotator R in motors.OfType<Rotator>().ToList())
 		{
 			if (R == rotator)
 				GUI.color = Color.red / 1.3f;
@@ -83,7 +84,7 @@ public class SPSpinRotater : SPRideAnimationEvent
 	{
 		if (elements.ContainsKey("rotator"))
 		{
-			rotator = new SPRotator();
+			rotator = new Rotator();
 			rotator.Deserialize((Dictionary<string, object>) elements["rotator"]);
 		}
 

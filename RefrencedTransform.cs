@@ -1,21 +1,19 @@
 ﻿using System;
-using UnityEngine;
 using System.Collections.Generic;
-
+using UnityEngine;
 
 [Serializable]
 public class RefrencedTransform
 {
 	[SerializeField]
 	private string _key;
-
 	[SerializeField]
 	private Transform _prefabTransform;
-
-	[System.NonSerialized]
-	private Transform _cachedSceneRefrence;
-	[System.NonSerialized]
+	[NonSerialized]
 	private Transform _root;
+
+	private CachedTransform _cachedTransform;
+
 
 	public Transform PrefabTransform
 	{
@@ -42,30 +40,42 @@ public class RefrencedTransform
 
 	}
 
+	public CachedTransform GetCachedTransform(Transform root)
+	{
+		if(root == null)
+			return null;
+
+		CachedTransform transform = root.gameObject.GetComponent<CachedTransform>();
+		if (transform == null)
+			return root.gameObject.AddComponent<CachedTransform>();
+		return transform;
+	}
+
 	public Transform FindSceneRefrence(Transform root)
 	{
-		if (this._root != root || _cachedSceneRefrence == null)
+	
+		CachedTransform cache = GetCachedTransform(root);
+
+		if (!cache.ContainsKey(_key))
 		{
-			this._root = root;
-			_cachedSceneRefrence = Refrence.FindTransformByKey(root, _key);
+			cache.SetTransform(_key, Refrence.FindTransformByKey(root, _key));
 		}
-		return _cachedSceneRefrence;
+		return cache.GetCachedTransform(_key);
 	}
 
 	public void UpdatePrefabRefrence(Transform root)
 	{
-		if (this._root != null)
+		CachedTransform cache = GetCachedTransform(root);
+
+		if (_root != null)
 		{
-			this._prefabTransform = Refrence.FindTransformByKey(root, _key);
+			_prefabTransform = Refrence.FindTransformByKey(root, _key);
+			
+			cache.SetTransform(_key,_prefabTransform);
 		}
 	}
 
-	struct Pairs{
-		String element;
-		int index;
-	}
-
-	public Transform Deserialize(Transform root,Dictionary<string,object> element)
+	public Transform Deserialize(Transform root,List<object> element)
 	{
 		Transform current = null;
 		foreach(var e in element)
@@ -73,30 +83,34 @@ public class RefrencedTransform
 			if (current == null) {
 				current = root;
 			} else {
-				current = current.GetChild (Convert.ToInt32(e.Value));
+				current = current.GetChild (Convert.ToInt32(e));
 			}
 		}
 
+		Refrence refs = current.gameObject.AddComponent<Refrence>();
+		_key = refs.Key;
+		GetCachedTransform(root).SetTransform(_key,current);
+		
 		return current;
 
 	}
 
-	public Dictionary<string,object> Serialize (Transform root)
+	public List<int> Serialize (Transform root)
 	{
-		Dictionary<string,object> elements = new Dictionary<string,object>();
+		List<int> elements = new List<int>();
 		if(root != null)
 		{
 			Transform current = Refrence.FindTransformByKey(root, _key);
 			do
 			{
-				elements.Add(current.name,current.GetSiblingIndex());
+				elements.Add(current.GetSiblingIndex());
 				if(current == root)
 					break;
 				current = current.parent;
 			}
 			while(current != null);
 		}
-		//element.Reverse ();
+		elements.Reverse();
 		return elements;
 	}
 

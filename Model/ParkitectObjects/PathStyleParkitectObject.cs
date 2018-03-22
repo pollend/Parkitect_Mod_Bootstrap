@@ -1,20 +1,101 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+
+public enum PathType { Normal, Queue, Employee }
 
 [ParkitectObjectTag("Path")]
 [Serializable]
 public class PathStyleParkitectObject : ParkitectObj
 {
+    
+    public PathType PathType;
+    public Texture2D PathTexture;
+    public String PathTexturePath;
+    
     public override Type[] SupportedDecorators()
     {
         return new[]{
             typeof(BaseDecorator),
             typeof(CategoryDecorator),
-            typeof(PathDecorator),
             typeof(BoundingBoxDecorator)
         };
     }
+    
+    
+    public override Dictionary<string, object> Serialize()
+    {
+        Dictionary<string,object> elements = base.Serialize();
+        elements.Add("PathType", PathType);
+        elements.Add("texture", PathTexturePath);
+
+
+        return new Dictionary<string, object>
+        {
+            {"PathType", PathType},
+            {"texture", PathTexturePath}
+        };
+    }
+
+    public override void DeSerialize (Dictionary<string,object> elements)
+    {
+        if (elements.ContainsKey("PathType") )
+            PathType = (PathType)Enum.Parse (typeof(PathType), (string) elements["PathType"]);
+        if (elements.ContainsKey ("texture"))
+            PathTexturePath = (string) elements["texture"];
+        base.DeSerialize (elements);
+    }
+    
+#if UNITY_EDITOR
+    public override void RenderInspectorGui ()
+    {
+        
+        base.RenderInspectorGui ();
+        
+        PathTexture = (Texture2D)EditorGUILayout.ObjectField("Texture",PathTexture, typeof(Texture2D), true);
+        PathTexturePath = AssetDatabase.GetAssetPath(PathTexture);
+        if(GUILayout.Button("Create") && PathTexture)
+        {
+            PathTexture.alphaIsTransparency = true;
+            PathTexture.wrapMode = TextureWrapMode.Repeat;
+            PathTexture.filterMode = FilterMode.Point;
+
+            AssetDatabase.DeleteAsset("Assets/Materials/Paths/" + Key + ".mat");
+            Prefab.AddComponent<MeshRenderer>();
+            MeshRenderer MR = Prefab.GetComponent<MeshRenderer>();
+
+            //Check Folder for the mat
+            if (!AssetDatabase.IsValidFolder("Assets/Materials"))
+                AssetDatabase.CreateFolder("Assets", "Materials");
+            if (!AssetDatabase.IsValidFolder("Assets/Materials/Paths"))
+                AssetDatabase.CreateFolder("Assets/Materials", "Paths");
+            Material material = new Material(Shader.Find("Transparent/Diffuse"));
+            material.mainTexture = PathTexture;
+            AssetDatabase.CreateAsset(material, "Assets/Materials/Paths/" + Key + ".mat");
+            MR.material = material;
+
+            Prefab.AddComponent<MeshFilter>();
+            MeshFilter MF = Prefab.GetComponent<MeshFilter>();
+            GameObject GO = GameObject.CreatePrimitive(PrimitiveType.Quad);
+            MF.mesh = GO.GetComponent<MeshFilter>().sharedMesh;
+            DestroyImmediate(GO);
+            Prefab.transform.eulerAngles = new Vector3(90,0,0);
+        }
+
+    }
+
+    public override string[] getAssets()
+    {
+        return new[]{AssetDatabase.GetAssetPath(PathTexture)};
+    }
+    
+#endif
+    
+    
 #if (PARKITECT)
     private PathStyle _pathStyle;
     public override void BindToParkitect(GameObject hider, AssetBundle bundle)

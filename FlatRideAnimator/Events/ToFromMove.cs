@@ -1,36 +1,36 @@
 ﻿#if UNITY_EDITOR
 using UnityEditor;
 #endif
-
+using System.Collections.Generic;
 using System;
 using UnityEngine;
 using System.Linq;
-using System.Collections.Generic;
-
 
 [ExecuteInEditMode]
 [Serializable]
-public class SPToFromRot : SPRideAnimationEvent
+[RideAnimationEventTag("To-FromMove")]
+public class ToFromMove : RideAnimationEvent
 {
-	public SPRotateBetween Rotator;
+	public Mover Mover;
 
 	private float _lastTime;
 	public override string EventName {
 		get {
-			return "To-From Rot";
+			return "To-From Move";
 		}
 	}
+
 #if UNITY_EDITOR
-	public override void RenderInspectorGUI(SPMotor[] motors)
+	public override void RenderInspectorGUI(Motor[] motors)
 	{
-		if (Rotator) {
-			ColorIdentifier = Rotator.ColorIdentifier;
+		if (Mover) {
+			ColorIdentifier = Mover.ColorIdentifier;
 		}
-		foreach (SPRotateBetween R in motors.OfType<SPRotateBetween>().ToList()) {
-			if (R == Rotator)
-				GUI.color = Color.red;
-			if (GUILayout.Button (R.Identifier)) {
-				Rotator = R;
+		foreach (Mover r in motors.OfType<Mover>().ToList()) {
+			if (r == Mover)
+				GUI.color = Color.red / 1.3f;
+			if (GUILayout.Button (r.Identifier)) {
+				Mover = r;
 			}
 			GUI.color = Color.white;
 		}
@@ -42,15 +42,15 @@ public class SPToFromRot : SPRideAnimationEvent
 	{
 		_lastTime = Time.realtimeSinceStartup;
 
-		Rotator.startToFrom ();
+		Mover.StartToFrom ();
 		base.Enter ();
 	}
 	public override void Run(Transform root)
 	{
-		if (Rotator) {
-			Rotator.tick (Time.realtimeSinceStartup - _lastTime, root);
+		if (Mover) {
+			Mover.Tick (Time.realtimeSinceStartup - _lastTime, root);
 			_lastTime = Time.realtimeSinceStartup;
-			if (Rotator.isStopped ()) {
+			if (Mover.ReachedTarget ()) {
 				Done = true;
 			}
 			base.Run (root);
@@ -59,20 +59,20 @@ public class SPToFromRot : SPRideAnimationEvent
 	public override void Deserialize (Dictionary<string,object> elements)
 	{
 		if (elements.ContainsKey("rotator") ) {
-			Rotator = new SPRotateBetween ();
-			Rotator.Deserialize ((Dictionary<string, object>) elements["rotator"]);
+			Mover = new Mover ();
+			Mover.Deserialize ((Dictionary<string, object>) elements["rotator"]);
 		}
-
+		
 		base.Deserialize (elements);
 	}
 	public override Dictionary<string,object> Serialize (Transform root)
 	{
-		if (Rotator == null)
+		if (Mover == null)
 			return null;
 		return new Dictionary<string, object>{
-			{"rotator", Rotator.Serialize (root)}
+			{"rotator", Mover.Serialize (root)}
 		};
 	}
 
-}
 
+}

@@ -9,7 +9,8 @@ using UnityEngine;
 
 [ExecuteInEditMode]
 [Serializable]
-public class SPRotator : SPMotor
+[MotorTag("Rotator")]
+public class Rotator : Motor
 {
 	public enum State
 	{

@@ -9,9 +9,10 @@ using UnityEngine;
 
 [ExecuteInEditMode]
 [Serializable]
-public class SPChangePendulum : SPRideAnimationEvent
+[RideAnimationEventTag("ChangePendulum")]
+public class ChangePendulum : RideAnimationEvent
 {
-	[SerializeField] public SPPendulumRotator rotator;
+	[SerializeField] public PendulumRotator rotator;
 	public float friction = 20f;
 	public bool pendulum;
 
@@ -32,7 +33,7 @@ public class SPChangePendulum : SPRideAnimationEvent
 	}
 
 #if UNITY_EDITOR
-	public override void RenderInspectorGUI(SPMotor[] motors)
+	public override void RenderInspectorGUI(Motor[] motors)
 	{
 
 		if (rotator)
@@ -42,7 +43,7 @@ public class SPChangePendulum : SPRideAnimationEvent
 			pendulum = EditorGUILayout.Toggle("Pendulum", pendulum);
 		}
 
-		foreach (SPPendulumRotator R in motors.OfType<SPPendulumRotator>().ToList())
+		foreach (PendulumRotator R in motors.OfType<PendulumRotator>().ToList())
 		{
 			if (R == rotator)
 				GUI.color = Color.red / 1.3f;
@@ -61,8 +62,8 @@ public class SPChangePendulum : SPRideAnimationEvent
 
 	public override void Enter()
 	{
-		rotator.setActAsPendulum(pendulum);
-		rotator.angularFriction = friction;
+		rotator.SetActAsPendulum(pendulum);
+		rotator.AngularFriction = friction;
 		Done = true;
 	}
 
@@ -79,7 +80,7 @@ public class SPChangePendulum : SPRideAnimationEvent
 	{
 		if (elements.ContainsKey("rotator") )
 		{
-			rotator = new SPPendulumRotator();
+			rotator = new PendulumRotator();
 			rotator.Deserialize((Dictionary<string, object>) elements["rotator"]);
 		}
 

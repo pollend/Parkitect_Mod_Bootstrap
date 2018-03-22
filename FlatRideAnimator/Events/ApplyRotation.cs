@@ -8,10 +8,11 @@ using UnityEngine;
 
 [ExecuteInEditMode]
 [Serializable]
-public class SPApplyRotation : SPRideAnimationEvent
+[RideAnimationEventTag("ApplyRotations")]
+public class ApplyRotation : RideAnimationEvent
 {
 	[SerializeField]
-	public SPMultipleRotations rotator;
+	public MultipleRotations rotator;
 	float lastTime;
 
 
@@ -21,13 +22,13 @@ public class SPApplyRotation : SPRideAnimationEvent
 		}
 	}
 #if UNITY_EDITOR
-	public override void RenderInspectorGUI(SPMotor[] motors)
+	public override void RenderInspectorGUI(Motor[] motors)
 	{
 
 		if (rotator) {
 			ColorIdentifier = rotator.ColorIdentifier;
 		}
-		foreach (SPMultipleRotations R in motors.OfType<SPMultipleRotations>().ToList()) {
+		foreach (MultipleRotations R in motors.OfType<MultipleRotations>().ToList()) {
 			if (R == rotator)
 				GUI.color = Color.red / 1.3f;
 			if (GUILayout.Button (R.Identifier)) {
@@ -59,7 +60,7 @@ public class SPApplyRotation : SPRideAnimationEvent
 	public override void Deserialize (Dictionary<string,object> elements)
 	{
 		if (elements.ContainsKey("rotator")) {
-			rotator = new SPMultipleRotations ();
+			rotator = new MultipleRotations ();
 			rotator.Deserialize ((Dictionary<string, object>) elements["rotator"]);
 		}
 		base.Deserialize (elements);

@@ -13,8 +13,7 @@ namespace Parkitect_Mod_Bootstrap.Model.ParkitectObjects
         public override Type[] SupportedDecorators()
         {
             return new[] {
-                typeof(BaseDecorator),
-                typeof(ShopDecorator)
+                typeof(BaseDecorator)
             };
         }
 #if (PARKITECT)
