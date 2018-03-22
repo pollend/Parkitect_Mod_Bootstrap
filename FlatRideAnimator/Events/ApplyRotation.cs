@@ -12,8 +12,8 @@ using UnityEngine;
 public class ApplyRotation : RideAnimationEvent
 {
 	[SerializeField]
-	public MultipleRotations rotator;
-	float lastTime;
+	public MultipleRotations Rotator;
+	private float _lastTime;
 
 
 	public override string EventName {
@@ -47,33 +47,31 @@ public class ApplyRotation : RideAnimationEvent
 	}
 	public override void Run(Transform root)
 	{
-		if (rotator)
+		if (Rotator)
 		{
-			rotator.Tick(Time.realtimeSinceStartup - lastTime, root);
-			lastTime = Time.realtimeSinceStartup;
+			Rotator.Tick(Time.realtimeSinceStartup - _lastTime, root);
+			_lastTime = Time.realtimeSinceStartup;
 			Done = true;
 			base.Run(root);
 		}
 
 	}
 
-	public override void Deserialize (Dictionary<string,object> elements)
+	public override void Deserialize(Dictionary<string, object> elements, Motor[] motors)
 	{
-		if (elements.ContainsKey("rotator")) {
-			rotator = new MultipleRotations ();
-			rotator.Deserialize ((Dictionary<string, object>) elements["rotator"]);
-		}
-		base.Deserialize (elements);
+		if (elements.ContainsKey("RotatorIndex"))
+			Rotator = (MultipleRotations) motors[Convert.ToInt32(elements["RotatorIndex"])];
+		base.Deserialize(elements, motors);
 	}
 
-	public override Dictionary<string, object> Serialize(Transform root)
+	public override Dictionary<string, object> Serialize(Transform root,Motor[] motors)
 	{
-		if (rotator == null)
+		if (Rotator == null)
 			return null;
 
 		return new Dictionary<string, object>
 		{
-			{"rotator", rotator.Serialize(root)}
+			{"RotatorIndex", Array.IndexOf(motors,Rotator)}
 		};
 	}
 

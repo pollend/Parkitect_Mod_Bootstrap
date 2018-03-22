@@ -12,9 +12,9 @@ using UnityEngine;
 [RideAnimationEventTag("ChangePendulum")]
 public class ChangePendulum : RideAnimationEvent
 {
-	[SerializeField] public PendulumRotator rotator;
-	public float friction = 20f;
-	public bool pendulum;
+	[SerializeField] public PendulumRotator Rotator;
+	public float Friction = 20f;
+	public bool Pendulum;
 
 #if UNITY_EDITOR
 	float lastTime;
@@ -62,47 +62,44 @@ public class ChangePendulum : RideAnimationEvent
 
 	public override void Enter()
 	{
-		rotator.SetActAsPendulum(pendulum);
-		rotator.AngularFriction = friction;
+		Rotator.SetActAsPendulum(Pendulum);
+		Rotator.AngularFriction = Friction;
 		Done = true;
 	}
 
 	public override void Run(Transform root)
 	{
-		if (rotator)
+		if (Rotator)
 		{
 
 		}
 
 	}
 
-	public override void Deserialize(Dictionary<string, object> elements)
+	public override void Deserialize(Dictionary<string, object> elements, Motor[] motors)
 	{
-		if (elements.ContainsKey("rotator") )
-		{
-			rotator = new PendulumRotator();
-			rotator.Deserialize((Dictionary<string, object>) elements["rotator"]);
-		}
+		if (elements.ContainsKey("RotatorIndex"))
+			Rotator = (PendulumRotator) motors[Convert.ToInt32(elements["RotatorIndex"])];
 
-		if (elements.ContainsKey("pendulum") )
-			pendulum = (bool) elements["pendulum"];
-		if (elements.ContainsKey("friction") )
-			friction = Convert.ToSingle(elements["friction"]);
+		if (elements.ContainsKey("pendulum"))
+			Pendulum = (bool) elements["pendulum"];
+		if (elements.ContainsKey("friction"))
+			Friction = Convert.ToSingle(elements["friction"]);
 
-		base.Deserialize(elements);
+		base.Deserialize(elements, motors);
 	}
 
 
-	public override Dictionary<string, object> Serialize(Transform root)
+	public override Dictionary<string, object> Serialize(Transform root, Motor[] motors)
 	{
-		if (rotator == null)
+		if (Rotator == null)
 			return null;
 
 		return new Dictionary<string, object>
 		{
-			{"rotator", rotator.Serialize(root)},
-			{"pendulum", pendulum},
-			{"friction", friction}
+			{"RotatorIndex", Array.IndexOf(motors, Rotator)},
+			{"pendulum", Pendulum},
+			{"friction", Friction}
 		};
 	}
 }

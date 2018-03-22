@@ -56,21 +56,19 @@ public class ToFromMove : RideAnimationEvent
 			base.Run (root);
 		}
 	}
-	public override void Deserialize (Dictionary<string,object> elements)
+	public override void Deserialize (Dictionary<string,object> elements, Motor[] motors)
 	{
-		if (elements.ContainsKey("rotator") ) {
-			Mover = new Mover ();
-			Mover.Deserialize ((Dictionary<string, object>) elements["rotator"]);
-		}
+		if (elements.ContainsKey("MoverIndex"))
+			Mover =  (Mover) motors[Convert.ToInt32(elements["MoverIndex"])];
 		
-		base.Deserialize (elements);
+		base.Deserialize (elements,motors);
 	}
-	public override Dictionary<string,object> Serialize (Transform root)
+	public override Dictionary<string,object> Serialize (Transform root, Motor[] motors)
 	{
 		if (Mover == null)
 			return null;
 		return new Dictionary<string, object>{
-			{"rotator", Mover.Serialize (root)}
+			{"MoverIndex",Array.IndexOf(motors, Mover)}
 		};
 	}
 

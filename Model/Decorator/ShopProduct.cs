@@ -335,7 +335,7 @@ public class ShopProduct : ScriptableObject
 	}
 
 #if PARKITECT
-	public Product Decorate(GameObject go, GameObject hider, ParkitectObj parkitectObj,AssetBundle assetBundle)
+	public Product Decorate(GameObject go, GameObject hider,AssetBundle assetBundle)
 	{
 		GameObject prod;
 		if (String.IsNullOrEmpty(Key))
@@ -498,10 +498,10 @@ public class ShopProduct : ScriptableObject
 			resource.getResourceSettings().percentage = 1f;
 
 			List<ConsumableEffect> consumableEffects = new List<ConsumableEffect>();
-			foreach (var t1 in t.effects)
+			foreach (var t1 in t.Effects)
 			{
 				var consumableEffect = new ConsumableEffect();
-				consumableEffect.amount = t1.amount;
+				consumableEffect.amount = t1.Amount;
 				switch (t1.Type)
 				{
 					case EffectTypes.HUNGER:
@@ -549,12 +549,12 @@ public class ShopIngredient
 	[SerializeField] public float Price = 1;
 	[SerializeField] public float Amount = 1;
 	[SerializeField] public bool Tweakable = true;
-	[SerializeField] public List<Effect> effects = new List<Effect>();
+	[SerializeField] public List<Effect> Effects = new List<Effect>();
 
-	public Dictionary<string,object> Serialize()
+	public Dictionary<string, object> Serialize()
 	{
 		List<object> eff = new List<object>();
-		foreach (var t in effects)
+		foreach (var t in Effects)
 		{
 			eff.Add(t.Serialize());
 		}
@@ -569,11 +569,11 @@ public class ShopIngredient
 		};
 	}
 
-	public void DeSerialize(Dictionary<string,object> element)
+	public void DeSerialize(Dictionary<string, object> element)
 	{
 		if (element.ContainsKey("Name"))
 			Name = (string) element["Name"];
-		if (element.ContainsKey("Price") )
+		if (element.ContainsKey("Price"))
 			Price = Convert.ToSingle(element["Price"]);
 		if (element.ContainsKey("Amount"))
 			Amount = Convert.ToInt32(element["Amount"]);
@@ -581,11 +581,11 @@ public class ShopIngredient
 			Tweakable = (bool) element["Tweakable"];
 		if (element.ContainsKey("Effects"))
 		{
-			foreach (var eff in (List<object>)element["Effects"])
+			foreach (var eff in (List<object>) element["Effects"])
 			{
 				Effect effect = new Effect();
-				effect.DeSerialize(eff as Dictionary<string,object>);
-				effects.Add(effect);
+				effect.DeSerialize(eff as Dictionary<string, object>);
+				Effects.Add(effect);
 			}
 		}
 	}
@@ -598,14 +598,14 @@ public class Effect
 	[SerializeField]
 	public EffectTypes Type = EffectTypes.HUNGER;
 	[SerializeField]
-	public float amount;
+	public float Amount;
 
 	public Dictionary<string, object> Serialize()
 	{
 		return new Dictionary<string, object>
 		{
 			{"Type", Type},
-			{"Amount", amount}
+			{"Amount", Amount}
 		};
 	}
 
@@ -614,6 +614,6 @@ public class Effect
 		if(elements.ContainsKey("Type"))
 			Type = (EffectTypes)Enum.Parse(typeof(EffectTypes), (string) elements["Type"]);
 		if(elements.ContainsKey("Amount"))
-			amount = Convert.ToSingle(elements["Amount"]);
+			Amount = Convert.ToSingle(elements["Amount"]);
 	}
 }

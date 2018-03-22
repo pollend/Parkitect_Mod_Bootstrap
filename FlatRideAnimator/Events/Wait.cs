@@ -41,25 +41,23 @@ public class Wait : RideAnimationEvent
 		{
 			Done = true;
 		}
+
 		base.Run(root);
 	}
 
-	public override void Deserialize(Dictionary<string, object> elements)
+	public override void Deserialize(Dictionary<string, object> elements, Motor[] motors)
 	{
+		if (elements.ContainsKey("Seconds"))
+			Seconds = Convert.ToInt32(elements["Seconds"]);
 
-		if (elements.ContainsKey("timeLimit"))
-		{
-			_timeLimit = Convert.ToInt32(elements["timeLimit"]);
-		}
-
-		base.Deserialize(elements);
+		base.Deserialize(elements, motors);
 	}
 
-	public override Dictionary<string, object> Serialize(Transform root)
+	public override Dictionary<string, object> Serialize(Transform root, Motor[] motors)
 	{
 		return new Dictionary<string, object>
 		{
-			{"timeLimit", _timeLimit}
+			{"Seconds", Seconds}
 		};
 	}
 }

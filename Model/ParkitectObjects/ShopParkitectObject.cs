@@ -123,13 +123,12 @@ public class ShopParkitectObject : ParkitectObj
 		List<Product> result = new List<Product>();
 		foreach (var p in Products)
 		{
-			result.Add(p.Decorate(go, hider, parkitectObj, bundle));
+			result.Add(p.Decorate(gameObject, hider, bundle));
 		}
 		customShop.products = result.ToArray();
 
 		baseDecorator.Decorate(gameObject, hider, this, bundle);
 
-		CustomShop customShop = gameObject.GetComponent<CustomShop>();
 		_shop = customShop;
 		_shop.name = Key;
 		AssetManager.Instance.registerObject(_shop);

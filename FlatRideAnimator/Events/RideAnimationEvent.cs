@@ -38,8 +38,8 @@ public class RideAnimationEvent : ScriptableObject
 	}
 
 
-	public virtual Dictionary<string,object> Serialize(Transform root){return null;}
-	public virtual void Deserialize(Dictionary<string,object> elements){}
+	public virtual Dictionary<string,object> Serialize(Transform root,Motor[] motors){return null;}
+	public virtual void Deserialize(Dictionary<string,object> elements,Motor[] motors){}
 
 
 	public static Type FindRideAnimationTypeByTag(String tag)

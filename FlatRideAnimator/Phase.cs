@@ -3,17 +3,17 @@ using UnityEditor;
 #endif
 
 using System;
-using UnityEngine;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using UnityEngine;
 
 [ExecuteInEditMode]
 [Serializable]
 public class Phase : ScriptableObject
 {
 	[SerializeField] private List<RideAnimationEvent> _events = new List<RideAnimationEvent>();
-	public bool Running = false;
-	private bool _done = false;
+	public bool Running;
+	private bool _done;
 
 	public ReadOnlyCollection<RideAnimationEvent> Events
 	{
@@ -54,7 +54,7 @@ public class Phase : ScriptableObject
 
 	public Phase ShallowCopy()
 	{
-		return (Phase) this.MemberwiseClone();
+		return (Phase) MemberwiseClone();
 	}
 
 	public void Run(Transform root)
@@ -91,25 +91,24 @@ public class Phase : ScriptableObject
 	}
 
 
-	public Dictionary<string, object> Serialize(Transform root)
+	public Dictionary<string, object> Serialize(Transform root,Motor[] motors)
 	{
-
 		List<Dictionary<string, object>> eventSerialize = new List<Dictionary<string, object>>();
 
 		foreach (var @event in _events)
 		{
-			Dictionary<string, object> o = @event.Serialize(root);
+			Dictionary<string, object> o = @event.Serialize(root,motors);
 			o.Add("@Tag", RideAnimationEvent.GetTagFromRideAnimationEvent(@event.GetType()));
 			eventSerialize.Add(o);
 		}
 
-		return new Dictionary<string, object>()
+		return new Dictionary<string, object>
 		{
 			{"events", eventSerialize}
 		};
 	}
 
-	public void Deserialize(Dictionary<string, object> elements)
+	public void Deserialize(Dictionary<string, object> elements,Motor[] motors)
 	{
 		
 		if (elements.ContainsKey("events"))
@@ -118,7 +117,7 @@ public class Phase : ScriptableObject
 			{
 				var e = @event as Dictionary<string, object>;
 				RideAnimationEvent rideAnimation =  (RideAnimationEvent) CreateInstance(RideAnimationEvent.FindRideAnimationTypeByTag((string) e["@Tag"]));
-				rideAnimation.Deserialize(elements);
+				rideAnimation.Deserialize(elements,motors);
 				_events.Add(rideAnimation);
 			}
 		}

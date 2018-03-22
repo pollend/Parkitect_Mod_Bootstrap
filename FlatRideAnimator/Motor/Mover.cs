@@ -161,7 +161,15 @@ public class Mover : Motor
 
 	public override void Deserialize(Dictionary<string, object> elements)
 	{
-		
+		if (elements.ContainsKey("transform"))
+			Axis.Deserialize(elements["transform"] as List<object>);
+		if (elements.ContainsKey("from"))
+			_fromPosition = Utility.DeseralizeVector3(elements["from"] as Dictionary<string,object>);
+		if (elements.ContainsKey("to"))
+			ToPosition = Utility.DeseralizeVector3(elements["to"] as Dictionary<string,object>);
+		if (elements.ContainsKey("duration"))
+			Duration = Convert.ToSingle(elements["duration"]);
+
 		base.Deserialize(elements);
 	}
 }

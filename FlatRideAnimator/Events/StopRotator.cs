@@ -11,8 +11,8 @@ using UnityEngine;
 [RideAnimationEventTag("StopRotator")]
 public class StopRotator : RideAnimationEvent
 {
-	public Rotator rotator;
-	float lastTime;
+	public Rotator Rotator;
+	private float _lastTime;
 	public override string EventName
 	{
 		get { return "StopRotator"; }
@@ -43,19 +43,19 @@ public class StopRotator : RideAnimationEvent
 
 	public override void Enter()
 	{
-		lastTime = Time.realtimeSinceStartup;
+		_lastTime = Time.realtimeSinceStartup;
 
-		rotator.Stop();
+		Rotator.Stop();
 		base.Enter();
 	}
 
 	public override void Run(Transform root)
 	{
-		if (rotator)
+		if (Rotator)
 		{
-			rotator.tick(Time.realtimeSinceStartup - lastTime, root);
-			lastTime = Time.realtimeSinceStartup;
-			if (rotator.IsStopped())
+			Rotator.tick(Time.realtimeSinceStartup - _lastTime, root);
+			_lastTime = Time.realtimeSinceStartup;
+			if (Rotator.IsStopped())
 			{
 				Done = true;
 			}
@@ -64,25 +64,21 @@ public class StopRotator : RideAnimationEvent
 		}
 	}
 
-	public override void Deserialize(Dictionary<string, object> elements)
+	public override void Deserialize(Dictionary<string, object> elements, Motor[] motors)
 	{
-		if (elements.ContainsKey("rotator"))
-		{
-			rotator = new Rotator();
-			rotator.Deserialize((Dictionary<string, object>) elements["rotator"]);
-		}
+		if (elements.ContainsKey("RotatorIndex"))
+			Rotator = (Rotator) motors[Convert.ToInt32(elements["RotatorIndex"])];
 
-		base.Deserialize(elements);
+		base.Deserialize(elements,motors);
 	}
 
-	public override Dictionary<string, object> Serialize(Transform root)
+	public override Dictionary<string, object> Serialize(Transform root, Motor[] motors)
 	{
-		if (rotator == null)
+		if (Rotator == null)
 			return null;
-
-		return new Dictionary<string, object>
-		{
-			{"rotator", rotator.Serialize(root)}
+		
+		return new Dictionary<string,object> {
+			{"RotatorIndex", Array.IndexOf(motors, Rotator)}
 		};
 	}
 }

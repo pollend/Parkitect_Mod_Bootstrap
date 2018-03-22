@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 #endif
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -71,18 +72,27 @@ public class PendulumRotator : Rotator
 
 	public override Dictionary<string,object> Serialize(Transform root)
 	{
-		return new Dictionary<string, object>
-		{
-			{"armLength", ArmLength},
-			{"gravity", Gravity},
-			{"angularFriction", AngularFriction},
-			{"pendulum", Pendulum},
-			{"axis", Axis.Serialize(root)},
-			{"minRotationSpeedPercent", MinRotationSpeedPercent},
-			{"rotationAxisIndex", RotationAxisIndex},
-			{"rotationAxis", Utility.SerializeVector(RotationAxis)},
-			{"maxSpeed", MaxSpeed},
-			{"accelerationSpeed", AccelerationSpeed}
-		};
+		Dictionary<string,object> result = base.Serialize(root);
+		result.Add("armLength",ArmLength);
+		result.Add("gravity",Gravity);
+		result.Add("angularFriction",AngularFriction);
+		result.Add("pendulum",Pendulum);
+
+		return result;
+	}
+
+	public override void Deserialize(Dictionary<string, object> elements)
+	{
+		if (elements.ContainsKey("armLength"))
+			ArmLength = Convert.ToSingle(elements["armLength"]);
+		if (elements.ContainsKey("gravity"))
+			Gravity = Convert.ToSingle(elements["gravity"]);
+		if (elements.ContainsKey("angularFriction"))
+			AngularFriction = Convert.ToSingle(elements["angularFriction"]);
+		if (elements.ContainsKey("pendulum"))
+			Pendulum = (bool) elements["pendulum"];
+
+
+		base.Deserialize(elements);
 	}
 }

@@ -269,4 +269,22 @@ public override void InspectorGUI(Transform root)
 
 		};
 	}
+
+	public override void Deserialize(Dictionary<string, object> elements)
+	{
+		if (elements.ContainsKey("axis"))
+			Axis.Deserialize(elements["axis"] as List<object>);
+		if (elements.ContainsKey("minRotationSpeedPercent"))
+			MinRotationSpeedPercent = Convert.ToSingle(elements["minRotationSpeedPercent"]);
+		if (elements.ContainsKey("rotationAxisIndex"))
+			RotationAxisIndex = Convert.ToInt32(elements["rotationAxisIndex"]);
+		if (elements.ContainsKey("rotationAxis"))
+			_rotationAxis = Utility.DeseralizeVector3(elements["rotationAxis"] as Dictionary<string,object>);
+		if (elements.ContainsKey("maxSpeed"))
+			MaxSpeed = Convert.ToSingle(elements["maxSpeed"]);
+		if (elements.ContainsKey("accelerationSpeed"))
+			AccelerationSpeed = Convert.ToSingle(elements["minRotationSpeedPercent"]);
+			
+		base.Deserialize(elements);
+	}
 }

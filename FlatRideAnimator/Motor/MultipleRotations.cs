@@ -83,13 +83,33 @@ public class MultipleRotations : Motor
 	public override Dictionary<string,object> Serialize (Transform root)
 	{
 		List<object> axiss = new List<object> ();
-		for (int i = 0; i < Axiss.Count; i++) {
-			axiss.Add (Axiss [i].Serialize (root));
+		foreach (var axis in Axiss)
+		{
+			axiss.Add (axis.Serialize (root));
 		}
 
 		return new Dictionary<string, object> {
 			{"mainTransform",MainAxis.Serialize(root)},
 			{"axisses",axiss}
 		};
+	}
+
+	public override void Deserialize(Dictionary<string, object> elements)
+	{
+		if (elements.ContainsKey("axisses"))
+		{
+			foreach (var axis in (List<object>)elements["axisses"])
+			{
+				RefrencedTransform refrence = new RefrencedTransform();
+				refrence.Deserialize(axis as List<object>);
+				Axiss.Add(refrence);
+			}
+		}
+		
+		if (elements.ContainsKey("mainTransform"))
+			MainAxis.Deserialize(elements["mainTransform"] as List<object>);
+
+		
+		base.Deserialize(elements);
 	}
 }

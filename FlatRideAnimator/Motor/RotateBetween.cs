@@ -128,4 +128,20 @@ public class RotateBetween : Motor
 			{"duration", Duration}
 		};
 	}
+	
+	public override void Deserialize(Dictionary<string, object> elements)
+	{
+		if (elements.ContainsKey("axis"))
+			Axis.Deserialize(elements["axis"] as List<object>);
+		if (elements.ContainsKey("fromRotation"))
+			FromRotation = Utility.DeSerializeQuaternion(elements["fromRotation"] as Dictionary<string,object>);
+		if (elements.ContainsKey("rotationAxis"))
+			RotationAxis = Utility.DeseralizeVector3(elements["rotationAxis"] as Dictionary<string,object>);
+		if (elements.ContainsKey("toRotation"))
+			ToRotation = Utility.DeSerializeQuaternion(elements["toRotation"] as Dictionary<string,object>);
+		if (elements.ContainsKey("duration"))
+			Duration = Convert.ToSingle(elements["duration"]);
+			
+		base.Deserialize(elements);
+	}
 }

@@ -102,7 +102,6 @@ public class PathStyleParkitectObject : ParkitectObj
     {
         BaseDecorator baseDecorator = DecoratorByInstance<BaseDecorator>();
         CategoryDecorator categoryDecorator = DecoratorByInstance<CategoryDecorator>();
-        PathDecorator pathDecorator = DecoratorByInstance<PathDecorator>();
         BoundingBoxDecorator boxDecorator = DecoratorByInstance<BoundingBoxDecorator>();
 
         PathStyle c = AssetManager.Instance.pathStyles.getPathStyle("concrete");
@@ -111,7 +110,7 @@ public class PathStyleParkitectObject : ParkitectObj
         ps.handRailGO = c.handRailGO;
         ps.handRailRampGO = c.handRailRampGO;
         Material mat = Instantiate(c.material);
-        mat.mainTexture = bundle.LoadAsset<Texture>(pathDecorator.PathTexturePath);
+        mat.mainTexture = bundle.LoadAsset<Texture>(PathTexturePath);
         ps.material = mat;
         ps.platformTileMapper = AssetManager.Instance.platformTileMapper;
         ps.identifier = Key;
@@ -122,7 +121,7 @@ public class PathStyleParkitectObject : ParkitectObj
 
         _pathStyle = ps;
 
-        switch (pathDecorator.PathType)
+        switch (PathType)
         {
             case PathType.Normal:
                 AssetManager.Instance.pathStyles.registerPathStyle(ps);
@@ -138,9 +137,8 @@ public class PathStyleParkitectObject : ParkitectObj
 
     public override void UnBindToParkitect(GameObject hider)
     {
-        PathDecorator pathDecorator = DecoratorByInstance<PathDecorator>();
-
-        switch (pathDecorator.PathType)
+        
+        switch (PathType)
         {
             case PathType.Normal:
                 AssetManager.Instance.pathStyles.unregisterPathStyle(_pathStyle);

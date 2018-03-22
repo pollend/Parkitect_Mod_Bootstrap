@@ -4,44 +4,43 @@
     <e p="$USER_HOME$/.Rider2018.1/system/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_ParkitectModBootstrap.2067723488.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p="FlatRideAnimator" t="Include">
+        <e p="CachedTransform.cs" t="Include" />
         <e p="Events" t="Include">
-          <e p="SPApplyRotation.cs" t="Include" />
-          <e p="SPChangePendulum.cs" t="Include" />
-          <e p="SPFromToMove.cs" t="Include" />
-          <e p="SPFromToRot.cs" t="Include" />
-          <e p="SPRideAnimationEvent.cs" t="Include" />
-          <e p="SPSpinRotater.cs" t="Include" />
-          <e p="SPStartRotator.cs" t="Include" />
-          <e p="SPStopRotator.cs" t="Include" />
-          <e p="SPToFromMove.cs" t="Include" />
-          <e p="SPToFromRot.cs" t="Include" />
-          <e p="SPWait.cs" t="Include" />
+          <e p="ApplyRotation.cs" t="Include" />
+          <e p="ChangePendulum.cs" t="Include" />
+          <e p="FromToMove.cs" t="Include" />
+          <e p="FromToRot.cs" t="Include" />
+          <e p="RideAnimationEvent.cs" t="Include" />
+          <e p="RideAnimationEventTag.cs" t="Include" />
+          <e p="SpinRotater.cs" t="Include" />
+          <e p="StartRotator.cs" t="Include" />
+          <e p="StopRotator.cs" t="Include" />
+          <e p="ToFromMove.cs" t="Include" />
+          <e p="ToFromRot.cs" t="Include" />
+          <e p="Wait.cs" t="Include" />
         </e>
         <e p="Motor" t="Include">
-          <e p="SPMotor.cs" t="Include" />
-          <e p="SPMover.cs" t="Include" />
-          <e p="SPMultipleRotations.cs" t="Include" />
-          <e p="SPPendulumRotator.cs" t="Include" />
-          <e p="SPRotateBetween.cs" t="Include" />
-          <e p="SPRotator.cs" t="Include" />
+          <e p="Motor.cs" t="Include" />
+          <e p="MotorTag.cs" t="Include" />
+          <e p="Mover.cs" t="Include" />
+          <e p="MultipleRotations.cs" t="Include" />
+          <e p="PendulumRotator.cs" t="Include" />
+          <e p="RotateBetween.cs" t="Include" />
+          <e p="Rotator.cs" t="Include" />
         </e>
-        <e p="SPPhase.cs" t="Include" />
-        <e p="SPRideAnimation.cs" t="Include" />
+        <e p="Phase.cs" t="Include" />
+        <e p="RideAnimation.cs" t="Include" />
       </e>
       <e p="Model" t="Include">
         <e p="Decorator" t="Include">
-          <e p="AnimatorDecorator.cs" t="Include" />
           <e p="BaseDecorator.cs" t="Include" />
           <e p="BoundingBoxDecorator.cs" t="Include" />
           <e p="CategoryDecorator.cs" t="Include" />
           <e p="ColorDecorator.cs" t="Include" />
           <e p="Decorator.cs" t="Include" />
-          <e p="FlatrideDecorator.cs" t="Include" />
           <e p="GridDecorator.cs" t="Include" />
-          <e p="PathDecorator.cs" t="Include" />
           <e p="ResizableDecorator.cs" t="Include" />
           <e p="SeatDecorator.cs" t="Include" />
-          <e p="ShopDecorator.cs" t="Include" />
           <e p="ShopProduct.cs" t="Include" />
           <e p="WaypointDecorator.cs" t="Include" />
         </e>

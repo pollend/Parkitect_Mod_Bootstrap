@@ -12,7 +12,7 @@ using System.Collections.Generic;
 [RideAnimationEventTag("From-ToMove")]
 public class FromToMove : RideAnimationEvent
 {
-	public Mover mover;
+	public Mover Mover;
 
 	float lastTime;
 	public override string EventName {
@@ -43,15 +43,15 @@ public class FromToMove : RideAnimationEvent
 	{
 		lastTime = Time.realtimeSinceStartup;
 
-		mover.startFromTo ();
+		Mover.startFromTo ();
 		base.Enter ();
 	}
 	public override void Run(Transform root)
 	{
-		if (mover) {
-			mover.Tick (Time.realtimeSinceStartup - lastTime, root);
+		if (Mover) {
+			Mover.Tick (Time.realtimeSinceStartup - lastTime, root);
 			lastTime = Time.realtimeSinceStartup;
-			if (mover.ReachedTarget ()) {
+			if (Mover.ReachedTarget ()) {
 				Done = true;
 			}
 			base.Run (root);
@@ -60,21 +60,20 @@ public class FromToMove : RideAnimationEvent
 	}
 
 
-	public override void Deserialize (Dictionary<string,object> elements)
+	public override void Deserialize (Dictionary<string,object> elements, Motor[] motors)
 	{
-		if (elements.ContainsKey ("mover") ) {
-			this.mover = new Mover ();
-			mover.Deserialize ((Dictionary<string, object>) elements["mover"]);
-		}
-		base.Deserialize (elements);
+		if (elements.ContainsKey("MoverIndex"))
+			Mover = (Mover) motors[Convert.ToInt32(elements["MoverIndex"])];
+		
+		base.Deserialize (elements,motors);
 	}
 
-	public override Dictionary<string,object> Serialize (Transform root)
+	public override Dictionary<string,object> Serialize (Transform root, Motor[] motors)
 	{
-		if (mover == null)
+		if (Mover == null)
 			return null;
 		return new Dictionary<string, object>(){
-			{"mover", mover.Serialize (root)}
+			{"MoverIndex", Array.IndexOf(motors,Mover)}
 		};
 	}
 }

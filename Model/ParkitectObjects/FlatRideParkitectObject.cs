@@ -5,8 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Rendering;
-
 
 [ParkitectObjectTag("FlatRide")]
 [Serializable]
@@ -25,13 +23,9 @@ public class FlatRideParkitectObject : ParkitectObj
 	[SerializeField] public Vector3 ClosedAngleRetraints;
 
 
-	public FlatRideParkitectObject()
-	{
-	}
-
 	public override Type[] SupportedDecorators()
 	{
-		return new Type[]
+		return new[]
 		{
 			typeof(BaseDecorator),
 			typeof(WaypointDecorator),
@@ -284,40 +278,41 @@ public class FlatRideParkitectObject : ParkitectObj
 	private CustomFlatRide _flatRide;
 	public override void BindToParkitect(GameObject hider, AssetBundle bundle)
 	{
-		BaseDecorator baseDecorator = this.DecoratorByInstance<BaseDecorator>();
-		WaypointDecorator waypointDecorator = this.DecoratorByInstance<WaypointDecorator>();
-		FlatrideDecorator flatrideDecorator = this.DecoratorByInstance<FlatrideDecorator>();
-		BoundingBoxDecorator boundingBoxDecorator = this.DecoratorByInstance<BoundingBoxDecorator>();
-		AnimatorDecorator animatorDecorator = this.DecoratorByInstance<AnimatorDecorator>();
-
+		BaseDecorator baseDecorator = DecoratorByInstance<BaseDecorator>();
+		WaypointDecorator waypointDecorator = DecoratorByInstance<WaypointDecorator>();
+		BoundingBoxDecorator boundingBoxDecorator = DecoratorByInstance<BoundingBoxDecorator>();
+		
 		GameObject gameObject = Instantiate(bundle.LoadAsset<GameObject>(Key));
-
 		waypointDecorator.Decorate(gameObject, hider, this, bundle);
-		flatrideDecorator.Decorate(gameObject, hider, this, bundle);
 
-
+	
 		CustomFlatRide flatride = gameObject.AddComponent<CustomFlatRide>();
+		baseDecorator.Decorate(gameObject,hider,this,bundle);
+
 		_flatRide = flatride;
 		_flatRide.name = Key;
-		flatride.xSize = flatrideDecorator.XSize;
-		flatride.zSize = flatrideDecorator.ZSize;
-		flatride.excitementRating = flatrideDecorator.Excitement;
-		flatride.intensityRating = flatrideDecorator.Intensity;
-		flatride.nauseaRating = flatrideDecorator.Nausea;
+		flatride.xSize = XSize;
+		flatride.zSize = ZSize;
+		flatride.excitementRating = Excitement;
+		flatride.intensityRating = Intensity;
+		flatride.nauseaRating = Nausea;
 
+		RestraintRotationController controller = gameObject.AddComponent<RestraintRotationController>();
+		controller.closedAngles = ClosedAngleRetraints;
 
 		//Setup Animation
-		flatride.motors = new List<SPMotor>(animatorDecorator.Motors);
-		flatride.phases = new List<SPPhase>(animatorDecorator.Phases);
+		flatride.motors = new List<Motor>(Motors);
+		flatride.phases = new List<Phase>(Phases);
 
 
 		//Basic FlatRide Settings
 		flatride.fenceStyle = AssetManager.Instance.rideFenceStyles.rideFenceStyles[0].identifier;
-		flatride.entranceGO = Extra.FlatRideEntrance(flatride.gameObject);
+		flatride.entranceGO = AssetManager.Instance.attractionEntranceGO;
 		flatride.exitGO = AssetManager.Instance.attractionExitGO;
 		flatride.categoryTag = "Attractions/Flat Ride";
 		flatride.defaultEntranceFee = 1f;
 		flatride.entranceExitBuilderGO = AssetManager.Instance.flatRideEntranceExitBuilderGO;
+		
 		AssetManager.Instance.registerObject(_flatRide);
 	}
 
@@ -351,13 +346,6 @@ public class FlatRideParkitectObject : ParkitectObj
 
 	public override void DeSerialize(Dictionary<string, object> elements)
 	{
-		foreach (var ele in (List<object>) elements["Phases"])
-		{
-			Phase phase = CreateInstance<Phase>();
-			phase.Deserialize(ele as Dictionary<string, object>);
-			Phases.Add(phase);
-		}
-
 		foreach (var ele in (List<object>) elements["Motors"])
 		{
 			Dictionary<string, object> serializedMotor = ele as Dictionary<string, object>;
@@ -365,6 +353,14 @@ public class FlatRideParkitectObject : ParkitectObj
 			motor.Deserialize(serializedMotor);
 			Motors.Add(motor);
 		}
+		
+		foreach (var ele in (List<object>) elements["Phases"])
+		{
+			Phase phase = CreateInstance<Phase>();
+			phase.Deserialize(ele as Dictionary<string, object>,Motors.ToArray());
+			Phases.Add(phase);
+		}
+
 
 		if (elements.ContainsKey("Excitement"))
 			Excitement = Convert.ToSingle(elements["Excitement"]);
@@ -376,17 +372,15 @@ public class FlatRideParkitectObject : ParkitectObj
 			XSize = Convert.ToInt32(elements["XSize"]);
 		if (elements.ContainsKey("ZSize"))
 			ZSize = Convert.ToInt32(elements["ZSize"]);
+		base.DeSerialize(elements);
+
+		
 	}
 
 
 	public override Dictionary<string, object> Serialize()
 	{
 		Dictionary<string, object> result = base.Serialize();
-		List<Dictionary<string, object>> serializedPhases = new List<Dictionary<string, object>>();
-		foreach (var phase in Phases)
-		{
-			serializedPhases.Add(phase.Serialize(Prefab.transform));
-		}
 
 		List<Dictionary<string, object>> serializedMotors = new List<Dictionary<string, object>>();
 		foreach (var motor in Motors)
@@ -394,6 +388,12 @@ public class FlatRideParkitectObject : ParkitectObj
 			Dictionary<string, object> serializedMotor = motor.Serialize(Prefab.transform);
 			serializedMotor.Add("@Tag", Motor.GetTagFromMotor(motor.GetType()));
 			serializedMotors.Add(serializedMotor);
+		}
+		
+		List<Dictionary<string, object>> serializedPhases = new List<Dictionary<string, object>>();
+		foreach (var phase in Phases)
+		{
+			serializedPhases.Add(phase.Serialize(Prefab.transform,Motors.ToArray()));
 		}
 
 

@@ -12,10 +12,10 @@ using UnityEngine;
 [RideAnimationEventTag("SpinRotator")]
 public class SpinRotater : RideAnimationEvent
 {
-	[SerializeField] public Rotator rotator;
-	[SerializeField] public bool spin;
-	[SerializeField] public float spins = 1;
-	float lastTime;
+	[SerializeField] public Rotator Rotator;
+	[SerializeField] public bool Spin;
+	[SerializeField] public float Spins = 1;
+	private float _lastTime;
 
 
 	public override string EventName
@@ -53,20 +53,20 @@ public class SpinRotater : RideAnimationEvent
 
 	public override void Enter()
 	{
-		lastTime = Time.realtimeSinceStartup;
-		rotator.ResetRotations();
+		_lastTime = Time.realtimeSinceStartup;
+		Rotator.ResetRotations();
 		base.Enter();
 	}
 
 	public override void Run(Transform root)
 	{
-		if (rotator)
+		if (Rotator)
 		{
-			rotator.tick(Time.realtimeSinceStartup - lastTime, root);
-			lastTime = Time.realtimeSinceStartup;
-			if (spin)
+			Rotator.tick(Time.realtimeSinceStartup - _lastTime, root);
+			_lastTime = Time.realtimeSinceStartup;
+			if (Spin)
 			{
-				if (rotator.GetRotationsCount() >= spins)
+				if (Rotator.GetRotationsCount() >= Spins)
 				{
 					Done = true;
 				}
@@ -80,37 +80,30 @@ public class SpinRotater : RideAnimationEvent
 		}
 	}
 
-	public override void Deserialize(Dictionary<string, object> elements)
+	public override void Deserialize(Dictionary<string, object> elements, Motor[] motors)
 	{
-		if (elements.ContainsKey("rotator"))
-		{
-			rotator = new Rotator();
-			rotator.Deserialize((Dictionary<string, object>) elements["rotator"]);
-		}
+		if (elements.ContainsKey("RotatorIndex"))
+			Rotator = (Rotator) motors[Convert.ToInt32(elements["RotatorIndex"])];
 
-		if (elements.ContainsKey("spin"))
-		{
-			spin = (bool) elements["spin"];
-		}
+		if (elements.ContainsKey("Spin"))
+			Spin = (bool) elements["Spin"];
 
-		if (elements.ContainsKey("spins"))
-		{
-			spins = Convert.ToInt32(elements["spins"]);
-		}
+		if (elements.ContainsKey("Spins"))
+			Spins = Convert.ToInt32(elements["Spins"]);
 
-		base.Deserialize(elements);
+		base.Deserialize(elements, motors);
 	}
 
-	public override Dictionary<string, object> Serialize(Transform root)
+	public override Dictionary<string, object> Serialize(Transform root, Motor[] motors)
 	{
-		if (rotator == null)
+		if (Rotator == null)
 			return null;
 
 		return new Dictionary<string, object>
 		{
-			{"rotator", rotator.Serialize(root)},
-			{"spin", spin},
-			{"spins", spins}
+			{"RotatorIndex", Array.IndexOf(motors, Rotator)},
+			{"Spin", Spin},
+			{"Spins", Spins}
 		};
 	}
 }

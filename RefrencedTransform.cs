@@ -12,6 +12,8 @@ public class RefrencedTransform
 	[NonSerialized]
 	private Transform _root;
 
+	[NonSerialized] private List<int> _index;
+
 	private CachedTransform _cachedTransform;
 
 
@@ -42,7 +44,27 @@ public class RefrencedTransform
 
 	public CachedTransform GetCachedTransform(Transform root)
 	{
-		if(root == null)
+		if (_key == null && _index != null)
+		{
+			Transform current = null;
+			foreach (var e in _index)
+			{
+				if (current == null)
+				{
+					current = root;
+				}
+				else
+				{
+					current = current.GetChild(e);
+				}
+			}
+			
+			Refrence refs = current.gameObject.AddComponent<Refrence>();
+			_key = refs.Key;
+			GetCachedTransform(root).SetTransform(_key,current);
+		}
+
+		if (root == null)
 			return null;
 
 		CachedTransform transform = root.gameObject.GetComponent<CachedTransform>();
@@ -75,24 +97,14 @@ public class RefrencedTransform
 		}
 	}
 
-	public Transform Deserialize(Transform root,List<object> element)
+	public void Deserialize(List<object> element)
 	{
-		Transform current = null;
+		_index = new List<int>();
+		
 		foreach(var e in element)
 		{
-			if (current == null) {
-				current = root;
-			} else {
-				current = current.GetChild (Convert.ToInt32(e));
-			}
+			_index.Add(Convert.ToInt32(e));
 		}
-
-		Refrence refs = current.gameObject.AddComponent<Refrence>();
-		_key = refs.Key;
-		GetCachedTransform(root).SetTransform(_key,current);
-		
-		return current;
-
 	}
 
 	public List<int> Serialize (Transform root)

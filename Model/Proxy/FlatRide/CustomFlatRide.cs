@@ -2,15 +2,16 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+
 #if PARKITECT
 
 public class CustomFlatRide : FlatRide
 {
-    public SPPhase currentPhase;
+    public Phase currentPhase;
     int phaseNum;
     public bool animating;
-    public List<SPPhase> phases = new List<SPPhase>();
-    public List<SPMotor> motors = new List<SPMotor>();
+    public List<Phase> phases = new List<Phase>();
+    public List<Motor> motors = new List<Motor>();
     private bool _show;
     private Rect _windowPosition = new Rect(20, 20, 350, 320);
     private Vector2 motorsScrollPos;
@@ -26,15 +27,15 @@ public class CustomFlatRide : FlatRide
 
     public override void onStartRide()
     {
-        foreach (SPMotor m in motors)
+        foreach (Motor m in motors)
         {
             m.Reset(transform);
         }
 
         base.onStartRide();
-        foreach (SPMotor m in motors)
+        foreach (Motor m in motors)
         {
-            m.Enter(this.transform);
+            m.Enter(transform);
         }
 
         if (phases.Count <= 0)
@@ -43,7 +44,7 @@ public class CustomFlatRide : FlatRide
             return;
         }
 
-        foreach (SPMotor m in motors)
+        foreach (Motor m in motors)
         {
             m.Enter(transform);
         }
@@ -51,7 +52,7 @@ public class CustomFlatRide : FlatRide
         animating = true;
         phaseNum = 0;
         currentPhase = phases[phaseNum];
-        currentPhase.running = true;
+        currentPhase.Running = true;
         currentPhase.Enter();
         currentPhase.Run(transform);
     }
@@ -61,7 +62,7 @@ public class CustomFlatRide : FlatRide
         if (currentPhase != null && animating)
         {
             currentPhase.Run(transform);
-            if (!currentPhase.running)
+            if (!currentPhase.Running)
             {
                 NextPhase();
             }
@@ -73,12 +74,12 @@ public class CustomFlatRide : FlatRide
     {
 
         currentPhase.Exit();
-        currentPhase.running = false;
+        currentPhase.Running = false;
         phaseNum++;
         if (phases.Count > phaseNum)
         {
             currentPhase = phases[phaseNum];
-            currentPhase.running = true;
+            currentPhase.Running = true;
             currentPhase.Enter();
             currentPhase.Run(transform);
             return;
