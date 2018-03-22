@@ -25,23 +25,23 @@ public class SpinRotater : RideAnimationEvent
 #if UNITY_EDITOR
 	public override void RenderInspectorGUI(Motor[] motors)
 	{
-		if (rotator)
+		if (Rotator)
 		{
-			ColorIdentifier = rotator.ColorIdentifier;
-			spin = EditorGUILayout.Toggle("amountOfSpins ", spin);
-			if (spin)
-				spins = EditorGUILayout.FloatField("spins ", spins);
+			ColorIdentifier = Rotator.ColorIdentifier;
+			Spin = EditorGUILayout.Toggle("amountOfSpins ", Spin);
+			if (Spin)
+				Spins = EditorGUILayout.FloatField("spins ", Spins);
 
-			EditorGUILayout.LabelField("Amount " + rotator.GetRotationsCount());
+			EditorGUILayout.LabelField("Amount " + Rotator.GetRotationsCount());
 		}
 
 		foreach (Rotator R in motors.OfType<Rotator>().ToList())
 		{
-			if (R == rotator)
+			if (R == Rotator)
 				GUI.color = Color.red / 1.3f;
 			if (GUILayout.Button(R.Identifier))
 			{
-				rotator = R;
+				Rotator = R;
 			}
 
 			GUI.color = Color.white;

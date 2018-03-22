@@ -25,14 +25,14 @@ public class ApplyRotation : RideAnimationEvent
 	public override void RenderInspectorGUI(Motor[] motors)
 	{
 
-		if (rotator) {
-			ColorIdentifier = rotator.ColorIdentifier;
+		if (Rotator) {
+			ColorIdentifier = Rotator.ColorIdentifier;
 		}
 		foreach (MultipleRotations R in motors.OfType<MultipleRotations>().ToList()) {
-			if (R == rotator)
+			if (R == Rotator)
 				GUI.color = Color.red / 1.3f;
 			if (GUILayout.Button (R.Identifier)) {
-				rotator = R;
+				Rotator = R;
 
 			}
 			GUI.color = Color.white;

@@ -36,20 +36,20 @@ public class ChangePendulum : RideAnimationEvent
 	public override void RenderInspectorGUI(Motor[] motors)
 	{
 
-		if (rotator)
+		if (Rotator)
 		{
-			ColorIdentifier = rotator.ColorIdentifier;
-			friction = EditorGUILayout.FloatField("Friction", friction);
-			pendulum = EditorGUILayout.Toggle("Pendulum", pendulum);
+			ColorIdentifier = Rotator.ColorIdentifier;
+			Friction = EditorGUILayout.FloatField("Friction", Friction);
+			Pendulum = EditorGUILayout.Toggle("Pendulum", Pendulum);
 		}
 
 		foreach (PendulumRotator R in motors.OfType<PendulumRotator>().ToList())
 		{
-			if (R == rotator)
+			if (R == Rotator)
 				GUI.color = Color.red / 1.3f;
 			if (GUILayout.Button(R.Identifier))
 			{
-				rotator = R;
+				Rotator = R;
 
 			}
 

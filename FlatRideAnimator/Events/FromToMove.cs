@@ -24,14 +24,14 @@ public class FromToMove : RideAnimationEvent
 #if UNITY_EDITOR
 	public override void RenderInspectorGUI(Motor[] motors)
 	{
-		if (mover) {
-			ColorIdentifier = mover.ColorIdentifier;
+		if (Mover) {
+			ColorIdentifier = Mover.ColorIdentifier;
 		}
 		foreach (Mover R in motors.OfType<Mover>().ToList()) {
-			if (R == mover)
+			if (R == Mover)
 				GUI.color = Color.red / 1.3f;
 			if (GUILayout.Button (R.Identifier)) {
-				mover = R;
+				Mover = R;
 			}
 			GUI.color = Color.white;
 		}

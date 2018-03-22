@@ -22,14 +22,14 @@ public class StartRotator : RideAnimationEvent
 #if UNITY_EDITOR
 	public override void RenderInspectorGUI(Motor[] motors)
 	{
-		if (rotator) {
-			ColorIdentifier = rotator.ColorIdentifier;
+		if (Rotator) {
+			ColorIdentifier = Rotator.ColorIdentifier;
 		}
 		foreach (Rotator R in motors.OfType<Rotator>().ToList()) {
-			if (R == rotator)
+			if (R == Rotator)
 				GUI.color = Color.red / 1.3f;
 			if (GUILayout.Button (R.Identifier)) {
-				rotator = R;
+				Rotator = R;
 			}
 			GUI.color = Color.white;
 		}

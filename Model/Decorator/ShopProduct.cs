@@ -179,29 +179,29 @@ public class ShopProduct : ScriptableObject
 			selected.Amount = EditorGUILayout.FloatField("Amount ", selected.Amount);
 			selected.Tweakable = EditorGUILayout.Toggle("Tweakable ", selected.Tweakable);
 
-			for (int i = 0; i < selected.effects.Count; i++)
+			for (int i = 0; i < selected.Effects.Count; i++)
 			{
 				Color gui = GUI.color;
 
-				if (GUILayout.Button("Effector " + selected.effects[i].Type, "ShurikenModuleTitle"))
+				if (GUILayout.Button("Effector " + selected.Effects[i].Type, "ShurikenModuleTitle"))
 				{
 
 					GUI.FocusControl("");
 					if (e.button == 1)
 					{
-						selected.effects.RemoveAt(i);
+						selected.Effects.RemoveAt(i);
 						return;
 					}
 				}
 
-				selected.effects[i].Type = (EffectTypes) EditorGUILayout.EnumPopup("Type ", selected.effects[i].Type);
-				selected.effects[i].amount = EditorGUILayout.Slider("Amount", selected.effects[i].amount, 1f, -1f);
+				selected.Effects[i].Type = (EffectTypes) EditorGUILayout.EnumPopup("Type ", selected.Effects[i].Type);
+				selected.Effects[i].Amount = EditorGUILayout.Slider("Amount", selected.Effects[i].Amount, 1f, -1f);
 				GUI.color = gui;
 			}
 
 			if (GUILayout.Button("Add Effect"))
 			{
-				selected.effects.Add(new Effect());
+				selected.Effects.Add(new Effect());
 			}
 
 		}
