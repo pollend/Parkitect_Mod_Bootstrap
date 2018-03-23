@@ -256,7 +256,7 @@ public override void InspectorGUI(Transform root)
 	}
 
 
-	public virtual Dictionary<string, object> Serialize(Transform root)
+	public override Dictionary<string, object> Serialize(Transform root)
 	{
 		return new Dictionary<string, object>
 		{
