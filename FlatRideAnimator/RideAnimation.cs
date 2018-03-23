@@ -20,6 +20,7 @@ public class RideAnimation
 
 	[SerializeField]
 	public bool Animating;
+	
 	public void Animate(Transform root)
 	{
 		foreach (Motor m in Motors)

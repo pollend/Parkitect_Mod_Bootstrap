@@ -84,9 +84,9 @@ public class Phase : ScriptableObject
 
 	public void Exit()
 	{
-		foreach (RideAnimationEvent RAE in _events)
+		foreach (RideAnimationEvent rideAnimationEvent in _events)
 		{
-			RAE.Exit();
+			rideAnimationEvent.Exit();
 		}
 	}
 
@@ -115,9 +115,9 @@ public class Phase : ScriptableObject
 		{
 			foreach (var @event in (List<object>)elements["events"])
 			{
-				var e = @event as Dictionary<string, object>;
-				RideAnimationEvent rideAnimation =  (RideAnimationEvent) CreateInstance(RideAnimationEvent.FindRideAnimationTypeByTag((string) e["@Tag"]));
-				rideAnimation.Deserialize(elements,motors);
+				var ev = @event as Dictionary<string, object>;
+				RideAnimationEvent rideAnimation =  (RideAnimationEvent) CreateInstance(RideAnimationEvent.FindRideAnimationTypeByTag((string) ev["@Tag"]));
+				rideAnimation.Deserialize(ev,motors);
 				_events.Add(rideAnimation);
 			}
 		}
