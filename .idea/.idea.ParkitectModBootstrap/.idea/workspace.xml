@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c7abe71-cc6c-4e41-8bf5-be806f81feae" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.idea.ParkitectModBootstrap/.idea/contentModel.xml" afterPath="$PROJECT_DIR$/.idea/.idea.ParkitectModBootstrap/.idea/contentModel.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.idea.ParkitectModBootstrap/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/.idea.ParkitectModBootstrap/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FlatRideAnimator/Phase.cs" afterPath="$PROJECT_DIR$/FlatRideAnimator/Phase.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FlatRideAnimator/RideAnimation.cs" afterPath="$PROJECT_DIR$/FlatRideAnimator/RideAnimation.cs" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ParkitectModBootstrap/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ParkitectModBootstrap/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,41 +19,8 @@
       <file leaf-file-name="FlatRideParkitectObject.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/FlatRideParkitectObject.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="359" column="16" lean-forward="false" selection-start-line="359" selection-start-column="16" selection-end-line="359" selection-end-column="16" />
-              <folding>
-                <marker date="1521761738730" expanded="false" signature="49:157" ph="..." />
-                <marker date="1521761738730" expanded="true" signature="258:10195" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="807:951" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="828:947" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="994:1570" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="1100:1126" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="1152:1355" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="1209:1238" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="1310:1339" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="1386:1412" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="1603:2577" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="1709:1849" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="1921:1948" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="1999:2146" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="2209:2356" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="2403:2550" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="2618:2758" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="2649:2755" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="2715:2751" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="6302:7778" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="7837:7896" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="7957:8168" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="8009:8040" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="8067:8093" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="8120:8148" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="8241:9252" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="8301:8554" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="8614:8760" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="9310:10192" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="9496:9701" ph="{...}" />
-                <marker date="1521761738730" expanded="true" signature="9830:9915" ph="{...}" />
-              </folding>
+            <state relative-caret-position="6103">
+              <caret line="359" column="16" selection-start-line="359" selection-start-column="16" selection-end-line="359" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -64,31 +28,8 @@
       <file leaf-file-name="Phase.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FlatRideAnimator/Phase.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-69">
-              <caret line="78" column="9" lean-forward="false" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
-              <folding>
-                <marker date="1521763051900" expanded="false" signature="50:148" ph="..." />
-                <marker date="1521763051900" expanded="true" signature="222:2536" ph="{...}" />
-                <marker date="1521763051900" expanded="true" signature="415:460" ph="{...}" />
-                <marker date="1521763051900" expanded="true" signature="863:986" ph="{...}" />
-                <marker date="1521763051900" expanded="true" signature="908:983" ph="{...}" />
-                <marker date="1521763051900" expanded="true" signature="1008:1084" ph="{...}" />
-                <marker date="1521763051900" expanded="true" signature="1057:1081" ph="{...}" />
-                <marker date="1521763051900" expanded="true" signature="1113:1155" ph="{...}" />
-                <marker date="1521763051900" expanded="true" signature="1189:1459" ph="{...}" />
-                <marker date="1521763051900" expanded="true" signature="1238:1264" ph="{...}" />
-                <marker date="1521763051900" expanded="true" signature="1327:1413" ph="{...}" />
-                <marker date="1521763051900" expanded="true" signature="1349:1409" ph="{...}" />
-                <marker date="1521763051900" expanded="true" signature="1427:1455" ph="{...}" />
-                <marker date="1521763051900" expanded="true" signature="1480:1585" ph="{...}" />
-                <marker date="1521763051900" expanded="true" signature="1544:1582" ph="{...}" />
-                <marker date="1521763051900" expanded="true" signature="1663:2060" ph="{...}" />
-                <marker date="1521763051900" expanded="true" signature="1793:1977" ph="{...}" />
-                <marker date="1521763051900" expanded="true" signature="2021:2056" ph="{...}" />
-                <marker date="1521763051900" expanded="true" signature="2138:2534" ph="{...}" />
-                <marker date="1521763051900" expanded="true" signature="2182:2530" ph="{...}" />
-                <marker date="1521763051900" expanded="true" signature="2246:2526" ph="{...}" />
-              </folding>
+            <state relative-caret-position="1326">
+              <caret line="78" column="9" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -96,23 +37,8 @@
       <file leaf-file-name="CachedTransform.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FlatRideAnimator/CachedTransform.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="791">
-              <caret line="67" column="1" lean-forward="false" selection-start-line="67" selection-start-column="1" selection-end-line="67" selection-end-column="1" />
-              <folding>
-                <marker date="1521761515112" expanded="false" signature="6:66" ph="..." />
-                <marker date="1521761515112" expanded="true" signature="112:1443" ph="{...}" />
-                <marker date="1521761515112" expanded="true" signature="385:670" ph="{...}" />
-                <marker date="1521761515112" expanded="true" signature="435:664" ph="{...}" />
-                <marker date="1521761515112" expanded="true" signature="482:558" ph="{...}" />
-                <marker date="1521761515112" expanded="true" signature="575:654" ph="{...}" />
-                <marker date="1521761515112" expanded="true" signature="726:1128" ph="{...}" />
-                <marker date="1521761515112" expanded="true" signature="824:874" ph="{...}" />
-                <marker date="1521761515112" expanded="true" signature="887:940" ph="{...}" />
-                <marker date="1521761515112" expanded="true" signature="1029:1122" ph="{...}" />
-                <marker date="1521761515112" expanded="true" signature="1169:1272" ph="{...}" />
-                <marker date="1521761515112" expanded="true" signature="1325:1441" ph="{...}" />
-                <marker date="1521761515112" expanded="true" signature="1361:1413" ph="{...}" />
-              </folding>
+            <state relative-caret-position="1139">
+              <caret line="67" column="1" selection-start-line="67" selection-start-column="1" selection-end-line="67" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -120,27 +46,8 @@
       <file leaf-file-name="RideAnimation.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FlatRideAnimator/RideAnimation.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="27" column="15" lean-forward="false" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="15" />
-              <folding>
-                <marker date="1521763569749" expanded="false" signature="6:85" ph="..." />
-                <marker date="1521763569749" expanded="true" signature="148:2079" ph="{...}" />
-                <marker date="1521763569749" expanded="true" signature="437:945" ph="{...}" />
-                <marker date="1521763569749" expanded="true" signature="470:496" ph="{...}" />
-                <marker date="1521763569749" expanded="true" signature="521:731" ph="{...}" />
-                <marker date="1521763569749" expanded="true" signature="578:607" ph="{...}" />
-                <marker date="1521763569749" expanded="true" signature="687:716" ph="{...}" />
-                <marker date="1521763569749" expanded="true" signature="761:787" ph="{...}" />
-                <marker date="1521763569749" expanded="true" signature="977:1913" ph="{...}" />
-                <marker date="1521763569749" expanded="true" signature="1083:1223" ph="{...}" />
-                <marker date="1521763569749" expanded="true" signature="1303:1330" ph="{...}" />
-                <marker date="1521763569749" expanded="true" signature="1389:1474" ph="{...}" />
-                <marker date="1521763569749" expanded="true" signature="1545:1684" ph="{...}" />
-                <marker date="1521763569749" expanded="true" signature="1739:1886" ph="{...}" />
-                <marker date="1521763569749" expanded="true" signature="1946:2077" ph="{...}" />
-                <marker date="1521763569749" expanded="true" signature="1977:2073" ph="{...}" />
-                <marker date="1521763569749" expanded="true" signature="2038:2069" ph="{...}" />
-              </folding>
+            <state relative-caret-position="459">
+              <caret line="27" column="15" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -148,23 +55,8 @@
       <file leaf-file-name="Motor.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FlatRideAnimator/Motor/Motor.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="30" column="24" lean-forward="false" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
-              <folding>
-                <marker date="1521761515113" expanded="false" signature="52:191" ph="..." />
-                <marker date="1521761515113" expanded="true" signature="245:1941" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="422:537" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="735:742" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="785:792" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="855:861" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="1070:1641" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="1209:1622" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="1314:1618" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="1541:1613" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="1574:1607" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="1694:1939" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="1892:1921" ph="{...}" />
-              </folding>
+            <state relative-caret-position="510">
+              <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -172,21 +64,8 @@
       <file leaf-file-name="FromToRot.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FlatRideAnimator/Events/FromToRot.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
-              <caret line="59" column="4" lean-forward="false" selection-start-line="59" selection-start-column="4" selection-end-line="75" selection-end-column="5" />
-              <folding>
-                <marker date="1521761515113" expanded="false" signature="49:128" ph="..." />
-                <marker date="1521761515113" expanded="true" signature="246:1651" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="341:382" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="349:379" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="820:909" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="952:1157" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="971:1154" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="1107:1130" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="1245:1414" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="1502:1649" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="1589:1645" ph="{...}" />
-              </folding>
+            <state relative-caret-position="1003">
+              <caret line="59" column="4" selection-start-line="59" selection-start-column="4" selection-end-line="75" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -194,53 +73,58 @@
       <file leaf-file-name="FromToMove.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FlatRideAnimator/Events/FromToMove.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="454">
-              <caret line="62" column="26" lean-forward="false" selection-start-line="62" selection-start-column="26" selection-end-line="62" selection-end-column="26" />
+            <state relative-caret-position="1054">
+              <caret line="62" column="26" selection-start-line="62" selection-start-column="26" selection-end-line="62" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Mover.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FlatRideAnimator/Motor/Mover.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="271">
+              <caret line="67" column="24" selection-start-line="67" selection-start-column="24" selection-end-line="67" selection-end-column="24" />
               <folding>
-                <marker date="1521762636158" expanded="false" signature="50:129" ph="..." />
-                <marker date="1521762636158" expanded="true" signature="249:1594" ph="{...}" />
-                <marker date="1521762636158" expanded="true" signature="325:367" ph="{...}" />
-                <marker date="1521762636158" expanded="true" signature="333:364" ph="{...}" />
-                <marker date="1521762636158" expanded="true" signature="789:877" ph="{...}" />
-                <marker date="1521762636158" expanded="true" signature="919:1121" ph="{...}" />
-                <marker date="1521762636158" expanded="true" signature="936:1117" ph="{...}" />
-                <marker date="1521762636158" expanded="true" signature="1070:1093" ph="{...}" />
-                <marker date="1521762636158" expanded="true" signature="1210:1367" ph="{...}" />
-                <marker date="1521762636158" expanded="true" signature="1454:1592" ph="{...}" />
-                <marker date="1521762636158" expanded="true" signature="1536:1588" ph="{...}" />
+                <marker date="1521776554557" expanded="false" signature="70:130" ph="..." />
+                <marker date="1521776554557" expanded="true" signature="213:4123" ph="{...}" />
+                <marker date="1521776554557" expanded="true" signature="235:262" ph="{...}" />
+                <marker date="1521776554557" expanded="true" signature="756:949" ph="{...}" />
+                <marker date="1521776554557" expanded="true" signature="983:1022" ph="{...}" />
+                <marker date="1521776554557" expanded="true" signature="992:1019" ph="{...}" />
+                <marker date="1521776554557" expanded="true" signature="1499:1790" ph="{...}" />
+                <marker date="1521776554557" expanded="true" signature="1904:2065" ph="{...}" />
+                <marker date="1521776554557" expanded="true" signature="2093:2241" ph="{...}" />
+                <marker date="1521776554557" expanded="true" signature="2119:2222" ph="{...}" />
+                <marker date="1521776554557" expanded="true" signature="2269:2419" ph="{...}" />
+                <marker date="1521776554557" expanded="true" signature="2296:2400" ph="{...}" />
+                <marker date="1521776554557" expanded="true" signature="2449:2522" ph="{...}" />
+                <marker date="1521776554557" expanded="true" signature="2567:2734" ph="{...}" />
+                <marker date="1521776554557" expanded="true" signature="2642:2710" ph="{...}" />
+                <marker date="1521776554557" expanded="true" signature="2777:3111" ph="{...}" />
+                <marker date="1521776554557" expanded="true" signature="2829:2878" ph="{...}" />
+                <marker date="1521776554557" expanded="true" signature="2885:2934" ph="{...}" />
+                <marker date="1521776554557" expanded="true" signature="3175:3277" ph="{...}" />
+                <marker date="1521776554557" expanded="true" signature="3349:3566" ph="{...}" />
+                <marker date="1521776554557" expanded="true" signature="3392:3562" ph="{...}" />
+                <marker date="1521776554557" expanded="true" signature="3638:4121" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Mover.cs" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/FlatRideAnimator/Motor/Mover.cs">
+      <file leaf-file-name="DecoParkitectObject.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/DecoParkitectObject.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="67" column="24" lean-forward="false" selection-start-line="67" selection-start-column="24" selection-end-line="67" selection-end-column="24" />
+            <state relative-caret-position="901">
+              <caret line="56" column="41" selection-start-line="56" selection-start-column="41" selection-end-line="56" selection-end-column="54" />
               <folding>
-                <marker date="1521761515113" expanded="false" signature="70:130" ph="..." />
-                <marker date="1521761515113" expanded="true" signature="213:4123" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="235:262" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="756:949" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="983:1022" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="992:1019" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="1499:1790" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="1904:2065" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="2093:2241" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="2119:2222" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="2269:2419" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="2296:2400" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="2449:2522" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="2567:2734" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="2642:2710" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="2777:3111" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="2829:2878" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="2885:2934" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="3175:3277" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="3349:3566" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="3392:3562" ph="{...}" />
-                <marker date="1521761515113" expanded="true" signature="3638:4121" ph="{...}" />
+                <marker date="1521696020124" expanded="false" signature="6:85" ph="..." />
+                <marker date="1521696020124" expanded="true" signature="178:2235" ph="{...}" />
+                <marker date="1521696020124" expanded="true" signature="230:470" ph="{...}" />
+                <marker date="1521696020124" expanded="true" signature="266:463" ph="{...}" />
+                <marker date="1521696020124" expanded="true" signature="595:2097" ph="{...}" />
+                <marker date="1521696020124" expanded="true" signature="1912:2029" ph="{...}" />
+                <marker date="1521696020124" expanded="true" signature="2159:2226" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -286,64 +170,64 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Model/Decorator/WaypointDecorator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Model/Decorator/GridDecorator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Decorator/BaseDecorator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Decorator/BoundingBoxDecorator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Decorator/CategoryDecorator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Model/Decorator/ColorDecorator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Decorator/Decorator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Decorator/GridDecorator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Model/Decorator/SeatDecorator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/WallParkitectObject.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/SeatingParkitectObject.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/WallDecoratorObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Decorator/WaypointDecorator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Decorator/ResizableDecorator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Decorator/ShopProduct.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/DecoParkitectObject.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/TrashbinParkitectObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/EmptyParkitectObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/FlatRideParkitectObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/PathStyleParkitectObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/SeatingParkitectObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/ShopParkitectObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/WallParkitectObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/SignParkitectObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/TrashbinParkitectObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/TvParkitectObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/WallDecoratorObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Proxy/Shop/Products/CustomConsumableProduct.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Proxy/Shop/Products/CustomWerableProduct.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Proxy/FlatRide/CustomFlatRide.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/ModPayload.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/ParkitectObj.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/ParkitectObjectTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Needs/SPBoundingBox.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Needs/SPWaypoint.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Utility/MathHelper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Utility/RemapUtility.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Utility/Extra.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/FlatRideAnimator/RideAnimation.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/FlatRideAnimator/CachedTransform.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/FlatRideAnimator/Motor/MotorTag.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/RefrencedTransform.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/FlatRideAnimator/Motor/Motor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/ParkitectMod.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Refrence.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Utility/MathHelper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ParkitectModBootstrap.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Refrence.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/RefrencedTransform.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Utility.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ParkitectMod.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FlatRideAnimator/Events/ApplyRotation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FlatRideAnimator/Events/ChangePendulum.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FlatRideAnimator/Events/FromToMove.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FlatRideAnimator/Events/FromToRot.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FlatRideAnimator/Events/RideAnimationEvent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/FlatRideAnimator/CachedTransform.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FlatRideAnimator/Events/SpinRotater.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FlatRideAnimator/Events/StartRotator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FlatRideAnimator/Events/StopRotator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FlatRideAnimator/Events/ToFromMove.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FlatRideAnimator/Events/ToFromRot.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FlatRideAnimator/Events/Wait.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/FlatRideAnimator/Motor/Motor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/FlatRideAnimator/Motor/MotorTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FlatRideAnimator/Motor/Mover.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FlatRideAnimator/Motor/MultipleRotations.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FlatRideAnimator/Motor/PendulumRotator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FlatRideAnimator/Motor/RotateBetween.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FlatRideAnimator/Motor/Rotator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FlatRideAnimator/Phase.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Model/Decorator/ShopProduct.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/FlatRideParkitectObject.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/PathStyleParkitectObject.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Model/ParkitectObjects/ShopParkitectObject.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Model/Proxy/FlatRide/CustomFlatRide.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Model/ModPayload.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Model/ParkitectObjectTag.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Model/ParkitectObj.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Model/Proxy/Shop/Products/CustomWerableProduct.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Model/Proxy/Shop/Products/CustomConsumableProduct.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Model/Decorator/CategoryDecorator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Model/Decorator/BaseDecorator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Model/Decorator/Decorator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Model/Decorator/BoundingBoxDecorator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Model/Decorator/ResizableDecorator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/FlatRideAnimator/RideAnimation.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -408,25 +292,18 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="width" value="1776" />
-    <option name="height" value="1402" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="4" />
+    <option name="width" value="1681" />
+    <option name="height" value="1398" />
   </component>
   <component name="ProjectView">
     <navigator currentView="SolutionExplorer" proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
       <autoscrollToSource SolutionExplorer="true" />
-      <autoscrollFromSource />
-      <sortByType />
-      <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="SolutionExplorer">
         <subPane>
           <expand>
@@ -443,21 +320,14 @@
               <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
               <item name="ParkitectModBootstrap (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="ParkitectModBootstrap" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="FlatRideAnimator" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="References" type="977d5f41:SolutionExplorerNodeRider" />
             </path>
             <path>
               <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
               <item name="ParkitectModBootstrap (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="ParkitectModBootstrap" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="FlatRideAnimator" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Events" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="ParkitectModBootstrap (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="ParkitectModBootstrap" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="FlatRideAnimator" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Motor" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="References" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Assemblies" type="977d5f41:SolutionExplorerNodeRider" />
             </path>
             <path>
               <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
@@ -478,12 +348,11 @@
         <option name="show-file-system" value="false" />
         <option name="show-all-items" value="false" />
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Model/ParkitectObjects/WallParkitectObject.cs" />
+    <property name="last_opened_file_path" value="$USER_HOME$/.local/share/Steam/steamapps/common/Parkitect/Mods/Parkitect_Mod_Bootstrap/ParkitectModBootstrap.sln" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -497,18 +366,19 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Unity Debug.Attach to Unity Editor">
+  <component name="RunManager" selected="Attach Unity.Attach to Unity Editor">
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_ATTACH_RUN_CONFIGURATION" factoryName="Unity Debug and Play" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" />
-    <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="Unity Debug.Attach to Unity Editor" />
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+    </configuration>
+    <list>
+      <item itemvalue="Attach Unity.Attach to Unity Editor" />
+      <item itemvalue="Attach Unity and Play.Attach to Unity Editor &amp; Play" />
     </list>
-  </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -524,11 +394,12 @@
       <workItem from="1521582032348" duration="292000" />
       <workItem from="1521582336027" duration="22032000" />
       <workItem from="1521761544395" duration="2193000" />
+      <workItem from="1521920355677" duration="76000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30957000" />
+    <option name="totallyTimeSpent" value="31033000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -540,30 +411,31 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="29" width="1920" height="1051" extended-state="6" />
-    <editor active="true" />
+    <frame x="4" y="0" width="1681" height="1398" extended-state="0" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Errors In Solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Unit Tests" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="NuGet" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Errors In Solution" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Unit Tests" order="7" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="NuGet" order="7" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.35217133" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Build" order="7" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32903227" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -572,232 +444,181 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager />
-    <watches-manager />
-  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Model/Decorator/BoundingBoxDecorator.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/Decorator/CategoryDecorator.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="12" column="20" lean-forward="false" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+        <state>
+          <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/Decorator/ColorDecorator.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="12" column="23" lean-forward="false" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+        <state>
+          <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/Decorator/Decorator.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="21" column="24" lean-forward="false" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
+        <state>
+          <caret line="21" column="24" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/Decorator/GridDecorator.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="17" column="19" lean-forward="false" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+        <state>
+          <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/Decorator/ResizableDecorator.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/Decorator/SeatDecorator.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-102">
-          <caret line="14" column="30" lean-forward="false" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/DecoParkitectObject.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="56" column="41" lean-forward="false" selection-start-line="56" selection-start-column="41" selection-end-line="56" selection-end-column="54" />
+          <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/SeatingParkitectObject.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="41" column="54" lean-forward="false" selection-start-line="41" selection-start-column="54" selection-end-line="41" selection-end-column="54" />
+        <state>
+          <caret line="41" column="54" selection-start-line="41" selection-start-column="54" selection-end-line="41" selection-end-column="54" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/SignParkitectObject.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/TrashbinParkitectObject.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/TvParkitectObject.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/WallDecoratorObject.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/WallParkitectObject.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
-          <caret line="45" column="13" lean-forward="false" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
+          <caret line="45" column="13" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/ShopParkitectObject.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
-          <caret line="120" column="35" lean-forward="false" selection-start-line="120" selection-start-column="35" selection-end-line="120" selection-end-column="35" />
+          <caret line="120" column="35" selection-start-line="120" selection-start-column="35" selection-end-line="120" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Utility/RemapUtility.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Needs/SPBoundingBox.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="8" column="30" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="30" />
+          <caret line="8" column="30" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Needs/SPWaypoint.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="6" column="23" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="23" />
+          <caret line="6" column="23" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/EmptyParkitectObject.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/14F465A1-8A30-46D3-B7B8-1BE39A30EA5C/86/5799dd9e/AssetManager.cs" />
     <entry file="file://$PROJECT_DIR$/Utility/Extra.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
-          <caret line="23" column="86" lean-forward="false" selection-start-line="23" selection-start-column="86" selection-end-line="23" selection-end-column="86" />
+          <caret line="23" column="86" selection-start-line="23" selection-start-column="86" selection-end-line="23" selection-end-column="86" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/Decorator/BaseDecorator.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="748">
-          <caret line="46" column="25" lean-forward="false" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
+          <caret line="46" column="25" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/Decorator/WaypointDecorator.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="358">
-          <caret line="368" column="25" lean-forward="false" selection-start-line="368" selection-start-column="25" selection-end-line="368" selection-end-column="25" />
+          <caret line="368" column="25" selection-start-line="368" selection-start-column="25" selection-end-line="368" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/Decorator/ShopProduct.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
-          <caret line="573" column="40" lean-forward="false" selection-start-line="573" selection-start-column="8" selection-end-line="573" selection-end-column="40" />
-          <folding />
+          <caret line="573" column="40" selection-start-line="573" selection-start-column="8" selection-end-line="573" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/PathStyleParkitectObject.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="358">
-          <caret line="49" column="36" lean-forward="false" selection-start-line="49" selection-start-column="36" selection-end-line="49" selection-end-column="36" />
+          <caret line="49" column="36" selection-start-line="49" selection-start-column="36" selection-end-line="49" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/ParkitectObj.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="470">
-          <caret line="230" column="14" lean-forward="false" selection-start-line="230" selection-start-column="14" selection-end-line="230" selection-end-column="14" />
-          <folding />
+          <caret line="230" column="14" selection-start-line="230" selection-start-column="14" selection-end-line="230" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Utility.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="61" column="26" lean-forward="false" selection-start-line="61" selection-start-column="26" selection-end-line="61" selection-end-column="26" />
-          <folding />
+          <caret line="61" column="26" selection-start-line="61" selection-start-column="26" selection-end-line="61" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FlatRideAnimator/Motor/RotateBetween.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="936">
-          <caret line="134" column="63" lean-forward="false" selection-start-line="134" selection-start-column="12" selection-end-line="134" selection-end-column="63" />
-          <folding />
+          <caret line="134" column="63" selection-start-line="134" selection-start-column="12" selection-end-line="134" selection-end-column="63" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FlatRideAnimator/Motor/PendulumRotator.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1095">
-          <caret line="96" column="5" lean-forward="false" selection-start-line="96" selection-start-column="5" selection-end-line="96" selection-end-column="5" />
+          <caret line="96" column="5" selection-start-line="96" selection-start-column="5" selection-end-line="96" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FlatRideAnimator/Motor/Rotator.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1072">
-          <caret line="285" column="86" lean-forward="false" selection-start-line="274" selection-start-column="8" selection-end-line="285" selection-end-column="86" />
+          <caret line="285" column="86" selection-start-line="274" selection-start-column="8" selection-end-line="285" selection-end-column="86" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RefrencedTransform.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-985">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FlatRideAnimator/Motor/MotorTag.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/Proxy/FlatRide/CustomFlatRide.cs">
       <provider selected="true" editor-type-id="text-editor">
@@ -809,297 +630,165 @@
     <entry file="file://$PROJECT_DIR$/FlatRideAnimator/Motor/MultipleRotations.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FlatRideAnimator/Events/ApplyRotation.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="885">
-          <caret line="62" column="92" lean-forward="false" selection-start-line="62" selection-start-column="12" selection-end-line="62" selection-end-column="92" />
+          <caret line="62" column="92" selection-start-line="62" selection-start-column="12" selection-end-line="62" selection-end-column="92" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FlatRideAnimator/Events/ChangePendulum.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="749">
-          <caret line="81" column="12" lean-forward="false" selection-start-line="81" selection-start-column="12" selection-end-line="82" selection-end-column="0" />
+          <caret line="81" column="12" selection-start-line="81" selection-start-column="12" selection-end-line="82" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FlatRideAnimator/Events/SpinRotater.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="732">
-          <caret line="84" column="8" lean-forward="false" selection-start-line="84" selection-start-column="8" selection-end-line="86" selection-end-column="0" />
+          <caret line="84" column="8" selection-start-line="84" selection-start-column="8" selection-end-line="86" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FlatRideAnimator/Events/StartRotator.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="817">
-          <caret line="62" column="4" lean-forward="false" selection-start-line="62" selection-start-column="4" selection-end-line="64" selection-end-column="0" />
+          <caret line="62" column="4" selection-start-line="62" selection-start-column="4" selection-end-line="64" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FlatRideAnimator/Events/StopRotator.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="868">
-          <caret line="68" column="8" lean-forward="false" selection-start-line="68" selection-start-column="8" selection-end-line="70" selection-end-column="0" />
+          <caret line="68" column="8" selection-start-line="68" selection-start-column="8" selection-end-line="70" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FlatRideAnimator/Events/ToFromMove.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="902">
-          <caret line="61" column="77" lean-forward="false" selection-start-line="61" selection-start-column="77" selection-end-line="61" selection-end-column="77" />
+          <caret line="61" column="77" selection-start-line="61" selection-start-column="77" selection-end-line="61" selection-end-column="77" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FlatRideAnimator/Events/ToFromRot.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="817">
-          <caret line="59" column="88" lean-forward="false" selection-start-line="59" selection-start-column="72" selection-end-line="59" selection-end-column="88" />
+          <caret line="59" column="88" selection-start-line="59" selection-start-column="72" selection-end-line="59" selection-end-column="88" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FlatRideAnimator/Events/Wait.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="816">
-          <caret line="50" column="59" lean-forward="false" selection-start-line="50" selection-start-column="59" selection-end-line="50" selection-end-column="59" />
-          <folding />
+          <caret line="50" column="59" selection-start-line="50" selection-start-column="59" selection-end-line="50" selection-end-column="59" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/FlatRideParkitectObject.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="359" column="16" lean-forward="false" selection-start-line="359" selection-start-column="16" selection-end-line="359" selection-end-column="16" />
-          <folding>
-            <marker date="1521761738730" expanded="false" signature="49:157" ph="..." />
-            <marker date="1521761738730" expanded="true" signature="258:10195" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="807:951" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="828:947" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="994:1570" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="1100:1126" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="1152:1355" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="1209:1238" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="1310:1339" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="1386:1412" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="1603:2577" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="1709:1849" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="1921:1948" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="1999:2146" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="2209:2356" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="2403:2550" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="2618:2758" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="2649:2755" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="2715:2751" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="6302:7778" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="7837:7896" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="7957:8168" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="8009:8040" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="8067:8093" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="8120:8148" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="8241:9252" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="8301:8554" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="8614:8760" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="9310:10192" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="9496:9701" ph="{...}" />
-            <marker date="1521761738730" expanded="true" signature="9830:9915" ph="{...}" />
-          </folding>
+        <state relative-caret-position="6103">
+          <caret line="359" column="16" selection-start-line="359" selection-start-column="16" selection-end-line="359" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FlatRideAnimator/Events/FromToRot.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="59" column="4" lean-forward="false" selection-start-line="59" selection-start-column="4" selection-end-line="75" selection-end-column="5" />
-          <folding>
-            <marker date="1521761515113" expanded="false" signature="49:128" ph="..." />
-            <marker date="1521761515113" expanded="true" signature="246:1651" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="341:382" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="349:379" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="820:909" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="952:1157" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="971:1154" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="1107:1130" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="1245:1414" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="1502:1649" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="1589:1645" ph="{...}" />
-          </folding>
+        <state relative-caret-position="1003">
+          <caret line="59" column="4" selection-start-line="59" selection-start-column="4" selection-end-line="75" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FlatRideAnimator/Events/RideAnimationEvent.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
-          <caret line="20" column="24" lean-forward="false" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
-          <folding>
-            <marker date="1521761515113" expanded="false" signature="6:110" ph="..." />
-            <marker date="1521761515113" expanded="true" signature="197:1836" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="412:419" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="448:474" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="515:522" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="550:594" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="628:634" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="880:1486" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="1019:1467" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="1137:1463" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="1381:1458" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="1419:1452" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="1550:1834" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="1787:1816" ph="{...}" />
-          </folding>
+          <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FlatRideAnimator/Events/FromToMove.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="62" column="26" lean-forward="false" selection-start-line="62" selection-start-column="26" selection-end-line="62" selection-end-column="26" />
-          <folding>
-            <marker date="1521762636158" expanded="false" signature="50:129" ph="..." />
-            <marker date="1521762636158" expanded="true" signature="249:1594" ph="{...}" />
-            <marker date="1521762636158" expanded="true" signature="325:367" ph="{...}" />
-            <marker date="1521762636158" expanded="true" signature="333:364" ph="{...}" />
-            <marker date="1521762636158" expanded="true" signature="789:877" ph="{...}" />
-            <marker date="1521762636158" expanded="true" signature="919:1121" ph="{...}" />
-            <marker date="1521762636158" expanded="true" signature="936:1117" ph="{...}" />
-            <marker date="1521762636158" expanded="true" signature="1070:1093" ph="{...}" />
-            <marker date="1521762636158" expanded="true" signature="1210:1367" ph="{...}" />
-            <marker date="1521762636158" expanded="true" signature="1454:1592" ph="{...}" />
-            <marker date="1521762636158" expanded="true" signature="1536:1588" ph="{...}" />
-          </folding>
+        <state relative-caret-position="1054">
+          <caret line="62" column="26" selection-start-line="62" selection-start-column="26" selection-end-line="62" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FlatRideAnimator/Phase.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-69">
-          <caret line="78" column="9" lean-forward="false" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
-          <folding>
-            <marker date="1521763051900" expanded="false" signature="50:148" ph="..." />
-            <marker date="1521763051900" expanded="true" signature="222:2536" ph="{...}" />
-            <marker date="1521763051900" expanded="true" signature="415:460" ph="{...}" />
-            <marker date="1521763051900" expanded="true" signature="863:986" ph="{...}" />
-            <marker date="1521763051900" expanded="true" signature="908:983" ph="{...}" />
-            <marker date="1521763051900" expanded="true" signature="1008:1084" ph="{...}" />
-            <marker date="1521763051900" expanded="true" signature="1057:1081" ph="{...}" />
-            <marker date="1521763051900" expanded="true" signature="1113:1155" ph="{...}" />
-            <marker date="1521763051900" expanded="true" signature="1189:1459" ph="{...}" />
-            <marker date="1521763051900" expanded="true" signature="1238:1264" ph="{...}" />
-            <marker date="1521763051900" expanded="true" signature="1327:1413" ph="{...}" />
-            <marker date="1521763051900" expanded="true" signature="1349:1409" ph="{...}" />
-            <marker date="1521763051900" expanded="true" signature="1427:1455" ph="{...}" />
-            <marker date="1521763051900" expanded="true" signature="1480:1585" ph="{...}" />
-            <marker date="1521763051900" expanded="true" signature="1544:1582" ph="{...}" />
-            <marker date="1521763051900" expanded="true" signature="1663:2060" ph="{...}" />
-            <marker date="1521763051900" expanded="true" signature="1793:1977" ph="{...}" />
-            <marker date="1521763051900" expanded="true" signature="2021:2056" ph="{...}" />
-            <marker date="1521763051900" expanded="true" signature="2138:2534" ph="{...}" />
-            <marker date="1521763051900" expanded="true" signature="2182:2530" ph="{...}" />
-            <marker date="1521763051900" expanded="true" signature="2246:2526" ph="{...}" />
-          </folding>
+        <state relative-caret-position="1326">
+          <caret line="78" column="9" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FlatRideAnimator/CachedTransform.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="791">
-          <caret line="67" column="1" lean-forward="false" selection-start-line="67" selection-start-column="1" selection-end-line="67" selection-end-column="1" />
-          <folding>
-            <marker date="1521761515112" expanded="false" signature="6:66" ph="..." />
-            <marker date="1521761515112" expanded="true" signature="112:1443" ph="{...}" />
-            <marker date="1521761515112" expanded="true" signature="385:670" ph="{...}" />
-            <marker date="1521761515112" expanded="true" signature="435:664" ph="{...}" />
-            <marker date="1521761515112" expanded="true" signature="482:558" ph="{...}" />
-            <marker date="1521761515112" expanded="true" signature="575:654" ph="{...}" />
-            <marker date="1521761515112" expanded="true" signature="726:1128" ph="{...}" />
-            <marker date="1521761515112" expanded="true" signature="824:874" ph="{...}" />
-            <marker date="1521761515112" expanded="true" signature="887:940" ph="{...}" />
-            <marker date="1521761515112" expanded="true" signature="1029:1122" ph="{...}" />
-            <marker date="1521761515112" expanded="true" signature="1169:1272" ph="{...}" />
-            <marker date="1521761515112" expanded="true" signature="1325:1441" ph="{...}" />
-            <marker date="1521761515112" expanded="true" signature="1361:1413" ph="{...}" />
-          </folding>
+        <state relative-caret-position="1139">
+          <caret line="67" column="1" selection-start-line="67" selection-start-column="1" selection-end-line="67" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FlatRideAnimator/RideAnimation.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="27" column="15" lean-forward="false" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="15" />
-          <folding>
-            <marker date="1521763569749" expanded="false" signature="6:85" ph="..." />
-            <marker date="1521763569749" expanded="true" signature="148:2079" ph="{...}" />
-            <marker date="1521763569749" expanded="true" signature="437:945" ph="{...}" />
-            <marker date="1521763569749" expanded="true" signature="470:496" ph="{...}" />
-            <marker date="1521763569749" expanded="true" signature="521:731" ph="{...}" />
-            <marker date="1521763569749" expanded="true" signature="578:607" ph="{...}" />
-            <marker date="1521763569749" expanded="true" signature="687:716" ph="{...}" />
-            <marker date="1521763569749" expanded="true" signature="761:787" ph="{...}" />
-            <marker date="1521763569749" expanded="true" signature="977:1913" ph="{...}" />
-            <marker date="1521763569749" expanded="true" signature="1083:1223" ph="{...}" />
-            <marker date="1521763569749" expanded="true" signature="1303:1330" ph="{...}" />
-            <marker date="1521763569749" expanded="true" signature="1389:1474" ph="{...}" />
-            <marker date="1521763569749" expanded="true" signature="1545:1684" ph="{...}" />
-            <marker date="1521763569749" expanded="true" signature="1739:1886" ph="{...}" />
-            <marker date="1521763569749" expanded="true" signature="1946:2077" ph="{...}" />
-            <marker date="1521763569749" expanded="true" signature="1977:2073" ph="{...}" />
-            <marker date="1521763569749" expanded="true" signature="2038:2069" ph="{...}" />
-          </folding>
+        <state relative-caret-position="459">
+          <caret line="27" column="15" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FlatRideAnimator/Motor/Motor.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="30" column="24" lean-forward="false" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
-          <folding>
-            <marker date="1521761515113" expanded="false" signature="52:191" ph="..." />
-            <marker date="1521761515113" expanded="true" signature="245:1941" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="422:537" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="735:742" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="785:792" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="855:861" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="1070:1641" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="1209:1622" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="1314:1618" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="1541:1613" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="1574:1607" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="1694:1939" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="1892:1921" ph="{...}" />
-          </folding>
+        <state relative-caret-position="510">
+          <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FlatRideAnimator/Motor/Mover.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="271">
-          <caret line="67" column="24" lean-forward="false" selection-start-line="67" selection-start-column="24" selection-end-line="67" selection-end-column="24" />
+          <caret line="67" column="24" selection-start-line="67" selection-start-column="24" selection-end-line="67" selection-end-column="24" />
           <folding>
-            <marker date="1521761515113" expanded="false" signature="70:130" ph="..." />
-            <marker date="1521761515113" expanded="true" signature="213:4123" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="235:262" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="756:949" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="983:1022" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="992:1019" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="1499:1790" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="1904:2065" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="2093:2241" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="2119:2222" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="2269:2419" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="2296:2400" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="2449:2522" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="2567:2734" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="2642:2710" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="2777:3111" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="2829:2878" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="2885:2934" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="3175:3277" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="3349:3566" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="3392:3562" ph="{...}" />
-            <marker date="1521761515113" expanded="true" signature="3638:4121" ph="{...}" />
+            <marker date="1521776554557" expanded="false" signature="70:130" ph="..." />
+            <marker date="1521776554557" expanded="true" signature="213:4123" ph="{...}" />
+            <marker date="1521776554557" expanded="true" signature="235:262" ph="{...}" />
+            <marker date="1521776554557" expanded="true" signature="756:949" ph="{...}" />
+            <marker date="1521776554557" expanded="true" signature="983:1022" ph="{...}" />
+            <marker date="1521776554557" expanded="true" signature="992:1019" ph="{...}" />
+            <marker date="1521776554557" expanded="true" signature="1499:1790" ph="{...}" />
+            <marker date="1521776554557" expanded="true" signature="1904:2065" ph="{...}" />
+            <marker date="1521776554557" expanded="true" signature="2093:2241" ph="{...}" />
+            <marker date="1521776554557" expanded="true" signature="2119:2222" ph="{...}" />
+            <marker date="1521776554557" expanded="true" signature="2269:2419" ph="{...}" />
+            <marker date="1521776554557" expanded="true" signature="2296:2400" ph="{...}" />
+            <marker date="1521776554557" expanded="true" signature="2449:2522" ph="{...}" />
+            <marker date="1521776554557" expanded="true" signature="2567:2734" ph="{...}" />
+            <marker date="1521776554557" expanded="true" signature="2642:2710" ph="{...}" />
+            <marker date="1521776554557" expanded="true" signature="2777:3111" ph="{...}" />
+            <marker date="1521776554557" expanded="true" signature="2829:2878" ph="{...}" />
+            <marker date="1521776554557" expanded="true" signature="2885:2934" ph="{...}" />
+            <marker date="1521776554557" expanded="true" signature="3175:3277" ph="{...}" />
+            <marker date="1521776554557" expanded="true" signature="3349:3566" ph="{...}" />
+            <marker date="1521776554557" expanded="true" signature="3392:3562" ph="{...}" />
+            <marker date="1521776554557" expanded="true" signature="3638:4121" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/ParkitectObjects/DecoParkitectObject.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="901">
+          <caret line="56" column="41" selection-start-line="56" selection-start-column="41" selection-end-line="56" selection-end-column="54" />
+          <folding>
+            <marker date="1521696020124" expanded="false" signature="6:85" ph="..." />
+            <marker date="1521696020124" expanded="true" signature="178:2235" ph="{...}" />
+            <marker date="1521696020124" expanded="true" signature="230:470" ph="{...}" />
+            <marker date="1521696020124" expanded="true" signature="266:463" ph="{...}" />
+            <marker date="1521696020124" expanded="true" signature="595:2097" ph="{...}" />
+            <marker date="1521696020124" expanded="true" signature="1912:2029" ph="{...}" />
+            <marker date="1521696020124" expanded="true" signature="2159:2226" ph="{...}" />
           </folding>
         </state>
       </provider>

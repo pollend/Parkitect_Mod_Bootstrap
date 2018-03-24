@@ -234,9 +234,9 @@ public class FlatRideParkitectObject : ParkitectObj
 
 		GUILayout.Space(10);
 		GUILayout.Label("Rating", EditorStyles.boldLabel);
-		Excitement = EditorGUILayout.Slider("Excitement (" + getRatingCategory(Excitement) + ")", Excitement, 0, 100);
-		Intensity = EditorGUILayout.Slider("Intensity (" + getRatingCategory(Intensity) + ")", Intensity, 0, 100);
-		Nausea = EditorGUILayout.Slider("Nausea (" + getRatingCategory(Nausea) + ")", Nausea, 0, 100);
+		Excitement = EditorGUILayout.Slider("Excitement (" + getRatingCategory(Excitement) + ")", Excitement, 0, 1);
+		Intensity = EditorGUILayout.Slider("Intensity (" + getRatingCategory(Intensity) + ")", Intensity, 0, 1);
+		Nausea = EditorGUILayout.Slider("Nausea (" + getRatingCategory(Nausea) + ")", Nausea, 0, 1);
 		GUILayout.Space(10);
 		ClosedAngleRetraints = EditorGUILayout.Vector3Field("Closed Restraints Angle", ClosedAngleRetraints);
 
