@@ -6,19 +6,22 @@ using UnityEngine;
 #if (PARKITECT)
 public class ParkitectMod : IMod
 {
-    private String name = "";
-    private String description = "";
-    private String identifier = null;
+    private string _name = "";
+    private string _description = "";
+    private string _identifier = null;
 
-    private String path ;
+    private readonly String path ;
 
     private GameObject hider;
-    private ModPayload _payload;
+    private readonly ModPayload _payload;
+    public String Path => path;
+
     public ParkitectMod()
     {
         
     }
 
+   
     public ParkitectMod(String path)
     {
         this.path = path;
@@ -60,6 +63,7 @@ public class ParkitectMod : IMod
             {
                 Debug.LogException(e);
             }
+            assetBundle.Unload(false);
 
             Debug.Log("------------------------DONE LOADING MOD------------------------");
         }
