@@ -92,6 +92,7 @@
       <e p="Utility.cs" t="Include" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
+      <e p="steam_workshop-id" t="Include" />
     </e>
     <e p="$PROJECT_DIR$/../pollend@ParkitectModBootstrap" t="ExcludeRecursive" />
   </component>
