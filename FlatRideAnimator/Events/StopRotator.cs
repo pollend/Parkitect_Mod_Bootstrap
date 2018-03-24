@@ -53,7 +53,7 @@ public class StopRotator : RideAnimationEvent
 	{
 		if (Rotator)
 		{
-			Rotator.tick(Time.realtimeSinceStartup - _lastTime, root);
+			Rotator.Tick(Time.realtimeSinceStartup - _lastTime, root);
 			_lastTime = Time.realtimeSinceStartup;
 			if (Rotator.IsStopped())
 			{

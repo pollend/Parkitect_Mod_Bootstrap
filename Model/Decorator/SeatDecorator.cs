@@ -6,6 +6,7 @@ using UnityEditor;
 #endif
 using System.Linq;
 using System;
+using UnityEngine.Rendering;
 
 public class SeatDecorator : Decorator
 {
@@ -32,7 +33,7 @@ public class SeatDecorator : Decorator
 		if (GUILayout.Button("Create 1 Seats"))
 		{
 			GameObject seat1 = new GameObject(SEAT);
-			seat1.transform.parent = parkitectObj.getGameObjectRef(true).transform;
+			seat1.transform.parent = parkitectObj.GetGameObjectRef(true).transform;
 
 			seat1.transform.localPosition = new Vector3(0, 0.1f, 0);
 			seat1.transform.localRotation = Quaternion.Euler(Vector3.zero);
@@ -45,8 +46,8 @@ public class SeatDecorator : Decorator
 
 
 
-			seat1.transform.parent = parkitectObj.getGameObjectRef(true).transform;
-			seat2.transform.parent = parkitectObj.getGameObjectRef(true).transform;
+			seat1.transform.parent = parkitectObj.GetGameObjectRef(true).transform;
+			seat2.transform.parent = parkitectObj.GetGameObjectRef(true).transform;
 
 			seat1.transform.localPosition = new Vector3(0.1f, 0.1f, 0);
 			seat1.transform.localRotation = Quaternion.Euler(Vector3.zero);
@@ -67,8 +68,9 @@ public class SeatDecorator : Decorator
 		//Debug.Log (parkitectObj.getGameObjectRef(true).transform.GetInstanceID ());
 
 		List<GameObject> seats = new List<GameObject>(); 
-		Utility.FindAllChildrenWithName(parkitectObj.getGameObjectRef (true).transform, SEAT, seats);
-
+		Utility.FindAllChildrenWithName(parkitectObj.GetGameObjectRef (true).transform, SEAT, seats);
+		Handles.color = Color.white;
+		Handles.zTest= CompareFunction.LessEqual;
 		for (int x = 0; x < seats.Count; x++) {
 			if (seats [x] != null) {
 				var transform = seats [x].transform;

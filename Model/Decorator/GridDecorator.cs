@@ -37,7 +37,7 @@ public class GridDecorator : Decorator
 
 	public override void RenderSceneGui(ParkitectObj parkitectObj)
 	{
-		GameObject gameObject = parkitectObj.getGameObjectRef(false);
+		GameObject gameObject = parkitectObj.GetGameObjectRef(false);
 		if (gameObject)
 		{
 			var min = SnapCenter ? -2.5f : -3f;

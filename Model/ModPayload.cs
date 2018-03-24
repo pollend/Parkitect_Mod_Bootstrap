@@ -22,9 +22,9 @@ public class ModPayload : ScriptableSingleton<ModPayload>
 	[SerializeField]
 	public string Description;
 
-	public Dictionary<String,Object> Serialize()
+	public Dictionary<string,object> Serialize()
 	{
-		Dictionary<String,Object> payload = new Dictionary<string, object>();
+		var payload = new Dictionary<string, object>();
 		
 		List<Dictionary<string, object>> items = new List<Dictionary<string, object>>();
 		foreach (var t in ParkitectObjs)

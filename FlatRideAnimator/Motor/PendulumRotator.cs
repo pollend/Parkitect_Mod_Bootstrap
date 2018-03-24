@@ -35,7 +35,7 @@ public class PendulumRotator : Rotator
 		Pendulum = pendulum;
 	}
 
-	public override void tick(float dt, Transform root)
+	public override void Tick(float dt, Transform root)
 	{
 		Transform transformAxis = Axis.FindSceneRefrence(root);
 		if (transformAxis)
@@ -43,7 +43,7 @@ public class PendulumRotator : Rotator
 
 		if (!Pendulum)
 		{
-			base.tick(dt, root);
+			base.Tick(dt, root);
 			return;
 		}
 

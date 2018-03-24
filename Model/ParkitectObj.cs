@@ -22,7 +22,7 @@ public class ParkitectObj : ScriptableObject
 #if UNITY_EDITOR
 	public void UpdatePrefab()
 	{
-		var refrence = getGameObjectRef(false);
+		var refrence = GetGameObjectRef(false);
 		if (refrence != null)
 		{
 			Prefab = PrefabUtility.ReplacePrefab(refrence, PrefabUtility.GetPrefabParent(refrence),
@@ -32,12 +32,12 @@ public class ParkitectObj : ScriptableObject
 		LoadDecorators();
 	}
 
-	public GameObject getGameObjectRef(bool createInstance)
+	public GameObject GetGameObjectRef(bool createInstance)
 	{
-		GameObject[] rootSceneNodes = EditorSceneManager.GetActiveScene().GetRootGameObjects();
-		for (int x = 0; x < rootSceneNodes.Length; x++)
+		GameObject[] rootSceneNodes = SceneManager.GetActiveScene().GetRootGameObjects();
+		foreach (var node in rootSceneNodes)
 		{
-			var gameObject = rootSceneNodes[x].transform.Find(Key);
+			var gameObject = node.transform.Find(Key);
 			if (gameObject != null)
 				return gameObject.parent.gameObject;
 		}
@@ -48,7 +48,7 @@ public class ParkitectObj : ScriptableObject
 			refrence.name = Prefab.name;
 			PrefabUtility.ConnectGameObjectToPrefab(refrence, Prefab);
 
-			return getGameObjectRef(false);
+			return GetGameObjectRef(false);
 		}
 
 		return null;

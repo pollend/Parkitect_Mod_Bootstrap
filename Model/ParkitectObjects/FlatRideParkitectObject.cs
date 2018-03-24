@@ -11,10 +11,29 @@ using UnityEngine.Rendering;
 [Serializable]
 public class FlatRideParkitectObject : ParkitectObj
 {
+	public static readonly string[] ATTRACTION_CATEGORY_TAGS = new string[5]
+	{
+		"Attractions/Calm Rides",
+		"Attractions/Thrill Rides",
+		"Attractions/Coasters",
+		"Attractions/Transport Rides",
+		"Attractions/Water Rides"
+	};
+	
+	public static readonly string[] ATTRACTION_CATEGORY_INDEX = new string[5]
+	{
+		"Calm Rides",
+		"Thrill Rides",
+		"Coasters",
+		"Transport Rides",
+		"Water Rides"
+	};
+	
+	private int _phaseNum;
+
 	[SerializeField] public List<Motor> Motors = new List<Motor>();
 	[SerializeField] public List<Phase> Phases = new List<Phase>();
 	[SerializeField] public Phase CurrentPhase;
-	private int _phaseNum;
 	[SerializeField] public bool Animating;
 	[SerializeField] public float Excitement;
 	[SerializeField] public float Intensity;
@@ -22,7 +41,8 @@ public class FlatRideParkitectObject : ParkitectObj
 	[SerializeField] public int XSize = 1;
 	[SerializeField] public int ZSize = 1;
 	[SerializeField] public Vector3 ClosedAngleRetraints;
-
+	[SerializeField] public string FlatRideCategory = ATTRACTION_CATEGORY_TAGS[0];
+	
 
 	public override Type[] SupportedDecorators()
 	{
@@ -35,9 +55,9 @@ public class FlatRideParkitectObject : ParkitectObj
 		};
 	}
 
-	
 
-	
+
+
 	public void Animate(Transform root)
 	{
 		Motors.RemoveAll(x => x == null);
@@ -179,7 +199,7 @@ public class FlatRideParkitectObject : ParkitectObj
 
 		base.PrepareForExport();
 	}
-	
+
 	public override void CleanUp()
 	{
 		for (int x = 0; x < Phases.Count; x++)
@@ -206,7 +226,7 @@ public class FlatRideParkitectObject : ParkitectObj
 		base.CleanUp();
 	}
 
-	
+
 	public override void RenderInspectorGui()
 	{
 
@@ -225,6 +245,9 @@ public class FlatRideParkitectObject : ParkitectObj
 		XSize = EditorGUILayout.IntField("X", XSize);
 		ZSize = EditorGUILayout.IntField("Z", ZSize);
 
+		FlatRideCategory = ATTRACTION_CATEGORY_TAGS[EditorGUILayout.Popup ("category", Array.IndexOf(ATTRACTION_CATEGORY_TAGS,FlatRideCategory), ATTRACTION_CATEGORY_INDEX)]; 
+
+		
 		if (GUILayout.Button("Generate outer grid"))
 		{
 
@@ -256,18 +279,19 @@ public class FlatRideParkitectObject : ParkitectObj
 
 	public override void RenderSceneGui()
 	{
-		GameObject refrence = getGameObjectRef(false);
+		GameObject refrence = GetGameObjectRef(false);
 		if (refrence == null)
 			return;
 
-		Vector3 topLeft = new Vector3(-XSize / 2.0f, 0, ZSize / 2.0f) + refrence.transform.position;
-		Vector3 topRight = new Vector3(XSize / 2.0f, 0, ZSize / 2.0f) + refrence.transform.position;
-		Vector3 bottomLeft = new Vector3(-XSize / 2.0f, 0, -ZSize / 2.0f) + refrence.transform.position;
-		Vector3 bottomRight = new Vector3(XSize / 2.0f, 0, -ZSize / 2.0f) + refrence.transform.position;
+		Vector3 topLeft = new Vector3(-((float)XSize) / 2.0f, 0, (float)ZSize / 2.0f) + refrence.transform.position;
+		Vector3 topRight = new Vector3(((float)XSize) / 2.0f, 0, (float)ZSize / 2.0f) + refrence.transform.position;
+		Vector3 bottomLeft = new Vector3(-((float)XSize) / 2.0f, 0, -(float)ZSize / 2.0f) + refrence.transform.position;
+		Vector3 bottomRight = new Vector3(((float)XSize) / 2.0f, 0, -(float)ZSize / 2.0f) + refrence.transform.position;
 
 		Color fill = Color.white;
 		fill.a = 0.1f;
 		Handles.zTest = CompareFunction.LessEqual;
+		Handles.color = Color.white;
 		Handles.DrawSolidRectangleWithOutline(new[] {topLeft, topRight, bottomRight, bottomLeft}, fill, Color.black);
 
 		base.RenderSceneGui();
@@ -354,11 +378,11 @@ public class FlatRideParkitectObject : ParkitectObj
 			motor.Deserialize(serializedMotor);
 			Motors.Add(motor);
 		}
-		
+
 		foreach (var ele in (List<object>) elements["Phases"])
 		{
 			Phase phase = CreateInstance<Phase>();
-			phase.Deserialize(ele as Dictionary<string, object>,Motors.ToArray());
+			phase.Deserialize(ele as Dictionary<string, object>, Motors.ToArray());
 			Phases.Add(phase);
 		}
 
@@ -373,9 +397,9 @@ public class FlatRideParkitectObject : ParkitectObj
 			XSize = Convert.ToInt32(elements["XSize"]);
 		if (elements.ContainsKey("ZSize"))
 			ZSize = Convert.ToInt32(elements["ZSize"]);
+		if (elements.ContainsKey("Category"))
+			FlatRideCategory = (string) elements["Category"];
 		base.DeSerialize(elements);
-
-		
 	}
 
 
@@ -390,11 +414,11 @@ public class FlatRideParkitectObject : ParkitectObj
 			serializedMotor.Add("@Tag", Motor.GetTagFromMotor(motor.GetType()));
 			serializedMotors.Add(serializedMotor);
 		}
-		
+
 		List<Dictionary<string, object>> serializedPhases = new List<Dictionary<string, object>>();
 		foreach (var phase in Phases)
 		{
-			serializedPhases.Add(phase.Serialize(Prefab.transform,Motors.ToArray()));
+			serializedPhases.Add(phase.Serialize(Prefab.transform, Motors.ToArray()));
 		}
 
 
@@ -403,6 +427,7 @@ public class FlatRideParkitectObject : ParkitectObj
 		result.Add("Nausea", Nausea);
 		result.Add("XSize", XSize);
 		result.Add("ZSize", ZSize);
+		result.Add("Category", FlatRideCategory);
 
 		result.Add("Phases", serializedPhases);
 		result.Add("Motors", serializedMotors);

@@ -190,7 +190,7 @@ public override void InspectorGUI(Transform root)
 
 	}
 
-	public virtual void tick(float dt, Transform root)
+	public virtual void Tick(float dt, Transform root)
 	{
 		Transform transformAxis = Axis.FindSceneRefrence(root);
 

@@ -49,7 +49,7 @@ public class StartRotator : RideAnimationEvent
 	{
 		if (Rotator) {
 
-			Rotator.tick (Time.realtimeSinceStartup - _lastTime, root);
+			Rotator.Tick (Time.realtimeSinceStartup - _lastTime, root);
 			_lastTime = Time.realtimeSinceStartup;
 			if (Rotator.ReachedFullSpeed ()) {
 				Done = true;

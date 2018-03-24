@@ -1,5 +1,6 @@
 ﻿
  #if UNITY_EDITOR
+using UnityEngine;
 using UnityEditor;
 #endif
 using System;
@@ -61,10 +62,10 @@ public class RotateBetween : Motor
 
 	public void Initialize(Transform axis, Quaternion fromRotation, Quaternion toRotation, float duration)
 	{
-		this.Axis.SetSceneTransform(axis);
-		this.FromRotation = fromRotation;
-		this.ToRotation = toRotation;
-		this.Duration = duration;
+		Axis.SetSceneTransform(axis);
+		FromRotation = fromRotation;
+		ToRotation = toRotation;
+		Duration = duration;
 		axis.localRotation = Quaternion.Lerp(fromRotation, toRotation, 0);
 	}
 

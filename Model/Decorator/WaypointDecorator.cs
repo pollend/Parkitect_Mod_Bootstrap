@@ -31,7 +31,7 @@ public class WaypointDecorator : Decorator
 
 	public override void RenderInspectorGui(ParkitectObj parkitectObj)
 	{
-		GameObject sceneTransform = parkitectObj.getGameObjectRef(false);
+		GameObject sceneTransform = parkitectObj.GetGameObjectRef(false);
 		if (sceneTransform == null)
 			return;
 
@@ -104,7 +104,7 @@ public class WaypointDecorator : Decorator
 
 	public override void RenderSceneGui(ParkitectObj parkitectObj)
 	{
-		GameObject sceneTransform = parkitectObj.getGameObjectRef(false);
+		GameObject sceneTransform = parkitectObj.GetGameObjectRef(false);
 		if (sceneTransform == null)
 			return;
 
