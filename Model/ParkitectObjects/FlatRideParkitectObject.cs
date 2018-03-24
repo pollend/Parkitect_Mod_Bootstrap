@@ -334,7 +334,7 @@ public class FlatRideParkitectObject : ParkitectObj
 		flatride.fenceStyle = AssetManager.Instance.rideFenceStyles.rideFenceStyles[0].identifier;
 		flatride.entranceGO = AssetManager.Instance.attractionEntranceGO;
 		flatride.exitGO = AssetManager.Instance.attractionExitGO;
-		flatride.categoryTag = "Attractions/Flat Ride";
+		flatride.categoryTag = FlatRideCategory;
 		flatride.defaultEntranceFee = 1f;
 		flatride.entranceExitBuilderGO = AssetManager.Instance.flatRideEntranceExitBuilderGO;
 		
