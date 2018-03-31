@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$USER_HOME$/.Rider2017.3/system/resharper-host/local/Transient/ReSharperHost/v11/SolutionCaches/_ParkitectModBootstrap.-1978221067.00" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p="FlatRideAnimator" t="Include">
+        <e p="CachedTransform.cs" t="Include" />
+        <e p="Events" t="Include">
+          <e p="ApplyRotation.cs" t="Include" />
+          <e p="ChangePendulum.cs" t="Include" />
+          <e p="FromToMove.cs" t="Include" />
+          <e p="FromToRot.cs" t="Include" />
+          <e p="RideAnimationEvent.cs" t="Include" />
+          <e p="RideAnimationEventTag.cs" t="Include" />
+          <e p="SpinRotater.cs" t="Include" />
+          <e p="StartRotator.cs" t="Include" />
+          <e p="StopRotator.cs" t="Include" />
+          <e p="ToFromMove.cs" t="Include" />
+          <e p="ToFromRot.cs" t="Include" />
+          <e p="Wait.cs" t="Include" />
+        </e>
+        <e p="Motor" t="Include">
+          <e p="Motor.cs" t="Include" />
+          <e p="MotorTag.cs" t="Include" />
+          <e p="Mover.cs" t="Include" />
+          <e p="MultipleRotations.cs" t="Include" />
+          <e p="PendulumRotator.cs" t="Include" />
+          <e p="RotateBetween.cs" t="Include" />
+          <e p="Rotator.cs" t="Include" />
+        </e>
+        <e p="Phase.cs" t="Include" />
+        <e p="RideAnimation.cs" t="Include" />
+      </e>
+      <e p="Model" t="Include">
+        <e p="Decorator" t="Include">
+          <e p="BaseDecorator.cs" t="Include" />
+          <e p="BoundingBoxDecorator.cs" t="Include" />
+          <e p="CategoryDecorator.cs" t="Include" />
+          <e p="ColorDecorator.cs" t="Include" />
+          <e p="Decorator.cs" t="Include" />
+          <e p="GridDecorator.cs" t="Include" />
+          <e p="ResizableDecorator.cs" t="Include" />
+          <e p="SeatDecorator.cs" t="Include" />
+          <e p="ShopProduct.cs" t="Include" />
+          <e p="WaypointDecorator.cs" t="Include" />
+        </e>
+        <e p="ModPayload.cs" t="Include" />
+        <e p="ParkitectObj.cs" t="Include" />
+        <e p="ParkitectObjectTag.cs" t="Include" />
+        <e p="ParkitectObjects" t="Include">
+          <e p="DecoParkitectObject.cs" t="Include" />
+          <e p="EmptyParkitectObject.cs" t="Include" />
+          <e p="FlatRideParkitectObject.cs" t="Include" />
+          <e p="PathStyleParkitectObject.cs" t="Include" />
+          <e p="SeatingParkitectObject.cs" t="Include" />
+          <e p="ShopParkitectObject.cs" t="Include" />
+          <e p="SignParkitectObject.cs" t="Include" />
+          <e p="TrashbinParkitectObject.cs" t="Include" />
+          <e p="TvParkitectObject.cs" t="Include" />
+          <e p="WallDecoratorObject.cs" t="Include" />
+          <e p="WallParkitectObject.cs" t="Include" />
+        </e>
+        <e p="Proxy" t="Include">
+          <e p="FlatRide" t="Include">
+            <e p="CustomFlatRide.cs" t="Include" />
+          </e>
+          <e p="Shop" t="Include">
+            <e p="CustomShop.cs" t="Include" />
+            <e p="Products" t="Include">
+              <e p="CustomConsumableProduct.cs" t="Include" />
+              <e p="CustomOngoingEffectProduct.cs" t="Include" />
+              <e p="CustomWerableProduct.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Needs" t="Include">
+        <e p="SPBoundingBox.cs" t="Include" />
+        <e p="SPWaypoint.cs" t="Include" />
+      </e>
+      <e p="ParkitectMod.cs" t="Include" />
+      <e p="ParkitectModBootstrap.cs" t="Include" />
+      <e p="ParkitectModBootstrap.csproj" t="IncludeRecursive" />
+      <e p="ParkitectModBootstrap.sln" t="IncludeFlat" />
+      <e p="Refrence.cs" t="Include" />
+      <e p="RefrencedTransform.cs" t="Include" />
+      <e p="Utility" t="Include">
+        <e p="Extra.cs" t="Include" />
+        <e p="MathHelper.cs" t="Include" />
+        <e p="RemapUtility.cs" t="Include" />
+      </e>
+      <e p="Utility.cs" t="Include" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="steam_workshop-id" t="Include" />
+    </e>
+    <e p="$PROJECT_DIR$/../pollend@ParkitectModBootstrap" t="ExcludeRecursive" />
+  </component>
+</project>

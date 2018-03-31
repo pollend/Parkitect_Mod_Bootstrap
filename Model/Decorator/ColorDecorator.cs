@@ -67,12 +67,16 @@ public class ColorDecorator : Decorator
 	{
 		if (elements.ContainsKey("Colors"))
 		{
+			List<object> deserializeColors = (List<object>) elements["Colors"];
+
 			int index = 0;
-			foreach (var colordeserialize in (List<object>)elements["Colors"])
+			foreach (var colordeserialize in deserializeColors)
 			{
 				Colors[index] = Utility.DeSerializeColor(colordeserialize as Dictionary<string,object>);
 				index++;
 			}
+
+			ColorCount = deserializeColors.Count;
 		}
 
 		if (elements.ContainsKey("IsRecolorable"))

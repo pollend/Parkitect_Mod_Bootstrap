@@ -368,7 +368,7 @@ public class WaypointDecorator : Decorator
 
 	public override void Decorate(GameObject go, GameObject hider, ParkitectObj parkitectObj, AssetBundle bundle)
 	{
-		Waypoints w = go.AddComponent<Waypoints>();
+		Waypoints w = go.GetComponent<Waypoints>();
 		foreach (var t in Waypoints)
 		{
 			Waypoint waypoint = new Waypoint();

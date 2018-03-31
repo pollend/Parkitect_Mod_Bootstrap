@@ -51,7 +51,8 @@ public class FlatRideParkitectObject : ParkitectObj
 			typeof(BaseDecorator),
 			typeof(WaypointDecorator),
 			typeof(BoundingBoxDecorator),
-			typeof(SeatDecorator)
+			typeof(SeatDecorator),
+			typeof(ColorDecorator)
 		};
 	}
 
@@ -234,9 +235,9 @@ public class FlatRideParkitectObject : ParkitectObj
 
 		GUILayout.Space(10);
 		GUILayout.Label("Rating", EditorStyles.boldLabel);
-		Excitement = EditorGUILayout.Slider("Excitement (" + getRatingCategory(Excitement) + ")", Excitement, 0, 1);
-		Intensity = EditorGUILayout.Slider("Intensity (" + getRatingCategory(Intensity) + ")", Intensity, 0, 1);
-		Nausea = EditorGUILayout.Slider("Nausea (" + getRatingCategory(Nausea) + ")", Nausea, 0, 1);
+		Excitement = EditorGUILayout.Slider("Excitement (" + GetRatingCategory(Excitement) + ")", Excitement, 0, 1);
+		Intensity = EditorGUILayout.Slider("Intensity (" + GetRatingCategory(Intensity) + ")", Intensity, 0, 1);
+		Nausea = EditorGUILayout.Slider("Nausea (" + GetRatingCategory(Nausea) + ")", Nausea, 0, 1);
 		GUILayout.Space(10);
 		ClosedAngleRetraints = EditorGUILayout.Vector3Field("Closed Restraints Angle", ClosedAngleRetraints);
 
@@ -306,14 +307,17 @@ public class FlatRideParkitectObject : ParkitectObj
 		BaseDecorator baseDecorator = DecoratorByInstance<BaseDecorator>();
 		WaypointDecorator waypointDecorator = DecoratorByInstance<WaypointDecorator>();
 		BoundingBoxDecorator boundingBoxDecorator = DecoratorByInstance<BoundingBoxDecorator>();
+		ColorDecorator colorDecorator = DecoratorByInstance<ColorDecorator>();
 		
 		GameObject gameObject = Instantiate(bundle.LoadAsset<GameObject>(Key));
-		waypointDecorator.Decorate(gameObject, hider, this, bundle);
+		RemapUtility.RemapMaterials(gameObject);
 
-	
 		CustomFlatRide flatride = gameObject.AddComponent<CustomFlatRide>();
 		baseDecorator.Decorate(gameObject,hider,this,bundle);
+		colorDecorator.Decorate(gameObject,hider,this,bundle);
+		waypointDecorator.Decorate(gameObject, hider, this, bundle);
 
+		
 		_flatRide = flatride;
 		_flatRide.name = Key;
 		flatride.xSize = XSize;
@@ -347,7 +351,7 @@ public class FlatRideParkitectObject : ParkitectObj
 	}
 #endif
 
-	private string getRatingCategory(float ratingValue)
+	private string GetRatingCategory(float ratingValue)
 	{
 		ratingValue /= 100f;
 		if (ratingValue > 0.9f)
