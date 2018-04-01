@@ -68,7 +68,6 @@ public class ParkitectMod : IMod
 
     public void onDisabled()
     {
-        Debug.Log("unloading");
         if (_payload != null)
         {
             try
