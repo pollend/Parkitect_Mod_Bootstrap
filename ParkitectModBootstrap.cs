@@ -61,16 +61,25 @@ public class ParkitectModBootstrap : IMod
         {
             ModManager.Instance.removeMod(mod);   
         }
+
         foreach (var mod in toAdd)
         {
-            ModManager.Instance.addMod(mod, mod.Path, AbstractGameContent.ContentSource.USER_CREATED, 0);
-            mod.onEnabled();
-
+            ModManager.ModEntry entry = ModManager.Instance.addMod(mod, mod.Path, AbstractGameContent.ContentSource.USER_CREATED, 0);
+            try
+            {
+                entry.enableMod();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("Failed to Load Mod: " + mod.Path);
+                Debug.LogError(e);
+            }
         }
     }
 
     public void onDisabled()
     {
+        Debug.Log("unloadingasd;fas;lkdfj");
     }
 
     public string Name => "Parkitect Mod Bootstrap";

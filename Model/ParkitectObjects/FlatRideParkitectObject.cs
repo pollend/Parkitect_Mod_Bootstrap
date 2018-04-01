@@ -347,6 +347,7 @@ public class FlatRideParkitectObject : ParkitectObj
 
 	public override void UnBindToParkitect(GameObject hider)
 	{
+		Debug.Log("Unloading!!");
 		AssetManager.Instance.unregisterObject(_flatRide);
 	}
 #endif
