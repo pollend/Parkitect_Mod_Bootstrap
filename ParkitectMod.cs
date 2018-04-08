@@ -6,10 +6,6 @@ using UnityEngine;
 #if (PARKITECT)
 public class ParkitectMod : IMod
 {
-    private string _name = "";
-    private string _description = "";
-    private string _identifier = null;
-
     private readonly String path ;
 
     private GameObject hider;
@@ -72,7 +68,6 @@ public class ParkitectMod : IMod
 
     public void onDisabled()
     {
-
         if (_payload != null)
         {
             try
