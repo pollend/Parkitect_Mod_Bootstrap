@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 [ParkitectObjectTag("FlatRide")]
 [Serializable]
@@ -328,10 +327,6 @@ public class FlatRideParkitectObject : ParkitectObj
 
 		RestraintRotationController controller = gameObject.AddComponent<RestraintRotationController>();
 		controller.closedAngles = ClosedAngleRetraints;
-
-		//Setup Animation
-		flatride.motors = new List<Motor>(Motors);
-		flatride.phases = new List<Phase>(Phases);
 
 
 		//Basic FlatRide Settings
