@@ -3,34 +3,6 @@
   <component name="ContentModelStore">
     <e p="$USER_HOME$/.Rider2017.3/system/resharper-host/local/Transient/ReSharperHost/v11/SolutionCaches/_ParkitectModBootstrap.-1978221067.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
-      <e p="FlatRideAnimator" t="Include">
-        <e p="CachedTransform.cs" t="Include" />
-        <e p="Events" t="Include">
-          <e p="ApplyRotation.cs" t="Include" />
-          <e p="ChangePendulum.cs" t="Include" />
-          <e p="FromToMove.cs" t="Include" />
-          <e p="FromToRot.cs" t="Include" />
-          <e p="RideAnimationEvent.cs" t="Include" />
-          <e p="RideAnimationEventTag.cs" t="Include" />
-          <e p="SpinRotater.cs" t="Include" />
-          <e p="StartRotator.cs" t="Include" />
-          <e p="StopRotator.cs" t="Include" />
-          <e p="ToFromMove.cs" t="Include" />
-          <e p="ToFromRot.cs" t="Include" />
-          <e p="Wait.cs" t="Include" />
-        </e>
-        <e p="Motor" t="Include">
-          <e p="Motor.cs" t="Include" />
-          <e p="MotorTag.cs" t="Include" />
-          <e p="Mover.cs" t="Include" />
-          <e p="MultipleRotations.cs" t="Include" />
-          <e p="PendulumRotator.cs" t="Include" />
-          <e p="RotateBetween.cs" t="Include" />
-          <e p="Rotator.cs" t="Include" />
-        </e>
-        <e p="Phase.cs" t="Include" />
-        <e p="RideAnimation.cs" t="Include" />
-      </e>
       <e p="Model" t="Include">
         <e p="Decorator" t="Include">
           <e p="BaseDecorator.cs" t="Include" />
@@ -82,8 +54,6 @@
       <e p="ParkitectModBootstrap.cs" t="Include" />
       <e p="ParkitectModBootstrap.csproj" t="IncludeRecursive" />
       <e p="ParkitectModBootstrap.sln" t="IncludeFlat" />
-      <e p="Refrence.cs" t="Include" />
-      <e p="RefrencedTransform.cs" t="Include" />
       <e p="Utility" t="Include">
         <e p="Extra.cs" t="Include" />
         <e p="MathHelper.cs" t="Include" />

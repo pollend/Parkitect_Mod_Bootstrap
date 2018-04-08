@@ -28,7 +28,6 @@ public class FlatRideParkitectObject : ParkitectObj
 		"Water Rides"
 	};
 
-	[SerializeField] public bool Animating;
 	[SerializeField] public float Excitement;
 	[SerializeField] public float Intensity;
 	[SerializeField] public float Nausea;

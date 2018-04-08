@@ -72,28 +72,6 @@
     <DefineConstants>PARKITECT</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="FlatRideAnimator\CachedTransform.cs" />
-    <Compile Include="FlatRideAnimator\Events\ApplyRotation.cs" />
-    <Compile Include="FlatRideAnimator\Events\ChangePendulum.cs" />
-    <Compile Include="FlatRideAnimator\Events\FromToMove.cs" />
-    <Compile Include="FlatRideAnimator\Events\FromToRot.cs" />
-    <Compile Include="FlatRideAnimator\Events\RideAnimationEvent.cs" />
-    <Compile Include="FlatRideAnimator\Events\RideAnimationEventTag.cs" />
-    <Compile Include="FlatRideAnimator\Events\SpinRotater.cs" />
-    <Compile Include="FlatRideAnimator\Events\StartRotator.cs" />
-    <Compile Include="FlatRideAnimator\Events\StopRotator.cs" />
-    <Compile Include="FlatRideAnimator\Events\ToFromMove.cs" />
-    <Compile Include="FlatRideAnimator\Events\ToFromRot.cs" />
-    <Compile Include="FlatRideAnimator\Events\Wait.cs" />
-    <Compile Include="FlatRideAnimator\Motor\Motor.cs" />
-    <Compile Include="FlatRideAnimator\Motor\MotorTag.cs" />
-    <Compile Include="FlatRideAnimator\Motor\Mover.cs" />
-    <Compile Include="FlatRideAnimator\Motor\MultipleRotations.cs" />
-    <Compile Include="FlatRideAnimator\Motor\PendulumRotator.cs" />
-    <Compile Include="FlatRideAnimator\Motor\RotateBetween.cs" />
-    <Compile Include="FlatRideAnimator\Motor\Rotator.cs" />
-    <Compile Include="FlatRideAnimator\Phase.cs" />
-    <Compile Include="FlatRideAnimator\RideAnimation.cs" />
     <Compile Include="Model\Decorator\ResizableDecorator.cs" />
     <Compile Include="Model\Decorator\ShopProduct.cs" />
     <Compile Include="Model\ParkitectObjects\DecoParkitectObject.cs" />
@@ -114,8 +92,6 @@
     <Compile Include="Model\Proxy\Shop\Products\CustomWerableProduct.cs" />
     <Compile Include="ParkitectMod.cs" />
     <Compile Include="ParkitectModBootstrap.cs" />
-    <Compile Include="Refrence.cs" />
-    <Compile Include="RefrencedTransform.cs" />
     <Compile Include="Model\ModPayload.cs" />
     <Compile Include="Model\ParkitectObj.cs" />
     <Compile Include="Model\ParkitectObjectTag.cs" />
