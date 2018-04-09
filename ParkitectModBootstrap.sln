@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkitectModBootstrap", "ParkitectModBootstrap.csproj", "{4C156FA3-43F0-46C6-B387-B94BA3A13B23}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkitectModMiniBoot", "ParkitectModMiniBoot\ParkitectModMiniBoot.csproj", "{8ACA7CC3-1C34-4526-9FEE-3E3DED71B480}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,5 +15,9 @@ Global
 		{4C156FA3-43F0-46C6-B387-B94BA3A13B23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C156FA3-43F0-46C6-B387-B94BA3A13B23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C156FA3-43F0-46C6-B387-B94BA3A13B23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8ACA7CC3-1C34-4526-9FEE-3E3DED71B480}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ACA7CC3-1C34-4526-9FEE-3E3DED71B480}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ACA7CC3-1C34-4526-9FEE-3E3DED71B480}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ACA7CC3-1C34-4526-9FEE-3E3DED71B480}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

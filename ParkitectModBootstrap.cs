@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
+using MiniJSON;
+using Parkitect.Mods.AssetPacks;
 using UnityEngine;
 using Object = System.Object;
 
@@ -8,82 +11,95 @@ using Object = System.Object;
 
 public class ParkitectModBootstrap : IMod
 {
+    private List<ModPayload> _payloads;
+    private GameObject _hider ;
+
     public ParkitectModBootstrap()
     {
     }
 
 
-    private ParkitectMod tryLoadPath(String folder)
-    {
-        String[] files = Directory.GetFiles(folder, "*.spark", SearchOption.TopDirectoryOnly);
-        if (files.Length > 0)
-        {
-            Debug.Log("Loading Mod From: " + folder);
-            try
-            {
-                ParkitectMod mod = new ParkitectMod(folder);              
-                return mod;
-            }
-            catch (Exception e)
-            {
-                Debug.LogError(e);
-            }
-        }
-        
-        
-        return null;
-    }
-
     public void onEnabled()
     {
+        
+        _payloads = new List<ModPayload>();
+        
+        _hider = new GameObject("hider");
+        UnityEngine.Object.DontDestroyOnLoad(_hider);
+
         Debug.Log("------------------------Staring Bootstrap------------------------");
-
-        List<ModManager.ModEntry> toRemove = new List<ModManager.ModEntry>();
-        List<ParkitectMod> toAdd = new List<ParkitectMod>();
-
+          
         foreach (var modEntry in ModManager.Instance.getModEntries())
         {
-            if (!(modEntry.mod is ParkitectMod))
+            if (modEntry.isActive())
             {
-                Debug.Log(modEntry.path);
-                ParkitectMod mod = tryLoadPath(modEntry.path);
-                if (mod != null)
+
+                String[] files = Directory.GetFiles(modEntry.path, "*.spark", SearchOption.TopDirectoryOnly);
+                ModPayload payload = null;
+                foreach (var sparkModFile in files)
                 {
-                    toAdd.Add(mod);
-                    toRemove.Add(modEntry);
+                    using (StreamReader reader = new StreamReader(sparkModFile))
+                    {
+                        payload = ScriptableObject.CreateInstance<ModPayload>();
+                        payload.Deserialize((Dictionary<string, object>) Json.Deserialize(reader.ReadToEnd()));
+                        break;
+
+                    }
                 }
+
+                if (payload != null)
+                {
+                    Debug.Log("------------------------Loading Mod------------------------");
+                    Debug.Log("Loading Mod From: " + modEntry.path);
+
+                    AssetBundle assetBundle = AssetBundle.LoadFromFile(modEntry.path + "/assetbundle");
+
+                    foreach (ParkitectObj obj in payload.ParkitectObjs)
+                    {
+                        Debug.Log("Loading Object:" + obj.Key);
+                        obj.BindToParkitect(_hider, assetBundle);
+                    }
+                    assetBundle.Unload(false);
+
+                    Debug.Log("------------------------Done Loading Mod------------------------");
+                }
+
+                _payloads.Add(payload);
             }
 
         }
         Debug.Log("------------------------Finished Bootstrap------------------------");
+        _hider.SetActive(false);
 
-        foreach (var mod in toRemove)
-        {
-            ModManager.Instance.removeMod(mod);   
-        }
-
-        foreach (var mod in toAdd)
-        {
-            ModManager.ModEntry entry = ModManager.Instance.addMod(mod, mod.Path, AbstractGameContent.ContentSource.USER_CREATED, 0);
-            try
-            {
-                entry.enableMod();
-            }
-            catch (Exception e)
-            {
-                Debug.LogError("Failed to Load Mod: " + mod.Path);
-                Debug.LogError(e);
-            }
-        }
     }
 
     public void onDisabled()
     {
-        Debug.Log("unloadingasd;fas;lkdfj");
+        Debug.Log("------------------------Stopping Bootstrap------------------------");
+        if (_payloads != null)
+        {
+            foreach (var payload in _payloads)
+            {
+                foreach (var parkitectObj in payload.ParkitectObjs)
+                {
+                    Debug.Log("unloading:" + parkitectObj.name);
+                    parkitectObj.UnBindToParkitect(_hider);
+                }
+
+            }
+        }
+
+        if (_hider != (UnityEngine.Object)null)
+        {
+            UnityEngine.Object.Destroy(_hider);
+        }
+
+        Debug.Log("------------------------Stopping Bootstrap------------------------");
     }
 
     public string Name => "Parkitect Mod Bootstrap";
     public string Description => "bootstrapper used to run mods built by spark";
     public string Identifier => "ParkitectModBootstrap";
+
 }
 #endif
