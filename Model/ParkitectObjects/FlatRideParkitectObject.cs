@@ -140,11 +140,13 @@ public class FlatRideParkitectObject : ParkitectObj
 		GameObject gameObject = Instantiate(bundle.LoadAsset<GameObject>(Key));
 		RemapUtility.RemapMaterials(gameObject);
 
+		waypointDecorator.Decorate(gameObject, hider, this, bundle);
+
+		
 		CustomFlatRide flatride = gameObject.AddComponent<CustomFlatRide>();
 		baseDecorator.Decorate(gameObject,hider,this,bundle);
 		colorDecorator.Decorate(gameObject,hider,this,bundle);
-		waypointDecorator.Decorate(gameObject, hider, this, bundle);
-
+		
 		
 		_flatRide = flatride;
 		_flatRide.name = Key;
@@ -153,6 +155,7 @@ public class FlatRideParkitectObject : ParkitectObj
 		flatride.excitementRating = Excitement;
 		flatride.intensityRating = Intensity;
 		flatride.nauseaRating = Nausea;
+		
 
 		RestraintRotationController controller = gameObject.AddComponent<RestraintRotationController>();
 		controller.closedAngles = ClosedAngleRetraints;

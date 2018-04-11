@@ -368,14 +368,17 @@ public class WaypointDecorator : Decorator
 
 	public override void Decorate(GameObject go, GameObject hider, ParkitectObj parkitectObj, AssetBundle bundle)
 	{
-		Waypoints w = go.GetComponent<Waypoints>();
+		Waypoints w = go.AddComponent<Waypoints>();
 		foreach (var t in Waypoints)
 		{
-			Waypoint waypoint = new Waypoint();
-			waypoint.connectedTo = t.connectedTo;
-			waypoint.isOuter = t.isOuter;
-			waypoint.isRabbitHoleGoal = t.isRabbitHoleGoal;
-			waypoint.localPosition = t.localPosition;
+			Waypoint waypoint = new Waypoint
+			{
+				connectedTo = t.connectedTo,
+				isOuter = t.isOuter,
+				isRabbitHoleGoal = t.isRabbitHoleGoal,
+				localPosition = t.localPosition
+			};
+			Debug.Log("added waypoint" + t.localPosition);
 			w.waypoints.Add(waypoint);
 		}
 	}

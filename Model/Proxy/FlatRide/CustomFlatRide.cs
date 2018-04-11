@@ -11,6 +11,7 @@ public class CustomFlatRide : FlatRide
     private bool isAnimating = false;
     public override void onStartRide()
     {
+        base.onStartRide();
         Animator animator =  GetComponent<Animator>();
         animator.SetTrigger("Play");
         isAnimating = true;
@@ -18,6 +19,7 @@ public class CustomFlatRide : FlatRide
 
     public override void tick(StationController stationController)
     {
+        
         Animator animator =  GetComponent<Animator>();
         animator.Update(Time.deltaTime);
         if (animator.GetAnimatorTransitionInfo(0).IsName("Play -> Idle"))

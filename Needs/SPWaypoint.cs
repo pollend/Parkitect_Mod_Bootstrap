@@ -38,9 +38,9 @@ public class SPWaypoint
 		if(elements.ContainsKey("Outer"))
 			waypoint.isOuter = (bool) elements["Outer"];
 		if(elements.ContainsKey ("IsRabbitHoleGoal") )
-			waypoint.isOuter =(bool) elements["Outer"];
+			waypoint.isRabbitHoleGoal = (bool) elements["IsRabbitHoleGoal"];
 		if(elements.ContainsKey("LocalPosition"))
-			waypoint.isOuter = (bool) elements["Outer"];
+			waypoint.localPosition = Utility.DeseralizeVector3( (Dictionary<string, object>) elements["LocalPosition"]);
 		
 		if (elements.ContainsKey("ConnectedTo")) {
 			
